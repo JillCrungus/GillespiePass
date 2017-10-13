@@ -32,6 +32,7 @@ public:
 	{
 		PrecacheModel("models/items/w_longjump.mdl");
 		PrecacheScriptSound("HL2Player.LJR");
+		PrecacheScriptSound("HL2Player.LongJump");
 	}
 
 	bool MyTouch(CBasePlayer *pPlayer)
