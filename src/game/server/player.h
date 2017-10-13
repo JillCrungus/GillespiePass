@@ -1191,9 +1191,10 @@ public:
 
 	bool m_bLongJump;
 
-	float m_fLongJumpTime = 1.0;
+	float m_fLongJumpTime = 1.5;
 	float m_fLongJumpTime2 = 0;
 	bool  m_bCanLJ = true;
+	bool  m_playedCooldown = true;
 
 
 

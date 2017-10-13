@@ -29,7 +29,7 @@
 
 "HL2Player.LongJump"
 {
-	"channel"	"CHAN_VOICE"
+	"channel"	"CHAN_AUTO"
 	"volume"	"0.9"
 	"soundlevel"  "SNDLVL_60dB"
 
@@ -38,7 +38,7 @@
 
 "HL2Player.LJR"
 {
-	"channel"	"CHAN_VOICE"
+	"channel"	"CHAN_AUTO"
 	"volume"	"0.9"
 	"soundlevel"  "SNDLVL_60dB"
 

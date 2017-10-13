@@ -2491,12 +2491,13 @@ bool CGameMovement::CheckJumpButton( void )
 				if (player->m_bLongJump)
 				{
 					//Multiply the forward movement bonus by 10
-					flSpeedBoostPerc = flSpeedBoostPerc * 7;
+					flSpeedBoostPerc = flSpeedBoostPerc * 8;
 					CPASAttenuationFilter filter(player);
 					filter.UsePredictionRules();
 					player->EmitSound(filter, player->entindex(), "HL2Player.LongJump");
 					player->m_fLongJumpTime2 = player->m_fLongJumpTime + gpGlobals->curtime;
 					player->m_bCanLJ = false;
+					player->m_playedCooldown = false;
 
 
 				}

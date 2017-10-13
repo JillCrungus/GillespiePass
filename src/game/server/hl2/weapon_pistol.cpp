@@ -49,6 +49,7 @@ public:
 	void	ItemPreFrame( void );
 	void	ItemBusyFrame( void );
 	void	PrimaryAttack( void );
+	void	SecondaryAttack(void);
 	void	AddViewKick( void );
 	void	DryFire( void );
 	void	Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCharacter *pOperator );
@@ -105,7 +106,7 @@ public:
 	}
 
 	DECLARE_ACTTABLE();
-
+	
 private:
 	float	m_flSoonestPrimaryAttack;
 	float	m_flLastAttackTime;
@@ -255,6 +256,47 @@ void CWeaponPistol::PrimaryAttack( void )
 
 	m_iPrimaryAttacks++;
 	gamestats->Event_WeaponFired( pOwner, true, GetClassname() );
+}
+
+void CWeaponPistol::SecondaryAttack(void)
+{
+	Vector forward;
+	trace_t	tr;
+
+	AngleVectors(GetAbsAngles(), &forward);
+
+	UTIL_TraceLine(GetAbsOrigin(), GetAbsOrigin() + forward * 128,
+		MASK_VISIBLE_AND_NPCS, this->GetOwner(), COLLISION_GROUP_NONE, &tr);
+
+	if (tr.DidHitNonWorldEntity())
+	{
+		Msg("1");
+		if (tr.m_pEnt)
+		{
+			Msg("2");
+			if (tr.m_pEnt->IsNPC())
+			{
+				Msg("3");
+				//if (tr.m_pEnt->GetClassname() == "npc_combine_s")
+				//{
+					CBaseEntity them = tr.m_pEnt;
+					Vector myPos = this->GetOwner()->GetAbsOrigin();
+					QAngle myAngles = this->GetOwner()->GetAbsAngles();
+
+					Vector theirPos = tr.m_pEnt->GetAbsOrigin();
+					QAngle theirAngles = tr.m_pEnt->GetAbsAngles();
+
+					this->GetOwner()->SetAbsAngles(theirAngles);
+					this->GetOwner()->SetAbsOrigin(theirPos);
+
+					them.SetAbsAngles(myAngles);
+					them.SetAbsOrigin(myPos);
+
+
+				//}
+			}
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
