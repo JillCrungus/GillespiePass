@@ -3505,9 +3505,6 @@
     <ClCompile Include="toolframework_server.cpp">
       <Filter>Tools Framework</Filter>
     </ClCompile>
-    <ClCompile Include="item_longjump.cpp">
-      <Filter>Source Files\HL2 DLL</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
