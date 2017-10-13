@@ -37,7 +37,7 @@ HOW TO BUILD:
 
 1. Open games.sln
 
-2. For client (episodic) and server (episodic)
+2. For BOTH client (episodic) AND server (episodic) )
 
 Right click
 
@@ -45,6 +45,8 @@ Properties
 
 Set output directory to your Gillespie Pass "bin" directory
 
-Right click
+Click to C/C++ category
 
-Build that shit
+Disable warnings and disable treat warnings as errors
+
+3. Once you've done this for both of the projects you can right click > build them.
