@@ -32,5 +32,11 @@ GameState.txt
 stats.txt
 voice_ban.dt
 
+#Map compile stuff
+*.log
+*.prt
+*.vmx
+mapsrc/*.bsp
+
 
 # End of https://www.gitignore.io/api/windows
