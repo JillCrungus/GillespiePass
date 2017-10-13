@@ -31,3 +31,15 @@ HOW TO PUSH CHANGES:
 3. Commit to the master branch
 
 4. Open up the History tab, make sure everything in your commit is in order and push the changes!
+
+
+HOW TO BUILD:
+
+1. Open games.sln
+
+2. For client (episodic) and server (episodic):
+	Right click
+	Properties
+	Set output directory to your Gillespie Pass "bin" directory
+	Right click
+	Build that shit
