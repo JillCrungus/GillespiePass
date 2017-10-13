@@ -35,6 +35,9 @@ HOW TO PUSH CHANGES:
 
 HOW TO BUILD:
 
+0. Install/update Visual Studio 2013 ( https://go.microsoft.com/fwlink/?LinkId=532495&clcid=0x409 )
+0b. Install the Multibyte MFC Library ( https://www.microsoft.com/en-gb/download/details.aspx?id=40770 )
+
 1. Open games.sln
 
 2. For BOTH client (episodic) AND server (episodic) )
