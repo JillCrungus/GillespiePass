@@ -47,6 +47,6 @@ Set output directory to your Gillespie Pass "bin" directory
 
 Click to C/C++ category
 
-Disable warnings and disable treat warnings as errors
+Disable warnings and disable treat warnings as errors (These may be done already)
 
 3. Once you've done this for both of the projects you can right click > build them.
