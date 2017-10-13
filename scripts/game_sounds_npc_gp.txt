@@ -1,0 +1,129 @@
+"HoundEye.Idle"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"VOL_NORM"
+	"soundlevel"	"SNDLVL_NORM"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"houndeye/he_idle1.wav"
+		"wave"		"houndeye/he_idle2.wav"
+		"wave"		"houndeye/he_idle3.wav"
+
+	}
+}
+
+"HoundEye.Hunt"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"VOL_NORM"
+	"soundlevel"	"SNDLVL_80db"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"houndeye/he_hunt1.wav"
+		"wave"		"houndeye/he_hunt2.wav"
+		"wave"		"houndeye/he_hunt3.wav"
+
+	}
+}
+
+
+"HoundEye.Alert"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"VOL_NORM"
+	"soundlevel"	"SNDLVL_85db"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"houndeye/he_alert1.wav"
+		"wave"		"houndeye/he_alert2.wav"
+		"wave"		"houndeye/he_alert3.wav"
+
+	}
+}
+
+"HoundEye.Die"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"VOL_NORM"
+	"soundlevel"	"SNDLVL_85db"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"houndeye/he_die1.wav"
+		"wave"		"houndeye/he_die2.wav"
+		"wave"		"houndeye/he_die3.wav"
+
+	}
+}
+
+"HoundEye.Pain"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"VOL_NORM"
+	"soundlevel"	"SNDLVL_80db"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"houndeye/he_pain3.wav"
+		"wave"		"houndeye/he_pain4.wav"
+		"wave"		"houndeye/he_pain5.wav"
+
+	}
+}
+
+"HoundEye.Anger1"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"VOL_NORM"
+	"soundlevel"	"SNDLVL_90db"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"houndeye/he_pain3.wav"
+	}
+}
+
+"HoundEye.Anger2"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"VOL_NORM"
+	"soundlevel"	"SNDLVL_90db"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"houndeye/he_pain1.wav"
+
+	}
+}
+
+"HoundEye.Sonic"
+{
+	"channel"	"CHAN_WEAPON"
+	"volume"	"VOL_NORM"
+	"soundlevel"	"SNDLVL_140db"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"houndeye/he_blast1.wav"
+		"wave"		"houndeye/he_blast2.wav"
+		"wave"		"houndeye/he_blast3.wav"
+
+	}
+}
+
+"HoundEye.Warn"
+{
+	"channel"	"CHAN_WEAPON"
+	"volume"	"0.7"
+	"soundlevel"	"SNDLVL_80db"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"houndeye/he_attack1.wav"
+		"wave"		"houndeye/he_attack3.wav"
+
+	}
+}
