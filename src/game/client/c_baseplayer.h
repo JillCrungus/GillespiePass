@@ -436,6 +436,12 @@ public:
 
 	CUserCmd		*m_pCurrentCommand;
 
+	bool m_bLongJump;
+
+	float m_fLongJumpTime = 1.0;
+	float m_fLongJumpTime2 = 0;
+	bool  m_bCanLJ = true;
+
 	// Movement constraints
 	EHANDLE			m_hConstraintEntity;
 	Vector			m_vecConstraintCenter;
