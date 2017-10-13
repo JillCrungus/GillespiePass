@@ -14,8 +14,8 @@
 
 "CreditsParams"
 {
-	"logo" "HALF-LIFE'"
-	"logo2" "== episode two=="
+	"logo" "H'LF-LIFE2"
+	"logo2" "== Gillespie Pass =="
 
 	"fadeintime"	"2.5"
 	"fadeouttime"	"1"
@@ -38,8 +38,8 @@
 //========================================================
 "OutroCreditsNames"
 {
-	"HALF-LIFE'" "ClientTitleFont"
-	"== episode two==" "ClientTitleFont"
+	"H'LF-LIFE2" "ClientTitleFont"
+	"== Gillespie Pass ==" "ClientTitleFont"
 	" "	"CreditsOutroText"
 	"V"	"CreditsOutroLogos"
 	" "	"CreditsOutroText"
