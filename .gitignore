@@ -379,3 +379,16 @@ bin/*.exp
 # End of https://www.gitignore.io/api/visualstudio
 
 # End of https://www.gitignore.io/api/windows
+*.vpc_crc
+*.vcxproj
+*.vpc_crc
+*.vcxproj
+*.vpc_crc
+*.vcxproj
+*.vpc_crc
+*.vcxproj
+*.sln
+src/fgdlib/fgdlib.vcxproj
+*.vcxproj
+src/utils/vvis_launcher/vvis_launcher.vcxproj
+*.vpc_crc
