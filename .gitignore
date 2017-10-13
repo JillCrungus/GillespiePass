@@ -41,6 +41,7 @@ voice_ban.dt
 mapsrc/*.bsp
 
 src/game/*
+*.ipch
 
 
 # End of https://www.gitignore.io/api/windows
