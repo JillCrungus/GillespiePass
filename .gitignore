@@ -369,6 +369,11 @@ game/*
 Debug_mod_*
 Release_mod_*
 
+bin/*.ilk
+bin/*.lib
+bin/.*pdb
+bin/*.exp
+
 # End of https://www.gitignore.io/api/c++
 
 # End of https://www.gitignore.io/api/visualstudio
