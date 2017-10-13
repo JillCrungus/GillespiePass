@@ -37,9 +37,14 @@ HOW TO BUILD:
 
 1. Open games.sln
 
-2. For client (episodic) and server (episodic):
+2. For client (episodic) and server (episodic)
+
 Right click
+
 Properties
+
 Set output directory to your Gillespie Pass "bin" directory
+
 Right click
-Build that shitr 
+
+Build that shit
