@@ -537,13 +537,9 @@ void CNPC_Zombine::HandleAnimEvent( animevent_t *pEvent )
 		QAngle angles;
 		GetAttachment( "grenade_attachment", vecStart, angles );
 
-		//CBaseGrenade *pGrenade = Fraggrenade_Create( vecStart, vec3_angle, vec3_origin, AngularImpulse( 0, 0, 0 ), this, 3.5f, true );
-		CNPC_Zombine *pGrenade = (CNPC_Zombine*)CBaseEntity::Create("npc_zombine", vecStart, vec3_angle, this);
-		pGrenade->SetAbsAngles(this->GetAbsAngles());
+		CBaseGrenade *pGrenade = Fraggrenade_Create( vecStart, vec3_angle, vec3_origin, AngularImpulse( 0, 0, 0 ), this, 3.5f, true );
 
-		m_iGrenadeCount--;
-
-		/*if ( pGrenade )
+		if ( pGrenade )
 		{
 			// Move physobject to shadow
 			IPhysicsObject *pPhysicsObject = pGrenade->VPhysicsGetObject();
@@ -589,7 +585,7 @@ void CNPC_Zombine::HandleAnimEvent( animevent_t *pEvent )
 			}
 
 			m_iGrenadeCount--;
-		}*/
+		}
 
 		return;
 	}

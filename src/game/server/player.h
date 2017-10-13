@@ -1174,6 +1174,7 @@ protected:
 
 	bool			m_bSinglePlayerGameEnding;
 
+	
 public:
 
 	float  GetLaggedMovementValue( void ){ return m_flLaggedMovementValue;	}
@@ -1187,6 +1188,15 @@ public:
 	virtual bool HasHaptics(){return m_bhasHaptics;}
 	// NVNT sets weather a user should receive haptic device messages.
 	virtual void SetHaptics(bool has) { m_bhasHaptics = has;}
+
+	bool m_bLongJump;
+
+	float m_fLongJumpTime = 1.0;
+	float m_fLongJumpTime2 = 0;
+	bool  m_bCanLJ = true;
+
+
+
 private:
 	// NVNT member variable holding if this user is using a haptic device.
 	bool m_bhasHaptics;
@@ -1209,7 +1219,7 @@ private:
 
 	// Store the last time we successfully processed a usercommand
 	float			m_flLastUserCommandTime;
-
+	
 public:
 	virtual unsigned int PlayerSolidMask( bool brushOnly = false ) const;	// returns the solid mask for the given player, so bots can have a more-restrictive set
 

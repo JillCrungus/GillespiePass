@@ -42,7 +42,7 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
-#define		STALKER_DEBUG			1
+//#define		STALKER_DEBUG
 #define	MIN_STALKER_FIRE_RANGE		64
 #define	MAX_STALKER_FIRE_RANGE		3600 // 3600 feet.
 #define	STALKER_LASER_ATTACHMENT	1
@@ -909,7 +909,7 @@ void CNPC_Stalker::StartAttackBeam( void )
 		m_pLightGlow->SetBrightness( 255 );
 		m_pLightGlow->SetScale( 0.65 );
 
-
+#if 0
 		CBaseEntity *pEnemy = GetEnemy();
 		// --------------------------------------------------------
 		// Play start up sound - client should always hear this!
@@ -922,6 +922,7 @@ void CNPC_Stalker::StartAttackBeam( void )
 		{
 			EmitAmbientSound( 0, GetAbsOrigin(), "NPC_Stalker.AmbientLaserStart" );
 		}
+#endif
 	}
 
 	SetThink( &CNPC_Stalker::StalkerThink );
@@ -1099,10 +1100,10 @@ void CNPC_Stalker::DrawAttackBeam(void)
 		UTIL_Bubbles(tr.endpos-Vector(3,3,3),tr.endpos+Vector(3,3,3),10);
 	}
 
-	
-	//CBroadcastRecipientFilter filter;
-	//TE_DynamicLight( filter, 0.0, EyePosition(), 255, 0, 0, 5, 0.2, 0 );
-	
+	/*
+	CBroadcastRecipientFilter filter;
+	TE_DynamicLight( filter, 0.0, EyePosition(), 255, 0, 0, 5, 0.2, 0 );
+	*/
 }
 
 //------------------------------------------------------------------------------
@@ -1395,11 +1396,11 @@ void CNPC_Stalker::AddZigZagToPath(void)
 //------------------------------------------------------------------------------
 CNPC_Stalker::CNPC_Stalker(void)
 {
-
+#ifdef _DEBUG
 	m_vLaserDir.Init();
 	m_vLaserTargetPos.Init();
 	m_vLaserCurPos.Init();
-
+#endif
 }
 
 

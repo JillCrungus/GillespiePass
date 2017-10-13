@@ -246,7 +246,6 @@ Class_T	CPropAPC::ClassifyPassenger( CBaseCombatCharacter *pPassenger, Class_T d
 }
 
 
-
 //-----------------------------------------------------------------------------
 // Purpose: Damage events as modified for the passenger of the APC, not the APC itself
 //-----------------------------------------------------------------------------

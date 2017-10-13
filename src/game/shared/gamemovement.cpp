@@ -80,6 +80,8 @@ bool g_bMovementOptimizations = true;
 
 #define	NUM_CROUCH_HINTS	3
 
+//#define PLAYER_GETTING_STUCK_TESTING 1
+
 extern IGameMovement *g_pGameMovement;
 
 #if defined( PLAYER_GETTING_STUCK_TESTING )
@@ -2477,10 +2479,47 @@ bool CGameMovement::CheckJumpButton( void )
 		// We give a certain percentage of the current forward movement as a bonus to the jump speed.  That bonus is clipped
 		// to not accumulate over time.
 		float flSpeedBoostPerc = ( !pMoveData->m_bIsSprinting && !player->m_Local.m_bDucked ) ? 0.5f : 0.1f;
-		float flSpeedAddition = fabs( mv->m_flForwardMove * flSpeedBoostPerc );
+		
+
+		//Check if the player's duck key is pressed and make sure their speed is above a certain level to
+		//ensure the long jump only occurs if they press duck and jump in quick succession
+		if ((mv->m_nButtons & IN_DUCK) && (fabs(mv->m_flForwardMove * flSpeedBoostPerc) + mv->m_vecVelocity.Length2D() > 150))
+		{
+
+			if (player->m_fLongJumpTime2 < gpGlobals->curtime)
+			{
+				if (player->m_bLongJump)
+				{
+					//Multiply the forward movement bonus by 10
+					flSpeedBoostPerc = flSpeedBoostPerc * 7;
+					CPASAttenuationFilter filter(player);
+					filter.UsePredictionRules();
+					player->EmitSound(filter, player->entindex(), "HL2Player.LongJump");
+					player->m_fLongJumpTime2 = player->m_fLongJumpTime + gpGlobals->curtime;
+					player->m_bCanLJ = false;
+
+
+				}
+			}
+			else
+			{
+				CPASAttenuationFilter filter(player);
+				filter.UsePredictionRules();
+				player->EmitSound(filter, player->entindex(), "HL2Player.LongJumpNoPower");
+				Msg("Curtime: %f\n", gpGlobals->curtime);
+				Msg("m_fLongJumpTime2: %f\n", player->m_fLongJumpTime2);
+			}
+		}
+
+
+
+		float flSpeedAddition = fabs(mv->m_flForwardMove * flSpeedBoostPerc);
 		float flMaxSpeed = mv->m_flMaxSpeed + ( mv->m_flMaxSpeed * flSpeedBoostPerc );
 		float flNewSpeed = ( flSpeedAddition + mv->m_vecVelocity.Length2D() );
 
+		
+
+		
 		// If we're over the maximum, we want to only boost as much as will get us to the goal speed
 		if ( flNewSpeed > flMaxSpeed )
 		{

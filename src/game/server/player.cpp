@@ -268,6 +268,12 @@ BEGIN_DATADESC( CBasePlayer )
 	DEFINE_FIELD( m_afButtonDisabled, FIELD_INTEGER ),
 	DEFINE_FIELD( m_afButtonForced,	FIELD_INTEGER ),
 
+
+	DEFINE_FIELD(m_bLongJump, FIELD_BOOLEAN),
+	DEFINE_FIELD( m_fLongJumpTime, FIELD_FLOAT ),
+	DEFINE_FIELD(m_fLongJumpTime2, FIELD_FLOAT),
+	DEFINE_FIELD(m_bCanLJ, FIELD_BOOLEAN),
+
 	DEFINE_FIELD( m_iFOV,		FIELD_INTEGER ),
 	DEFINE_FIELD( m_iFOVStart,	FIELD_INTEGER ),
 	DEFINE_FIELD( m_flFOVTime,	FIELD_TIME ),
@@ -378,6 +384,8 @@ BEGIN_DATADESC( CBasePlayer )
 	DEFINE_FIELD( m_iPlayerLocked, FIELD_INTEGER ),
 
 	DEFINE_AUTO_ARRAY( m_hViewModel, FIELD_EHANDLE ),
+
+	
 	
 	DEFINE_FIELD( m_flMaxspeed, FIELD_FLOAT ),
 	DEFINE_FIELD( m_flWaterJumpTime, FIELD_TIME ),
@@ -905,16 +913,16 @@ void CBasePlayer::TraceAttack( const CTakeDamageInfo &inputInfo, const Vector &v
 			// --------------------------------------------------
 			//  If an NPC check if friendly fire is disallowed
 			// --------------------------------------------------
-			//CAI_BaseNPC *pNPC = info.GetAttacker()->MyNPCPointer();
-			//if ( pNPC && (pNPC->CapabilitiesGet() & bits_CAP_NO_HIT_PLAYER) && pNPC->IRelationType( this ) != D_HT )
-			//	return;
+			CAI_BaseNPC *pNPC = info.GetAttacker()->MyNPCPointer();
+			if ( pNPC && (pNPC->CapabilitiesGet() & bits_CAP_NO_HIT_PLAYER) && pNPC->IRelationType( this ) != D_HT )
+				return;
 
 			// Prevent team damage here so blood doesn't appear
-			//if ( info.GetAttacker()->IsPlayer() )
-			//{
-			//	if ( !g_pGameRules->FPlayerCanTakeDamage( this, info.GetAttacker(), info ) )
-			//		return;
-			//}
+			if ( info.GetAttacker()->IsPlayer() )
+			{
+				if ( !g_pGameRules->FPlayerCanTakeDamage( this, info.GetAttacker(), info ) )
+					return;
+			}
 		}
 
 		SetLastHitGroup( ptr->hitgroup );
@@ -4084,7 +4092,7 @@ Protection
 		it will attempt to recharge itself to full capacity with the energy reserves from the battery.
 		It takes the armor N seconds to fully charge. 
 
-Notification (via the HUD)
+Notification (via the thi)
 
 x	Health
 x	Ammo  
@@ -4609,6 +4617,19 @@ void CBasePlayer::PostThink()
 	SimulatePlayerSimulatedEntities();
 #endif
 
+	if ((m_fLongJumpTime2 < gpGlobals->curtime) && (m_bCanLJ == false))
+	{
+		CPASAttenuationFilter filter(this);
+		filter.UsePredictionRules();
+		EmitSound(filter, entindex(), "HL2Player.LJR");
+		m_bCanLJ = true;
+	}
+
+	if ((m_fLongJumpTime2 > gpGlobals->curtime) && (gpGlobals->curtime < 3))
+	{
+		m_fLongJumpTime2 = 0;
+	}
+
 }
 
 // handles touching physics objects
@@ -4940,6 +4961,8 @@ void CBasePlayer::Spawn( void )
 												// are recieved by all clients
 	
 	m_flFieldOfView		= 0.766;// some NPCs use this to determine whether or not the player is looking at them.
+
+	m_bLongJump = false;
 
 	m_vecAdditionalPVSOrigin = vec3_origin;
 	m_vecCameraPVSOrigin = vec3_origin;

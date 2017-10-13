@@ -185,7 +185,7 @@ void CreateConcussiveBlast( const Vector &origin, const Vector &surfaceNormal, C
 
 // Combine Guard weapon
 
-
+#if 0
 
 class CWeaponCGuard : public CBaseHLCombatWeapon
 {
@@ -283,7 +283,7 @@ void CWeaponCGuard::AlertTargets( void )
 
 	// Fire the bullets
 	Vector vecSrc	 = pPlayer->Weapon_ShootPosition( );
-	Vector vecAiming = pPlayer->GetAutoaimVector(AUTOAIM_SCALE_DEFAULT);
+	Vector vecAiming = pPlayer->GetRadialAutoVector( NEW_AUTOAIM_RADIUS, NEW_AUTOAIM_DIST );
 
 	Vector	impactPoint	= vecSrc + ( vecAiming * MAX_TRACE_LENGTH );
 
@@ -437,7 +437,7 @@ void CWeaponCGuard::DelayedFire( void )
 
 	// Fire the bullets
 	Vector vecSrc	 = pPlayer->Weapon_ShootPosition( );
-	Vector vecAiming = pPlayer->GetAutoaimVector(AUTOAIM_SCALE_DEFAULT);
+	Vector vecAiming = pPlayer->GetRadialAutoVector( NEW_AUTOAIM_RADIUS, NEW_AUTOAIM_DIST );
 
 	//Factor in the view kick
 	AddViewKick();
@@ -478,4 +478,4 @@ void CWeaponCGuard::AddViewKick( void )
 	pPlayer->ViewPunch( QAngle( random->RandomInt( -8, -12 ), random->RandomInt( -2, 2 ), random->RandomInt( -8, 8 ) ) );
 }
 
-
+#endif

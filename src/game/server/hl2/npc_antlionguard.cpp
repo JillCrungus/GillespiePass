@@ -2216,8 +2216,8 @@ int CNPC_AntlionGuard::OnTakeDamage_Alive( const CTakeDamageInfo &info )
 				pParticle->SetThink( &CBaseEntity::SUB_Remove );
 				pParticle->SetNextThink( gpGlobals->curtime + random->RandomFloat( 2.0f, 3.0f ) );
 			}
-		}*/
-		
+		}
+		*/
 	}
 	
 	int nPreHealth = GetHealth();

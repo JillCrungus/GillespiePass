@@ -4,7 +4,6 @@
 //
 //=============================================================================//
 
-#include "crossbow_bolt.h"
 #include "cbase.h"
 #include "npcevent.h"
 #include "basehlcombatweapon_shared.h"
@@ -26,14 +25,12 @@
 #include "gamestats.h"
 #include "decals.h"
 
-
 #ifdef PORTAL
 	#include "portal_util_shared.h"
 #endif
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
-#include "crossbow_bolt.h"
 
 //#define BOLT_MODEL			"models/crossbow_bolt.mdl"
 #define BOLT_MODEL	"models/weapons/w_missile_closed.mdl"
@@ -52,7 +49,35 @@ void TE_StickyBolt( IRecipientFilter& filter, float delay,	Vector vecDirection, 
 //-----------------------------------------------------------------------------
 // Crossbow Bolt
 //-----------------------------------------------------------------------------
+class CCrossbowBolt : public CBaseCombatCharacter
+{
+	DECLARE_CLASS( CCrossbowBolt, CBaseCombatCharacter );
 
+public:
+	CCrossbowBolt() { };
+	~CCrossbowBolt();
+
+	Class_T Classify( void ) { return CLASS_NONE; }
+
+public:
+	void Spawn( void );
+	void Precache( void );
+	void BubbleThink( void );
+	void BoltTouch( CBaseEntity *pOther );
+	bool CreateVPhysics( void );
+	unsigned int PhysicsSolidMaskForEntity() const;
+	static CCrossbowBolt *BoltCreate( const Vector &vecOrigin, const QAngle &angAngles, CBasePlayer *pentOwner = NULL );
+
+protected:
+
+	bool	CreateSprites( void );
+
+	CHandle<CSprite>		m_pGlowSprite;
+	//CHandle<CSpriteTrail>	m_pGlowTrail;
+
+	DECLARE_DATADESC();
+	DECLARE_SERVERCLASS();
+};
 LINK_ENTITY_TO_CLASS( crossbow_bolt, CCrossbowBolt );
 
 BEGIN_DATADESC( CCrossbowBolt )
@@ -142,7 +167,7 @@ void CCrossbowBolt::Spawn( void )
 	SetMoveType( MOVETYPE_FLYGRAVITY, MOVECOLLIDE_FLY_CUSTOM );
 	UTIL_SetSize( this, -Vector(0.3f,0.3f,0.3f), Vector(0.3f,0.3f,0.3f) );
 	SetSolid( SOLID_BBOX );
-	SetGravity( myGravity );
+	SetGravity( 0.05f );
 	
 	// Make sure we're updated if we're underwater
 	UpdateWaterState();
@@ -203,7 +228,7 @@ void CCrossbowBolt::BoltTouch( CBaseEntity *pOther )
 
 		if( GetOwnerEntity() && GetOwnerEntity()->IsPlayer() && pOther->IsNPC() )
 		{
-			CTakeDamageInfo	dmgInfo( this, GetOwnerEntity(), myDamage, DMG_NEVERGIB );
+			CTakeDamageInfo	dmgInfo( this, GetOwnerEntity(), sk_plr_dmg_crossbow.GetFloat(), DMG_NEVERGIB );
 			dmgInfo.AdjustPlayerDamageInflictedForSkillLevel();
 			CalculateMeleeDamageForce( &dmgInfo, vecNormalizedVel, tr.endpos, 0.7f );
 			dmgInfo.SetDamagePosition( tr.endpos );
@@ -218,7 +243,7 @@ void CCrossbowBolt::BoltTouch( CBaseEntity *pOther )
 		}
 		else
 		{
-			CTakeDamageInfo	dmgInfo( this, GetOwnerEntity(), myDamage, DMG_BULLET | DMG_NEVERGIB );
+			CTakeDamageInfo	dmgInfo( this, GetOwnerEntity(), sk_plr_dmg_crossbow.GetFloat(), DMG_BULLET | DMG_NEVERGIB );
 			CalculateMeleeDamageForce( &dmgInfo, vecNormalizedVel, tr.endpos, 0.7f );
 			dmgInfo.SetDamagePosition( tr.endpos );
 			pOther->DispatchTraceAttack( dmgInfo, vecNormalizedVel, &tr );
@@ -650,8 +675,6 @@ void CWeaponCrossbow::FireBolt( void )
 	{
 		pBolt->SetAbsVelocity( vecAiming * BOLT_AIR_VELOCITY );
 	}
-
-	pBolt->myDamage = sk_plr_dmg_crossbow.GetFloat();
 
 	m_iClip1--;
 

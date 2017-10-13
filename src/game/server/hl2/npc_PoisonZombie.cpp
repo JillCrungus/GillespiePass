@@ -630,19 +630,13 @@ Vector CNPC_PoisonZombie::HeadTarget( const Vector &posSrc )
 //-----------------------------------------------------------------------------
 void CNPC_PoisonZombie::BreatheOffShort( void )
 {
-	if (!IsEFlagSet(EFL_IS_BEING_LIFTED_BY_BARNACLE))
+	if ( m_bNearEnemy )
 	{
-		if (IsAlive())
-		{
-			if (m_bNearEnemy)
-			{
-				ENVELOPE_CONTROLLER.SoundPlayEnvelope(m_pFastBreathSound, SOUNDCTRL_CHANGE_VOLUME, envPoisonZombieBreatheVolumeOffShort, ARRAYSIZE(envPoisonZombieBreatheVolumeOffShort));
-			}
-			else
-			{
-				ENVELOPE_CONTROLLER.SoundPlayEnvelope(m_pSlowBreathSound, SOUNDCTRL_CHANGE_VOLUME, envPoisonZombieBreatheVolumeOffShort, ARRAYSIZE(envPoisonZombieBreatheVolumeOffShort));
-			}
-		}
+		ENVELOPE_CONTROLLER.SoundPlayEnvelope( m_pFastBreathSound, SOUNDCTRL_CHANGE_VOLUME, envPoisonZombieBreatheVolumeOffShort, ARRAYSIZE(envPoisonZombieBreatheVolumeOffShort) );
+	}
+	else
+	{
+		ENVELOPE_CONTROLLER.SoundPlayEnvelope( m_pSlowBreathSound, SOUNDCTRL_CHANGE_VOLUME, envPoisonZombieBreatheVolumeOffShort, ARRAYSIZE(envPoisonZombieBreatheVolumeOffShort) );
 	}
 }
 
@@ -837,46 +831,37 @@ void CNPC_PoisonZombie::PrescheduleThink( void )
 	bool bNearEnemy = false;
 	if ( GetEnemy() != NULL )
 	{
-			float flDist = (GetEnemy()->GetAbsOrigin() - GetAbsOrigin()).Length();
-			if (flDist < ZOMBIE_ENEMY_BREATHE_DIST)
-			{
-				bNearEnemy = true;
-			}
-
-	}
-
-	
-	if (!IsEFlagSet(EFL_IS_BEING_LIFTED_BY_BARNACLE))
-	{
-		if (IsAlive())
+		float flDist = (GetEnemy()->GetAbsOrigin() - GetAbsOrigin()).Length();
+		if ( flDist < ZOMBIE_ENEMY_BREATHE_DIST )
 		{
-			if (bNearEnemy)
-			{
-				if (!m_bNearEnemy)
-				{
-					// Our enemy is nearby. Breathe faster.
-					float duration = random->RandomFloat(1.0f, 2.0f);
-					ENVELOPE_CONTROLLER.SoundChangeVolume(m_pFastBreathSound, BREATH_VOL_MAX, duration);
-					ENVELOPE_CONTROLLER.SoundChangePitch(m_pFastBreathSound, random->RandomInt(100, 120), random->RandomFloat(1.0f, 2.0f));
-
-					ENVELOPE_CONTROLLER.SoundChangeVolume(m_pSlowBreathSound, 0.0f, duration);
-
-					m_bNearEnemy = true;
-				}
-			}
-			else if (m_bNearEnemy)
-			{
-				// Our enemy is far away. Slow our breathing down.
-				float duration = random->RandomFloat(2.0f, 4.0f);
-				ENVELOPE_CONTROLLER.SoundChangeVolume(m_pFastBreathSound, BREATH_VOL_MAX, duration);
-				ENVELOPE_CONTROLLER.SoundChangeVolume(m_pSlowBreathSound, 0.0f, duration);
-				//		ENVELOPE_CONTROLLER.SoundChangePitch( m_pBreathSound, random->RandomInt( 80, 100 ), duration );
-
-				m_bNearEnemy = false;
-			}
+			bNearEnemy = true;
 		}
 	}
-	
+
+	if ( bNearEnemy )
+	{
+		if ( !m_bNearEnemy )
+		{
+			// Our enemy is nearby. Breathe faster.
+			float duration = random->RandomFloat( 1.0f, 2.0f );
+			ENVELOPE_CONTROLLER.SoundChangeVolume( m_pFastBreathSound, BREATH_VOL_MAX, duration );
+			ENVELOPE_CONTROLLER.SoundChangePitch( m_pFastBreathSound, random->RandomInt( 100, 120 ), random->RandomFloat( 1.0f, 2.0f ) );
+
+			ENVELOPE_CONTROLLER.SoundChangeVolume( m_pSlowBreathSound, 0.0f, duration );
+
+			m_bNearEnemy = true;
+		}
+	}
+	else if ( m_bNearEnemy )
+	{
+		// Our enemy is far away. Slow our breathing down.
+		float duration = random->RandomFloat( 2.0f, 4.0f );
+		ENVELOPE_CONTROLLER.SoundChangeVolume( m_pFastBreathSound, BREATH_VOL_MAX, duration );
+		ENVELOPE_CONTROLLER.SoundChangeVolume( m_pSlowBreathSound, 0.0f, duration );
+//		ENVELOPE_CONTROLLER.SoundChangePitch( m_pBreathSound, random->RandomInt( 80, 100 ), duration );
+
+		m_bNearEnemy = false;
+	}
 
 	BaseClass::PrescheduleThink();
 }
@@ -1050,19 +1035,12 @@ void CNPC_PoisonZombie::FootstepSound( bool fRightFoot )
 		EmitSound( "NPC_PoisonZombie.FootstepLeft" );
 	}
 
-	if (ShouldPlayFootstepMoan())
+	if( ShouldPlayFootstepMoan() )
 	{
-		if (!IsEFlagSet(EFL_IS_BEING_LIFTED_BY_BARNACLE))
-		{
-			if (IsAlive())
-			{
-				m_flNextMoanSound = gpGlobals->curtime;
-				MoanSound(envPoisonZombieMoanVolumeFast, ARRAYSIZE(envPoisonZombieMoanVolumeFast));
-			}
-		}
+		m_flNextMoanSound = gpGlobals->curtime;
+		MoanSound( envPoisonZombieMoanVolumeFast, ARRAYSIZE( envPoisonZombieMoanVolumeFast ) );
 	}
-	}
-
+}
 
 
 //-----------------------------------------------------------------------------
@@ -1080,39 +1058,33 @@ bool CNPC_PoisonZombie::MustCloseToAttack(void)
 //-----------------------------------------------------------------------------
 void CNPC_PoisonZombie::MoanSound( envelopePoint_t *pEnvelope, int iEnvelopeSize )
 {
-	if (!IsEFlagSet(EFL_IS_BEING_LIFTED_BY_BARNACLE))
+	if( !m_pMoanSound )
 	{
-		if (IsAlive())
-		{
-			if (!m_pMoanSound)
-			{
-				// Don't set this up until the code calls for it.
-				const char *pszSound = GetMoanSound(m_iMoanSound);
-				m_flMoanPitch = random->RandomInt(98, 110);
+		// Don't set this up until the code calls for it.
+		const char *pszSound = GetMoanSound( m_iMoanSound );
+		m_flMoanPitch = random->RandomInt( 98, 110 );
 
-				CPASAttenuationFilter filter(this, 1.5);
-				//m_pMoanSound = ENVELOPE_CONTROLLER.SoundCreate( entindex(), CHAN_STATIC, pszSound, ATTN_NORM );
-				m_pMoanSound = ENVELOPE_CONTROLLER.SoundCreate(filter, entindex(), CHAN_STATIC, pszSound, 1.5);
+		CPASAttenuationFilter filter( this, 1.5 );
+		//m_pMoanSound = ENVELOPE_CONTROLLER.SoundCreate( entindex(), CHAN_STATIC, pszSound, ATTN_NORM );
+		m_pMoanSound = ENVELOPE_CONTROLLER.SoundCreate( filter, entindex(), CHAN_STATIC, pszSound, 1.5 );
 
-				ENVELOPE_CONTROLLER.Play(m_pMoanSound, 0.5, m_flMoanPitch);
-			}
-
-			envPoisonZombieMoanVolumeFast[1].durationMin = 0.1;
-			envPoisonZombieMoanVolumeFast[1].durationMax = 0.4;
-
-			if (random->RandomInt(1, 2) == 1)
-			{
-				IdleSound();
-			}
-
-			float duration = ENVELOPE_CONTROLLER.SoundPlayEnvelope(m_pMoanSound, SOUNDCTRL_CHANGE_VOLUME, pEnvelope, iEnvelopeSize);
-
-			float flPitchShift = random->RandomInt(-4, 4);
-			ENVELOPE_CONTROLLER.SoundChangePitch(m_pMoanSound, m_flMoanPitch + flPitchShift, 0.3);
-
-			m_flNextMoanSound = gpGlobals->curtime + duration + 9999;
-		}
+		ENVELOPE_CONTROLLER.Play( m_pMoanSound, 0.5, m_flMoanPitch );
 	}
+
+	envPoisonZombieMoanVolumeFast[ 1 ].durationMin = 0.1;
+	envPoisonZombieMoanVolumeFast[ 1 ].durationMax = 0.4;
+
+	if ( random->RandomInt( 1, 2 ) == 1 )
+	{
+		IdleSound();
+	}
+
+	float duration = ENVELOPE_CONTROLLER.SoundPlayEnvelope( m_pMoanSound, SOUNDCTRL_CHANGE_VOLUME, pEnvelope, iEnvelopeSize );
+
+	float flPitchShift = random->RandomInt( -4, 4 );
+	ENVELOPE_CONTROLLER.SoundChangePitch( m_pMoanSound, m_flMoanPitch + flPitchShift, 0.3 );
+
+	m_flNextMoanSound = gpGlobals->curtime + duration + 9999;
 }
 
 

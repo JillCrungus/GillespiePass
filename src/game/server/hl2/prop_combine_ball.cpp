@@ -33,20 +33,19 @@
 #define PROP_COMBINE_BALL_MODEL	"models/effects/combineball.mdl"
 #define PROP_COMBINE_BALL_SPRITE_TRAIL "sprites/combineball_trail_black_1.vmt" 
 
-//#define PROP_COMBINE_BALL_LIFETIME	4.0f	// Seconds
+#define PROP_COMBINE_BALL_LIFETIME	4.0f	// Seconds
 
 #define PROP_COMBINE_BALL_HOLD_DISSOLVE_TIME	8.0f
 
 #define SF_COMBINE_BALL_BOUNCING_IN_SPAWNER		0x10000
 
-#define	MAX_COMBINEBALL_RADIUS	99999
+#define	MAX_COMBINEBALL_RADIUS	12
 
 ConVar	sk_npc_dmg_combineball( "sk_npc_dmg_combineball","15", FCVAR_REPLICATED);
 ConVar	sk_combineball_guidefactor( "sk_combineball_guidefactor","0.5", FCVAR_REPLICATED);
 ConVar	sk_combine_ball_search_radius( "sk_combine_ball_search_radius", "512", FCVAR_REPLICATED);
 ConVar	sk_combineball_seek_angle( "sk_combineball_seek_angle","15.0", FCVAR_REPLICATED);
 ConVar	sk_combineball_seek_kill( "sk_combineball_seek_kill","0", FCVAR_REPLICATED);
-ConVar  sk_combineball_lifetime("sk_combineball_lifetime", "4.0f", FCVAR_REPLICATED);
 
 // For our ring explosion
 int s_nExplosionTexture = -1;
@@ -755,7 +754,7 @@ void CPropCombineBall::WhizSoundThink()
 void CPropCombineBall::SetBallAsLaunched( void )
 {
 	// Give the ball a duration
-	StartLifetime(sk_combineball_lifetime.GetFloat());
+	StartLifetime( PROP_COMBINE_BALL_LIFETIME );
 
 	m_bHeld = false;
 	m_bLaunched = true;
@@ -1459,11 +1458,11 @@ void CPropCombineBall::DeflectTowardEnemy( float flSpeed, int index, gamevcollis
 	}
 	else
 	{
-		float flMaxDot = 99.966f;
+		float flMaxDot = 0.966f;
 		if ( !WasWeaponLaunched() )
 		{
-			float flMaxDot = 360.0f;
-			float flGuideFactor = 100.0f;
+			float flMaxDot = sk_combineball_seek_angle.GetFloat();
+			float flGuideFactor = sk_combineball_guidefactor.GetFloat();
 			for ( int i = m_nBounceCount; --i >= 0; )
 			{
 				flMaxDot *= flGuideFactor;

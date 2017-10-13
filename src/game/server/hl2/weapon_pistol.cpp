@@ -8,19 +8,15 @@
 #include "cbase.h"
 #include "npcevent.h"
 #include "basehlcombatweapon.h"
-#include "crossbow_bolt.h"
 #include "basecombatcharacter.h"
 #include "ai_basenpc.h"
 #include "player.h"
 #include "gamerules.h"
 #include "in_buttons.h"
 #include "soundent.h"
-#include "Sprite.h"
-#include "SpriteTrail.h"
 #include "game.h"
 #include "vstdlib/random.h"
 #include "gamestats.h"
-
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -31,11 +27,7 @@
 #define	PISTOL_ACCURACY_SHOT_PENALTY_TIME		0.2f	// Applied amount of time each shot adds to the time we must recover from
 #define	PISTOL_ACCURACY_MAXIMUM_PENALTY_TIME	1.5f	// Maximum penalty to deal out
 
-#define BOLT_AIR_VELOCITY	4500
-#define BOLT_WATER_VELOCITY	1500
-
 ConVar	pistol_use_new_accuracy( "pistol_use_new_accuracy", "1" );
-ConVar	sk_plr_dmg_pistol("sk_plr_dmg_pistol", "0", FCVAR_REPLICATED);
 
 //-----------------------------------------------------------------------------
 // CWeaponPistol
@@ -256,77 +248,8 @@ void CWeaponPistol::PrimaryAttack( void )
 		pOwner->ViewPunchReset();
 	}
 
-	if (UsesClipsForAmmo1() && !m_iClip1)
-	{
-		Reload();
-		return;
-	}
+	BaseClass::PrimaryAttack();
 
-	// Only the player fires this way so we can cast
-	CBasePlayer *pPlayer = ToBasePlayer(GetOwner());
-
-	if (!pPlayer)
-	{
-		return;
-	}
-
-	pPlayer->DoMuzzleFlash();
-
-	SendWeaponAnim(GetPrimaryAttackActivity());
-
-	// player "shoot" animation
-	pPlayer->SetAnimation(PLAYER_ATTACK1);
-
-	float fireRate = GetFireRate();
-
-	while (m_flNextPrimaryAttack <= gpGlobals->curtime)
-	{
-		// MUST call sound before removing a round from the clip of a CMachineGun
-		WeaponSound(SINGLE, m_flNextPrimaryAttack);
-		m_flNextPrimaryAttack = m_flNextPrimaryAttack + fireRate;
-		if (!fireRate)
-			break;
-	}
-
-
-	if (!m_iClip1 && pPlayer->GetAmmoCount(m_iPrimaryAmmoType) <= 0)
-	{
-		// HEV suit - indicate out of ammo condition
-		pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
-	}
-
-	//Add our view kick in
-	AddViewKick();if (!m_iClip1 && pPlayer->GetAmmoCount(m_iPrimaryAmmoType) <= 0)
-	{
-		// HEV suit - indicate out of ammo condition
-		pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0); 
-	}
-
-	//Add our view kick in
-	AddViewKick();
-
-
-	Vector vecAiming = pOwner->GetAutoaimVector(0.5);
-	Vector vecSrc = pOwner->Weapon_ShootPosition();
-
-	QAngle angAiming;
-	VectorAngles(vecAiming, angAiming);
-
-	CCrossbowBolt *pBolt = CCrossbowBolt::BoltCreate(vecSrc, angAiming, pOwner);
-
-	if (pOwner->GetWaterLevel() == 3)
-	{
-		pBolt->SetAbsVelocity(vecAiming * BOLT_WATER_VELOCITY);
-	}
-	else
-	{
-		pBolt->SetAbsVelocity(vecAiming * BOLT_AIR_VELOCITY);
-	}
-
-	pBolt->myDamage = sk_plr_dmg_pistol.GetFloat();
-	pBolt->myGravity = 1.0f;
-
-	m_iClip1--;
 	// Add an accuracy penalty which can move past our maximum penalty time if we're really spastic
 	m_flAccuracyPenalty += PISTOL_ACCURACY_SHOT_PENALTY_TIME;
 
