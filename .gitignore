@@ -363,6 +363,8 @@ __pycache__/
 *.a
 *.lib
 
+*.tlog
+
 
 # End of https://www.gitignore.io/api/c++
 
