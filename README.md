@@ -24,7 +24,7 @@ HOW TO CLONE THIS REPO AS A DEV (The super cool step by step guide to working on
 
 HOW TO PUSH CHANGES:
 
-1. The first step is ALWAYS to make sure you sync your local copy with any latest commits. Make sure none of your changes conflict with something someone else has done.
+1. The first step is ALWAYS to make sure you sync your local copy with any latest commits. (Fetch origin, pull origin) Make sure none of your changes conflict with something someone else has done.
 
 2. In the main window of the GitHub desktop app you can select the files you wish to commit (usually all of them) and then write a commit summary and description.
 
