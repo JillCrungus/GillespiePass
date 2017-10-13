@@ -30,4 +30,4 @@ HOW TO PUSH CHANGES:
 
 3. Commit to the master branch
 
-4. Details from here on are hazy, I'll update this file when I get GH desktop working properly (I usually use the Git GUI for my commits but it's not as user friendly)
+4. Open up the History tab, make sure everything in your commit is in order and push the changes!
