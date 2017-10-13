@@ -22,6 +22,15 @@ $RECYCLE.BIN/
 
 #Source stuff
 *config.cfg
+*.ain
+*lst
+*.cache
+*.tmp
+*server_blacklist.txt
+GameState.txt
+*_gamestats.dat
+stats.txt
+voice_ban.dt
 
 
 # End of https://www.gitignore.io/api/windows
