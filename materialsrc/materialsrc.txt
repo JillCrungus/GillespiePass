@@ -1,0 +1,1 @@
+Source files for materials (TGAs, PSDs, PDNs, PNGs, etc.) should go here.
