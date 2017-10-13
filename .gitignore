@@ -16,6 +16,8 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+*.sdf
+
 # Windows shortcuts
 *.lnk
 
@@ -37,6 +39,8 @@ voice_ban.dt
 *.prt
 *.vmx
 mapsrc/*.bsp
+
+src/game/*
 
 
 # End of https://www.gitignore.io/api/windows
