@@ -365,6 +365,10 @@ __pycache__/
 *.tlog
 
 
+game/*
+Debug_mod_*
+Release_mod_*
+
 # End of https://www.gitignore.io/api/c++
 
 # End of https://www.gitignore.io/api/visualstudio
