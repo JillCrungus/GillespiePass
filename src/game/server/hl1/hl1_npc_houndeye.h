@@ -29,7 +29,6 @@ public:
 	void IdleSound( void );
 
 
-	int OnTakeDamage(const CTakeDamageInfo &info);
 	
 	float MaxYawSpeed  ( void );
 

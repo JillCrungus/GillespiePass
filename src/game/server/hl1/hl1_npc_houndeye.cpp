@@ -17,6 +17,7 @@
 #include "AI_SquadSlot.h"
 #include "AI_Hint.h"
 #include "ai_memory.h"
+#include "ai_tacticalservices.h"
 #include "ai_moveprobe.h"
 #include "NPCEvent.h"
 #include "animation.h"
@@ -169,7 +170,7 @@ void CNPC_Houndeye::Precache()
 void CNPC_Houndeye::Event_Killed( const CTakeDamageInfo &info )
 {
 	// Close the eye to make death more obvious
-	m_nSkin = 1;
+	m_nSkin = 2;
 	BaseClass::Event_Killed( info );
 }
 
@@ -680,6 +681,32 @@ void CNPC_Houndeye::StartTask ( const Task_t *pTask )
 			SetIdealActivity( ACT_SPECIAL_ATTACK1 );
 			break;
 		}
+	case TASK_GET_PATH_TO_RANGE_ENEMY_LKP_LOS:
+	{
+		float			flMaxRange = HOUNDEYE_MAX_ATTACK_RADIUS * 0.9;
+		Vector 			posLos;
+		bool			foundLos = false;
+
+		if (GetEnemy() != NULL)
+		{
+			foundLos = GetTacticalServices()->FindLos(GetEnemyLKP(), GetEnemy()->EyePosition(), flMaxRange, flMaxRange, 0.0, &posLos);
+		}
+		else
+		{
+			TaskFail(FAIL_NO_TARGET);
+			return;
+		}
+
+		if (foundLos)
+		{
+			GetNavigator()->SetGoal(AI_NavGoal_t(posLos, ACT_RUN, AIN_HULL_TOLERANCE));
+		}
+		else
+		{
+			TaskFail(FAIL_NO_SHOOT);
+		}
+		break;
+	}
 	default: 
 		{
 			BaseClass::StartTask(pTask);
