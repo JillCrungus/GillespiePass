@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "6440"
-	"mapversion" "11"
+	"mapversion" "12"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "11"
+	"mapversion" "12"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -9838,23 +9838,16 @@ entity
 entity
 {
 	"id" "9262"
-	"classname" "light_spot"
+	"classname" "light_dynamic"
 	"_cone" "20"
-	"_constant_attn" "0"
-	"_distance" "0"
-	"_exponent" "1"
-	"_fifty_percent_distance" "0"
-	"_hardfalloff" "0"
 	"_inner_cone" "30"
 	"_light" "255 255 255 200"
-	"_lightHDR" "-1 -1 -1 1"
-	"_lightscaleHDR" "1"
-	"_linear_attn" "0"
-	"_quadratic_attn" "1"
-	"_zero_percent_distance" "0"
 	"angles" "-90 0 0"
+	"brightness" "0"
+	"distance" "120"
 	"pitch" "-90"
 	"spawnflags" "0"
+	"spotlight_radius" "80"
 	"style" "0"
 	"origin" "5816 -2187 -2417"
 	editor
