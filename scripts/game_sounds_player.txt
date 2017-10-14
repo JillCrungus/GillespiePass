@@ -44,6 +44,14 @@
 
 	"wave"	"items/longjump_reset.wav"
 }
+"HL2Player.LongJumpEquip"
+{
+	"channel"	"CHAN_AUTO"
+	"volume"	"0.9"
+	"soundlevel"  "SNDLVL_60dB"
+
+	"wave"	"items/longjump_pickup.wav"
+}
 
 
 "HL2Player.FlashLightOn"

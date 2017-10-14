@@ -33,6 +33,7 @@ public:
 		PrecacheModel("models/items/w_longjump.mdl");
 		PrecacheScriptSound("HL2Player.LJR");
 		PrecacheScriptSound("HL2Player.LongJump");
+		PrecacheScriptSound("HL2Player.LongJumpEquip");
 	}
 
 	bool MyTouch(CBasePlayer *pPlayer)
@@ -44,6 +45,9 @@ public:
 
 		pPlayer->m_bLongJump = TRUE;// player now has longjump module
 		pPlayer->SetSuitUpdate("!HEV_A1", false, SUIT_NEXT_IN_1MIN);
+		CPASAttenuationFilter filter(pPlayer);
+		filter.UsePredictionRules();
+		pPlayer->EmitSound(filter, pPlayer->entindex(), "HL2Player.LongJumpEquip");
 		return TRUE;
 		}
 };
