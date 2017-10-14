@@ -17,6 +17,7 @@
 #include "AI_SquadSlot.h"
 #include "AI_Hint.h"
 #include "ai_memory.h"
+#include "ai_tacticalservices.h"
 #include "ai_moveprobe.h"
 #include "NPCEvent.h"
 #include "animation.h"
@@ -60,6 +61,7 @@ BEGIN_DATADESC( CNPC_Houndeye )
 	DEFINE_FIELD( m_fAsleep, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_fDontBlink, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_vecPackCenter, FIELD_POSITION_VECTOR ),
+	DEFINE_KEYFIELD(m_suppressAttack, FIELD_INTEGER, "SuppressAttack"),
 END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( npc_houndeye, CNPC_Houndeye );
@@ -169,12 +171,17 @@ void CNPC_Houndeye::Precache()
 void CNPC_Houndeye::Event_Killed( const CTakeDamageInfo &info )
 {
 	// Close the eye to make death more obvious
-	m_nSkin = 1;
+	m_nSkin = 2;
 	BaseClass::Event_Killed( info );
 }
 
 int CNPC_Houndeye::RangeAttack1Conditions ( float flDot, float flDist )
 {
+
+	if (this->m_suppressAttack)
+	{
+		return COND_NONE;
+	}
 	// I'm not allowed to attack if standing in another hound eye 
 	// (note houndeyes allowed to interpenetrate)
 	trace_t tr;
@@ -515,8 +522,10 @@ Vector CNPC_Houndeye::WriteBeamColor ( void )
 {
 	BYTE	bRed, bGreen, bBlue;
 
+
 	if ( m_pSquad )
 	{
+		//Msg("In squad...");
 		switch ( m_pSquad->NumMembers() )
 		{
 		case 2:
@@ -524,16 +533,19 @@ Vector CNPC_Houndeye::WriteBeamColor ( void )
 			bRed	= 101;
 			bGreen	= 133;
 			bBlue	= 221;
+			//Msg("2 members...");
 			break;
 		case 3:
 			bRed	= 67;
 			bGreen	= 85;
 			bBlue	= 255;
+			//Msg("3 members...");
 			break;
 		case 4:
 			bRed	= 62;
 			bGreen	= 33;
 			bBlue	= 211;
+			//Msg("4 members...");
 			break;
 		default:
 			Msg ( "Unsupported Houndeye SquadSize!\n" );
@@ -545,6 +557,7 @@ Vector CNPC_Houndeye::WriteBeamColor ( void )
 	}
 	else
 	{
+		//Msg("Not in squad... :(");
 		// solo houndeye - weakest beam
 		bRed	= 188;
 		bGreen	= 220;
@@ -680,6 +693,32 @@ void CNPC_Houndeye::StartTask ( const Task_t *pTask )
 			SetIdealActivity( ACT_SPECIAL_ATTACK1 );
 			break;
 		}
+	case TASK_GET_PATH_TO_RANGE_ENEMY_LKP_LOS:
+	{
+		float			flMaxRange = HOUNDEYE_MAX_ATTACK_RADIUS * 0.9;
+		Vector 			posLos;
+		bool			foundLos = false;
+
+		if (GetEnemy() != NULL)
+		{
+			foundLos = GetTacticalServices()->FindLos(GetEnemyLKP(), GetEnemy()->EyePosition(), flMaxRange, flMaxRange, 0.0, &posLos);
+		}
+		else
+		{
+			TaskFail(FAIL_NO_TARGET);
+			return;
+		}
+
+		if (foundLos)
+		{
+			GetNavigator()->SetGoal(AI_NavGoal_t(posLos, ACT_RUN, AIN_HULL_TOLERANCE));
+		}
+		else
+		{
+			TaskFail(FAIL_NO_SHOOT);
+		}
+		break;
+	}
 	default: 
 		{
 			BaseClass::StartTask(pTask);

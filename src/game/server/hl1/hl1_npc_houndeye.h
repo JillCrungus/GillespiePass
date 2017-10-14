@@ -29,7 +29,6 @@ public:
 	void IdleSound( void );
 
 
-	int OnTakeDamage(const CTakeDamageInfo &info);
 	
 	float MaxYawSpeed  ( void );
 
@@ -54,6 +53,9 @@ public:
 
 	float FLSoundVolume( CSound *pSound );
 	int RangeAttack1Conditions ( float flDot, float flDist );
+
+	bool m_suppressAttack;
+	
 
 	DEFINE_CUSTOM_AI;
 	DECLARE_DATADESC();

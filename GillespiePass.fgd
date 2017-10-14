@@ -1,0 +1,14 @@
+@NPCClass base(BaseNPC) studio("models/houndeye.mdl") = npc_houndeye : "Houndeye" 
+[	
+	spawnflags(Flags) =
+	[
+		32 : "Squad Leader" : 0
+	]
+
+	SuppressAttack(choices) : "Attack Suppressed" : "0" = 
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+]
+@PointClass base(Targetname, Origin) studio("models/items/w_longjump.mdl") = item_longjump : "Longjump Module" []
