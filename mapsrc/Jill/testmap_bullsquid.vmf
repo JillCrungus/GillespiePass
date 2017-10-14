@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "6440"
-	"mapversion" "4"
+	"mapversion" "5"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "4"
+	"mapversion" "5"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -2064,10 +2064,11 @@ entity
 	"rendermode" "0"
 	"sleepstate" "0"
 	"spawnflags" "516"
+	"squadname" "BSquad"
 	"SuppressAttack" "0"
 	"wakeradius" "0"
 	"wakesquad" "0"
-	"origin" "421.941 61.2044 1"
+	"origin" "352 368 1"
 	editor
 	{
 		"color" "0 200 200"
@@ -2092,10 +2093,11 @@ entity
 	"rendermode" "0"
 	"sleepstate" "0"
 	"spawnflags" "516"
+	"squadname" "BSquad"
 	"SuppressAttack" "0"
 	"wakeradius" "0"
 	"wakesquad" "0"
-	"origin" "416 -96 1"
+	"origin" "1184 384 1"
 	editor
 	{
 		"color" "0 200 200"
@@ -2108,7 +2110,7 @@ entity
 {
 	"id" "366"
 	"classname" "npc_bullsquid"
-	"angles" "0 0 0"
+	"angles" "0 135 0"
 	"disablereceiveshadows" "0"
 	"disableshadows" "0"
 	"hintlimiting" "0"
@@ -2120,10 +2122,11 @@ entity
 	"rendermode" "0"
 	"sleepstate" "0"
 	"spawnflags" "516"
+	"squadname" "BSquad"
 	"SuppressAttack" "0"
 	"wakeradius" "0"
 	"wakesquad" "0"
-	"origin" "624 -16 1"
+	"origin" "832 -256 1"
 	editor
 	{
 		"color" "0 200 200"
@@ -2235,7 +2238,7 @@ entity
 	"startburrowed" "No"
 	"wakeradius" "0"
 	"wakesquad" "0"
-	"origin" "736 160 1"
+	"origin" "-80 384 1"
 	editor
 	{
 		"color" "0 200 200"
