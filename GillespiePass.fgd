@@ -17,4 +17,12 @@
 		"models/beta/houndeye.mdl" : "Malnourished"
 	]
 ]
+@NPCClass base(BaseNPC) studio("models/bullsquid.mdl") = npc_bullsquid : "Bullsquid" 
+[	
+	SuppressAttack(choices) : "Tamed" : "0" = 
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+]
 @PointClass base(Targetname, Origin) studio("models/items/w_longjump.mdl") = item_longjump : "Longjump Module" []
