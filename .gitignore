@@ -392,3 +392,7 @@ src/fgdlib/fgdlib.vcxproj
 *.vcxproj
 src/utils/vvis_launcher/vvis_launcher.vcxproj
 *.vpc_crc
+*.vcxproj
+*.vcxproj
+src/fgdlib/fgdlib.vcxproj
+src/fgdlib/fgdlib.vcxproj.filters
