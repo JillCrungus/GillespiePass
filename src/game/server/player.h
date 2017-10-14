@@ -1196,6 +1196,8 @@ public:
 	bool  m_bCanLJ = true;
 	bool  m_playedCooldown = true;
 
+	bool m_bShotgunSemi = false;
+
 
 
 private:
