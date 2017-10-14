@@ -54,6 +54,9 @@ public:
 	float FLSoundVolume( CSound *pSound );
 	int RangeAttack1Conditions ( float flDot, float flDist );
 
+	bool m_suppressAttack;
+	
+
 	DEFINE_CUSTOM_AI;
 	DECLARE_DATADESC();
 
