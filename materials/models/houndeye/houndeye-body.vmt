@@ -1,0 +1,10 @@
+"VertexLitGeneric"
+{
+	// Original shader: VertexLitTexture
+	"$basetexture" "models/houndeye/houndeye-body"
+	"$bumpmap" "models/houndeye/houndeye-body-normal"
+		//If you looking for more shine uncomment the lines below and tweak the tint to your liking.
+	//"$envmaptint" "[.4 .6 .4]"
+	//"$envmap" "env_cubemap"
+	//"$normalmapalphaenvmapmask" 1
+}

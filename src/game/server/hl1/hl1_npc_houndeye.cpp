@@ -62,6 +62,7 @@ BEGIN_DATADESC( CNPC_Houndeye )
 	DEFINE_FIELD( m_fDontBlink, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_vecPackCenter, FIELD_POSITION_VECTOR ),
 	DEFINE_KEYFIELD(m_suppressAttack, FIELD_INTEGER, "SuppressAttack"),
+	DEFINE_KEYFIELD(m_modelToUse, FIELD_STRING, "model"),
 END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( npc_houndeye, CNPC_Houndeye );
@@ -113,7 +114,7 @@ void CNPC_Houndeye::Spawn()
 	
 	SetRenderColor( 255, 255, 255, 255 );
 
-	SetModel( "models/houndeye.mdl" );
+	SetModel( m_modelToUse );
 	
 	SetHullType(HULL_TINY);
 	SetHullSizeNormal();
@@ -152,6 +153,7 @@ void CNPC_Houndeye::Spawn()
 void CNPC_Houndeye::Precache()
 {
 	PrecacheModel("models/houndeye.mdl");
+	PrecacheModel("models/beta/houndeye.mdl");
 
 	m_iSpriteTexture = PrecacheModel( "sprites/shockwave.vmt" );
 
