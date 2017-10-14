@@ -9,11 +9,11 @@
 #define NPC_HOUNDEYE_H
 #pragma once
 
-#include "hl1_ai_basenpc.h"
+#include "ai_basenpc.h"
 
-class CNPC_Houndeye : public CHL1BaseNPC
+class CNPC_Houndeye : public CAI_BaseNPC
 {
-	DECLARE_CLASS( CNPC_Houndeye, CHL1BaseNPC );
+	DECLARE_CLASS(CNPC_Houndeye, CAI_BaseNPC);
 	
 public:
 	void Spawn( void );
@@ -27,6 +27,9 @@ public:
 	void WarnSound( void );
 	void PainSound( const CTakeDamageInfo &info );
 	void IdleSound( void );
+
+
+	int OnTakeDamage(const CTakeDamageInfo &info);
 	
 	float MaxYawSpeed  ( void );
 

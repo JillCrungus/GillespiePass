@@ -5,6 +5,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
+#include "ai_basenpc.h"
 #include "cbase.h"
 #include "game.h"
 #include "AI_Default.h"
@@ -15,6 +16,8 @@
 #include "AI_Squad.h"
 #include "AI_SquadSlot.h"
 #include "AI_Hint.h"
+#include "ai_memory.h"
+#include "ai_moveprobe.h"
 #include "NPCEvent.h"
 #include "animation.h"
 #include "hl1_npc_houndeye.h"
@@ -59,7 +62,7 @@ BEGIN_DATADESC( CNPC_Houndeye )
 	DEFINE_FIELD( m_vecPackCenter, FIELD_POSITION_VECTOR ),
 END_DATADESC()
 
-LINK_ENTITY_TO_CLASS( monster_houndeye, CNPC_Houndeye );
+LINK_ENTITY_TO_CLASS( npc_houndeye, CNPC_Houndeye );
 
 //=========================================================
 // monster-specific tasks
@@ -115,7 +118,10 @@ void CNPC_Houndeye::Spawn()
 	
 	SetSolid( SOLID_BBOX );
 	AddSolidFlags( FSOLID_NOT_STANDABLE );
+
+	SetNavType(NAV_GROUND);
 	SetMoveType( MOVETYPE_STEP );
+	
 	m_bloodColor		= BLOOD_COLOR_YELLOW;
 	ClearEffects();
 	m_iHealth			= sk_houndeye_health.GetFloat();
@@ -126,10 +132,16 @@ void CNPC_Houndeye::Spawn()
 	
 	CapabilitiesClear();
 
-	CapabilitiesAdd( bits_CAP_MOVE_GROUND | bits_CAP_INNATE_RANGE_ATTACK1 );
+	CapabilitiesAdd( bits_CAP_MOVE_GROUND );
 	CapabilitiesAdd( bits_CAP_SQUAD);
+	CapabilitiesAdd(bits_CAP_INNATE_RANGE_ATTACK1);
+	CapabilitiesAdd(bits_CAP_FRIENDLY_DMG_IMMUNE);
+
+	SetState(NPC_STATE_IDLE);
 
 	NPCInit();
+
+	BaseClass::Spawn();
 }
 
 //=========================================================
@@ -420,7 +432,7 @@ void CNPC_Houndeye::SonicAttack ( void )
 	{
 		if ( pEntity->m_takedamage  != DAMAGE_NO )
 		{
-			if ( !FClassnameIs(pEntity, "monster_houndeye") )
+			if ( !FClassnameIs(pEntity, "npc_houndeye") )
 			{// houndeyes don't hurt other houndeyes with their attack
 
 				// houndeyes do FULL damage if the ent in question is visible. Half damage otherwise.
@@ -950,7 +962,7 @@ float CNPC_Houndeye::FLSoundVolume( CSound *pSound )
 //
 //------------------------------------------------------------------------------
 
-AI_BEGIN_CUSTOM_NPC( monster_houndeye, CNPC_Houndeye )
+AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 
 	DECLARE_TASK ( TASK_HOUND_CLOSE_EYE )
 	DECLARE_TASK ( TASK_HOUND_OPEN_EYE )
@@ -1157,3 +1169,6 @@ AI_BEGIN_CUSTOM_NPC( monster_houndeye, CNPC_Houndeye )
 	)
 
 AI_END_CUSTOM_NPC()
+
+
+

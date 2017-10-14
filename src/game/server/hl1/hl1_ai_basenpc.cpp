@@ -6,7 +6,6 @@
 //
 //=============================================================================//
 #include "cbase.h"
-#include "hl1_ai_basenpc.h"
 #include "scripted.h"
 #include "soundent.h"
 #include "animation.h"
@@ -17,7 +16,7 @@
 #include "vstdlib/random.h"
 #include "engine/IEngineSound.h"
 #include "NPCevent.h"
-
+#include "hl1_ai_basenpc.h"
 #include "effect_dispatch_data.h"
 #include "te_effect_dispatch.h"
 #include "cplane.h"
