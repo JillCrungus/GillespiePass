@@ -10,5 +10,11 @@
 		0 : "No"
 		1 : "Yes"
 	]
+
+	model(choices) : "Houndeye Variant" : "models/houndeye.mdl" : "Tubby" = 
+	[
+		"models/houndeye.mdl" : "Tubby"
+		"models/beta/houndeye.mdl" : "Malnourished"
+	]
 ]
 @PointClass base(Targetname, Origin) studio("models/items/w_longjump.mdl") = item_longjump : "Longjump Module" []
