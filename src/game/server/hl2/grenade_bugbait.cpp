@@ -6,6 +6,7 @@
 
 #include "cbase.h"
 #include "grenade_bugbait.h"
+#include "props.h"
 #include "decals.h"
 #include "smoke_trail.h"
 #include "soundent.h"
@@ -127,7 +128,7 @@ void CGrenadeBugBait::Spawn( void )
 void CGrenadeBugBait::Precache( void )
 {
 	PrecacheModel( GRENADE_MODEL );
-
+	PrecacheModel("models/props_junk/garbage_metalcan001a.mdl");
 	PrecacheScriptSound( "GrenadeBugBait.Splat" );
 
 	BaseClass::Precache();
@@ -310,15 +311,23 @@ void CGrenadeBugBait::SetGracePeriod( float duration )
 //			*owner - 
 // Output : CBaseGrenade
 //-----------------------------------------------------------------------------
-CGrenadeBugBait *BugBaitGrenade_Create( const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner )
+//CGrenadeBugBait *BugBaitGrenade_Create( const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner )
+CPhysicsProp *BugBaitGrenade_Create(const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner)
 {
-	CGrenadeBugBait *pGrenade = (CGrenadeBugBait *) CBaseEntity::Create( "npc_grenade_bugbait", position, angles, owner );
+	//CGrenadeBugBait *pGrenade = (CGrenadeBugBait *) CBaseEntity::Create( "npc_grenade_bugbait", position, angles, owner );
+	CPhysicsProp *pGrenade = assert_cast<CPhysicsProp*>(CreateEntityByName("prop_physics"));
+
 	
 	if ( pGrenade != NULL )
 	{
+
+		pGrenade->SetAbsOrigin(position);
+		pGrenade->SetAbsAngles(angles);
+		pGrenade->SetModel("models/props_junk/garbage_metalcan001a.mdl");
+		pGrenade->Spawn();
 		pGrenade->SetLocalAngularVelocity( angVelocity );
 		pGrenade->SetAbsVelocity( velocity );
-		pGrenade->SetThrower( ToBaseCombatCharacter( owner ) );
+		//pGrenade->SetThrower( ToBaseCombatCharacter( owner ) );
 	}
 
 	return pGrenade;

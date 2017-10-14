@@ -137,6 +137,8 @@ void CWeaponBugBait::Precache( void )
 {
 	BaseClass::Precache();
 
+	PrecacheModel("models/props_junk/garbage_metalcan001a.mdl");
+
 	UTIL_PrecacheOther( "npc_grenade_bugbait" );
 
 	PrecacheScriptSound( "Weapon_Bugbait.Splat" );
@@ -277,7 +279,8 @@ void CWeaponBugBait::ThrowGrenade( CBasePlayer *pPlayer )
 	pPlayer->GetVelocity( &vThrowVel, NULL );
 	vThrowVel += vForward * 1000;
 
-	CGrenadeBugBait *pGrenade = BugBaitGrenade_Create( vThrowPos, vec3_angle, vThrowVel, QAngle(600,random->RandomInt(-1200,1200),0), pPlayer );
+	//CGrenadeBugBait *pGrenade = BugBaitGrenade_Create( vThrowPos, vec3_angle, vThrowVel, QAngle(600,random->RandomInt(-1200,1200),0), pPlayer );
+	CPhysicsProp *pGrenade = BugBaitGrenade_Create(vThrowPos, vec3_angle, vThrowVel, QAngle(600, random->RandomInt(-1200, 1200), 0), pPlayer);
 
 	if ( pGrenade != NULL )
 	{
@@ -287,7 +290,7 @@ void CWeaponBugBait::ThrowGrenade( CBasePlayer *pPlayer )
 		
 		if ( tr.fraction == 1.0 )
 		{
-			pGrenade->SetGracePeriod( 0.1f );
+			//pGrenade->SetGracePeriod( 0.1f );
 		}
 	}
 
