@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "6440"
-	"mapversion" "38"
+	"mapversion" "33"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "38"
+	"mapversion" "33"
 	"classname" "worldspawn"
 	"chaptertitle" "Gay"
 	"detailmaterial" "detail/detailsprites"
@@ -1593,33 +1593,62 @@ entity
 }
 entity
 {
-	"id" "1198"
+	"id" "1076"
 	"classname" "prop_door_rotating"
 	"ajarangles" "0 0 0"
-	"angles" "0 270 0"
-	"axis" "-312.7 336 134, -312.7 336 134"
+	"angles" "0 0 0"
+	"axis" "-264 138 128, -264 138 128"
 	"disableshadows" "0"
 	"distance" "90"
 	"dmg" "0"
 	"forceclosed" "0"
 	"hardware" "1"
 	"health" "0"
-	"model" "models/props_c17/door01_left.mdl"
+	"model" "models/props_doors/door01_dynamic.mdl"
 	"modelscale" "1.0"
 	"opendir" "0"
 	"returndelay" "-1"
 	"skin" "0"
-	"soundmoveoverride" "eli_lab.mo_hurryup01"
 	"spawnflags" "8192"
-	"spawnpos" "2"
+	"spawnpos" "0"
 	"speed" "100"
-	"origin" "-312.699 336 134"
+	"origin" "-264 138 128"
 	editor
 	{
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
-		"logicalpos" "[0 0]"
+		"logicalpos" "[0 5000]"
+	}
+}
+entity
+{
+	"id" "1144"
+	"classname" "prop_door_rotating"
+	"ajarangles" "0 0 0"
+	"angles" "0 270 0"
+	"axis" "-314 332 128, -314 332 128"
+	"disableshadows" "0"
+	"distance" "90"
+	"dmg" "0"
+	"forceclosed" "0"
+	"hardware" "1"
+	"health" "0"
+	"model" "models/props_doors/door01_dynamic.mdl"
+	"modelscale" "1.0"
+	"opendir" "0"
+	"returndelay" "-1"
+	"skin" "0"
+	"spawnflags" "8192"
+	"spawnpos" "0"
+	"speed" "100"
+	"origin" "-314 332 128"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 5000]"
 	}
 }
 cameras
