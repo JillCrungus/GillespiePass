@@ -56,7 +56,8 @@ public:
 
 	DEFINE_CUSTOM_AI;
 	DECLARE_DATADESC()
-
+	void AddToPlayerSquad();
+	void RemoveFromPlayerSquad();
 private:
 	
 	bool  m_fCanThreatDisplay;// this is so the squid only does the "I see a headcrab!" dance one time. 

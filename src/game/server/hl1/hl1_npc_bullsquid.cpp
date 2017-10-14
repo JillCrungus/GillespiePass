@@ -32,7 +32,7 @@
 
 #define		SQUID_SPRINT_DIST	256 // how close the squid has to get before starting to sprint and refusing to swerve
 
-ConVar sk_bullsquid_health ( "sk_bullsquid_health", "40" );
+ConVar sk_bullsquid_health ( "sk_bullsquid_health", "80" );
 ConVar sk_bullsquid_dmg_bite ( "sk_bullsquid_dmg_bite", "25" );
 ConVar sk_bullsquid_dmg_whip ( "sk_bullsquid_dmg_whip", "35" );
 ConVar sk_bullsquid_dmg_spit ( "sk_bullsquid_dmg_spit", "10");
@@ -133,7 +133,6 @@ void CSquidSpit::Precache( void )
 
 	PrecacheScriptSound( "NPC_BigMomma.SpitTouch1" );
 	PrecacheScriptSound( "NPC_BigMomma.SpitHit1" );
-	PrecacheScriptSound( "NPC_BigMomma.SpitHit2" );
 }
 
 void CSquidSpit:: Spawn( void )
@@ -200,16 +199,7 @@ void CSquidSpit::Touch ( CBaseEntity *pOther )
 	iPitch = random->RandomFloat( 90, 110 );
 
 	EmitSound( "NPC_BigMomma.SpitTouch1" );
-
-	switch ( random->RandomInt( 0, 1 ) )
-	{
-	case 0:
-		EmitSound( "NPC_BigMomma.SpitHit1" );
-		break;
-	case 1:
-		EmitSound( "NPC_BigMomma.SpitHit2" );
-		break;
-	}
+	EmitSound( "NPC_BigMomma.SpitHit1" );
 
 	if ( !pOther->m_takedamage )
 	{
