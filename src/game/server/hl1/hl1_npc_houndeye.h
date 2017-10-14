@@ -56,7 +56,7 @@ public:
 
 	bool m_suppressAttack;
 
-	const char* m_modelToUse;
+	const char* m_modelToUse = "models/houndeye.mdl";
 	
 
 	DEFINE_CUSTOM_AI;
