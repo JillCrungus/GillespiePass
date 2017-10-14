@@ -403,11 +403,11 @@ void CNPC_Houndeye::SonicAttack ( void )
 		m_iSpriteTexture,						//texture
 		0,										//halo index
 		0,										//start frame
-		0,										//framerate
+		30,										//framerate
 		0.2,									//life
 		24,									//width
 		16,										//spread
-		0,										//amplitude
+		12,										//amplitude
 		WriteBeamColor().x,						//r
 		WriteBeamColor().y,						//g
 		WriteBeamColor().z,						//b
