@@ -1,7 +1,7 @@
 "GameInfo"
 {
 	game			"Gillespie Pass"
-	title			"H'LF-LIFE2"
+	title			"HALF-LIFE'"
 	title2			"= Gillespie Pass ="
 	gamelogo 		1
 	insecure		1
