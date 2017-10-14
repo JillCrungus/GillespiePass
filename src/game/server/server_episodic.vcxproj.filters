@@ -31,6 +31,9 @@
     <Filter Include="VPC Scripts">
       <UniqueIdentifier>{A40EE377-781A-C6B9-0C7C-B3BE118D248E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\HL1">
+      <UniqueIdentifier>{3cf84dc9-5fde-423a-8fb4-72eb1e09cd68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\lib\public\choreoobjects.lib">
@@ -1784,6 +1787,12 @@
     <ClInclude Include="toolframework_server.h">
       <Filter>Tools Framework</Filter>
     </ClInclude>
+    <ClInclude Include="hl1\hl1_ai_basenpc.h">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
+    </ClInclude>
+    <ClInclude Include="hl1\hl1_npc_houndeye.h">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gamedll_replay.cpp">
@@ -3504,6 +3513,15 @@
     </ClCompile>
     <ClCompile Include="toolframework_server.cpp">
       <Filter>Tools Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="item_longjump.cpp">
+      <Filter>Source Files\HL2 DLL</Filter>
+    </ClCompile>
+    <ClCompile Include="hl1\hl1_ai_basenpc.cpp">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
+    </ClCompile>
+    <ClCompile Include="hl1\hl1_npc_houndeye.cpp">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
