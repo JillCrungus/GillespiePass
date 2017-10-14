@@ -256,6 +256,7 @@ typedef enum
 	ACT_VM_PICKUP,
 	ACT_VM_RELEASE,
 	
+	
 	ACT_VM_ATTACH_SILENCER,
 	ACT_VM_DETACH_SILENCER,
 
@@ -325,6 +326,7 @@ typedef enum
 	ACT_SHOTGUN_RELOAD_START,
 	ACT_SHOTGUN_RELOAD_FINISH,
 	ACT_SHOTGUN_PUMP,
+	
 
 	// SMG2 special activities
 	ACT_SMG2_IDLE2,
@@ -2109,6 +2111,9 @@ typedef enum
 
 	// this is the end of the global activities, private per-monster activities start here.
 	LAST_SHARED_ACTIVITY,
+
+	// SG
+	ACT_SHOTGUN_SWITCH,			//Shotgun mode switch
 } Activity;
 
 

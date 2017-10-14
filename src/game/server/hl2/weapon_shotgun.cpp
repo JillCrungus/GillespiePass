@@ -581,8 +581,8 @@ void CWeaponShotgun::SecondaryAttack( void )
 		{
 			pPlayer->m_bShotgunSemi = true;
 		}
-		SendWeaponAnim(ACT_VM_SECONDARYATTACK);
-		m_flNextPrimaryAttack = gpGlobals->curtime + SequenceDuration();
+		EmitSound("Weapon_Shotgun.Reload");
+		m_flNextPrimaryAttack = gpGlobals->curtime + 0.5f;
 	}
 }
 	
