@@ -61,7 +61,7 @@ $sequence "IR_idle" {
 }
 
 $sequence "IR_fire" {
-	"v_irifle_anims\IR_reload.smd"
+	"v_irifle_anims\anims\IR_reload_fire.smd"
 	activity "ACT_VM_PRIMARYATTACK" 1
 	{ event AE_MUZZLEFLASH 0 "COMBINE MUZZLE" }
 	fadein 0.2
@@ -72,7 +72,7 @@ $sequence "IR_fire" {
 }
 
 $sequence "fire2" {
-	"v_irifle_anims\IR_reload.smd"
+	"v_irifle_anims\anims\IR_reload_fire.smd"
 	activity "ACT_VM_RECOIL1" 1
 	{ event AE_MUZZLEFLASH 0 "COMBINE MUZZLE" }
 	fadein 0.2
@@ -83,7 +83,7 @@ $sequence "fire2" {
 }
 
 $sequence "fire3" {
-	"v_irifle_anims\IR_reload.smd"
+	"v_irifle_anims\anims\IR_reload_fire.smd"
 	activity "ACT_VM_RECOIL2" 1
 	{ event AE_MUZZLEFLASH 0 "COMBINE MUZZLE" }
 	fadein 0.2
@@ -94,7 +94,7 @@ $sequence "fire3" {
 }
 
 $sequence "fire4" {
-	"v_irifle_anims\IR_reload.smd"
+	"v_irifle_anims\anims\IR_reload_fire.smd"
 	activity "ACT_VM_RECOIL3" 1
 	{ event AE_MUZZLEFLASH 0 "COMBINE MUZZLE" }
 	fadein 0.2
