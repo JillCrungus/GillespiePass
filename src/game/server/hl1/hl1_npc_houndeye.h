@@ -55,6 +55,8 @@ public:
 	int RangeAttack1Conditions ( float flDot, float flDist );
 
 	bool m_suppressAttack;
+
+	const char* m_modelToUse;
 	
 
 	DEFINE_CUSTOM_AI;

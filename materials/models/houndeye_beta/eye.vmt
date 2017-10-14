@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	// Original shader: VertexLitEnvMappedTexture
+	"$basetexture" "models/houndeye/eye"
+	"$envmap" "models/houndeye/eye_env"
+	"$envmapsphere" 1
+	"$multipass" 1
+}
