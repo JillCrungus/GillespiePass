@@ -7,12 +7,12 @@
 #include "AI_Memory.h"
 #include "IEffects.h"
 
-#if 0 //This NPC currently doesn't work due to a specific function not being in the retail engine. I'll try to figure out a way to fix it --Jill
+//This NPC currently doesn't work correctly due to a specific function not being in the retail engine. I'll try to figure out a way to fix it --Jill
 class CCrabSynth : public CAI_BaseNPC
 {
 	DECLARE_CLASS(CCrabSynth, CAI_BaseNPC);
-	DECLARE_DATADESC();
-	float		m_nextCharge;
+	//DECLARE_DATADESC();
+	//float		m_nextCharge;
 
 public:
 	void Spawn(void);
@@ -41,10 +41,10 @@ public:
 
 protected:
 	DEFINE_CUSTOM_AI;
-#if 0
+//#if 0
 	DECLARE_DATADESC();
 
-#endif
+//#endif
 
 
 };
@@ -59,7 +59,7 @@ IMPLEMENT_CUSTOM_AI( npc_crabsynth, CCrabSynth );
 //---------------------------------------------------------
 BEGIN_DATADESC( CCrabSynth )
 
-	DEFINE_FIELD( CCrabSynth, m_nextCharge,	FIELD_TIME ),
+	DEFINE_FIELD( m_nextCharge,	FIELD_TIME ),
 
 END_DATADESC()
 
@@ -127,7 +127,7 @@ void CCrabSynth::Spawn( void )
 	AddSolidFlags( FSOLID_NOT_STANDABLE );
 	SetMoveType( MOVETYPE_STEP );
 	SetBloodColor( BLOOD_COLOR_GREEN );
-	m_iHealth			= 251;
+	m_iHealth			= 300;
 	m_flFieldOfView		= 0.5f;
 	m_NPCState			= NPC_STATE_NONE;
 	
@@ -197,10 +197,10 @@ int CCrabSynth::OnTakeDamage_Alive( const CTakeDamageInfo &inputInfo )
 		if ( info.GetInflictor() )
 		{
 			// damage from roughly below?
-			if ( info.GetInflictor()->GetAbsOrigin().z - GetAbsOrigin().z < ((GetAbsMaxs().z-GetAbsMins().z)*0.5f) )
-			{
-				info.SetDamage( inputInfo.GetDamage() );
-			}
+			//if ( info.GetInflictor()->GetAbsOrigin().z - GetAbsOrigin().z < ((GetAbsMaxs().z-GetAbsMins().z)*0.5f) )
+			//{
+				info.SetDamage( inputInfo.GetDamage() ); //We always take damage for now. Find GetAbsMaxs and GetAbsMins equivalents for retail engine! --Jill
+			//}
 		}
 	}
 	return BaseClass::OnTakeDamage_Alive( info );
@@ -445,4 +445,3 @@ AI_DEFINE_SCHEDULE
 	"	"
 	"	Interrupts"
 );
-#endif
