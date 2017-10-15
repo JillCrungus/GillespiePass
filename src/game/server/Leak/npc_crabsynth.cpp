@@ -7,7 +7,8 @@
 #include "AI_Memory.h"
 #include "IEffects.h"
 
-//This NPC currently doesn't work correctly due to a specific function not being in the retail engine. I'll try to figure out a way to fix it --Jill
+//This NPC currently doesn't work correctly for various reasons. The animations on the model don't have any movement, the NPC itself is really buggy and 2 functions needed for damage handling
+//are not present in retail Source. --Jill
 class CCrabSynth : public CAI_BaseNPC
 {
 	DECLARE_CLASS(CCrabSynth, CAI_BaseNPC);
