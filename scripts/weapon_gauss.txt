@@ -15,7 +15,7 @@ WeaponData
 	"default_clip"			"150"
 	"default_clip2"			"-1"
 
-	"primary_ammo"			"GaussEnergy"
+	"primary_ammo"			"GaussEnergy_player"
 	"secondary_ammo"		"None"
 
 	"weight"				"2"
