@@ -56,6 +56,9 @@ public:
 
 	bool m_suppressAttack;
 
+	bool m_playful;
+	bool m_sleepy;
+
 	const char* m_modelToUse = "models/houndeye.mdl";
 	
 

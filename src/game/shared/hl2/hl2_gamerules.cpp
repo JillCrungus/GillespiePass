@@ -610,6 +610,40 @@ ConVar  alyx_darkness_force( "alyx_darkness_force", "0", FCVAR_CHEAT | FCVAR_REP
 		CBaseCombatCharacter::SetDefaultRelationship(CLASS_CITIZEN_REBEL,		CLASS_HACKED_ROLLERMINE,D_NU, 0);
 		CBaseCombatCharacter::SetDefaultRelationship(CLASS_CITIZEN_REBEL, CLASS_APERTURE, D_HT, 0);
 
+
+		// ------------------------------------------------------------
+		//	> CLASS_HOUNDEYE_PLAYFUL
+		// ------------------------------------------------------------
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_NONE, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_PLAYER, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_ANTLION, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_BARNACLE, D_FR, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_BULLSEYE, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_BULLSQUID, D_FR, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_CITIZEN_PASSIVE, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_CITIZEN_REBEL, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_COMBINE, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_COMBINE_GUNSHIP, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_COMBINE_HUNTER, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_CONSCRIPT, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_FLARE, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_HEADCRAB, D_HT, 0);
+		//CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL,		CLASS_HOUNDEYE,			D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_MANHACK, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_METROPOLICE, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_MILITARY, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_MISSILE, D_FR, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_SCANNER, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_STALKER, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_VORTIGAUNT, D_LI, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_ZOMBIE, D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_PROTOSNIPER, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_EARTH_FAUNA, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_PLAYER_ALLY, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_PLAYER_ALLY_VITAL, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_HACKED_ROLLERMINE, D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_HOUNDEYE_PLAYFUL, CLASS_APERTURE, D_HT, 0);
+
 		// ------------------------------------------------------------
 		//	> CLASS_COMBINE
 		// ------------------------------------------------------------
