@@ -40,6 +40,9 @@
     <Filter Include="Source Files\HL2 DLL\Leak\Mortar Synth">
       <UniqueIdentifier>{bba253bb-adc3-4197-bbe7-b98d05d192eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\Leak\Tau Cannon">
+      <UniqueIdentifier>{c81f6349-1dcc-4478-a5a7-dd7ee9da5ccc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\lib\public\choreoobjects.lib">
@@ -1812,6 +1815,9 @@
     <ClInclude Include="hl2\grenade_energy.h">
       <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
     </ClInclude>
+    <ClInclude Include="Leak\weapon_gauss.h">
+      <Filter>Source Files\HL2 DLL\Leak\Tau Cannon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gamedll_replay.cpp">
@@ -3556,6 +3562,9 @@
     </ClCompile>
     <ClCompile Include="hl2\grenade_energy.cpp">
       <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
+    </ClCompile>
+    <ClCompile Include="Leak\weapon_gauss.cpp">
+      <Filter>Source Files\HL2 DLL\Leak\Tau Cannon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

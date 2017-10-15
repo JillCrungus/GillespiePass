@@ -1536,3 +1536,38 @@
 }
 
 
+// weapon_gauss.txt
+"Weapon_Gauss.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+
+	"wave"				"weapons/gauss/fire1.wav"
+}
+
+"Weapon_Gauss.Special1"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_NORM"
+
+	"wave"			"weapons/gauss/chargeloop.wav"
+}
+
+"Weapon_Gauss.Special2"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_120dB"
+	"pitch"			"95,105"
+
+	"rndwave"
+	{
+		"wave"			"weapons/gauss/electro1.wav"
+		"wave"			"weapons/gauss/electro2.wav"
+		"wave"			"weapons/gauss/electro3.wav"
+	}
+}
+
+
