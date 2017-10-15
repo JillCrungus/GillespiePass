@@ -1796,6 +1796,9 @@
     <ClInclude Include="hl1\hl1_npc_bullsquid.h">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClInclude>
+    <ClInclude Include="hl1\hl1_npc_snark.h">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gamedll_replay.cpp">
@@ -3527,6 +3530,9 @@
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClCompile>
     <ClCompile Include="hl1\hl1_npc_bullsquid.cpp">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
+    </ClCompile>
+    <ClCompile Include="hl1\hl1_npc_snark.cpp">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClCompile>
   </ItemGroup>
