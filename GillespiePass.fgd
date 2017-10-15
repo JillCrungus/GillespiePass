@@ -24,5 +24,11 @@
 		0 : "No"
 		1 : "Yes"
 	]
+
+	model(choices) : "Bullsquid Variant" : "models/bullsquid.mdl" : "Classic" = 
+	[
+		"models/bullsquid.mdl" : "Classic"
+		"models/beta/bullsquid.mdl" : "Leak"
+	]
 ]
 @PointClass base(Targetname, Origin) studio("models/items/w_longjump.mdl") = item_longjump : "Longjump Module" []

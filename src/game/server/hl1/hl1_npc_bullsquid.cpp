@@ -232,6 +232,7 @@ BEGIN_DATADESC(CNPC_Bullsquid)
 
 	DEFINE_FIELD(m_flHungryTime, FIELD_TIME),
 	DEFINE_KEYFIELD(m_attackSuppressed, FIELD_BOOLEAN, "SuppressAttack"),
+	DEFINE_KEYFIELD(m_modelToUse, FIELD_STRING, "model"),
 END_DATADESC()
 
 //=========================================================
@@ -241,7 +242,7 @@ void CNPC_Bullsquid::Spawn()
 {
 	Precache( );
 
-	SetModel( "models/bullsquid.mdl");
+	SetModel(m_modelToUse);
 	SetHullType(HULL_WIDE_SHORT);
 	SetHullSizeNormal();
 
@@ -277,6 +278,7 @@ void CNPC_Bullsquid::Precache()
 	BaseClass::Precache();
 	
 	PrecacheModel("models/bullsquid.mdl");
+	PrecacheModel("models/beta/bullsquid.mdl");
 	
 	PrecacheModel("sprites/bigspit.vmt");// spit projectile.
 
