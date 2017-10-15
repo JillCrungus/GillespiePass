@@ -704,7 +704,7 @@ void CNPC_Houndeye::StartTask ( const Task_t *pTask )
 		{
 			if (m_playful)
 			{
-				if (RandomInt(0, 50) < 20)
+				if (RandomInt(0, 50) < 10)
 				{
 					SetSchedule(SCHED_HOUNDEYE_NOPLAY);
 					Msg("Stopped being playful!");
@@ -741,6 +741,10 @@ void CNPC_Houndeye::StartTask ( const Task_t *pTask )
 	{
 		m_playful = false;
 		SetIdealActivity(ACT_IDLE);
+		if (RandomInt(0, 20) < 5)
+		{
+			SetSchedule(SCHED_HOUND_SLEEP); //Sometimes Houndeyes get all tuckered out after playing :>
+		}
 		TaskComplete();
 		break;
 	}
