@@ -1,5 +1,6 @@
 "VertexLitGeneric"
 {
-	// Original shader: VertexLitTexture
-	"$basetexture" "models/houndeye/houndside2"
+	"$baseTexture" "models\hoandeye\houndside2"
+	"$bumpmap" "models\hoandeye\houndside2_normal"
+	"$model" 1
 }

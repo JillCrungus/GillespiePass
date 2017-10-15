@@ -1,6 +1,7 @@
 "VertexLitGeneric"
 {
-	// Original shader: VertexLitTranslucentTexture
+	"$baseTexture" "models\hoandeye\individualhairs"
 	"$translucent" 1
-	"$basetexture" "models/houndeye/individualhairs"
+	"$nocull" 1
+	"$model" 1
 }
