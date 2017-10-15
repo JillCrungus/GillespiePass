@@ -238,29 +238,8 @@ void CWeaponGaussGun::Fire( void )
 		DrawBeam( tr.startpos, tr.endpos, 1.6, true );
 	}
 
-	if (pHit->IsNPC() && dmgInfo.GetDamage() > pHit->GetHealth())
-	{
-		CTakeDamageInfo info(pOwner, pOwner, 1.0f, DMG_GENERIC);
-		CBaseEntity *pRagdoll = CreateServerRagdoll(dynamic_cast<CBaseAnimating*>(pHit), 0, info, COLLISION_GROUP_INTERACTIVE_DEBRIS, true);
-		PhysSetEntityGameFlags(pRagdoll, FVPHYSICS_NO_SELF_COLLISIONS);
-		pRagdoll->SetCollisionBounds(pHit->CollisionProp()->OBBMins(), pHit->CollisionProp()->OBBMaxs());
 
-		// Necessary to cause it to do the appropriate death cleanup
-		CTakeDamageInfo ragdollInfo(pOwner, pOwner, 10000.0, DMG_PHYSGUN | DMG_REMOVENORAGDOLL);
-		pHit->TakeDamage(ragdollInfo);
-
-		info.SetAttacker(GetOwner());
-		info.SetInflictor(this);
-		info.SetDamage(0.0f);
-		info.SetDamageType(DMG_PHYSGUN);
-		pHit->DispatchTraceAttack(info, aimDir, &tr);
-		Msg("Bepis");
-		ApplyMultiDamage();
-	}
-	else
-	{
-		ApplyMultiDamage();
-	}
+	ApplyMultiDamage();
 
 	UTIL_ImpactTrace( &tr, GetAmmoDef()->DamageType(m_iPrimaryAmmoType), "ImpactGauss" );
 
