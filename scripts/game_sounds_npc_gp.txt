@@ -258,3 +258,48 @@
 		"wave"		"bullchicken/attackgrowl3.wav"
 	}
 }
+
+//Mortar Synth
+"NPC_MSynth.Hover"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"0.500"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"wave"			"npc/waste_scanner/hover.wav"
+}
+
+"NPC_MSynth.WarmUp"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"wave"			"npc/vort/attack_charge.wav"
+}
+
+"NPC_MSynth.EnergyShoot"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"wave"			"npc/waste_scanner/grenade_fire.wav"
+}
+
+"NPC_MSynth.Shoot"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"VOL_NORM"
+	"pitch"			"PITCH_NORM"
+
+	"soundlevel"	"SNDLVL_NORM"
+
+	"wave"			"npc/vort/attack_shoot.wav"
+}

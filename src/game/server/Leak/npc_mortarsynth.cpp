@@ -567,6 +567,11 @@ void CNPC_MSynth::Precache(void)
 
 	engine->PrecacheModel("sprites/physring1.vmt");
 
+	PrecacheScriptSound("NPC_MSynth.Hover");
+	PrecacheScriptSound("NPC_MSynth.WarmUp");
+	PrecacheScriptSound("NPC_MSynth.EnergyShoot");
+	PrecacheScriptSound("NPC_MSynth.Shoot");
+
 	UTIL_PrecacheOther("grenade_energy");
 
 	BaseClass::Precache();
