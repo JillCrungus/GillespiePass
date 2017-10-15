@@ -259,6 +259,7 @@ void CNPC_Bullsquid::Spawn()
 	CapabilitiesClear();
 	CapabilitiesAdd( bits_CAP_MOVE_GROUND | bits_CAP_INNATE_RANGE_ATTACK1 | bits_CAP_INNATE_MELEE_ATTACK1 | bits_CAP_INNATE_MELEE_ATTACK2 );
 	CapabilitiesAdd(bits_CAP_SQUAD);
+
 	
 	m_fCanThreatDisplay	= TRUE;
 	m_flNextSpitTime = gpGlobals->curtime;
@@ -309,9 +310,12 @@ Class_T	CNPC_Bullsquid::Classify( void )
 {
 	if (m_attackSuppressed)
 	{
-		return CLASS_PLAYER_ALLY;
+		return CLASS_CITIZEN_REBEL;
 	}
-	return CLASS_BULLSQUID; 
+	else
+	{
+		return CLASS_BULLSQUID;
+	}
 }
 /*
 void CNPC_Bullsquid::AddToPlayerSquad()

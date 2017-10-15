@@ -78,6 +78,8 @@ enum
 	TASK_HOUND_FALL_ASLEEP,
 	TASK_HOUND_WAKE_UP,
 	TASK_HOUND_HOP_BACK,
+	TASK_HOUND_BECOMEPLAYFUL,
+	TASK_HOUND_NOPLAY,
 };
 
 //=========================================================
@@ -96,6 +98,9 @@ enum
 	SCHED_HOUND_SPECIALATTACK,
 	SCHED_HOUND_COMBAT_FAIL_PVS,
 	SCHED_HOUND_COMBAT_FAIL_NOPVS,
+	SCHED_HOUND_BECOMEPLAYFUL,
+	SCHED_HOUNDEYE_NOPLAY,
+	SCHED_HOUNDWANDER,
 //	SCHED_HOUND_FAIL,
 };
 
@@ -180,10 +185,12 @@ void CNPC_Houndeye::Event_Killed( const CTakeDamageInfo &info )
 int CNPC_Houndeye::RangeAttack1Conditions ( float flDot, float flDist )
 {
 
-	if (this->m_suppressAttack)
+	if (m_suppressAttack
+		&& GetEnemy()->IsPlayer())
 	{
 		return COND_NONE;
 	}
+
 	// I'm not allowed to attack if standing in another hound eye 
 	// (note houndeyes allowed to interpenetrate)
 	trace_t tr;
@@ -317,7 +324,19 @@ float CNPC_Houndeye::MaxYawSpeed  ( void )
 //=========================================================
 Class_T	CNPC_Houndeye::Classify ( void )
 {
-	return CLASS_HEADCRAB;
+	if (m_suppressAttack && m_playful)
+	{
+		return CLASS_HOUNDEYE_PLAYFUL;
+	}
+	if (m_suppressAttack)
+	{
+		return CLASS_CITIZEN_REBEL;
+	}
+	else
+	{
+		return CLASS_HEADCRAB;
+	}
+	
 }
 
 //=========================================================
@@ -448,34 +467,36 @@ void CNPC_Houndeye::SonicAttack ( void )
 				// This means that you must get out of the houndeye's attack range entirely to avoid damage.
 				// Calculate full damage first
 
-				if ( m_pSquad && m_pSquad->NumMembers() > 1 )
-				{
-					// squad gets attack bonus.
-					flAdjustedDamage = sk_houndeye_dmg_blast.GetFloat() + sk_houndeye_dmg_blast.GetFloat() * ( HOUNDEYE_SQUAD_BONUS * ( m_pSquad->NumMembers() - 1 ) );
-				}
-				else
-				{
-					// solo
-					flAdjustedDamage =sk_houndeye_dmg_blast.GetFloat();
-				}
-
-				flDist = (pEntity->WorldSpaceCenter() - GetAbsOrigin()).Length();
-
-				flAdjustedDamage -= ( flDist / HOUNDEYE_MAX_ATTACK_RADIUS ) * flAdjustedDamage;
-
-				if ( !FVisible( pEntity ) )
-				{
-					if ( pEntity->IsPlayer() )
+				
+					if (m_pSquad && m_pSquad->NumMembers() > 1)
 					{
-						// if this entity is a client, and is not in full view, inflict half damage. We do this so that players still 
-						// take the residual damage if they don't totally leave the houndeye's effective radius. We restrict it to clients
-						// so that monsters in other parts of the level don't take the damage and get pissed.
-						flAdjustedDamage *= 0.5;
+						// squad gets attack bonus.
+						flAdjustedDamage = sk_houndeye_dmg_blast.GetFloat() + sk_houndeye_dmg_blast.GetFloat() * (HOUNDEYE_SQUAD_BONUS * (m_pSquad->NumMembers() - 1));
 					}
-					else if ( !FClassnameIs( pEntity, "func_breakable" ) && !FClassnameIs( pEntity, "func_pushable" ) ) 
+					else
 					{
-						// do not hurt nonclients through walls, but allow damage to be done to breakables
-						flAdjustedDamage = 0;
+						// solo
+						flAdjustedDamage = sk_houndeye_dmg_blast.GetFloat();
+					}
+
+					flDist = (pEntity->WorldSpaceCenter() - GetAbsOrigin()).Length();
+
+					flAdjustedDamage -= (flDist / HOUNDEYE_MAX_ATTACK_RADIUS) * flAdjustedDamage;
+
+					if (!FVisible(pEntity))
+					{
+						if (pEntity->IsPlayer())
+						{
+							// if this entity is a client, and is not in full view, inflict half damage. We do this so that players still 
+							// take the residual damage if they don't totally leave the houndeye's effective radius. We restrict it to clients
+							// so that monsters in other parts of the level don't take the damage and get pissed.
+							flAdjustedDamage *= 0.5;
+						}
+						else if (!FClassnameIs(pEntity, "func_breakable") && !FClassnameIs(pEntity, "func_pushable"))
+						{
+							// do not hurt nonclients through walls, but allow damage to be done to breakables
+							flAdjustedDamage = 0;
+						
 					}
 				}
 
@@ -570,8 +591,11 @@ Vector CNPC_Houndeye::WriteBeamColor ( void )
 	return Vector ( bRed, bGreen, bBlue );
 }
 
+
+//this fuck is this function for? always returns true. Valve please.
 bool CNPC_Houndeye::ShouldGoToIdleState( void )
 {
+	/*
 	if ( m_pSquad )
 	{
 		AISquadIter_t iter;
@@ -583,7 +607,7 @@ bool CNPC_Houndeye::ShouldGoToIdleState( void )
 
 		return true;
 	}
-
+	*/
 	return true;
 }
 
@@ -677,7 +701,19 @@ void CNPC_Houndeye::StartTask ( const Task_t *pTask )
 		}
 	case TASK_HOUND_THREAT_DISPLAY:
 		{
-			SetIdealActivity( ACT_IDLE_ANGRY );
+			if (m_playful)
+			{
+				if (RandomInt(0, 50) < 20)
+				{
+					SetSchedule(SCHED_HOUNDEYE_NOPLAY);
+					Msg("Stopped being playful!");
+				}
+				if (!GetEnemy()->IsPlayer())
+				{
+					m_playful = false;
+				}
+			}
+			SetIdealActivity(ACT_IDLE_ANGRY);
 			break;
 		}
 	case TASK_HOUND_HOP_BACK:
@@ -695,6 +731,18 @@ void CNPC_Houndeye::StartTask ( const Task_t *pTask )
 			SetIdealActivity( ACT_SPECIAL_ATTACK1 );
 			break;
 		}
+	case TASK_HOUND_BECOMEPLAYFUL:
+	{
+		m_playful = true;
+		break;
+	}
+	case TASK_HOUND_NOPLAY:
+	{
+		m_playful = false;
+		SetIdealActivity(ACT_IDLE);
+		TaskComplete();
+		break;
+	}
 	case TASK_GET_PATH_TO_RANGE_ENEMY_LKP_LOS:
 	{
 		float			flMaxRange = HOUNDEYE_MAX_ATTACK_RADIUS * 0.9;
@@ -758,6 +806,16 @@ void CNPC_Houndeye::RunTask ( const Task_t *pTask )
 				 m_nSkin++;
 			break;
 		}
+	case TASK_HOUND_BECOMEPLAYFUL:
+	{
+		m_playful = true;
+		break;
+	}
+	case TASK_HOUND_NOPLAY:
+	{
+		m_playful = false;
+		break;
+	}
 	case TASK_HOUND_HOP_BACK:
 		{
 			if ( IsSequenceFinished() )
@@ -898,10 +956,29 @@ int CNPC_Houndeye::TranslateSchedule( int scheduleType )
 			{
 				return SCHED_HOUND_SLEEP;
 			}
-			else
+		
+			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 50) < 1)
 			{
-				return BaseClass::TranslateSchedule( scheduleType );
+				return SCHED_HOUND_SLEEP;
 			}
+
+			
+			if (m_suppressAttack)
+			{
+				if (random->RandomInt(0, 29) < 1)
+				{
+					return SCHED_HOUND_BECOMEPLAYFUL;
+				}
+
+				if (random->RandomInt(0, 2) == 1)
+				{
+					return SCHED_HOUNDWANDER;
+				}
+				
+		
+			}
+			
+			return BaseClass::TranslateSchedule(scheduleType);
 		}
 
 	case SCHED_RANGE_ATTACK1:
@@ -1011,6 +1088,8 @@ AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 	DECLARE_TASK ( TASK_HOUND_FALL_ASLEEP )
 	DECLARE_TASK ( TASK_HOUND_WAKE_UP )
 	DECLARE_TASK ( TASK_HOUND_HOP_BACK )
+	DECLARE_TASK( TASK_HOUND_NOPLAY )
+	DECLARE_TASK( TASK_HOUND_BECOMEPLAYFUL)
 
 	//=========================================================
 	// > SCHED_HOUND_AGITATED
@@ -1073,7 +1152,6 @@ AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 		"	"
 		"	Interrupts"
 	)
-
 	//=========================================================
 	// > SCHED_HOUND_RANGEATTACK
 	//=========================================================
@@ -1088,6 +1166,7 @@ AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 		"		COND_LIGHT_DAMAGE"
 		"		COND_HEAVY_DAMAGE"
 	)
+	
 
 	//=========================================================
 	// > SCHED_HOUND_SLEEP
@@ -1208,8 +1287,60 @@ AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 		"		COND_LIGHT_DAMAGE"
 		"		COND_HEAVY_DAMAGE"
 	)
+	//=========================================================
+	// > SCHED_HOUND_BECOMEPLAYFUL
+	//=========================================================
+	DEFINE_SCHEDULE
+	(
+		SCHED_HOUND_BECOMEPLAYFUL,
+
+		"	Tasks"
+		"		TASK_HOUND_THREAT_DISPLAY	0"
+		"		TASK_STOP_MOVING			0"
+		"		TASK_HOUND_BECOMEPLAYFUL				0"
+		"	"
+		"	Interrupts"
+		"		"
+		"		COND_LIGHT_DAMAGE"
+		"		COND_HEAVY_DAMAGE"
+		"		COND_NEW_ENEMY"
+		"		COND_HEAR_COMBAT"
+		"		COND_HEAR_DANGER"
+		"		COND_HEAR_PLAYER"
+		"		COND_HEAR_WORLD"
+		"		"
+	)
+	//=========================================================
+	// > SCHED_HOUND_NOPLAY
+	//=========================================================
+	DEFINE_SCHEDULE
+	(
+	SCHED_HOUNDEYE_NOPLAY,
+
+	"	Tasks"
+	"		TASK_HOUND_NOPLAY	0"
+	"	"
+	"	Interrupts"
+	"	"
+	)
+	//=========================================================
+	// > SCHED_HOUNDWANDER
+	//=========================================================
+	DEFINE_SCHEDULE
+	(
+	SCHED_HOUNDWANDER,
+
+	"	Tasks"
+	"		TASK_STOP_MOVING				0"
+	"		TASK_WANDER						480384" // 4 feet to 32 feet
+	"		TASK_WALK_PATH					0"
+	"		TASK_WAIT_FOR_MOVEMENT			0"
+	"		TASK_STOP_MOVING				0"
+	"	Interrupts"
+	"	"
+	"		COND_LIGHT_DAMAGE"
+	"		COND_HEAVY_DAMAGE"
+	"		COND_NEW_ENEMY"
+	)
 
 AI_END_CUSTOM_NPC()
-
-
-
