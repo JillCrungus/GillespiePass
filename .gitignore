@@ -397,3 +397,5 @@ src/utils/vvis_launcher/vvis_launcher.vcxproj
 src/fgdlib/fgdlib.vcxproj
 src/fgdlib/fgdlib.vcxproj.filters
 maps/TownDev_001.bsp
+*.sav
+*.hl2
