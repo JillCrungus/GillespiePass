@@ -40,7 +40,7 @@
 #define MSYNTH_MIN_GROUND_DIST		40
 #define MSYNTH_MAX_GROUND_DIST		50
 
-#define MSYNTH_GIB_COUNT			5 
+#define MSYNTH_GIB_COUNT			10 
 
 ConVar	sk_mortarsynth_health( "sk_mortarsynth_health","0");
 
@@ -560,7 +560,7 @@ void CNPC_MSynth::Precache(void)
 	// Model.
 	//
 	engine->PrecacheModel("models/mortarsynth.mdl");
-	engine->PrecacheModel("models/gibs/mortarsynth_gibs.mdl");
+	engine->PrecacheModel("models/gibs/metalgibs.mdl");
 	
 	engine->PrecacheModel("sprites/physbeam.vmt");	
 	engine->PrecacheModel("sprites/glow01.vmt");
@@ -597,7 +597,7 @@ void CNPC_MSynth::Gib(void)
 			&GetAbsOrigin(), 255, 180, 100, 0, 100, 0.1, 0 );
 
 	// Throw mortar synth gibs
-	CGib::SpawnSpecificGibs( this, MSYNTH_GIB_COUNT, 800, 1000, "models/gibs/mortarsynth_gibs.mdl");
+	CGib::SpawnSpecificGibs( this, MSYNTH_GIB_COUNT, 800, 1000, "models/gibs/metalgibs.mdl");
 
 	ExplosionCreate(GetAbsOrigin(), GetAbsAngles(), NULL, random->RandomInt(30, 40), 0, true);
 
