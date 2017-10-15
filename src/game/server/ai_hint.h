@@ -294,6 +294,9 @@ public:
 	void				NPCStartedUsing( CAI_BaseNPC *pNPC );
 	void				NPCStoppedUsing( CAI_BaseNPC *pNPC );
 
+	static CAI_Hint		*FindHint(CAI_BaseNPC *pNPC, const Vector &position, CHintCriteria *pHintCriteria);
+	static CAI_Hint		*FindHint(CAI_BaseNPC *pNPC, Hint_e nHintType, int nFlags, float flMaxDist, const Vector *pMaxDistFrom = NULL);
+
 	HintIgnoreFacing_t	GetIgnoreFacing() const			{ return m_NodeData.fIgnoreFacing; }
 
 	NPC_STATE			GetMinState() const				{ return m_NodeData.minState; }

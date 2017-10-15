@@ -37,6 +37,9 @@
     <Filter Include="Source Files\HL2 DLL\Leak">
       <UniqueIdentifier>{971ae827-cb0b-4c86-8369-904c65bae170}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\Leak\Mortar Synth">
+      <UniqueIdentifier>{bba253bb-adc3-4197-bbe7-b98d05d192eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\lib\public\choreoobjects.lib">
@@ -1802,6 +1805,13 @@
     <ClInclude Include="hl1\hl1_npc_snark.h">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClInclude>
+    <ClInclude Include="leak\npc_crabsynth.h" />
+    <ClInclude Include="Leak\npc_mortarsynth.h">
+      <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
+    </ClInclude>
+    <ClInclude Include="hl2\grenade_energy.h">
+      <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gamedll_replay.cpp">
@@ -3540,6 +3550,12 @@
     </ClCompile>
     <ClCompile Include="Leak\npc_crabsynth.cpp">
       <Filter>Source Files\HL2 DLL\Leak</Filter>
+    </ClCompile>
+    <ClCompile Include="Leak\npc_mortarsynth.cpp">
+      <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
+    </ClCompile>
+    <ClCompile Include="hl2\grenade_energy.cpp">
+      <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

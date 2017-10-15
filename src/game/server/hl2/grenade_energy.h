@@ -26,8 +26,6 @@ public:
 public:
 	void		Spawn( void );
 	void		Precache( void );
-	void		Animate( void );
-	void 		GrenadeEnergyTouch( CBaseEntity *pOther );
 	void		Event_Killed( const CTakeDamageInfo &info );
 
 	int			m_flMaxFrame;
@@ -37,6 +35,8 @@ public:
 	void EXPORT				Detonate(void);
 
 	DECLARE_DATADESC();
+	void		Animate(void);
+	void 		GrenadeEnergyTouch(CBaseEntity *pOther);
 };
 
 #endif	//GRENADEENERGY_H

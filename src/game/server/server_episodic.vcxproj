@@ -348,6 +348,7 @@ exit 1
     <ClInclude Include="hl1\hl1_npc_bullsquid.h" />
     <ClInclude Include="hl1\hl1_npc_houndeye.h" />
     <ClInclude Include="hl1\hl1_npc_snark.h" />
+    <ClInclude Include="hl2\grenade_energy.h" />
     <ClInclude Include="ilagcompensationmanager.h" />
     <ClInclude Include="..\..\public\vgui\ILocalize.h" />
     <ClInclude Include="..\..\public\materialsystem\imaterial.h" />
@@ -375,6 +376,7 @@ exit 1
     <ClInclude Include="..\..\public\tier0\l2cache.h" />
     <ClInclude Include="..\..\common\language.h" />
     <ClInclude Include="leak\npc_crabsynth.h" />
+    <ClInclude Include="Leak\npc_mortarsynth.h" />
     <ClInclude Include="logicrelay.h" />
     <ClInclude Include="..\..\public\map_utils.h" />
     <ClInclude Include="mapentities.h" />
@@ -1065,6 +1067,7 @@ exit 1
     <ClCompile Include="hl1\hl1_npc_bullsquid.cpp" />
     <ClCompile Include="hl1\hl1_npc_houndeye.cpp" />
     <ClCompile Include="hl1\hl1_npc_snark.cpp" />
+    <ClCompile Include="hl2\grenade_energy.cpp" />
     <ClCompile Include="h_ai.cpp" />
     <ClCompile Include="h_cycler.cpp" />
     <ClCompile Include="h_export.cpp">
@@ -1104,6 +1107,7 @@ exit 1
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Leak\npc_crabsynth.cpp" />
+    <ClCompile Include="Leak\npc_mortarsynth.cpp" />
     <ClCompile Include="lightglow.cpp" />
     <ClCompile Include="lights.cpp" />
     <ClCompile Include="logic_achievement.cpp" />
