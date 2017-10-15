@@ -54,6 +54,8 @@ public:
 
 	NPC_STATE SelectIdealState ( void );
 
+	const char* m_modelToUse = "models/bullsquid.mdl";
+
 	DEFINE_CUSTOM_AI;
 	DECLARE_DATADESC()
 	void AddToPlayerSquad();

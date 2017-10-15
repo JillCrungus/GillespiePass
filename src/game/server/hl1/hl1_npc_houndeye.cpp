@@ -953,26 +953,26 @@ int CNPC_Houndeye::TranslateSchedule( int scheduleType )
 				return SCHED_HOUND_SLEEP;
 			}
 		
-			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 30) < 1)
+			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 30) < 1) //Only tamed Houndeyes who aren't already asleep should do this
 			{
-				return SCHED_HOUND_SLEEP;
+				return SCHED_HOUND_SLEEP; //Just take a nap on the spot
 			}
-			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 30) < 1)
+			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 30) < 1) //Only tamed Houndeyes who aren't already asleep should do this
 			{
-				return SCHED_HOUND_SLEEP_MOVE;
+				return SCHED_HOUND_SLEEP_MOVE; //Move somehwere comfier before cozying up
 			}
 
 			
-			if (m_suppressAttack)
+			if (m_suppressAttack) //Only tamed Houndeyes should do these
 			{
 				if (random->RandomInt(0, 29) < 1)
 				{
-					return SCHED_HOUND_BECOMEPLAYFUL;
+					return SCHED_HOUND_BECOMEPLAYFUL; //Get excited! We want to play with the player!
 				}
 
 				if (random->RandomInt(0, 2) == 1)
 				{
-					return SCHED_HOUNDWANDER;
+					return SCHED_HOUNDWANDER; //Just wander about
 				}
 				
 		

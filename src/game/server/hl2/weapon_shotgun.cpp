@@ -157,6 +157,7 @@ IMPLEMENT_ACTTABLE(CWeaponShotgun);
 void CWeaponShotgun::Precache( void )
 {
 	CBaseCombatWeapon::Precache();
+	PrecacheScriptSound("Weapon_Shotgun.SwitchMode");
 }
 
 //-----------------------------------------------------------------------------
@@ -452,7 +453,15 @@ void CWeaponShotgun::PrimaryAttack( void )
 	}
 
 	// MUST call sound before removing a round from the clip of a CMachineGun
-	WeaponSound(SINGLE);
+
+	if (pPlayer->m_bShotgunSemi)
+	{
+		WeaponSound(WPN_DOUBLE);
+	}
+	else
+	{
+		WeaponSound(SINGLE);
+	}
 
 	pPlayer->DoMuzzleFlash();
 
@@ -581,7 +590,7 @@ void CWeaponShotgun::SecondaryAttack( void )
 		{
 			pPlayer->m_bShotgunSemi = true;
 		}
-		EmitSound("Weapon_Shotgun.Reload");
+		EmitSound("Weapon_Shotgun.SwitchMode");
 		m_flNextPrimaryAttack = gpGlobals->curtime + 0.5f;
 	}
 }
