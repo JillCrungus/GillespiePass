@@ -1,0 +1,15 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models\hoandeye\eye"
+	"$envmap" "models\hoandeye\eye_env"
+	"$envmapcontrast" 0.6
+	"$envmapsphere" 1
+	"$multipass" 1
+	"$model" "1"
+
+ 	"vertexlitgeneric_HDR_dx9"
+ 	{
+		//HDR Brightness FiX
+  		"$envmaptint" "[.09 .09 .09]"
+ 	}
+}
