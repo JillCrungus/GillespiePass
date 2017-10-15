@@ -101,6 +101,7 @@ enum
 	SCHED_HOUND_BECOMEPLAYFUL,
 	SCHED_HOUNDEYE_NOPLAY,
 	SCHED_HOUNDWANDER,
+	SCHED_HOUND_SLEEP_MOVE,
 //	SCHED_HOUND_FAIL,
 };
 
@@ -839,15 +840,6 @@ void CNPC_Houndeye::RunTask ( const Task_t *pTask )
 				life = 0.1;
 			}
 
-		/*	MessageBegin( MSG_PAS, SVC_TEMPENTITY, GetAbsOrigin() );
-				WRITE_BYTE(  TE_IMPLOSION);
-				WRITE_COORD( GetAbsOrigin().x);
-				WRITE_COORD( GetAbsOrigin().y);
-				WRITE_COORD( GetAbsOrigin().z + 16);
-				WRITE_BYTE( 50 * life + 100);  // radius
-				WRITE_BYTE( pev->frame / 25.0 ); // count
-				WRITE_BYTE( life * 10 ); // life
-			MessageEnd();*/
 			
 			if ( IsSequenceFinished() )
 			{
@@ -957,9 +949,13 @@ int CNPC_Houndeye::TranslateSchedule( int scheduleType )
 				return SCHED_HOUND_SLEEP;
 			}
 		
-			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 50) < 1)
+			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 30) < 1)
 			{
 				return SCHED_HOUND_SLEEP;
+			}
+			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 30) < 1)
+			{
+				return SCHED_HOUND_SLEEP_MOVE;
 			}
 
 			
@@ -1341,6 +1337,36 @@ AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 	"		COND_LIGHT_DAMAGE"
 	"		COND_HEAVY_DAMAGE"
 	"		COND_NEW_ENEMY"
+	)
+	//=========================================================
+	// > SCHED_HOUND_SLEEP_MOVE
+	//=========================================================
+	DEFINE_SCHEDULE
+	(
+	SCHED_HOUND_SLEEP_MOVE,
+
+	"	Tasks"
+	"		TASK_STOP_MOVING				0"
+	"		TASK_WANDER						480384" // 4 feet to 32 feet
+	"		TASK_WALK_PATH					0"
+	"		TASK_WAIT_FOR_MOVEMENT			0"
+	"		TASK_STOP_MOVING			0"
+	"		TASK_SET_ACTIVITY			ACTIVITY:ACT_IDLE"
+	"		TASK_WAIT_RANDOM			5"
+	"		TASK_PLAY_SEQUENCE			ACTIVITY:ACT_CROUCH"
+	"		TASK_SET_ACTIVITY			ACTIVITY:ACT_CROUCHIDLE"
+	"		TASK_HOUND_FALL_ASLEEP		0"
+	"		TASK_WAIT_RANDOM			25"
+	"	TASK_HOUND_CLOSE_EYE		0"
+	"	"
+	"	Interrupts"
+	"		COND_LIGHT_DAMAGE"
+	"		COND_HEAVY_DAMAGE"
+	"		COND_NEW_ENEMY"
+	"		COND_HEAR_COMBAT"
+	"		COND_HEAR_DANGER"
+	"		COND_HEAR_PLAYER"
+	"		COND_HEAR_WORLD"
 	)
 
 AI_END_CUSTOM_NPC()
