@@ -5,6 +5,9 @@
 //=============================================================================
 
 #include "cbase.h"
+#include "baseentity.h"
+#include "baseanimating.h"
+#include "ai_basenpc.h"
 #include "player.h"
 #include "gamerules.h"
 #include "basehlcombatweapon.h"
@@ -14,6 +17,7 @@
 #include "AmmoDef.h"
 #include "IEffects.h"
 #include "engine/IEngineSound.h"
+#include "RagdollBoogie.h"
 #include "in_buttons.h"
 #include "soundenvelope.h"
 #include "soundent.h"
@@ -126,6 +130,8 @@ void CWeaponGaussGun::Precache( void )
 {
 	enginesound->PrecacheSound( "weapons/gauss/chargeloop.wav" );
 
+	PrecacheScriptSound("RagdollBoogie.Zap");
+
 	BaseClass::Precache();
 }
 
@@ -188,9 +194,24 @@ void CWeaponGaussGun::Fire( void )
 	
 	CTakeDamageInfo dmgInfo( this, pOwner, sk_plr_dmg_gauss.GetFloat(), DMG_SHOCK );
 
+
 	if ( pHit != NULL )
 	{
 		CalculateBulletDamageForce( &dmgInfo, m_iPrimaryAmmoType, aimDir, tr.endpos );
+
+		if (pHit->IsNPC() && pHit->GetMaxHealth() < 20)
+		{
+			pHit->MyCombatCharacterPointer()->BecomeRagdollBoogie(GetOwner(), tr.endpos, 5.0f, SF_RAGDOLL_BOOGIE_ELECTRICAL);
+		}
+		else if (FClassnameIs(pHit, "prop_ragdoll"))
+		{
+			CRagdollProp *pRagdoll = dynamic_cast<CRagdollProp *>(pHit);
+			if (pRagdoll != nullptr)
+			{
+				CRagdollBoogie::Create(pHit, 100, gpGlobals->curtime, 5.0f, 0);
+			}
+		}
+
 		pHit->DispatchTraceAttack( dmgInfo, aimDir, &tr );
 	}
 	
@@ -222,6 +243,18 @@ void CWeaponGaussGun::Fire( void )
 			{
 				dmgInfo.SetDamageForce( GetAmmoDef()->DamageForce(m_iPrimaryAmmoType) * vReflection );
 				dmgInfo.SetDamagePosition( tr.endpos );
+				if (pHit->IsNPC() && pHit->GetMaxHealth() < 20)
+				{
+					pHit->MyCombatCharacterPointer()->BecomeRagdollBoogie(GetOwner(), tr.endpos, 5.0f, SF_RAGDOLL_BOOGIE_ELECTRICAL);
+				}
+				else if (FClassnameIs(pHit, "prop_ragdoll"))
+				{
+					CRagdollProp *pRagdoll = dynamic_cast<CRagdollProp *>(pHit);
+					if (pRagdoll != nullptr)
+					{
+						CRagdollBoogie::Create(pHit, 100, gpGlobals->curtime, 5.0f, 0);
+					}
+				}
 				tr.m_pEnt->DispatchTraceAttack( dmgInfo, vReflection, &tr );
 			}
 
@@ -302,6 +335,10 @@ void CWeaponGaussGun::ChargedFire( void )
 	float flDamage = sk_plr_dmg_gauss.GetFloat() + ( ( sk_plr_max_dmg_gauss.GetFloat() - sk_plr_dmg_gauss.GetFloat() ) * flChargeAmount );
 
 	CBaseEntity *pHit = tr.m_pEnt;
+
+	
+
+	
 	if ( tr.DidHitWorld() )
 	{
 		//Try wall penetration
@@ -324,9 +361,15 @@ void CWeaponGaussGun::ChargedFire( void )
 	}
 	else if ( pHit != NULL )
 	{
+
+		
+
 		CTakeDamageInfo dmgInfo( this, pOwner, flDamage, DMG_SHOCK );
 		CalculateBulletDamageForce( &dmgInfo, m_iPrimaryAmmoType, aimDir, tr.endpos );
-
+		if ((flDamage > pHit->GetHealth()) && (pHit->IsNPC()) && (pHit->MyNPCPointer()->CanBecomeRagdoll()))
+		{
+			pHit->MyCombatCharacterPointer()->BecomeRagdollBoogie(GetOwner(), tr.endpos, 5.0f, SF_RAGDOLL_BOOGIE_ELECTRICAL);
+		}
 		//Do direct damage to anything in our path
 		pHit->DispatchTraceAttack( dmgInfo, aimDir, &tr );
 	}

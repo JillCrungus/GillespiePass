@@ -5,8 +5,8 @@ WeaponData
 	// Weapon data is loaded by both the Game and Client DLLs.
 	"printname"	"Rollerwand"
 	"viewmodel"			"models/weapons/v_stunbaton.mdl"
-	"playermodel"			"models/weapons/w_slam.mdl"
-	"anim_prefix"			"slam"
+	"playermodel"			"models/weapons/w_stunbaton.mdl"
+	"anim_prefix"			"stunbaton"
 	"bucket"			"6"
 	"bucket_position"		"3"
 

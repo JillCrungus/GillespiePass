@@ -799,6 +799,13 @@ HeadcrabRelease_t CNPC_BaseZombie::ShouldReleaseHeadcrab( const CTakeDamageInfo 
 		}
 	}
 
+	//This goes right before the scheduled release because we NEVER want to release for the crossbow because it's WAY more fun to shoot an enemy with the crossbow
+	//and have it go flying every time.
+	if (FClassnameIs(info.GetInflictor(), "weapon_gauss") || FClassnameIs(info.GetInflictor(), "crossbow_bolt")) 
+	{
+		return RELEASE_NO;
+	}
+
 	if ((m_iHealth < m_iMaxHealth * ZOMBIE_RELEASE_HEALTH_FACTOR) && (m_bShouldRelease) )
 	{
 		if ((FClassnameIs(this, "npc_zombie")) || FClassnameIs(this, "npc_zombie_torso")) //Only classic zombies and torsos can do this!

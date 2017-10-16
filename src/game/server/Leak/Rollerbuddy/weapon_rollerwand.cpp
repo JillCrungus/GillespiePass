@@ -143,9 +143,10 @@ void CWeaponRollerWand::SecondaryAttack( void )
 	pEnt = gEntList.FindEntityByClassname( NULL, "npc_rollerbuddy" );
 	if( pEnt )
 	{
-		CNPC_RollerBuddy *pBuddy;
-		pBuddy = (CNPC_RollerBuddy *)pEnt;
-		pBuddy->ToggleBuddyMode( true );
+		CNPC_RollerMine *pBuddy;
+		pBuddy = dynamic_cast<CNPC_RollerMine *>pEnt;
+		DevMsg("Toggle Buddy Mode!");
+		//pBuddy->ToggleBuddyMode( true );
 	}
 
 	m_flNextSecondaryAttack = gpGlobals->curtime + 0.5;
