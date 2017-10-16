@@ -1,0 +1,164 @@
+"CrabSynth.Idle"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"npc/crab_synth/crab_idle1.wav"
+		"wave"		"npc/crab_synth/crab_idle2.wav"
+		"wave"		"npc/crab_synth/crab_idle3.wav"
+		"wave"		"npc/crab_synth/crab_idle4.wav"
+
+	}
+}
+
+"CrabSynth.Pain"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"npc/crab_synth/crab_pain1.wav"
+		"wave"		"npc/crab_synth/crab_pain2.wav"
+		"wave"		"npc/crab_synth/crab_pain3.wav"
+		"wave"		"npc/crab_synth/crab_pain4.wav"
+
+	}
+}
+
+"CrabSynth.Death"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"wave"		"npc/crab_synth/crab_die.wav"
+}
+
+"CrabSynth.FootF"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"npc/crab_synth/crab_front_foot1.wav"
+		"wave"		"npc/crab_synth/crab_front_foot2.wav"
+	}
+}
+
+"CrabSynth.FootB"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"npc/crab_synth/crab_back_foot1.wav"
+		"wave"		"npc/crab_synth/crab_back_foot2.wav"
+	}
+}
+
+"CrabSynth.GunOut"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"npc/crab_synth/crab_gun_deploy1.wav"
+		"wave"		"npc/crab_synth/crab_gun_deploy2.wav"
+	}
+}
+
+"CrabSynth.ChargeAnnounce"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"npc/crab_synth/crab_charge_start1.wav"
+		"wave"		"npc/crab_synth/crab_charge_start2.wav"
+	}
+}
+
+"CrabSynth.Charge"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"npc/crab_synth/crab_charge1.wav"
+		"wave"		"npc/crab_synth/crab_charge2.wav"
+		"wave"		"npc/crab_synth/crab_charge3.wav"
+	}
+}
+
+"CrabSynth.ChargeEnd"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"rndwave"
+	{
+		"wave"		"npc/crab_synth/crab_charge_end1.wav"
+		"wave"		"npc/crab_synth/crab_charge_end2.wav"
+	}
+}
+
+"CrabSynth.GunDeploy"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"wave"		"npc/crab_synth/gun_deploy.wav"
+}
+
+"CrabSynth.GunRetract"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"wave"		"npc/crab_synth/gun_retract.wav"
+}
+
+"CrabSynth.GunSpinUp"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"wave"		"npc/crab_synth/gun_spin_up.wav"
+}
+
+"CrabSynth.GunSpin"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"wave"		"npc/crab_synth/gun_spin.wav"
+}
+
+"CrabSynth.GunSpinDown"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"0.8"
+	"soundlevel"	"SNDLVL_85dB"
+	"pitch"		"PITCH_NORM"
+	"wave"		"npc/crab_synth/gun_spin_down.wav"
+}
