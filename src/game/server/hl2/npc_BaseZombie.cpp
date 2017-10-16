@@ -799,6 +799,17 @@ HeadcrabRelease_t CNPC_BaseZombie::ShouldReleaseHeadcrab( const CTakeDamageInfo 
 		}
 	}
 
+	if ((m_iHealth < m_iMaxHealth * ZOMBIE_RELEASE_HEALTH_FACTOR) && (m_bShouldRelease) )
+	{
+		if ((FClassnameIs(this, "npc_zombie")) || FClassnameIs(this, "npc_zombie_torso")) //Only classic zombies and torsos can do this!
+		{
+			DevMsg("Scheduled Release\n");
+			m_iHealth = m_iMaxHealth; //This tries to stop us from dying before we even get a chance to play the animation
+			return RELEASE_SCHEDULED;
+		}
+	}
+
+
 	return RELEASE_NO;
 }
 
@@ -1701,10 +1712,14 @@ void CNPC_BaseZombie::Spawn( void )
 
 	m_bIsSlumped = false;
 
+	m_bShouldRelease = RandomInt(0, 1);
+
 	// Zombies get to cheat for 6 seconds (sjb)
 	GetEnemies()->SetFreeKnowledgeDuration( 6.0 );
 
 	m_ActBusyBehavior.SetUseRenderBounds(true);
+
+
 }
 
 
