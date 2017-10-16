@@ -21,8 +21,8 @@ $cbox 0 0 0 0 0 0
 
 $bbox 25.401 -23.999 -26.629 83.879 2.925 -9.121
 
-$controller 0 "Dummy17"  0 360
-$controller 1 "Dummy14"  0 360
+$controller 0 "Dummy17" Y 0 360
+$controller 1 "Dummy14" Y 0 360
 
 
 $sequence "idle" {
