@@ -266,6 +266,9 @@ protected:
 	float m_crabHealth;
 	float m_flMoanPitch;
 
+
+	bool m_bShouldRelease;
+
 	EHANDLE	m_hObstructor;
 
 	static int g_numZombies;	// counts total number of existing zombies.
@@ -278,6 +281,8 @@ protected:
 	static int ACT_ZOM_SWATRIGHTLOW;
 	static int ACT_ZOM_RELEASECRAB;
 	static int ACT_ZOM_FALL;
+
+
 
 	DECLARE_DATADESC();
 

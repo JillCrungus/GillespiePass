@@ -22,21 +22,27 @@ public:
 	Class_T Classify(void) { return CLASS_COMBINE; }
 	virtual void TraceAttack(const CTakeDamageInfo &info, const Vector &vecDir, trace_t *ptr);
 	virtual int OnTakeDamage_Alive(const CTakeDamageInfo &info);
+	virtual void Event_Killed(const CTakeDamageInfo &info);
 	virtual int	SelectSchedule(void);
 	virtual int TranslateSchedule(int scheduleType);
 	virtual void StartTask(const Task_t *pTask);
 	virtual void RunTask(const Task_t *pTask);
 	virtual float MaxYawSpeed(void);
 
+	
+	//void AlertSound(void);
+	void IdleSound(void);
+	void PainSound(void);
+	void DeathSound(void);
+	//void AttackSound(void);
+
 	float		m_nextCharge;
+	float		m_flNextPain;
 
 #if 0
 	void HandleAnimEvent(animevent_t *pEvent);
 
-	void PainSound(void);
-	void AlertSound(void);
-	void IdleSound(void);
-	void AttackSound(void);
+	
 
 #endif
 
@@ -113,6 +119,22 @@ END_DATADESC()
 void CCrabSynth::Precache( void )
 {
 	engine->PrecacheModel( "models/synth.mdl" );
+
+	PrecacheScriptSound("CrabSynth.Idle");
+	PrecacheScriptSound("CrabSynth.Pain");
+	PrecacheScriptSound("CrabSynth.Death");
+	PrecacheScriptSound("CrabSynth.FootF");
+	PrecacheScriptSound("CrabSynth.FootB");
+	PrecacheScriptSound("CrabSynth.GunOut");
+	PrecacheScriptSound("CrabSynth.ChargeAnnounce");
+	PrecacheScriptSound("CrabSynth.Charge");
+	PrecacheScriptSound("CrabSynth.ChargeEnd");
+
+	PrecacheScriptSound("CrabSynth.GunDeploy");
+	PrecacheScriptSound("CrabSynth.GunRetract");
+	PrecacheScriptSound("CrabSynth.GunSpinUp");
+	PrecacheScriptSound("CrabSynth.GunSpin");
+	PrecacheScriptSound("CrabSynth.GunSpinDown");
 	BaseClass::Precache();
 }
 
@@ -203,6 +225,12 @@ int CCrabSynth::OnTakeDamage_Alive( const CTakeDamageInfo &inputInfo )
 				info.SetDamage( inputInfo.GetDamage() ); //We always take damage for now. Find GetAbsMaxs and GetAbsMins equivalents for retail engine! --Jill
 			//}
 		}
+	}
+
+	if (m_flNextPain < gpGlobals->curtime)
+	{
+		PainSound(); 
+		m_flNextPain = gpGlobals->curtime + 2;
 	}
 	return BaseClass::OnTakeDamage_Alive( info );
 }
@@ -368,6 +396,27 @@ void CCrabSynth::RunTask( const Task_t *pTask )
 	default:
 		BaseClass::RunTask( pTask );
 	}
+}
+
+void CCrabSynth::IdleSound(void)
+{
+	EmitSound("CrabSynth.Idle");
+}
+
+void CCrabSynth::PainSound(void)
+{
+	EmitSound("CrabSynth.Pain");
+}
+
+void CCrabSynth::DeathSound(void)
+{
+	EmitSound("CrabSynth.Death");
+}
+
+void CCrabSynth::Event_Killed(const CTakeDamageInfo &info)
+{
+	EmitSound("CrabSynth.Death");
+	BaseClass::Event_Killed(info);
 }
 
 

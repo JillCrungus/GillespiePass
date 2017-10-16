@@ -74,6 +74,7 @@ enum MSynthTasks
 {
 	TASK_ENERGY_WARMUP = LAST_SHARED_TASK,
 	TASK_ENERGY_SHOOT,
+	TASK_MSYNTH_HOVER,
 };
 
 //-----------------------------------------------------------------------------
@@ -689,6 +690,15 @@ void CNPC_MSynth::RunTask( const Task_t *pTask )
 			CAI_BaseNPC::RunTask(pTask);
 			break;
 		}
+		case TASK_MSYNTH_HOVER:
+		{
+			if (RandomInt(0, 10) < 2)
+			{
+				SetSchedule(SCHED_MSYNTH_PATROL);
+			}
+			TaskComplete();
+			break;
+		}
 
 		default:
 		{
@@ -728,7 +738,7 @@ void CNPC_MSynth::Spawn(void)
 	AddFlag( FL_FLY );
 
 	// This is a flying creature, but it uses grond nodes as it hovers right over the ground
-	CapabilitiesAdd( bits_CAP_MOVE_GROUND );
+	CapabilitiesAdd( bits_CAP_MOVE_FLY );
 	CapabilitiesAdd( bits_CAP_SQUAD);
 
 	m_vLastPatrolDir			= vec3_origin;
@@ -778,7 +788,7 @@ int CNPC_MSynth::SelectSchedule(void)
 				return SCHED_MSYNTH_CHASE_TARGET;
 			}
 
-			return SCHED_MSYNTH_HOVER;
+			return SCHED_MSYNTH_PATROL;
 			break;
 		}
 		case NPC_STATE_DEAD:
@@ -1040,6 +1050,7 @@ void CNPC_MSynth::EnergyKill(void)
 //
 //------------------------------------------------------------------------------
 
+
 //=========================================================
 // > SCHED_MSYNTH_HOVER
 //=========================================================
@@ -1067,7 +1078,7 @@ AI_DEFINE_SCHEDULE
 	"	Tasks"
 	"		TASK_ENERGY_WARMUP		0"
 	"		TASK_ENERGY_SHOOT		0"
-	//"		TASK_SET_SCHEDULE		SCHEDULE:SCHED_TAKE_COVER_FROM_ENEMY"
+	"		TASK_SET_SCHEDULE		SCHEDULE:SCHED_TAKE_COVER_FROM_ENEMY"
 	""
 	"	Interrupts"
 	"		COND_ENEMY_DEAD"

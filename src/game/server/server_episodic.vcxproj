@@ -1109,6 +1109,7 @@ exit 1
     </ClCompile>
     <ClCompile Include="Leak\npc_crabsynth.cpp" />
     <ClCompile Include="Leak\npc_mortarsynth.cpp" />
+    <ClCompile Include="Leak\Rollerbuddy\weapon_rollerwand.cpp" />
     <ClCompile Include="Leak\weapon_gauss.cpp" />
     <ClCompile Include="lightglow.cpp" />
     <ClCompile Include="lights.cpp" />

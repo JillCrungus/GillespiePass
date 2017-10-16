@@ -696,7 +696,7 @@ void CNPC_Houndeye::StartTask ( const Task_t *pTask )
 		}
 	case TASK_HOUND_CLOSE_EYE:
 		{
-			m_nSkin = 0;
+			m_nSkin = 3;
 			m_fDontBlink = TRUE; // tell blink code to leave the eye alone.
 			break;
 		}
@@ -875,7 +875,7 @@ void CNPC_Houndeye::PrescheduleThink ( void )
 	}
 
 	// at random, initiate a blink if not already blinking or sleeping
-	if ( !m_fDontBlink )
+	if ( !m_fDontBlink  && !m_fAsleep)
 	{
 		if ( ( m_nSkin == 0 ) && random->RandomInt(0,0x7F) == 0 )
 		{// start blinking!
@@ -1361,7 +1361,7 @@ AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 	"		TASK_SET_ACTIVITY			ACTIVITY:ACT_CROUCHIDLE"
 	"		TASK_HOUND_FALL_ASLEEP		0"
 	"		TASK_WAIT_RANDOM			25"
-	"	TASK_HOUND_CLOSE_EYE		0"
+	"	    TASK_HOUND_CLOSE_EYE		0"
 	"	"
 	"	Interrupts"
 	"		COND_LIGHT_DAMAGE"

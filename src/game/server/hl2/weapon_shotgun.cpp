@@ -467,6 +467,8 @@ void CWeaponShotgun::PrimaryAttack( void )
 
 	SendWeaponAnim( ACT_VM_PRIMARYATTACK );
 
+
+
 	// player "shoot" animation
 	pPlayer->SetAnimation( PLAYER_ATTACK1 );
 

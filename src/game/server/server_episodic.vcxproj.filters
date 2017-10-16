@@ -43,6 +43,9 @@
     <Filter Include="Source Files\HL2 DLL\Leak\Tau Cannon">
       <UniqueIdentifier>{c81f6349-1dcc-4478-a5a7-dd7ee9da5ccc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\Leak\Rollerbuddy">
+      <UniqueIdentifier>{16e493c4-18e4-49aa-ab6a-c6b2f4770195}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\lib\public\choreoobjects.lib">
@@ -3565,6 +3568,9 @@
     </ClCompile>
     <ClCompile Include="Leak\weapon_gauss.cpp">
       <Filter>Source Files\HL2 DLL\Leak\Tau Cannon</Filter>
+    </ClCompile>
+    <ClCompile Include="Leak\Rollerbuddy\weapon_rollerwand.cpp">
+      <Filter>Source Files\HL2 DLL\Leak\Rollerbuddy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

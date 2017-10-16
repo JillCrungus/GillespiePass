@@ -5,7 +5,7 @@ WeaponData
 	// Weapon fdata is loaded by both the Game and Client DLLs.
 	"printname"	"Tau Cannon"
 	"viewmodel"				"models/weapons/v_gauss.mdl"
-	"playermodel"			"models/weapons/w_ar2.mdl"
+	"playermodel"			"models/weapons/w_irifle.mdl"
 	"anim_prefix"			"gauss"
 	"bucket"				"3"
 	"bucket_position"		"2"

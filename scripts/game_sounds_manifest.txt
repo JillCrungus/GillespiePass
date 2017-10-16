@@ -73,5 +73,7 @@ game_sounds_manifest
 	"precache_file"		"scripts/npc_sounds_sniper.txt"
 	"precache_file"		"scripts/npc_sounds_stalker.txt"
 	"precache_file"		"scripts/npc_sounds_gman.txt"
+
 	"precache_file"		"scripts/game_sounds_npc_gp.txt"
+	"precache_file"		"scripts/game_sounds_npc_gp_crabsynth.txt"
 }
