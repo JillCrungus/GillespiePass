@@ -314,6 +314,46 @@ Scheme
 				"custom"	"1"
 			}
 		}
+		WeaponIcons_GP
+		{
+			"1"
+			{
+				"name"		"GP"
+				"tall"		"64"
+				"tall_hidef"	"58"
+				"weight"	"0"
+				"antialias" "1"
+				"additive"	"1"
+				"custom"	"1"
+			}
+		}
+		WeaponIconsSelected_GP
+		{
+			"1"
+			{
+				"name"		"GP"
+				"tall"		"64"
+				"tall_hidef"	"58"
+				"weight"	"0"
+				"antialias" "1"
+				"blur"		"5"
+				"scanlines"	"2"
+				"additive"	"1"
+				"custom"	"1"
+			}
+		}
+		WeaponIcons_GPSmall
+		{
+			"1"
+			{
+				"name"		"GP"
+				"tall"		"32"
+				"weight"	"0"
+				"antialias" "1"
+				"additive"	"1"
+				"custom"	"1"
+			}
+		}
 		Crosshairs
 		{
 			"1"
@@ -793,7 +833,8 @@ Scheme
 	{
 		"1"		"resource/HALFLIFE2.ttf"
 		"2"		"resource/HL2crosshairs.ttf"
-		"3"	"resource/HL2EP2.ttf"		
+		"3"		"resource/HL2EP2.ttf"		
+		"4" 	"resource/GP.ttf"
 	}
 
 }
