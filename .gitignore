@@ -399,3 +399,4 @@ src/fgdlib/fgdlib.vcxproj.filters
 maps/TownDev_001.bsp
 *.sav
 *.hl2
+save/*
