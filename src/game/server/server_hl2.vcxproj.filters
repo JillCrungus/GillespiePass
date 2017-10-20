@@ -1766,6 +1766,7 @@
     <ClInclude Include="toolframework_server.h">
       <Filter>Tools Framework</Filter>
     </ClInclude>
+    <ClInclude Include="env_projectedtexture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gamedll_replay.cpp">

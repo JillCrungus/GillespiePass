@@ -22,6 +22,7 @@
 #include "hl2_vehicle_radar.h"
 #include "props.h"
 #include "ai_dynamiclink.h"
+#include "env_projectedtexture.h"
 
 extern ConVar phys_upimpactforcescale;
 
@@ -341,6 +342,9 @@ BEGIN_DATADESC( CPropJeepEpisodic )
 	DEFINE_ARRAY( m_vecRadarContactPos, FIELD_POSITION_VECTOR, RADAR_MAX_CONTACTS ),
 	DEFINE_ARRAY( m_iRadarContactType, FIELD_INTEGER, RADAR_MAX_CONTACTS ),
 
+	DEFINE_KEYFIELD(m_headlight1, FIELD_EHANDLE, "headlight1"),
+	DEFINE_KEYFIELD(m_headlight2, FIELD_EHANDLE, "headlight2"),
+
 	DEFINE_THINKFUNC( HazardBlinkThink ),
 
 	DEFINE_OUTPUT( m_OnCompanionEnteredVehicle, "OnCompanionEnteredVehicle" ),
@@ -469,6 +473,18 @@ void CPropJeepEpisodic::Spawn( void )
 	SetBodygroup( JEEP_CARBAR_BODYGROUP, 1 );
 
 	m_bRadarDetectsEnemies = false;
+
+	CEnvProjectedTexture *pHeadlight1 = dynamic_cast<CEnvProjectedTexture *>(m_headlight1);
+	if (NULL != pHeadlight1)
+	{
+		pHeadlight1->SetParent(this);
+	}
+
+	CEnvProjectedTexture *pHeadlight2 = dynamic_cast<CEnvProjectedTexture *>(m_headlight2);
+	if (NULL != pHeadlight2)
+	{
+		pHeadlight2->SetParent(this);
+	}
 }
 
 //-----------------------------------------------------------------------------
