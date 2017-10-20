@@ -13,7 +13,6 @@
 #include "vehicle_jeep.h"
 #include "ai_basenpc.h"
 #include "hl2_vehicle_radar.h"
-//#include "env_projectedtexture.h"
 
 class CParticleSystem;
 class CVehicleCargoTrigger;
@@ -69,9 +68,6 @@ public:
 	virtual CBaseEntity *OnFailedPhysGunPickup( Vector vPhysgunPos );
 	virtual void	DriveVehicle( float flFrameTime, CUserCmd *ucmd, int iButtonsDown, int iButtonsReleased );
 	virtual int DrawDebugTextOverlays( void );
-
-	CBaseEntity* m_headlight1;
-	CBaseEntity* m_headlight2;
 
 	DECLARE_DATADESC();
 
