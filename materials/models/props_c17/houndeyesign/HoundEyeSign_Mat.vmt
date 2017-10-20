@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	$basetexture "models/props_c17/houndeyesign/HoundeEyeSign_HoundEyeSign_Mat_color"
+	$bumpmap "models/props_c17/houndeyesign/HoundeEyeSign_HoundEyeSign_Mat_normal"
+	$envmap "env_cubemap"
+	$model 1
+	$normalmapalphaenvmapmask 1
+}
