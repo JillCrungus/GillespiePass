@@ -229,6 +229,7 @@ public:
 	int					FlashlightIsOn( void );
 	void				FlashlightTurnOn( void );
 	void				FlashlightTurnOff( void );
+	void				SetAnimation(PLAYER_ANIM playerAnim);
 	bool				IsIlluminatedByFlashlight( CBaseEntity *pEntity, float *flReturnDot );
 	void				SetFlashlightPowerDrainScale( float flScale ) { m_flFlashlightPowerDrainScale = flScale; }
 
@@ -312,7 +313,7 @@ private:
 
 	CNetworkVar( bool, m_fIsSprinting );
 	CNetworkVarForDerived( bool, m_fIsWalking );
-
+	void ResetAnimation(void);
 protected:	// Jeep: Portal_Player needs access to this variable to overload PlayerUse for picking up objects through portals
 	bool				m_bPlayUseDenySound;		// Signaled by PlayerUse, but can be unset by HL2 ladder code...
 

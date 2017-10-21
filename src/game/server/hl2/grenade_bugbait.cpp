@@ -312,12 +312,13 @@ void CGrenadeBugBait::SetGracePeriod( float duration )
 //			*owner - 
 // Output : CBaseGrenade
 //-----------------------------------------------------------------------------
-CGrenadeBugBait *BugBaitGrenade_Create( const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner )
-//CSnark *BugBaitGrenade_Create(const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner)
+//CGrenadeBugBait *BugBaitGrenade_Create( const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner )
+CSnark *BugBaitGrenade_Create(const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner)
 {
-	CGrenadeBugBait *pGrenade = (CGrenadeBugBait *) CBaseEntity::Create( "npc_grenade_bugbait", position, angles, owner );
+	//CGrenadeBugBait *pGrenade = (CGrenadeBugBait *) CBaseEntity::Create( "npc_grenade_bugbait", position, angles, owner );
 	//CSnark *pGrenade = (CSnark * ) CSnark::Create("monster_snark", position, angles, owner);
-	//CSnark *pGrenade = (CSnark*)CBaseEntity::Create("monster_snark", position, angles, owner);
+	//CSnark *pGrenade = (CSnark*)CBaseEntity::Create("monster_snark", position, angles, owner);	
+	CSnark *pGrenade = new CSnark;
 
 	
 	if ( pGrenade != NULL )
@@ -325,6 +326,7 @@ CGrenadeBugBait *BugBaitGrenade_Create( const Vector &position, const QAngle &an
 
 		pGrenade->SetAbsOrigin(position);
 		pGrenade->SetAbsAngles(angles);
+		pGrenade->SetOwnerEntity(owner);
 		pGrenade->Spawn();
 		pGrenade->SetLocalAngularVelocity( angVelocity );
 		pGrenade->SetAbsVelocity( velocity );

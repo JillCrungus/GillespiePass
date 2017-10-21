@@ -1134,6 +1134,8 @@ void CHL2_Player::Spawn(void)
 
 	InitSprinting();
 
+	ResetAnimation();
+
 	// Setup our flashlight values
 #ifdef HL2_EPISODIC
 	m_HL2Local.m_flFlashBattery = 100.0f;
@@ -2065,6 +2067,168 @@ void CHL2_Player::FlashlightTurnOff( void )
 	FirePlayerProxyOutput( "OnFlashlightOff", flashlightoff, this, this );
 }
 
+void CHL2_Player::SetAnimation(PLAYER_ANIM playerAnim)
+{
+	int animDesired;
+
+	float speed;
+
+	speed = GetAbsVelocity().Length2D();
+
+
+	// bool bRunning = true;
+
+	//Revisit!
+	/*	if ( ( m_nButtons & ( IN_FORWARD | IN_BACK | IN_MOVELEFT | IN_MOVERIGHT ) ) )
+	{
+	if ( speed > 1.0f && speed < hl2_normspeed.GetFloat() - 20.0f )
+	{
+	bRunning = false;
+	}
+	}*/
+
+	if (GetFlags() & (FL_FROZEN | FL_ATCONTROLS))
+	{
+		speed = 0;
+		playerAnim = PLAYER_IDLE;
+	}
+
+	Activity idealActivity = ACT_HL2MP_RUN;
+
+	// This could stand to be redone. Why is playerAnim abstracted from activity? (sjb)
+	if (playerAnim == PLAYER_JUMP)
+	{
+		idealActivity = ACT_HL2MP_JUMP;
+	}
+	else if (playerAnim == PLAYER_DIE)
+	{
+		if (m_lifeState == LIFE_ALIVE)
+		{
+			return;
+		}
+	}
+	else if (playerAnim == PLAYER_ATTACK1)
+	{
+		if (GetActivity() == ACT_HOVER ||
+			GetActivity() == ACT_SWIM ||
+			GetActivity() == ACT_HOP ||
+			GetActivity() == ACT_LEAP ||
+			GetActivity() == ACT_DIESIMPLE)
+		{
+			idealActivity = GetActivity();
+		}
+		else
+		{
+			idealActivity = ACT_HL2MP_GESTURE_RANGE_ATTACK;
+		}
+	}
+	else if (playerAnim == PLAYER_RELOAD)
+	{
+		idealActivity = ACT_HL2MP_GESTURE_RELOAD;
+	}
+	else if (playerAnim == PLAYER_IDLE || playerAnim == PLAYER_WALK)
+	{
+		if (!(GetFlags() & FL_ONGROUND) && GetActivity() == ACT_HL2MP_JUMP)	// Still jumping
+		{
+			idealActivity = GetActivity();
+		}
+		/*
+		else if ( GetWaterLevel() > 1 )
+		{
+		if ( speed == 0 )
+		idealActivity = ACT_HOVER;
+		else
+		idealActivity = ACT_SWIM;
+		}
+		*/
+		else
+		{
+			if (GetFlags() & FL_DUCKING)
+			{
+				if (speed > 0)
+				{
+					idealActivity = ACT_HL2MP_WALK_CROUCH;
+				}
+				else
+				{
+					idealActivity = ACT_HL2MP_IDLE_CROUCH;
+				}
+			}
+			else
+			{
+				if (speed > 0)
+				{
+					/*
+					if ( bRunning == false )
+					{
+					idealActivity = ACT_WALK;
+					}
+					else
+					*/
+					{
+						idealActivity = ACT_HL2MP_RUN;
+					}
+				}
+				else
+				{
+					idealActivity = ACT_HL2MP_IDLE;
+				}
+			}
+		}
+
+		idealActivity = ACT_WALK_AIM_AGITATED;
+	}
+
+	if (idealActivity == ACT_HL2MP_GESTURE_RANGE_ATTACK)
+	{
+		RestartGesture(Weapon_TranslateActivity(idealActivity));
+
+		// FIXME: this seems a bit wacked
+		Weapon_SetActivity(Weapon_TranslateActivity(ACT_RANGE_ATTACK1), 0);
+
+		return;
+	}
+	else if (idealActivity == ACT_HL2MP_GESTURE_RELOAD)
+	{
+		RestartGesture(Weapon_TranslateActivity(idealActivity));
+		return;
+	}
+	else
+	{
+		SetActivity(idealActivity);
+
+		animDesired = SelectWeightedSequence(Weapon_TranslateActivity(idealActivity));
+
+		if (animDesired == -1)
+		{
+			animDesired = SelectWeightedSequence(idealActivity);
+
+			if (animDesired == -1)
+			{
+				animDesired = 0;
+			}
+		}
+
+		// Already using the desired animation?
+		if (GetSequence() == animDesired)
+			return;
+
+		m_flPlaybackRate = 1.0;
+		ResetSequence(animDesired);
+		SetCycle(0);
+		return;
+	}
+
+	// Already using the desired animation?
+	if (GetSequence() == animDesired)
+		return;
+
+	//Msg( "Set animation to %d\n", animDesired );
+	// Reset to first frame of desired animation
+	ResetSequence(animDesired);
+	SetCycle(0);
+}
+
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 #define FLASHLIGHT_RANGE	Square(600)
@@ -2224,6 +2388,21 @@ void CHL2_Player::InputIgnoreFallDamage( inputdata_t &inputdata )
 	m_bIgnoreFallDamageResetAfterImpact = true;
 }
 
+void CHL2_Player::ResetAnimation(void)
+{
+	if (IsAlive())
+	{
+		SetSequence(-1);
+		SetActivity(ACT_INVALID);
+
+		if (!GetAbsVelocity().x && !GetAbsVelocity().y)
+			SetAnimation(PLAYER_IDLE);
+		else if ((GetAbsVelocity().x || GetAbsVelocity().y) && (GetFlags() & FL_ONGROUND))
+			SetAnimation(PLAYER_WALK);
+		else if (GetWaterLevel() > 1)
+			SetAnimation(PLAYER_WALK);
+	}
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: Absolutely prevent the player from taking fall damage for [n] seconds. 
@@ -3326,6 +3505,8 @@ bool CHL2_Player::Weapon_Switch( CBaseCombatWeapon *pWeapon, int viewmodelindex 
 	{
 		StopZooming();
 	}
+
+	ResetAnimation();
 
 	return BaseClass::Weapon_Switch( pWeapon, viewmodelindex );
 }
