@@ -229,7 +229,7 @@ public:
 	int					FlashlightIsOn( void );
 	void				FlashlightTurnOn( void );
 	void				FlashlightTurnOff( void );
-	void				SetAnimation(PLAYER_ANIM playerAnim);
+//	void				SetAnimation(PLAYER_ANIM playerAnim);
 	bool				IsIlluminatedByFlashlight( CBaseEntity *pEntity, float *flReturnDot );
 	void				SetFlashlightPowerDrainScale( float flScale ) { m_flFlashlightPowerDrainScale = flScale; }
 
