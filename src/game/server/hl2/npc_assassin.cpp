@@ -686,8 +686,9 @@ void CNPC_Assassin::StartTask( const Task_t *pTask )
 				break;
 
 			Vector	goalPos;
-
-			CHintCriteria	hint;
+			CAI_Hint *pHint = NULL;
+			CHintCriteria hint;
+			hint.SetGroup(GetHintGroup());
 
 			// Find a disadvantage node near the player, but away from ourselves
 			hint.SetHintType( HINT_TACTICAL_ENEMY_DISADVANTAGED );
@@ -707,8 +708,10 @@ void CNPC_Assassin::StartTask( const Task_t *pTask )
 			}
 	
 			hint.SetFlag( bits_HINT_NODE_NEAREST );
-
-			CAI_Hint *pHint = CAI_HintManager::FindHint( this, GetEnemy()->GetAbsOrigin(), &hint );
+			if (GetEnemy())
+			{
+				pHint = CAI_HintManager::FindHint(NULL, GetEnemy()->GetAbsOrigin(), hint);
+			}
 
 			if ( pHint == NULL )
 			{
