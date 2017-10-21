@@ -681,6 +681,7 @@ void CNPC_Assassin::StartTask( const Task_t *pTask )
 
 	case TASK_ASSASSIN_GET_PATH_TO_VANTAGE_POINT:
 		{
+			//DevMsg("Finding vantage point!");
 			assert( GetEnemy() != NULL );
 			if ( GetEnemy() == NULL )
 				break;
@@ -689,6 +690,7 @@ void CNPC_Assassin::StartTask( const Task_t *pTask )
 			CAI_Hint *pHint = NULL;
 			CHintCriteria hint;
 			hint.SetGroup(GetHintGroup());
+			//DevMsg("Hint group set");
 
 			// Find a disadvantage node near the player, but away from ourselves
 			hint.SetHintType( HINT_TACTICAL_ENEMY_DISADVANTAGED );
@@ -1056,7 +1058,6 @@ AI_BEGIN_CUSTOM_NPC( npc_assassin, CNPC_Assassin )
 
 		"	Tasks"
 		"		TASK_SET_FAIL_SCHEDULE					SCHEDULE:SCHED_TAKE_COVER_FROM_ENEMY"
-		"		TASK_STOP_MOVING						0"
 		"		TASK_ASSASSIN_GET_PATH_TO_VANTAGE_POINT	0"
 		"		TASK_RUN_PATH							0"
 		"		TASK_WAIT_FOR_MOVEMENT					0"
