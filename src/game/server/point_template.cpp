@@ -26,6 +26,7 @@
 
 
 LINK_ENTITY_TO_CLASS(point_template, CPointTemplate);
+LINK_ENTITY_TO_CLASS(point_template_dynamic, CPointTemplateRNG);
 
 BEGIN_SIMPLE_DATADESC( template_t )
 	DEFINE_FIELD( iTemplateIndex,	FIELD_INTEGER ),
@@ -64,6 +65,12 @@ BEGIN_DATADESC( CPointTemplate )
 	// Outputs
 	DEFINE_OUTPUT( m_pOutputOnSpawned, "OnEntitySpawned" ),
 
+END_DATADESC()
+
+
+BEGIN_DATADESC(CPointTemplateRNG)
+	DEFINE_KEYFIELD(NPCChance, FIELD_INTEGER, "NPCChance"),
+	DEFINE_INPUTFUNC(FIELD_VOID, "ForceSpawn", InputForceSpawn),
 END_DATADESC()
 
 //-----------------------------------------------------------------------------
@@ -391,6 +398,23 @@ bool CPointTemplate::CreateInstance( const Vector &vecOrigin, const QAngle &vecA
 	}
 
 	return true;
+}
+
+void CPointTemplateRNG::InputForceSpawn(inputdata_t &inputdata)
+{
+	//Msg("Dynamic NPC maker!\n");
+	int NPCSpawn = RandomInt(1, 100); //Random from 1-100
+	//Msg("Spawn Chance: %i\n", NPCChance);
+	//Msg("Random Number: %i\n", NPCSpawn);
+	if (NPCChance >= NPCSpawn)
+	{
+		//Msg("Our chances are right, passing over to the base class!");
+		BaseClass::InputForceSpawn(inputdata);
+	}
+	else
+	{
+		return;
+	}
 }
 
 //-----------------------------------------------------------------------------

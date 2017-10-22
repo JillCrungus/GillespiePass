@@ -488,13 +488,13 @@ void CNPCMaker::MakeNPC( void )
 
 void CNPCMakerRNG::MakeNPC(void)
 {
-	Msg("Dynamic NPC maker!\n");
+	//Msg("Dynamic NPC maker!\n");
 	int NPCSpawn = RandomInt(1, 100); //Random from 1-100
-	Msg("Spawn Chance: %i\n", NPCChance);
-	Msg("Random Number: %i\n", NPCSpawn);
+	//Msg("Spawn Chance: %i\n", NPCChance);
+	//Msg("Random Number: %i\n", NPCSpawn);
 	if (NPCChance >= NPCSpawn)
 	{
-		Msg("Our chances are right, passing over to the base class!");
+		//Msg("Our chances are right, passing over to the base class!");
 		BaseClass::MakeNPC();
 	}
 	else
