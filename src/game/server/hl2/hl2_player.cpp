@@ -1134,6 +1134,8 @@ void CHL2_Player::Spawn(void)
 
 	InitSprinting();
 
+	ResetAnimation();
+
 	// Setup our flashlight values
 #ifdef HL2_EPISODIC
 	m_HL2Local.m_flFlashBattery = 100.0f;
@@ -2065,6 +2067,7 @@ void CHL2_Player::FlashlightTurnOff( void )
 	FirePlayerProxyOutput( "OnFlashlightOff", flashlightoff, this, this );
 }
 
+
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 #define FLASHLIGHT_RANGE	Square(600)
@@ -2224,6 +2227,21 @@ void CHL2_Player::InputIgnoreFallDamage( inputdata_t &inputdata )
 	m_bIgnoreFallDamageResetAfterImpact = true;
 }
 
+void CHL2_Player::ResetAnimation(void)
+{
+	if (IsAlive())
+	{
+		SetSequence(-1);
+		SetActivity(ACT_INVALID);
+
+		if (!GetAbsVelocity().x && !GetAbsVelocity().y)
+			SetAnimation(PLAYER_IDLE);
+		else if ((GetAbsVelocity().x || GetAbsVelocity().y) && (GetFlags() & FL_ONGROUND))
+			SetAnimation(PLAYER_WALK);
+		else if (GetWaterLevel() > 1)
+			SetAnimation(PLAYER_WALK);
+	}
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: Absolutely prevent the player from taking fall damage for [n] seconds. 
@@ -3326,6 +3344,8 @@ bool CHL2_Player::Weapon_Switch( CBaseCombatWeapon *pWeapon, int viewmodelindex 
 	{
 		StopZooming();
 	}
+
+	ResetAnimation();
 
 	return BaseClass::Weapon_Switch( pWeapon, viewmodelindex );
 }

@@ -2507,8 +2507,8 @@ bool CGameMovement::CheckJumpButton( void )
 				CPASAttenuationFilter filter(player);
 				filter.UsePredictionRules();
 				player->EmitSound(filter, player->entindex(), "HL2Player.LongJumpNoPower");
-				Msg("Curtime: %f\n", gpGlobals->curtime);
-				Msg("m_fLongJumpTime2: %f\n", player->m_fLongJumpTime2);
+				//Msg("Curtime: %f\n", gpGlobals->curtime);
+				//Msg("m_fLongJumpTime2: %f\n", player->m_fLongJumpTime2);
 			}
 		}
 

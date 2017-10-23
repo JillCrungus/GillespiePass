@@ -1,0 +1,13 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/Weapons/W_357/w_357"
+	"$halflambert" "1"
+	"$nodecal" "1"
+	"$model" "1"
+	
+	"$phong" "1"
+	"$phongexponent" "75"
+	"$phongboost"	"24"
+	"$basemapalphaphongmask" "0"
+	"$basemapluminancephongmask" "0"
+}

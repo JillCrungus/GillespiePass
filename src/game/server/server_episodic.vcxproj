@@ -349,6 +349,7 @@ exit 1
     <ClInclude Include="hl1\hl1_npc_houndeye.h" />
     <ClInclude Include="hl1\hl1_npc_snark.h" />
     <ClInclude Include="hl2\grenade_energy.h" />
+    <ClInclude Include="hl2\npc_assassin.h" />
     <ClInclude Include="ilagcompensationmanager.h" />
     <ClInclude Include="..\..\public\vgui\ILocalize.h" />
     <ClInclude Include="..\..\public\materialsystem\imaterial.h" />
@@ -1069,6 +1070,7 @@ exit 1
     <ClCompile Include="hl1\hl1_npc_houndeye.cpp" />
     <ClCompile Include="hl1\hl1_npc_snark.cpp" />
     <ClCompile Include="hl2\grenade_energy.cpp" />
+    <ClCompile Include="hl2\npc_assassin.cpp" />
     <ClCompile Include="h_ai.cpp" />
     <ClCompile Include="h_cycler.cpp" />
     <ClCompile Include="h_export.cpp">

@@ -69,4 +69,16 @@ private:
 	COutputEvent					m_pOutputOnSpawned;
 };
 
+
+class CPointTemplateRNG : public CPointTemplate
+{
+		DECLARE_CLASS(CPointTemplateRNG, CPointTemplate);
+	public:
+		DECLARE_DATADESC();
+
+		void			InputForceSpawn(inputdata_t &inputdata);
+
+		int NPCChance; //X in 100 chance to spawn the NPC
+};
+
 #endif // POINT_TEMPLATE_H

@@ -377,6 +377,11 @@ BEGIN_DATADESC( CNPCMaker )
 
 END_DATADESC()
 
+LINK_ENTITY_TO_CLASS(npc_maker_dynamic, CNPCMakerRNG);
+BEGIN_DATADESC(CNPCMakerRNG)
+	DEFINE_KEYFIELD(NPCChance, FIELD_INTEGER, "NPCChance")
+END_DATADESC()
+
 
 //-----------------------------------------------------------------------------
 // Constructor
@@ -476,6 +481,25 @@ void CNPCMaker::MakeNPC( void )
 			SetThink( NULL );
 			SetUse( NULL );
 		}
+	}
+}
+
+
+
+void CNPCMakerRNG::MakeNPC(void)
+{
+	//Msg("Dynamic NPC maker!\n");
+	int NPCSpawn = RandomInt(1, 100); //Random from 1-100
+	//Msg("Spawn Chance: %i\n", NPCChance);
+	//Msg("Random Number: %i\n", NPCSpawn);
+	if (NPCChance >= NPCSpawn)
+	{
+		//Msg("Our chances are right, passing over to the base class!");
+		BaseClass::MakeNPC();
+	}
+	else
+	{
+		return;
 	}
 }
 

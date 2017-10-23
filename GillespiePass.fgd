@@ -32,3 +32,67 @@
 	]
 ]
 @PointClass base(Targetname, Origin) studio("models/items/w_longjump.mdl") = item_longjump : "Longjump Module" []
+
+@NPCClass base(BaseNPC) studio("models/fassassin.mdl") = npc_assassin : "Combine Assassin" 
+[
+]
+
+
+@PointClass base(Angles, BaseNPCMaker) iconsprite("editor/npc_maker_dynamic.vmt") = npc_maker_dynamic : "Dynamic NPC Maker"
+[
+	spawnflags(Flags) = 
+	[
+		16 : "Fade Corpse" : 0
+	]
+
+	NPCType(npcclass) : "Class name of spawned NPC"
+	NPCTargetname(string) : "Childrens' Name"
+	NPCSquadname(string) : "Childrens' Squad Name"
+	NPCHintGroup(string) : "Childrens' Hint Group"
+	NPCChance(integer) : "NPC Chance" : 50 : "X in 100 chance to spawn this NPC when triggered"
+	
+	additionalequipment(choices) : "Weapons" : "0" =
+	[
+		"weapon_pistol" : "Pistol"
+		"weapon_ar2" : "AR2"
+		"weapon_shotgun" : "Shotgun"
+		"weapon_smg1" : "SMG1"
+		"weapon_stunstick" : "Stun Stick"
+		"weapon_annabelle"	:"Grigori's Shotgun"
+		"0" : "Nothing"
+	]
+]
+
+@PointClass base(Targetname) size(-8 -8 -8, 8 8 8) = point_template_dynamic : "Dynamic"
+[
+	spawnflags(flags) =
+	[
+		1 : "Don't remove template entities" : 0
+		2 : "Preserve entity names (Don't do name fixup)" : 1
+	]
+
+	Template01(target_destination) : "Template 1"
+	Template02(target_destination) : "Template 2"
+	Template03(target_destination) : "Template 3"
+	Template04(target_destination) : "Template 4"
+	Template05(target_destination) : "Template 5"
+	Template06(target_destination) : "Template 6"
+	Template07(target_destination) : "Template 7"
+	Template08(target_destination) : "Template 8"
+	Template09(target_destination) : "Template 9"
+	Template10(target_destination) : "Template 10"
+	Template11(target_destination) : "Template 11"
+	Template12(target_destination) : "Template 12"
+	Template13(target_destination) : "Template 13"
+	Template14(target_destination) : "Template 14"
+	Template15(target_destination) : "Template 15"
+	Template16(target_destination) : "Template 16"
+
+	NPCChance(integer) : "NPC Chance" : 50 : "X in 100 chance to spawn this template when triggered"
+
+	// Inputs
+	input ForceSpawn(void) : "Spawn an instance of the template at the original position."
+
+	// Outputs
+	output OnEntitySpawned(void) : "Fired after spawning an instance of this template."
+]

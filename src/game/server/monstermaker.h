@@ -122,6 +122,20 @@ public:
 	string_t m_ChildTargetName;
 };
 
+class CNPCMakerRNG : public CNPCMaker
+{
+public:
+	DECLARE_CLASS(CNPCMakerRNG, CNPCMaker);
+
+	//Spawns the NPC
+	virtual void MakeNPC(void);
+
+	DECLARE_DATADESC();
+
+	int NPCChance; //X in 100 chance to spawn the NPC
+
+};
+
 class CTemplateNPCMaker : public CBaseNPCMaker
 {
 public:

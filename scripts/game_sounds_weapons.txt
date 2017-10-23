@@ -938,7 +938,7 @@
 	"volume"		"0.61"
 	"soundlevel"	"SNDLVL_GUNFIRE"
 
-	"wave"		"weapons/ar2/ar2_altfire.wav"
+	"wave"		"weapons/smg1/grenade.wav"
 }
 
 
