@@ -382,21 +382,5 @@ bin/*.exp
 # End of https://www.gitignore.io/api/windows
 *.vpc_crc
 *.vcxproj
-*.vpc_crc
-*.vcxproj
-*.vpc_crc
-*.vcxproj
-*.vpc_crc
-*.vcxproj
-src/fgdlib/fgdlib.vcxproj
-*.vcxproj
-src/utils/vvis_launcher/vvis_launcher.vcxproj
-*.vpc_crc
-*.vcxproj
-*.vcxproj
-src/fgdlib/fgdlib.vcxproj
-src/fgdlib/fgdlib.vcxproj.filters
-maps/TownDev_001.bsp
-*.sav
-*.hl2
+*.vcxproj*
 save/*
