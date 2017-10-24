@@ -39,6 +39,7 @@ voice_ban.dt
 *.prt
 *.vmx
 mapsrc/*.bsp
+marpsrc/**/*.bsp
 
 
 # Created by https://www.gitignore.io/api/visualstudio
