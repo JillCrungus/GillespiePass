@@ -388,7 +388,6 @@ bin/*.exp
 *.vcxproj
 *.vpc_crc
 *.vcxproj
-*.sln
 src/fgdlib/fgdlib.vcxproj
 *.vcxproj
 src/utils/vvis_launcher/vvis_launcher.vcxproj
