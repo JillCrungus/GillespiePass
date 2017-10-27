@@ -18,6 +18,8 @@ game_sounds_manifest
 	"precache_file"		"scripts/game_sounds_addendum_ep2.txt"
 	"precache_file"		"scripts/game_sounds_vehicles_ep2.txt"
 
+	"precache_file"		"scripts/gp_music.txt"
+
 	// E3 level sounds
 	"precache_file"		"scripts/level_sounds_e3_c17.txt"
 	"precache_file"		"scripts/level_sounds_e3_town.txt"

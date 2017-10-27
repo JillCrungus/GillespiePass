@@ -257,6 +257,7 @@ $Project "Server (Episodic)"
 			$File	"hl2\weapon_frag.cpp"
 			$File	"hl2\weapon_physcannon.cpp"
 			$File	"hl2\weapon_physcannon.h"
+			$File "item_longjump.cpp"
 			$File	"hl2\weapon_pistol.cpp"
 			$File	"hl2\weapon_rpg.cpp"
 			$File	"hl2\weapon_rpg.h"
@@ -282,6 +283,32 @@ $Project "Server (Episodic)"
 			$File	"hl2\func_bulletshield.cpp"
 			$File	"hl2\func_bulletshield.h"
 			$File	"episodic\npc_puppet.cpp"
+
+			$Folder "Leak"
+			{
+				$Folder "Tau"
+				{
+					$File "Leak\weapon_gauss.cpp"
+					$File "Leak\weapon_gauss.h"
+				}
+				$Folder "Crab Synth"
+				{
+					$File "Leak\npc_crabsynth.cpp"
+					$File "Leak\npc_crabsynth.h"
+				}
+				$Folder "Mortar Synth"
+				{
+					$File "Leak\npc_mortarsynth.cpp"
+					$File "Leak\npc_mortarsynth.h"
+					$File "Leak\grenade_energy.cpp"
+					$File "Leak\grenade_energy.h"
+				}
+				$Folder "Cremator"
+				{
+					$File "Leak\Cremator\npc_cremator.cpp"
+					$File "Leak\Cremator\npc_cremator.h"
+				}
+			}
 
 
 			$Folder	"unused"

@@ -1,0 +1,10 @@
+"GP.Music.Placeholder.Action1"				// -2db
+{
+	"channel"		"CHAN_STATIC"
+	"volume"		"0.60000"
+	"pitch"			"100"
+
+	"soundlevel"	"0"
+
+	"wave"			"*#temp/music/mus_placeholder_action1.mp3"
+}

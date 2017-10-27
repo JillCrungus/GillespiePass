@@ -89,7 +89,7 @@ if ERRORLEVEL 1 exit /b 1
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
       <BrowseInformation>false</BrowseInformation>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
-      <TreatWarningAsError>false</TreatWarningAsError>
+      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>CompileAsCpp</CompileAs>
       <UseFullPaths>true</UseFullPaths>
@@ -345,11 +345,10 @@ exit 1
     <ClInclude Include="..\..\public\ihltvdirector.h" />
     <ClInclude Include="..\..\public\vstdlib\IKeyValuesSystem.h" />
     <ClInclude Include="hl1\hl1_ai_basenpc.h" />
+    <ClInclude Include="hl1\hl1_basegrenade.h" />
     <ClInclude Include="hl1\hl1_npc_bullsquid.h" />
     <ClInclude Include="hl1\hl1_npc_houndeye.h" />
     <ClInclude Include="hl1\hl1_npc_snark.h" />
-    <ClInclude Include="hl2\grenade_energy.h" />
-    <ClInclude Include="hl2\npc_assassin.h" />
     <ClInclude Include="ilagcompensationmanager.h" />
     <ClInclude Include="..\..\public\vgui\ILocalize.h" />
     <ClInclude Include="..\..\public\materialsystem\imaterial.h" />
@@ -376,7 +375,9 @@ exit 1
     <ClInclude Include="..\..\public\tier1\KeyValues.h" />
     <ClInclude Include="..\..\public\tier0\l2cache.h" />
     <ClInclude Include="..\..\common\language.h" />
-    <ClInclude Include="leak\npc_crabsynth.h" />
+    <ClInclude Include="Leak\Cremator\npc_cremator.h" />
+    <ClInclude Include="Leak\grenade_energy.h" />
+    <ClInclude Include="Leak\npc_crabsynth.h" />
     <ClInclude Include="Leak\npc_mortarsynth.h" />
     <ClInclude Include="Leak\weapon_gauss.h" />
     <ClInclude Include="logicrelay.h" />
@@ -1066,11 +1067,10 @@ exit 1
     <ClCompile Include="grenadethrown.cpp" />
     <ClCompile Include="guntarget.cpp" />
     <ClCompile Include="hl1\hl1_ai_basenpc.cpp" />
+    <ClCompile Include="hl1\hl1_basegrenade.cpp" />
     <ClCompile Include="hl1\hl1_npc_bullsquid.cpp" />
     <ClCompile Include="hl1\hl1_npc_houndeye.cpp" />
     <ClCompile Include="hl1\hl1_npc_snark.cpp" />
-    <ClCompile Include="hl2\grenade_energy.cpp" />
-    <ClCompile Include="hl2\npc_assassin.cpp" />
     <ClCompile Include="h_ai.cpp" />
     <ClCompile Include="h_cycler.cpp" />
     <ClCompile Include="h_export.cpp">
@@ -1099,7 +1099,6 @@ exit 1
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="item_longjump.cpp" />
     <ClCompile Include="item_world.cpp" />
     <ClCompile Include="..\..\public\keyframe\keyframe.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -1109,9 +1108,10 @@ exit 1
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Leak\Cremator\npc_cremator.cpp" />
+    <ClCompile Include="Leak\grenade_energy.cpp" />
     <ClCompile Include="Leak\npc_crabsynth.cpp" />
     <ClCompile Include="Leak\npc_mortarsynth.cpp" />
-    <ClCompile Include="Leak\Rollerbuddy\weapon_rollerwand.cpp" />
     <ClCompile Include="Leak\weapon_gauss.cpp" />
     <ClCompile Include="lightglow.cpp" />
     <ClCompile Include="lights.cpp" />

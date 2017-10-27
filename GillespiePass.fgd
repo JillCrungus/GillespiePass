@@ -96,3 +96,7 @@
 	// Outputs
 	output OnEntitySpawned(void) : "Fired after spawning an instance of this template."
 ]
+
+@NPCClass base(BaseNPC) studio("models/cremator_npc.mdl") = npc_cremator : "Cremator" 
+[	
+]

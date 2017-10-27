@@ -31,23 +31,23 @@
     <Filter Include="VPC Scripts">
       <UniqueIdentifier>{A40EE377-781A-C6B9-0C7C-B3BE118D248E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\HL2 DLL\HL1">
-      <UniqueIdentifier>{3cf84dc9-5fde-423a-8fb4-72eb1e09cd68}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\HL2 DLL\Leak">
-      <UniqueIdentifier>{971ae827-cb0b-4c86-8369-904c65bae170}</UniqueIdentifier>
+      <UniqueIdentifier>{120fb1dd-1d50-4bac-b25d-4ec2f5160277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HL2 DLL\HL1">
+      <UniqueIdentifier>{058d53f2-b943-41b3-8dd0-594865c58d20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HL2 DLL\Leak\Crab Synth">
+      <UniqueIdentifier>{24fb169b-005f-42f2-83a4-0a4a95d3a25b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HL2 DLL\Leak\Tau">
+      <UniqueIdentifier>{8e70aaec-2189-49c6-b47e-7694fe0f1bd9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\HL2 DLL\Leak\Mortar Synth">
-      <UniqueIdentifier>{bba253bb-adc3-4197-bbe7-b98d05d192eb}</UniqueIdentifier>
+      <UniqueIdentifier>{f79f97f3-d59d-4659-97a8-ad902d88e998}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\HL2 DLL\Leak\Tau Cannon">
-      <UniqueIdentifier>{c81f6349-1dcc-4478-a5a7-dd7ee9da5ccc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\HL2 DLL\Leak\Rollerbuddy">
-      <UniqueIdentifier>{16e493c4-18e4-49aa-ab6a-c6b2f4770195}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\HL2 DLL\Leak\Assassin">
-      <UniqueIdentifier>{4a0ff391-a134-4ff2-8043-d704ec9bc4e2}</UniqueIdentifier>
+    <Filter Include="Source Files\HL2 DLL\Leak\Cremator">
+      <UniqueIdentifier>{9d0a0ae1-7d9a-4552-935e-d5b608a55175}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1802,30 +1802,35 @@
     <ClInclude Include="toolframework_server.h">
       <Filter>Tools Framework</Filter>
     </ClInclude>
-    <ClInclude Include="hl1\hl1_ai_basenpc.h">
-      <Filter>Source Files\HL2 DLL\HL1</Filter>
-    </ClInclude>
     <ClInclude Include="hl1\hl1_npc_houndeye.h">
-      <Filter>Source Files\HL2 DLL\HL1</Filter>
-    </ClInclude>
-    <ClInclude Include="hl1\hl1_npc_bullsquid.h">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClInclude>
     <ClInclude Include="hl1\hl1_npc_snark.h">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClInclude>
-    <ClInclude Include="leak\npc_crabsynth.h" />
+    <ClInclude Include="hl1\hl1_ai_basenpc.h">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
+    </ClInclude>
+    <ClInclude Include="hl1\hl1_basegrenade.h">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
+    </ClInclude>
+    <ClInclude Include="hl1\hl1_npc_bullsquid.h">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
+    </ClInclude>
+    <ClInclude Include="Leak\npc_crabsynth.h">
+      <Filter>Source Files\HL2 DLL\Leak\Crab Synth</Filter>
+    </ClInclude>
+    <ClInclude Include="Leak\weapon_gauss.h">
+      <Filter>Source Files\HL2 DLL\Leak\Tau</Filter>
+    </ClInclude>
     <ClInclude Include="Leak\npc_mortarsynth.h">
       <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
     </ClInclude>
-    <ClInclude Include="hl2\grenade_energy.h">
+    <ClInclude Include="Leak\grenade_energy.h">
       <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
     </ClInclude>
-    <ClInclude Include="Leak\weapon_gauss.h">
-      <Filter>Source Files\HL2 DLL\Leak\Tau Cannon</Filter>
-    </ClInclude>
-    <ClInclude Include="hl2\npc_assassin.h">
-      <Filter>Source Files\HL2 DLL\Leak\Assassin</Filter>
+    <ClInclude Include="Leak\Cremator\npc_cremator.h">
+      <Filter>Source Files\HL2 DLL\Leak\Cremator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3548,38 +3553,35 @@
     <ClCompile Include="toolframework_server.cpp">
       <Filter>Tools Framework</Filter>
     </ClCompile>
-    <ClCompile Include="item_longjump.cpp">
-      <Filter>Source Files\HL2 DLL</Filter>
+    <ClCompile Include="hl1\hl1_npc_snark.cpp">
+      <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClCompile>
     <ClCompile Include="hl1\hl1_ai_basenpc.cpp">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClCompile>
-    <ClCompile Include="hl1\hl1_npc_houndeye.cpp">
+    <ClCompile Include="hl1\hl1_basegrenade.cpp">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClCompile>
     <ClCompile Include="hl1\hl1_npc_bullsquid.cpp">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClCompile>
-    <ClCompile Include="hl1\hl1_npc_snark.cpp">
+    <ClCompile Include="hl1\hl1_npc_houndeye.cpp">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClCompile>
     <ClCompile Include="Leak\npc_crabsynth.cpp">
-      <Filter>Source Files\HL2 DLL\Leak</Filter>
+      <Filter>Source Files\HL2 DLL\Leak\Crab Synth</Filter>
+    </ClCompile>
+    <ClCompile Include="Leak\weapon_gauss.cpp">
+      <Filter>Source Files\HL2 DLL\Leak\Tau</Filter>
     </ClCompile>
     <ClCompile Include="Leak\npc_mortarsynth.cpp">
       <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
     </ClCompile>
-    <ClCompile Include="hl2\grenade_energy.cpp">
+    <ClCompile Include="Leak\grenade_energy.cpp">
       <Filter>Source Files\HL2 DLL\Leak\Mortar Synth</Filter>
     </ClCompile>
-    <ClCompile Include="Leak\weapon_gauss.cpp">
-      <Filter>Source Files\HL2 DLL\Leak\Tau Cannon</Filter>
-    </ClCompile>
-    <ClCompile Include="Leak\Rollerbuddy\weapon_rollerwand.cpp">
-      <Filter>Source Files\HL2 DLL\Leak\Rollerbuddy</Filter>
-    </ClCompile>
-    <ClCompile Include="hl2\npc_assassin.cpp">
-      <Filter>Source Files\HL2 DLL\Leak\Assassin</Filter>
+    <ClCompile Include="Leak\Cremator\npc_cremator.cpp">
+      <Filter>Source Files\HL2 DLL\Leak\Cremator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
