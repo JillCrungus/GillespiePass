@@ -1,0 +1,7 @@
+"UnLitGeneric"
+{
+$nofog 1
+$ignorez 1
+$basetexture	"skybox/sky_testup"
+$hdrbasetexture	"skybox/sky_test_hdrup"
+}	

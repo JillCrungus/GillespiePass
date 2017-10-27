@@ -1,0 +1,9 @@
+pfm 1
+pfmscale 1.0
+clamps 1
+clampt 1
+skybox 1
+nocompress 1
+nomip 1
+nolod 1
+nonice 1
