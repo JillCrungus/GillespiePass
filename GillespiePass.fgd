@@ -104,3 +104,11 @@
 		4096 : "Pre-uprising" : 0
 	]	
 ]
+
+@NPCClass base(BaseNPC) studio("models/combine_guard.mdl") = npc_combineguard : "Combine Guard" 
+[
+	spawnflags(Flags) =
+	[
+		4096 : "Pre-uprising" : 0
+	]	
+]

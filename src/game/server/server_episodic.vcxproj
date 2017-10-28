@@ -1455,6 +1455,7 @@ exit 1
     <ClCompile Include="hl1\hl1_npc_houndeye.cpp" />
     <ClCompile Include="hl1\hl1_npc_snark.cpp" />
     <ClCompile Include="hl2\npc_assassin.cpp" />
+    <ClCompile Include="Leak\CGuard\npc_combineguard.cpp" />
     <ClCompile Include="Leak\npc_crabsynth.cpp" />
     <ClCompile Include="Leak\Cremator\npc_cremator.cpp" />
     <ClCompile Include="Leak\grenade_energy.cpp" />

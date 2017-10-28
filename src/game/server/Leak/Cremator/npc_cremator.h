@@ -8,6 +8,7 @@
 #ifndef NPC_CrematorHL1_H
 #define NPC_CrematorHL1_H
 
+//MOVED TO CONVAR
 #define	CREMATOR_MAX_BEAMS	1
 #define	CREMATOR_MAX_NOISE	12
 #define MAX_BURN_RADIUS		256

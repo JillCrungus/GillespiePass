@@ -25,6 +25,9 @@
     <Filter Include="Source Files\HL2 DLL\Leak\Assassin">
       <UniqueIdentifier>{3BCA7C38-FB2E-5B38-4A69-03DD3675392F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\Leak\CGuard">
+      <UniqueIdentifier>{9F47224A-F86B-EA6E-12E1-33AE482FDA22}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\HL2 DLL\Leak\Crab Synth">
       <UniqueIdentifier>{913A1542-914E-B72B-2BB6-76089EC1DEC1}</UniqueIdentifier>
     </Filter>
@@ -3390,6 +3393,9 @@
     </ClCompile>
     <ClCompile Include="hl2\npc_assassin.cpp">
       <Filter>Source Files\HL2 DLL\Leak\Assassin</Filter>
+    </ClCompile>
+    <ClCompile Include="Leak\CGuard\npc_combineguard.cpp">
+      <Filter>Source Files\HL2 DLL\Leak\CGuard</Filter>
     </ClCompile>
     <ClCompile Include="Leak\npc_crabsynth.cpp">
       <Filter>Source Files\HL2 DLL\Leak\Crab Synth</Filter>
