@@ -1204,6 +1204,13 @@ void CPropCombineBall::OnHitEntity( CBaseEntity *pHitEntity, float flSpeed, int 
 		return;
 	}
 
+	if (FClassnameIs(pHitEntity, "npc_cremator") ||
+		(pHitEntity->GetOwnerEntity() && FClassnameIs(pHitEntity->GetOwnerEntity(), "npc_cremator")))
+	{
+		DoExplosion();
+		return;
+	}
+
 	CTakeDamageInfo info( this, GetOwnerEntity(), GetAbsVelocity(), GetAbsOrigin(), sk_npc_dmg_combineball.GetFloat(), DMG_DISSOLVE );
 
 	bool bIsDissolving = (pHitEntity->GetFlags() & FL_DISSOLVING) != 0;

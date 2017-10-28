@@ -117,6 +117,7 @@ void CNPC_Cremator::Spawn()
 	
 	SetSolid( SOLID_BBOX );
 	AddSolidFlags( FSOLID_NOT_STANDABLE );
+	//SetEFlags(EFL_NO_DISSOLVE);
 	SetMoveType( MOVETYPE_STEP );
 	m_bloodColor = BLOOD_COLOR_GREEN;
 	ClearEffects();
@@ -155,7 +156,7 @@ void CNPC_Cremator::Precache()
 	PrecacheModel("models/cremator_npc.mdl");
 	PrecacheModel("sprites/lgtning.vmt");
 
-	PrecacheModel(sk_cremator_immolator_beamsprite.GetString());
+	PrecacheModel(sk_cremator_immolator_beamsprite.GetString()); //Fixes precache errors
 
 	PrecacheScriptSound( "Crem.Pain" );
 	PrecacheScriptSound( "Crem.Die" );
@@ -443,6 +444,24 @@ int CNPC_Cremator::OnTakeDamage_Alive( const CTakeDamageInfo &info )
 	{
 		newInfo.ScaleDamage( 0 );
 		DevMsg( "Cremator: Immolator damage, no actual damage is taken\n" );
+	}
+
+	//We don't want to be instantly killed by these things because we're a miniboss.
+	if (FClassnameIs(newInfo.GetInflictor(), "prop_combine_ball"))
+	{
+		newInfo.ScaleDamage(0.1); //Energy balls do A LOTTA DAMIDGE so we need to scale this down quite a bit.
+		UpdateEnemyMemory(newInfo.GetAttacker(), newInfo.GetAttacker()->GetAbsOrigin(), newInfo.GetInflictor()); //Make sure we put the enemy who fired the ball into our combat memory
+		SetSchedule(SCHED_ESTABLISH_LINE_OF_FIRE);
+		DevMsg("Cremator: Hit by an energy ball, minimal damage.\n");
+	}
+
+	//Nerf melee
+	if (newInfo.GetDamageType() & DMG_CLUB)
+	{
+		newInfo.ScaleDamage(0.1);
+		UpdateEnemyMemory(newInfo.GetAttacker(), newInfo.GetAttacker()->GetAbsOrigin(), newInfo.GetInflictor());
+		//SetSchedule(SCHED_ESTABLISH_LINE_OF_FIRE);
+		DevMsg("Cremator: Hit by a melee weapon, minimal damage.\n");
 	}
 
 	int nDamageTaken = BaseClass::OnTakeDamage_Alive( newInfo );
