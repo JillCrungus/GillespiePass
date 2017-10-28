@@ -47,9 +47,11 @@
 #include "weapon_physcannon.h"
 #include "ammodef.h"
 #include "vehicle_base.h"
+#include "vehicle_jeep_episodic.h"
  
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
+
 
 extern ConVar sk_npc_head;
 
@@ -806,7 +808,14 @@ HeadcrabRelease_t CNPC_BaseZombie::ShouldReleaseHeadcrab( const CTakeDamageInfo 
 		return RELEASE_NO;
 	}
 
-	if ((m_iHealth < m_iMaxHealth * ZOMBIE_RELEASE_HEALTH_FACTOR) && (m_bShouldRelease) )
+	//We also never release if we're hit by a vehicle because it looks fucking stupid.
+	CPropJeepEpisodic *CInflictorVehicle = dynamic_cast<CPropJeepEpisodic *>(info.GetInflictor());
+	if (NULL != CInflictorVehicle)
+	{
+		return RELEASE_NO;
+	}
+
+	if ((m_iHealth < m_iMaxHealth * ZOMBIE_RELEASE_HEALTH_FACTOR) && (m_iShouldRelease <= 1) )
 	{
 		if ((FClassnameIs(this, "npc_zombie")) || FClassnameIs(this, "npc_zombie_torso")) //Only classic zombies and torsos can do this!
 		{
@@ -1719,7 +1728,7 @@ void CNPC_BaseZombie::Spawn( void )
 
 	m_bIsSlumped = false;
 
-	m_bShouldRelease = RandomInt(0, 1);
+	m_iShouldRelease = RandomInt(0, 4);
 
 	// Zombies get to cheat for 6 seconds (sjb)
 	GetEnemies()->SetFreeKnowledgeDuration( 6.0 );

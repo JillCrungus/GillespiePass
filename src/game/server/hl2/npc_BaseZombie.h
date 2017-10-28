@@ -267,7 +267,7 @@ protected:
 	float m_flMoanPitch;
 
 
-	bool m_bShouldRelease;
+	int m_iShouldRelease;
 
 	EHANDLE	m_hObstructor;
 

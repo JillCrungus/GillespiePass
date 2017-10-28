@@ -257,7 +257,6 @@ $Project "Server (Episodic)"
 			$File	"hl2\weapon_frag.cpp"
 			$File	"hl2\weapon_physcannon.cpp"
 			$File	"hl2\weapon_physcannon.h"
-			$File "item_longjump.cpp"
 			$File	"hl2\weapon_pistol.cpp"
 			$File	"hl2\weapon_rpg.cpp"
 			$File	"hl2\weapon_rpg.h"
@@ -267,6 +266,7 @@ $Project "Server (Episodic)"
 			$File	"episodic\weapon_striderbuster.h"
 			$File	"hl2\weapon_stunstick.cpp"
 			$File	"hl2\weapon_stunstick.h"
+			$File   "item_longjump.cpp"
 			$File	"episodic\ep1_gamestats.h"
 			$File	"episodic\ep2_gamestats.h"
 			$File	"episodic\ep1_gamestats.cpp" \
@@ -308,6 +308,24 @@ $Project "Server (Episodic)"
 					$File "Leak\Cremator\npc_cremator.cpp"
 					$File "Leak\Cremator\npc_cremator.h"
 				}
+			}
+
+			$Folder "HL1"
+			{
+				$File "hl1\hl1_ai_basenpc.cpp"
+				$File "hl1\hl1_ai_basenpc.h"
+
+				$File "hl1\hl1_basegrenade.cpp"
+				$File "hl1\hl1_basegrenade.h"
+
+				$File "hl1\hl1_npc_bullsquid.cpp"
+				$File "hl1\hl1_npc_bullsquid.h"
+
+				$File "hl1\hl1_npc_houndeye.cpp"
+				$File "hl1\hl1_npc_houndeye.h"
+
+				$File "hl1\hl1_npc_snark.cpp"
+				$File "hl1\hl1_npc_snark.h"
 			}
 
 
