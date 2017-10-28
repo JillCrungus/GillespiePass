@@ -817,7 +817,7 @@ HeadcrabRelease_t CNPC_BaseZombie::ShouldReleaseHeadcrab( const CTakeDamageInfo 
 
 	if ((m_iHealth < m_iMaxHealth * ZOMBIE_RELEASE_HEALTH_FACTOR) && (m_iShouldRelease <= 1) )
 	{
-		if ((FClassnameIs(this, "npc_zombie")) || FClassnameIs(this, "npc_zombie_torso")) //Only classic zombies and torsos can do this!
+		if ((FClassnameIs(this, "npc_zombie")) || FClassnameIs(this, "npc_zombie_torso")) //Only classic zombies and torsos can do this! The other models have no animations for doing this!
 		{
 			DevMsg("Scheduled Release\n");
 			m_iHealth = m_iMaxHealth; //This tries to stop us from dying before we even get a chance to play the animation
