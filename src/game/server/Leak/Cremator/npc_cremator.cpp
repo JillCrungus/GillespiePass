@@ -69,7 +69,7 @@ ConVar	sk_cremator_max_range( "sk_cremator_max_range","950");
 ConVar	sk_cremator_immolator_color_r ("sk_cremator_immolator_color_r", "0");
 ConVar	sk_cremator_immolator_color_g ("sk_cremator_immolator_color_g", "255");
 ConVar	sk_cremator_immolator_color_b ("sk_cremator_immolator_color_b", "0");
-ConVar	sk_cremator_immolator_beamsprite ("sk_cremator_immolator_beamsprite", "sprites/physbeam.vmt");
+ConVar	sk_cremator_immolator_beamsprite ("sk_cremator_immolator_beamsprite", "sprites/plasma.vmt");
 ConVar  sk_cremator_immolator_damage_time("sk_cremator_immolator_damage_time", "0.65"); //TODO: Balance this!
 
 LINK_ENTITY_TO_CLASS( monster_cremator, CNPC_Cremator );
