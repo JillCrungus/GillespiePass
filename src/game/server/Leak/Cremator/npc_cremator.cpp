@@ -155,6 +155,8 @@ void CNPC_Cremator::Precache()
 	PrecacheModel("models/cremator_npc.mdl");
 	PrecacheModel("sprites/lgtning.vmt");
 
+	PrecacheModel(sk_cremator_immolator_beamsprite.GetString());
+
 	PrecacheScriptSound( "Crem.Pain" );
 	PrecacheScriptSound( "Crem.Die" );
 	PrecacheScriptSound( "Crem.ImmoShoot" );
