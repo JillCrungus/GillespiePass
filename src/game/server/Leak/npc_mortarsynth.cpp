@@ -27,7 +27,7 @@
 #include "engine/IEngineSound.h"
 #include "movevars_shared.h"
 
-#define MSYNTH_GIB_COUNT			5   
+ 
 #define MSYNTH_ATTACK_NEAR_DIST		600
 #define MSYNTH_ATTACK_FAR_DIST		800
 

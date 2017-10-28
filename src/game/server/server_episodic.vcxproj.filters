@@ -22,6 +22,9 @@
     <Filter Include="Source Files\HL2 DLL\Leak">
       <UniqueIdentifier>{A603EDFC-EDF8-F5D5-3B4F-CC33F309D1AA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\Leak\Assassin">
+      <UniqueIdentifier>{3BCA7C38-FB2E-5B38-4A69-03DD3675392F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\HL2 DLL\Leak\Crab Synth">
       <UniqueIdentifier>{913A1542-914E-B72B-2BB6-76089EC1DEC1}</UniqueIdentifier>
     </Filter>
@@ -1781,6 +1784,9 @@
     <ClInclude Include="hl1\hl1_npc_snark.h">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClInclude>
+    <ClInclude Include="hl2\npc_assassin.h">
+      <Filter>Source Files\HL2 DLL\Leak\Assassin</Filter>
+    </ClInclude>
     <ClInclude Include="Leak\npc_crabsynth.h">
       <Filter>Source Files\HL2 DLL\Leak\Crab Synth</Filter>
     </ClInclude>
@@ -3381,6 +3387,9 @@
     </ClCompile>
     <ClCompile Include="hl1\hl1_npc_snark.cpp">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
+    </ClCompile>
+    <ClCompile Include="hl2\npc_assassin.cpp">
+      <Filter>Source Files\HL2 DLL\Leak\Assassin</Filter>
     </ClCompile>
     <ClCompile Include="Leak\npc_crabsynth.cpp">
       <Filter>Source Files\HL2 DLL\Leak\Crab Synth</Filter>

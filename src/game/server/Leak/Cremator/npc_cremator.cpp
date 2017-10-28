@@ -60,6 +60,9 @@
 #define CREMATOR_INJURED_HEALTH				100 //Pretty sure this is obsolete now. I'm leaving it in just in case
 
 
+//Spawnflag
+#define SF_CREMATOR_IGNORE_PLAYER	( 1 << 12 )
+
 ConVar	sk_cremator_health( "sk_cremator_health","200");
 ConVar	sk_cremator_dmg_immo( "sk_cremator_dmg_immo","1"); //Anything higher than this is OP
 ConVar	sk_cremator_max_range( "sk_cremator_max_range","950");
@@ -67,6 +70,7 @@ ConVar	sk_cremator_immolator_color_r ("sk_cremator_immolator_color_r", "0");
 ConVar	sk_cremator_immolator_color_g ("sk_cremator_immolator_color_g", "255");
 ConVar	sk_cremator_immolator_color_b ("sk_cremator_immolator_color_b", "0");
 ConVar	sk_cremator_immolator_beamsprite ("sk_cremator_immolator_beamsprite", "sprites/physbeam.vmt");
+ConVar  sk_cremator_immolator_damage_time("sk_cremator_immolator_damage_time", "0.65"); //TODO: Balance this!
 
 LINK_ENTITY_TO_CLASS( monster_cremator, CNPC_Cremator );
 LINK_ENTITY_TO_CLASS( npc_cremator, CNPC_Cremator );
@@ -166,6 +170,10 @@ void CNPC_Cremator::Precache()
 //-----------------------------------------------------------------------------
 Class_T	CNPC_Cremator::Classify ( void )
 {
+	if (HasSpawnFlags(SF_CREMATOR_IGNORE_PLAYER))
+	{
+		return CLASS_NONE;
+	}
 	return	CLASS_COMBINE;
 }
 
@@ -216,7 +224,7 @@ void CNPC_Cremator::AlertSound( void )
 //=========================================================
 void CNPC_Cremator::IdleSound( void )
 {
-	if ( random->RandomInt( 0, 2 ) == 0)
+	if ( random->RandomInt( 0, 1 ) == 0)
 	  	 SENTENCEG_PlayRndSz( edict(), "CREM_IDLE", 1.0, SNDLVL_NORM, 0, 100);
 }
 
@@ -273,7 +281,7 @@ void CNPC_Cremator::Event_Killed( const CTakeDamageInfo &info )
 		// drop the gun!
 		Vector vecGunPos;
 		QAngle angGunAngles;
-		CBaseEntity *pGun = NULL;
+		//CBaseEntity *pGun = NULL;
 
 		SetBodygroup( 1, CREM_BODY_GUNGONE);
 
@@ -752,11 +760,15 @@ void CNPC_Cremator::ImmoBeam( int side )
 
 	if ( pEntity != NULL && m_takedamage )
 	{
-		CTakeDamageInfo info( this, this, sk_cremator_dmg_immo.GetFloat(), DMG_DISSOLVE ); //dmg_dissolve and dmg_burn by default
-		Ignite(100);
-		CalculateMeleeDamageForce( &info, vecAim, tr.endpos );
-		RadiusDamage( CTakeDamageInfo( this, this, sk_cremator_dmg_immo.GetFloat(), DMG_BURN ), tr.endpos, 128,  CLASS_NONE, NULL ); //changed from 256 to 128 to correspond with noisebeams
-		pEntity->DispatchTraceAttack( info, vecAim, &tr );
+		if (m_nextDamage <= gpGlobals->curtime)
+		{
+			CTakeDamageInfo info(this, this, sk_cremator_dmg_immo.GetFloat(), DMG_DISSOLVE); //dmg_dissolve and dmg_burn by default
+			Ignite(100);
+			CalculateMeleeDamageForce(&info, vecAim, tr.endpos);
+			RadiusDamage(CTakeDamageInfo(this, this, sk_cremator_dmg_immo.GetFloat(), DMG_BURN), tr.endpos, 128, CLASS_NONE, NULL); //changed from 256 to 128 to correspond with noisebeams
+			pEntity->DispatchTraceAttack(info, vecAim, &tr);
+			m_nextDamage = gpGlobals->curtime + sk_cremator_immolator_damage_time.GetFloat();
+		}
 	}
 
 }

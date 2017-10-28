@@ -1578,7 +1578,7 @@ hinttypedescs_t g_pszHintDescriptions[] =
 	{	HINT_TACTICAL_COVER_LOW, "Tactical: Cover Low"	},
 	{	HINT_TACTICAL_SPAWN, "Tactical: Spawn"	},
 	{	HINT_TACTICAL_PINCH, "Tactical: Pinch"	},
-	//{	HINT_NOT_USED_TACTICAL_GUARD, "Obsolete / Unused"	},
+	{	HINT_NOT_USED_TACTICAL_GUARD, "Tactical: Guard Point"	},
 	{	HINT_TACTICAL_ENEMY_DISADVANTAGED, "Tactical: Enemy Disadvantage"	},
 	//{	HINT_NOT_USED_HEALTH_KIT, "Obsolete / Unused"	},
 
@@ -1596,7 +1596,7 @@ hinttypedescs_t g_pszHintDescriptions[] =
 	{	HINT_ANTLION_BURROW_POINT, "Antlion: Burrow Point"	},
 	{	HINT_ANTLION_THUMPER_FLEE_POINT, "Antlion: Thumper Flee Point"	},
 
-	//{	HINT_HEADCRAB_BURROW_POINT, "Obsolete / Unused"	},
+	{	HINT_HEADCRAB_BURROW_POINT, "Headcrab Burrow Point"	},
 
 	//{	HINT_NOT_USED_ROLLER_PATROL_POINT, "Obsolete / Unused"	},
 	//{	HINT_NOT_USED_ROLLER_CLEANUP_POINT, "Obsolete / Unused"	},

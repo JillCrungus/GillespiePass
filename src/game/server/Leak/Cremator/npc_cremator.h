@@ -77,12 +77,16 @@ private:
 	int	  m_iBeams;
 	int	  m_iNoise;
 
+	int m_nextDamage = 0; //When to next do damage.
+
 	int m_iBravery;
 
 	CBeam *m_pBeam[CREMATOR_MAX_BEAMS];
 	CBeam *m_hNoise[CREMATOR_MAX_NOISE];
 
 	float m_flNextAttack;
+
+
 
 	EHANDLE m_hDead;
 };

@@ -98,5 +98,9 @@
 ]
 
 @NPCClass base(BaseNPC) studio("models/cremator_npc.mdl") = npc_cremator : "Cremator" 
-[	
+[
+	spawnflags(Flags) =
+	[
+		4096 : "Pre-uprising" : 0
+	]	
 ]

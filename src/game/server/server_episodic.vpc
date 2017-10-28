@@ -308,6 +308,11 @@ $Project "Server (Episodic)"
 					$File "Leak\Cremator\npc_cremator.cpp"
 					$File "Leak\Cremator\npc_cremator.h"
 				}
+				$Folder "Assassin"
+				{
+					$File "hl2\npc_assassin.cpp"
+					$File "hl2\npc_assassin.h"
+				}
 			}
 
 			$Folder "HL1"
