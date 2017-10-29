@@ -1184,11 +1184,11 @@ METROPOLICE_HIT_BY_PHYSOBJECT0 npc/mcop/violated
 
 // powerup
 
-HEV_AAx hl1/fvox/bell
+HEV_AAx hl1/fvox/bell HEV_logon {Len 11.07 closecaption GP.HevGet}
 
 //HEV_logon, powerarmor_on, atmospherics_on,vitalsigns_on, automedic_on, weaponselect_on, munitionview_on, communications_on, safe_day {Len 41.76}
 
-//HEV_A0 hl1/fvox/bell, HEV_logon {Len 11.07}
+HEV_A0 hl1/fvox/bell, HEV_logon {Len 11.07 closecaption GP.HevGet}
 
 HEV_A1 hl1/fvox/blip blip(p130) powermove_on {Len 3.71 closecaption HL2Player.GetLJ}
 HEV_LJR hl1/fvox/blip blip(p130) {Len 1.71 closecaption HL2Player.LJR}
