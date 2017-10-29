@@ -43,6 +43,14 @@ public:
 			return FALSE;
 		}
 
+		CSingleUserRecipientFilter user(pPlayer);
+		user.MakeReliable();
+
+		UserMessageBegin(user, "ItemPickup");
+			WRITE_STRING(GetClassname());
+		MessageEnd();
+
+
 		pPlayer->m_bLongJump = TRUE;// player now has longjump module
 		pPlayer->SetSuitUpdate("!HEV_A1", false, SUIT_NEXT_IN_1MIN);
 		CPASAttenuationFilter filter(pPlayer);
