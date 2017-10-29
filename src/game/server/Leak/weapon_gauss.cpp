@@ -1,6 +1,9 @@
 //========= Copyright © 1996-2001, Valve LLC, All rights reserved. ============
 //
-// Purpose: 
+// Purpose: XVL1456, also known as the Tau Cannon or Gauss gun, is an experimental energy weapon developed by Black Mesa.
+// Fortunately, a prototype of it survived the destruction of Black Mesa and from this surviving Black Mesa scientists were able to make
+// a select few slightly more refined replicas of it from the limited resources they had. The HEV suit isn't too happy about this as it
+// regards the newly built weapons as "unauthorised reproductions".
 //
 //=============================================================================
 
@@ -143,7 +146,22 @@ void CWeaponGaussGun::Precache( void )
 //-----------------------------------------------------------------------------
 void CWeaponGaussGun::Spawn( void )
 {
-	InitBoneControllers();
+	CBasePlayer *pPlayer = ToBasePlayer(GetOwner());
+
+
+	if (pPlayer != NULL)
+	{
+		CBaseViewModel *pViewmodel = pPlayer->GetViewModel();
+
+
+
+		if (pViewmodel != NULL)
+		{
+			pViewmodel->InitBoneControllers();
+		}
+	}
+	
+	
 	//SetBoneController(BC_GAUSS_FAN, 0);
 	//SetBoneController(BC_GAUSS_COIL, 0);
 	BaseClass::Spawn();
@@ -646,7 +664,7 @@ void CWeaponGaussGun::ItemPostFrame( void )
 	}
 
 
-	CBaseViewModel *pViewmodel = pPlayer->GetViewModel(m_nViewModelIndex);
+	CBaseViewModel *pViewmodel = pPlayer->GetViewModel();
 
 	if (pViewmodel == NULL)
 		return;
@@ -662,12 +680,15 @@ void CWeaponGaussGun::ItemPostFrame( void )
 
 	//Update spinning bits
 
+
+	//This doesn't work for some reason. FIX ME.
+
 	pViewmodel->SetBoneController(BC_GAUSS_FAN, fanAngle);
 	pViewmodel->SetBoneController(BC_GAUSS_COIL, m_flCoilAngle);
 
-	DevMsg("Fan: %f\n", pViewmodel->GetBoneController(BC_GAUSS_FAN));
+	//DevMsg("Fan: %f\n", pViewmodel->GetBoneController(BC_GAUSS_FAN));
 
-	DevMsg("Coil: %f\n", pViewmodel->GetBoneController(BC_GAUSS_COIL));
+	//DevMsg("Coil: %f\n", pViewmodel->GetBoneController(BC_GAUSS_COIL));
 	
 	BaseClass::ItemPostFrame();
 }
