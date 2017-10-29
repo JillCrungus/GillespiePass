@@ -1,4 +1,4 @@
-//========= Copyright � LOLOLOL, All rights reserved. ============//
+﻿//========= Copyright © LOLOLOL, All rights reserved. ============//
 //
 // Purpose: A big heavily-armored monstrosity who works for the combine and carries the combine 
 // equivalent to the BFG.
@@ -223,7 +223,8 @@ void CNPC_CombineGuard::Spawn( void )
 	
 	SetNavType( NAV_GROUND );
 	m_NPCState = NPC_STATE_NONE;
-	SetBloodColor( BLOOD_COLOR_YELLOW );
+	//SetBloodColor( BLOOD_COLOR_YELLOW );
+	SetBloodColor(BLOOD_COLOR_MECH);
 
 	m_iHealth = m_iMaxHealth = sk_combineguard_health.GetFloat();
 	m_flFieldOfView = 0.1f;
@@ -376,7 +377,8 @@ int CNPC_CombineGuard::SelectSchedule ( void )
 		{
 			{
 
-				return SCHED_TARGET_FACE;
+				return SCHED_NONE; //We ain't got shit to do ¯\_(ツ)_/¯
+				//TODO: Put something here. What could he do when idle with no target?
 			}
 		}
 
@@ -579,7 +581,7 @@ int CNPC_CombineGuard::OnTakeDamage_Alive( const CTakeDamageInfo &info )
 	{
 		newInfo.ScaleDamage( 5.0 );
 		DevMsg( "physics collision: 5X DAMAGE DONE TO CGUARD!\n" );
-	}	
+	}
 
 	int nDamageTaken = BaseClass::OnTakeDamage_Alive( newInfo );
 

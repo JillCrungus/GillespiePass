@@ -76,6 +76,9 @@ void TE_GaussExplosion( IRecipientFilter& filter, float delay,
 // Gauss gun
 //-----------------------------------------------------------------------------
 
+#define BC_GAUSS_FAN 0
+#define BC_GAUSS_COIL 1
+
 IMPLEMENT_SERVERCLASS_ST( CWeaponGaussGun, DT_WeaponGaussGun )
 END_SEND_TABLE()
 
@@ -140,6 +143,9 @@ void CWeaponGaussGun::Precache( void )
 //-----------------------------------------------------------------------------
 void CWeaponGaussGun::Spawn( void )
 {
+	InitBoneControllers();
+	//SetBoneController(BC_GAUSS_FAN, 0);
+	//SetBoneController(BC_GAUSS_COIL, 0);
 	BaseClass::Spawn();
 }
 
@@ -628,24 +634,40 @@ void CWeaponGaussGun::ItemPostFrame( void )
 	if ( pPlayer == NULL )
 		return;
 
+	
+
 	if ( pPlayer->m_afButtonReleased & IN_ATTACK2 )
 	{
 		if ( m_bCharging )
 		{
+					
 			ChargedFire();
 		}
 	}
 
-	m_flCoilVelocity = UTIL_Approach( m_flCoilMaxVelocity, m_flCoilVelocity, 10.0f );
-	m_flCoilAngle = UTIL_AngleMod( m_flCoilAngle + ( m_flCoilVelocity * gpGlobals->frametime ) );
+
+	CBaseViewModel *pViewmodel = pPlayer->GetViewModel(m_nViewModelIndex);
+
+	if (pViewmodel == NULL)
+		return;
+
+	m_flCoilVelocity = UTIL_Approach(m_flCoilMaxVelocity, m_flCoilVelocity, 10.0f);
+	m_flCoilAngle = UTIL_AngleMod(m_flCoilAngle + (m_flCoilVelocity * gpGlobals->frametime));
 
 	static float fanAngle = 0.0f;
 
-	fanAngle = UTIL_AngleMod( fanAngle + 2 );
+	fanAngle = UTIL_AngleMod(fanAngle + 2);
+
+
 
 	//Update spinning bits
-	SetBoneController( 0, fanAngle );
-	SetBoneController( 1, m_flCoilAngle );
+
+	pViewmodel->SetBoneController(BC_GAUSS_FAN, fanAngle);
+	pViewmodel->SetBoneController(BC_GAUSS_COIL, m_flCoilAngle);
+
+	DevMsg("Fan: %f\n", pViewmodel->GetBoneController(BC_GAUSS_FAN));
+
+	DevMsg("Coil: %f\n", pViewmodel->GetBoneController(BC_GAUSS_COIL));
 	
 	BaseClass::ItemPostFrame();
 }

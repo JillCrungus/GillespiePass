@@ -123,4 +123,5 @@ game_sounds_manifest
 	"precache_file"		"scripts/game_sounds_npc_gp.txt"
 	"precache_file"		"scripts/game_sounds_npc_gp_crabsynth.txt"
 	"precache_file"		"scripts/cremator_orig_sounds.txt"
+	"precache_file"		"scripts/npc_sounds_combineguard.txt"
 }

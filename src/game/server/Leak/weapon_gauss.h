@@ -65,6 +65,7 @@ public:
 
 	void	ItemPostFrame( void );
 
+
 	float	GetFireRate( void ) { return 0.2f; }
 
 	virtual const Vector &GetBulletSpread( void )

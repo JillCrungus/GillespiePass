@@ -21,8 +21,9 @@ $cbox 0 0 0 0 0 0
 
 $bbox 25.401 -23.999 -26.629 83.879 2.925 -9.121
 
-$controller 0 "Dummy17" Y 0 360
-$controller 1 "Dummy14" Y 0 360
+$controller 0 "Dummy17" XR 0 360
+$controller 1 "Dummy14" XR 0 360
+//$poseparameter  0 360 loop 360
 
 
 $sequence "idle" {

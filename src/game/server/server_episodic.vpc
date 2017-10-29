@@ -319,6 +319,7 @@ $Project "Server (Episodic)"
 				}
 			}
 
+
 			$Folder "HL1"
 			{
 				$File "hl1\hl1_ai_basenpc.cpp"

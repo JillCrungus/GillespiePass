@@ -12,7 +12,7 @@ $bodygroup "gun"
 
 $illumposition 14.61 -4.25 49.07
 
-$surfaceprop "alienflesh"
+$surfaceprop "metal"
 
 $contents solid
 
