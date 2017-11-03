@@ -193,3 +193,6 @@ _Crowbar.exe - Shortcut.lnk
 merge/
 src2013
 *.stackdump
+
+
+tools/config

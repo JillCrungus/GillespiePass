@@ -1,0 +1,93 @@
+[
+  {
+    "GameFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\hl2",
+    "VBSP": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbsp.exe",
+    "VVIS": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vvis.exe",
+    "VRAD": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vrad.exe",
+    "BSPZip": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\bspzip.exe",
+    "VBSPInfo": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbspinfo.exe",
+    "GameEXE": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\hl2.exe",
+    "MapFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\hl2\\maps",
+    "SDKMapFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\sourcesdk_content\\hl2\\mapsrc",
+    "BinFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin",
+    "Name": "Half-Life 2"
+  },
+  {
+    "GameFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\episodic",
+    "VBSP": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbsp.exe",
+    "VVIS": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vvis.exe",
+    "VRAD": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vrad.exe",
+    "BSPZip": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\bspzip.exe",
+    "VBSPInfo": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbspinfo.exe",
+    "GameEXE": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\hl2.exe",
+    "MapFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\episodic\\maps",
+    "SDKMapFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\sourcesdk_content\\episodic\\mapsrc",
+    "BinFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin",
+    "Name": "Half-Life 2: Episode One"
+  },
+  {
+    "GameFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\ep2",
+    "VBSP": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbsp.exe",
+    "VVIS": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vvis.exe",
+    "VRAD": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vrad.exe",
+    "BSPZip": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\bspzip.exe",
+    "VBSPInfo": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbspinfo.exe",
+    "GameEXE": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\hl2.exe",
+    "MapFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\ep2\\maps",
+    "SDKMapFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\sourcesdk_content\\ep2\\mapsrc",
+    "BinFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin",
+    "Name": "Half-Life 2: Episode Two"
+  },
+  {
+    "GameFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\sourcetest",
+    "VBSP": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbsp.exe",
+    "VVIS": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vvis.exe",
+    "VRAD": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vrad.exe",
+    "BSPZip": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\bspzip.exe",
+    "VBSPInfo": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbspinfo.exe",
+    "GameEXE": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\hl2.exe",
+    "MapFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\sourcetest\\maps",
+    "SDKMapFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\sourcesdk_content\\sourcetest\\mapsrc",
+    "BinFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin",
+    "Name": "SourceTest"
+  },
+  {
+    "GameFolder": "D:\\Steam Games\\steamapps\\sourcemods\\test",
+    "VBSP": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbsp.exe",
+    "VVIS": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vvis.exe",
+    "VRAD": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vrad.exe",
+    "BSPZip": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\bspzip.exe",
+    "VBSPInfo": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbspinfo.exe",
+    "GameEXE": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\hl2.exe",
+    "MapFolder": "D:\\Steam Games\\steamapps\\sourcemods\\test\\maps",
+    "SDKMapFolder": "D:\\Steam Games\\steamapps\\sourcemods\\test\\mapsrc",
+    "BinFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin",
+    "Name": "Trash"
+  },
+  {
+    "GameFolder": "D:\\Steam Games\\steamapps\\sourcemods\\t7",
+    "VBSP": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbsp.exe",
+    "VVIS": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vvis.exe",
+    "VRAD": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vrad.exe",
+    "BSPZip": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\bspzip.exe",
+    "VBSPInfo": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbspinfo.exe",
+    "GameEXE": "D:\\Steam Games\\steamapps\\common\\Half-Life 2\\hl2.exe",
+    "MapFolder": "D:\\Steam Games\\steamapps\\sourcemods\\t7\\maps",
+    "SDKMapFolder": "D:\\Steam Games\\steamapps\\sourcemods\\t7\\mapsrc",
+    "BinFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin",
+    "Name": "T7"
+  },
+  {
+    "GameFolder": "D:\\Steam Games\\steamapps\\sourcemods\\GP",
+    "VBSP": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbsp.exe",
+    "VVIS": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vvis.exe",
+    "VRAD": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vrad.exe",
+    "BSPZip": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\bspzip.exe",
+    "VBSPInfo": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin\\vbspinfo.exe",
+    "GameEXE": "D:\\Steam Games\\steamapps\\common\\Half-Life 2\\hl2.exe",
+    "MapFolder": "D:\\Steam Games\\steamapps\\sourcemods\\GP\\maps",
+    "SDKMapFolder": "D:\\Steam Games\\steamapps\\sourcemods\\GP\\mapsrc",
+    "BinFolder": "D:\\Steam Games\\steamapps\\common\\Source SDK Base 2013 Singleplayer\\bin",
+    "Name": "GillespiePass"
+  }
+]

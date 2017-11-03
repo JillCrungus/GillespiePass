@@ -1,0 +1,224 @@
+Starting a 'Normal' compile.
+Starting compilation of D:\Steam Games\steamapps\sourcemods\GP\mapsrc\antlion_01.vmf
+Valve Software - vbsp.exe (Jun 12 2014)
+8 threads
+materialPath: D:\Steam Games\steamapps\sourcemods\GP\materials
+Loading D:\Steam Games\steamapps\sourcemods\GP\mapsrc\antlion_01.vmf
+"materials/vehicle/metalapc001a.vtf": cached version doesn't exist
+material "metal/metalwall010b" not found.
+Material not found!: METAL/METALWALL010B
+ConVarRef mat_reduceparticles doesn't point to an existing ConVar
+material "vehicle/metalosprey008a" not found.
+Material not found!: VEHICLE/METALOSPREY008A
+material "vehicle/metalcar001a" not found.
+Material not found!: VEHICLE/METALCAR001A
+material "props/plasticbarreltop001a" not found.
+Material not found!: PROPS/PLASTICBARRELTOP001A
+Could not locate 'GameData' key in d:\steam games\steamapps\sourcemods\gp\gameinfo.txt
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+**** leaked ****
+Entity info_node (888.00 -248.00 132.00) leaked!
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (7680.0 4096.0 1491.8)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (8192.0 3584.0 1491.8)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (8192.0 2560.0 1491.8)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (6656.0 4096.0 1491.8)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (5632.0 3072.0 248.0)
+Leaf 0 contents: CONTENTS_SOLID 
+Leaf 1 contents: 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (5632.0 3072.0 1680.0)
+Leaf 0 contents: CONTENTS_SOLID 
+Leaf 1 contents: 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (5632.0 3072.0 59.8)
+Leaf 0 contents: CONTENTS_SOLID 
+Leaf 1 contents: 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (5632.0 4096.0 1491.8)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+*** Suppressing further FindPortalSide errors.... ***
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 32 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_wasteland02*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_wasteland02*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (140588 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 559 texinfos to 499
+Reduced 20 texdatas to 19 (468 bytes to 426)
+Writing D:\Steam Games\steamapps\sourcemods\GP\mapsrc\antlion_01.bsp
+0 seconds elapsed
+Valve Software - vvis.exe (Jun 12 2014)
+8 threads
+reading d:\steam games\steamapps\sourcemods\gp\mapsrc\antlion_01.bsp
+reading d:\steam games\steamapps\sourcemods\gp\mapsrc\antlion_01.prt
+LoadPortals: couldn't read d:\steam games\steamapps\sourcemods\gp\mapsrc\antlion_01.prt
+
+Valve Software - vrad.exe SSE (May 15 2014)
+
+      Valve Radiosity Simulator     
+8 threads
+[Reading texlights from 'lights.rad']
+[48 texlights parsed from 'lights.rad']
+
+Loading d:\steam games\steamapps\sourcemods\gp\mapsrc\antlion_01.bsp
+No vis information, direct lighting only.
+Setting up ray-trace acceleration structure... Done (0.23 seconds)
+1987 faces
+1426109 square feet [205359792.00 square inches]
+24 Displacements
+179290 Square Feet [25817844.00 Square Inches]
+2 direct lights
+BuildFacelights:     0...1...2...3...4...5...6...7...8...9...10 (1)
+Build Patch/Sample Hash Table(s).....Done<0.0049 sec>
+FinalLightFace:      0...1...2...3...4...5...6...7...8...9...10 (0)
+FinalLightFace Done
+Computing detail prop lighting : 0...1...2...3...4...5...6...7...8...9...10
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+ThreadComputeLeafAmbient: 0...1...2...3...4...5...6...7...8...9...10 (5)
+Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/1024           48/49152    ( 0.1%) 
+brushes                310/8192         3720/98304    ( 3.8%) 
+brushsides            4314/65536       34512/524288   ( 6.6%) 
+planes                6478/65536      129560/1310720  ( 9.9%) 
+vertexes              2611/65536       31332/786432   ( 4.0%) 
+nodes                 1126/65536       36032/2097152  ( 1.7%) 
+texinfos               499/12288       35928/884736   ( 4.1%) 
+texdata                 19/2048          608/65536    ( 0.9%) 
+dispinfos               24/0            4224/0        ( 0.0%) 
+disp_verts             600/0           12000/0        ( 0.0%) 
+disp_tris              768/0            1536/0        ( 0.0%) 
+disp_lmsamples       31104/0           31104/0        ( 0.0%) 
+faces                 1987/65536      111272/3670016  ( 3.0%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             1604/65536       89824/3670016  ( 2.4%) 
+leaves                1128/65536       36096/2097152  ( 1.7%) 
+leaffaces             2125/65536        4250/131072   ( 3.2%) 
+leafbrushes            495/65536         990/131072   ( 0.8%) 
+areas                    2/256            16/2048     ( 0.8%) 
+surfedges            15925/512000      63700/2048000  ( 3.1%) 
+edges                 8385/256000      33540/1024000  ( 3.3%) 
+LDR worldlights          2/8192          176/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            109/32768        1090/327680   ( 0.3%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices          1737/65536        3474/131072   ( 2.7%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]     1139436/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]           0/16777216 ( 0.0%) 
+entdata               [variable]        4240/393216   ( 1.1%) 
+LDR ambient table     1128/65536        4512/262144   ( 1.7%) 
+HDR ambient table     1128/65536        4512/262144   ( 1.7%) 
+LDR leaf ambient      9918/65536      277704/1835008  (15.1%) 
+HDR leaf ambient      1128/65536       31584/1835008  ( 1.7%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/358180   ( 0.0%) 
+dtl prp lght          [variable]           1/4        (25.0%) 
+HDR dtl prp lght      [variable]           1/4        (25.0%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]      173723/0        ( 0.0%) 
+physics               [variable]      140588/4194304  ( 3.4%) 
+physics terrain       [variable]        4914/1048576  ( 0.5%) 
+
+Level flags = 0
+
+Total triangle count: 5183
+Writing d:\steam games\steamapps\sourcemods\gp\mapsrc\antlion_01.bsp
+8 seconds elapsed
+D:\Steam Games\steamapps\sourcemods\GP\mapsrc\antlion_01.bsp -> D:\Steam Games\steamapps\sourcemods\GP\maps\antlion_01.bsp
+1 File(s) copied
+'Normal' compile finished in 00:00:09
+12 errors/warnings logged:
+(1) - Material not found!: [sub:1] (Caution)
+(2) - Material not found!: [sub:1] (Caution)
+(3) - Material not found!: [sub:1] (Caution)
+(4) - Material not found!: [sub:1] (Caution)
+(5) - **** leaked **** (Error)
+(6) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(7) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(8) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(9) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(10) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(11) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(12) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+

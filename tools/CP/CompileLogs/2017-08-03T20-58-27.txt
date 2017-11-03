@@ -1,0 +1,27 @@
+Starting a 'Normal' compile.
+Starting compilation of D:\Steam Games\steamapps\sourcemods\GP\mapsrc\gp_d1_garage_02_therange.vmf
+Valve Software - vbsp.exe (Jun 12 2014)
+8 threads
+materialPath: D:\Steam Games\steamapps\sourcemods\GP\materials
+Loading D:\Steam Games\steamapps\sourcemods\GP\mapsrc\gp_d1_garage_02_therange.vmf
+Brush 31, Side 2: duplicate plane
+Brush 31: FloatPlane: bad normal
+Side 5
+Texture: WOOD/WOODFLOOR005A
+
+Valve Software - vvis.exe (Jun 12 2014)
+8 threads
+reading d:\steam games\steamapps\sourcemods\gp\mapsrc\gp_d1_garage_02_therange.bsp
+Error opening d:\steam games\steamapps\sourcemods\gp\mapsrc\gp_d1_garage_02_therange.bsp
+Valve Software - vrad.exe SSE (May 15 2014)
+
+      Valve Radiosity Simulator     
+8 threads
+[Reading texlights from 'lights.rad']
+[48 texlights parsed from 'lights.rad']
+
+Loading d:\steam games\steamapps\sourcemods\gp\mapsrc\gp_d1_garage_02_therange.bsp
+Error opening d:\steam games\steamapps\sourcemods\gp\mapsrc\gp_d1_garage_02_therange.bsp
+0 File(s) copied
+'Normal' compile finished in 00:00:01
+

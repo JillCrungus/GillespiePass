@@ -1,0 +1,86 @@
+"UserConfigData"
+{
+	"resource"
+	{
+		"mdlpicker.res"
+		{
+			"FileBrowserSplitter"
+			{
+				"child0"
+				{
+					"AssetSplitter"
+					{
+						"child1"
+						{
+							"AssetBrowser"
+							{
+								"lastBarWidth"		"540"
+								"0_hidden"		"0"
+								"0_width"		"52"
+								"1_hidden"		"0"
+								"1_width"		"489"
+							}
+						}
+						"0_splitter_pos"		"216.500000"
+						"1_splitter_pos"		"433.000000"
+					}
+				}
+				"child1"
+				{
+					"PreviewSplitter"
+					{
+						"child1"
+						{
+							"ViewsSheet"
+							{
+								"SequencesPage"
+								{
+									"SequencesList"
+									{
+										"lastBarWidth"		"382"
+										"0_hidden"		"0"
+										"0_width"		"383"
+									}
+								}
+								"ActivitiesPage"
+								{
+									"ActivitiesList"
+									{
+										"lastBarWidth"		"261"
+										"0_hidden"		"0"
+										"0_width"		"262"
+									}
+								}
+								"SkinsPage"
+								{
+									"SkinsList"
+									{
+										"lastBarWidth"		"524"
+										"0_hidden"		"0"
+										"0_width"		"525"
+									}
+								}
+								"InfoPage"
+								{
+									"PropData"
+									{
+										"lastBarWidth"		"524"
+										"0_hidden"		"0"
+										"0_width"		"250"
+										"1_hidden"		"0"
+										"1_width"		"275"
+									}
+								}
+							}
+						}
+						"0_splitter_pos"		"216.500000"
+						"1_splitter_pos"		"433.000000"
+					}
+				}
+				"0_splitter_pos"		"570.999817"
+				"1_splitter_pos"		"1142.000000"
+			}
+			"filter"		"barricade"
+		}
+	}
+}

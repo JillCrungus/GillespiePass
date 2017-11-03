@@ -1,0 +1,269 @@
+Starting a 'Normal' compile.
+Starting compilation of D:\Steam Games\steamapps\sourcemods\GP\mapsrc\HL2-MapPack\d1_trainstation_02.vmf
+Valve Software - vbsp.exe (Jun 12 2014)
+8 threads
+materialPath: D:\Steam Games\steamapps\sourcemods\GP\materials
+Loading D:\Steam Games\steamapps\sourcemods\GP\mapsrc\HL2-MapPack\d1_trainstation_02.vmf
+ConVarRef mat_reduceparticles doesn't point to an existing ConVar
+Could not locate 'GameData' key in d:\steam games\steamapps\sourcemods\gp\gameinfo.txt
+Patching WVT material: maps/d1_trainstation_02/nature/red_grass_wvt_patch
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+**** leaked ****
+Entity prop_static (-3328.00 4800.00 -2033.75) leaked!
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (3072.0 2560.0 2551.5)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (2568.0 3072.0 2551.5)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (2056.0 3072.0 2551.5)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (1536.0 3072.0 2567.5)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (1536.0 3072.0 -2065.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (3072.0 1536.0 2551.5)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (3072.0 512.0 2551.5)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (1024.0 512.0 -272.5)
+Leaf 0 contents: CONTENTS_SOLID 
+Leaf 1 contents: 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+*** Suppressing further FindPortalSide errors.... ***
+Processing areas...WARNING: areaportal entity 793 (brush 740014) touches > 2 areas
+WARNING: areaportal entity 793 (brush 740014) touches > 2 areas
+WARNING: areaportal entity 793 (brush 740014) touches > 2 areas
+WARNING: areaportal entity 793 (brush 740014) touches > 2 areas
+WARNING: areaportal entity 793 (brush 740014) touches > 2 areas
+WARNING: areaportal entity 793 (brush 740014) touches > 2 areas
+WARNING: areaportal entity 793 (brush 740014) touches > 2 areas
+WARNING: areaportal entity 794 (brush 740034) touches > 2 areas
+WARNING: areaportal entity 794 (brush 740034) touches > 2 areas
+WARNING: areaportal entity 1076 (brush 846923) touches > 2 areas
+WARNING: areaportal entity 794 (brush 740034) touches > 2 areas
+WARNING: areaportal entity 1076 (brush 846923) touches > 2 areas
+WARNING: areaportal entity 794 (brush 740034) touches > 2 areas
+WARNING: areaportal entity 794 (brush 740034) touches > 2 areas
+WARNING: areaportal entity 1076 (brush 846923) touches > 2 areas
+WARNING: areaportal entity 1077 (brush 846930) touches > 2 areas
+WARNING: areaportal entity 1623 (brush 1065372) touches > 2 areas
+WARNING: areaportal entity 1623 (brush 1065372) touches > 2 areas
+WARNING: areaportal entity 1077 (brush 846930) touches > 2 areas
+WARNING: areaportal entity 1623 (brush 1065372) touches > 2 areas
+WARNING: areaportal entity 1077 (brush 846930) touches > 2 areas
+WARNING: areaportal entity 1623 (brush 1065372) touches > 2 areas
+WARNING: areaportal entity 1077 (brush 846930) touches > 2 areas
+done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 976 detail faces...done (0)
+Merging details...done (1)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+WARNING: node without a volume
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/sky_day01_01_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (845789 bytes)
+Static prop models/props_buildings/row_res_2.mdl outside the map (-3183.00, 5069.00, -2047.75)
+Static prop models/props_buildings/row_hill_cluster.mdl outside the map (-2983.00, 5186.00, -2039.00)
+Static prop models/props_buildings/row_res_2.mdl outside the map (-3374.00, 5271.00, -2048.00)
+Static prop models/props_buildings/row_hill_cluster.mdl outside the map (-3420.37, 5509.08, -2039.00)
+Static prop models/props_buildings/row_res_2.mdl outside the map (-3328.00, 4800.00, -2033.75)
+Static prop models/props_buildings/row_upscale.mdl outside the map (-3370.00, 4818.00, -2047.75)
+Error! prop_static using model "models/props_wasteland/prison_padlock001a.mdl", which must be used on a dynamic entity (i.e. prop_physics). Deleted.
+Error loading studio model "models/props_wasteland/prison_padlock001a.mdl"!
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 6903 texinfos to 2924
+Reduced 925 texdatas to 630 (57446 bytes to 39360)
+Writing D:\Steam Games\steamapps\sourcemods\GP\mapsrc\HL2-MapPack\d1_trainstation_02.bsp
+4 seconds elapsed
+Valve Software - vvis.exe (Jun 12 2014)
+8 threads
+reading d:\steam games\steamapps\sourcemods\gp\mapsrc\hl2-mappack\d1_trainstation_02.bsp
+reading d:\steam games\steamapps\sourcemods\gp\mapsrc\hl2-mappack\d1_trainstation_02.prt
+LoadPortals: couldn't read d:\steam games\steamapps\sourcemods\gp\mapsrc\hl2-mappack\d1_trainstation_02.prt
+
+Valve Software - vrad.exe SSE (May 15 2014)
+
+      Valve Radiosity Simulator     
+8 threads
+[Reading texlights from 'lights.rad']
+[48 texlights parsed from 'lights.rad']
+
+Loading d:\steam games\steamapps\sourcemods\gp\mapsrc\hl2-mappack\d1_trainstation_02.bsp
+No vis information, direct lighting only.
+Setting up ray-trace acceleration structure... Done (1.52 seconds)
+7973 faces
+3678094 square feet [529645632.00 square inches]
+3 Displacements
+5866 Square Feet [844800.00 Square Inches]
+96 direct lights
+BuildFacelights:     0...1...2...3...4...5...6...7...8...9...10 (19)
+Build Patch/Sample Hash Table(s).....Done<0.0144 sec>
+FinalLightFace:      0...1...2...3...4...5...6...7...8...9...10 (2)
+FinalLightFace Done
+Computing detail prop lighting : 0...1...2...3...4...5...6...7...8...9...10
+42 of 58 (72% of) surface lights went in leaf ambient cubes.
+ThreadComputeLeafAmbient: 0...1...2...3...4...5...6...7...8...9...10 (64)
+Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                 119/1024         5712/49152    (11.6%) 
+brushes               2240/8192        26880/98304    (27.3%) 
+brushsides           20623/65536      164984/524288   (31.5%) 
+planes               20212/65536      404240/1310720  (30.8%) 
+vertexes             20947/65536      251364/786432   (32.0%) 
+nodes                 5693/65536      182176/2097152  ( 8.7%) 
+texinfos              2924/12288      210528/884736   (23.8%) 
+texdata                630/2048        20160/65536    (30.8%) 
+dispinfos                3/0             528/0        ( 0.0%) 
+disp_verts             243/0            4860/0        ( 0.0%) 
+disp_tris              384/0             768/0        ( 0.0%) 
+disp_lmsamples       14856/0           14856/0        ( 0.0%) 
+faces                 7973/65536      446488/3670016  (12.2%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             5155/65536      288680/3670016  ( 7.9%) 
+leaves                5813/65536      186016/2097152  ( 8.9%) 
+leaffaces            10547/65536       21094/131072   (16.1%) 
+leafbrushes           5939/65536       11878/131072   ( 9.1%) 
+areas                   12/256            96/2048     ( 4.7%) 
+surfedges            58042/512000     232168/2048000  (11.3%) 
+edges                35566/256000     142264/1024000  (13.9%) 
+LDR worldlights         92/8192         8096/720896   ( 1.1%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips           2678/32768       26780/327680   ( 8.2%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices         59700/65536      119400/131072   (91.1%) VERY FULL!
+cubemapsamples         174/1024         2784/16384    (17.0%) 
+overlays                27/512          9504/180224   ( 5.3%) 
+LDR lightdata         [variable]     4239548/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]           0/16777216 ( 0.0%) 
+entdata               [variable]      258415/393216   (65.7%) 
+LDR ambient table     5813/65536       23252/262144   ( 8.9%) 
+HDR ambient table     5813/65536       23252/262144   ( 8.9%) 
+LDR leaf ambient     30202/65536      845656/1835008  (46.1%) 
+HDR leaf ambient      5813/65536      162764/1835008  ( 8.9%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/28472    ( 0.0%) 
+dtl prp lght          [variable]           1/4        (25.0%) 
+HDR dtl prp lght      [variable]           1/4        (25.0%) 
+static props          [variable]           1/30466    ( 0.0%) 
+pakfile               [variable]    18784376/0        ( 0.0%) 
+physics               [variable]      845789/4194304  (20.2%) 
+physics terrain       [variable]         203/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 21411
+Writing d:\steam games\steamapps\sourcemods\gp\mapsrc\hl2-mappack\d1_trainstation_02.bsp
+1 minute, 26 seconds elapsed
+D:\Steam Games\steamapps\sourcemods\GP\mapsrc\HL2-MapPack\d1_trainstation_02.bsp -> D:\Steam Games\steamapps\sourcemods\GP\maps\d1_trainstation_02.bsp
+1 File(s) copied
+'Normal' compile finished in 00:01:31
+21 errors/warnings logged:
+(1) - **** leaked **** (Error)
+(2) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(3) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(4) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(5) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(6) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(7) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(8) - FindPortalSide: Couldn't find a good match for which brush to assign to a portal near ([sub:1] [sub:2] [sub:3]) (Warning)
+(9) - WARNING: areaportal entity [sub:1] (brush [sub:2]) touches &gt; 2 areas (Caution)
+(10) - WARNING: areaportal entity [sub:1] (brush [sub:2]) touches &gt; 2 areas (Caution)
+(11) - WARNING: areaportal entity [sub:1] (brush [sub:2]) touches &gt; 2 areas (Caution)
+(12) - WARNING: areaportal entity [sub:1] (brush [sub:2]) touches &gt; 2 areas (Caution)
+(13) - WARNING: areaportal entity [sub:1] (brush [sub:2]) touches &gt; 2 areas (Caution)
+(14) - WARNING: areaportal entity [sub:1] (brush [sub:2]) touches &gt; 2 areas (Caution)
+(15) - WARNING: areaportal entity [sub:1] (brush [sub:2]) touches &gt; 2 areas (Caution)
+(16) - Static prop [sub:1] outside the map ([sub:2], [sub:3], [sub:4]) (Info)
+(17) - Static prop [sub:1] outside the map ([sub:2], [sub:3], [sub:4]) (Info)
+(18) - Static prop [sub:1] outside the map ([sub:2], [sub:3], [sub:4]) (Info)
+(19) - Static prop [sub:1] outside the map ([sub:2], [sub:3], [sub:4]) (Info)
+(20) - Static prop [sub:1] outside the map ([sub:2], [sub:3], [sub:4]) (Info)
+(21) - Error! prop_static using model &quot;[sub:1]&quot;, which must be used on a dynamic entity (i.e. prop_physics). Deleted. (Caution)
+
