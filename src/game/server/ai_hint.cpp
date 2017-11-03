@@ -1580,6 +1580,7 @@ hinttypedescs_t g_pszHintDescriptions[] =
 	{	HINT_TACTICAL_PINCH, "Tactical: Pinch"	},
 	{	HINT_NOT_USED_TACTICAL_GUARD, "Tactical: Guard Point"	},
 	{	HINT_TACTICAL_ENEMY_DISADVANTAGED, "Tactical: Enemy Disadvantage"	},
+	{ HINT_HOUNDEYE_NAP, "Houndeye: Nap Spot" },
 	//{	HINT_NOT_USED_HEALTH_KIT, "Obsolete / Unused"	},
 
 	//{	HINT_NOT_USED_URBAN_STREETCORNER, "Obsolete / Unused"	},

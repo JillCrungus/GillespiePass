@@ -5,8 +5,8 @@
 // $NoKeywords: $
 //=============================================================================//
 
-#include "ai_basenpc.h"
 #include "cbase.h"
+#include "ai_basenpc.h"
 #include "game.h"
 #include "AI_Default.h"
 #include "AI_Schedule.h"
@@ -43,6 +43,7 @@
 
 ConVar sk_houndeye_health ( "sk_houndeye_health", "20" );
 ConVar sk_houndeye_dmg_blast ( "sk_houndeye_dmg_blast", "15" );
+ConVar debug_houndeye_always_sleep_at_hint("houndeye_always_sleep_at_hint", "0");
 
 
 //=========================================================
@@ -80,6 +81,7 @@ enum
 	TASK_HOUND_HOP_BACK,
 	TASK_HOUND_BECOMEPLAYFUL,
 	TASK_HOUND_NOPLAY,
+	TASK_HOUND_FIND_NAP_SPOT,
 };
 
 //=========================================================
@@ -102,6 +104,7 @@ enum
 	SCHED_HOUNDEYE_NOPLAY,
 	SCHED_HOUNDWANDER,
 	SCHED_HOUND_SLEEP_MOVE,
+	SCHED_HOUND_SLEEP_MOVE_RANDOM,
 //	SCHED_HOUND_FAIL,
 };
 
@@ -130,7 +133,7 @@ void CNPC_Houndeye::Spawn()
 
 	SetNavType(NAV_GROUND);
 	SetMoveType( MOVETYPE_STEP );
-	
+
 	m_bloodColor		= BLOOD_COLOR_YELLOW;
 	ClearEffects();
 	m_iHealth			= sk_houndeye_health.GetFloat();
@@ -628,6 +631,9 @@ bool CNPC_Houndeye::FValidateHintType ( CAI_Hint *pHint )
 		case HINT_HL1_WORLD_ALIEN_BLOOD:
 			return true;
 			break;
+		case HINT_HOUNDEYE_NAP:
+			return true;
+			break;
 	}
 
 	Msg ( "Couldn't validate hint type" );
@@ -707,7 +713,7 @@ void CNPC_Houndeye::StartTask ( const Task_t *pTask )
 				if (RandomInt(0, 50) < 10)
 				{
 					SetSchedule(SCHED_HOUNDEYE_NOPLAY);
-					Msg("Stopped being playful!");
+					//DevMsg("Stopped being playful!");
 				}
 				if (!GetEnemy()->IsPlayer())
 				{
@@ -774,6 +780,62 @@ void CNPC_Houndeye::StartTask ( const Task_t *pTask )
 		}
 		break;
 	}
+
+	case TASK_HOUND_FIND_NAP_SPOT:
+	{
+		//DevMsg("Finding vantage point!");
+
+		Vector	goalPos;
+		CAI_Hint *pHint = NULL;
+		CHintCriteria hint;
+		hint.SetGroup(GetHintGroup());
+		//DevMsg("Hint group set");
+
+		hint.SetHintType(HINT_HOUNDEYE_NAP);
+		//hint.SetHintType(HINT_ANY);
+
+		hint.SetFlag(bits_HINT_NODE_NEAREST);
+		pHint = CAI_HintManager::FindHint(NULL, GetAbsOrigin(), hint);
+
+		if (pHint == NULL)
+		{
+			if (GetClassname())
+			{
+				TaskFail("Houndeye: Unable to find a suitable spot to nap!\n");
+				DevMsg("Houndeye %s: Unable to find a suitable spot to nap!\n", GetClassname());
+			}
+			else
+			{
+				TaskFail("Houndeye with no classname failed to find an available nap spot!\n");
+				DevMsg("Houndeye with no classname failed to find an available nap spot!\n");
+			}
+			
+			break;
+		}
+
+		pHint->GetPosition(this, &goalPos);
+
+		AI_NavGoal_t goal(goalPos);
+
+		//Try to run directly there
+		if (GetNavigator()->SetGoal(goal) == false)
+		{
+			if (GetClassname())
+			{
+				TaskFail("Houndeye %s: Found a nap spot but can't get path!\n");
+			}
+			else
+			{
+				TaskFail("Houndeye with no classname found a nap spot but could not get a path!\n");
+			}
+			break;
+		}
+
+		TaskComplete();
+		break;
+	}
+	
+
 	default: 
 		{
 			BaseClass::StartTask(pTask);
@@ -950,11 +1012,19 @@ int CNPC_Houndeye::TranslateSchedule( int scheduleType )
 			// we may want to sleep instead of stand!
 			if ( m_pSquad && !m_pSquad->IsLeader( this ) && !m_fAsleep && random->RandomInt( 0,29 ) < 1 )
 			{
+				if (debug_houndeye_always_sleep_at_hint.GetInt() > 0)
+				{
+					return SCHED_HOUND_SLEEP_MOVE; //DEBUG: AlWAYS sleep at a hint node
+				}
 				return SCHED_HOUND_SLEEP;
 			}
 		
 			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 30) < 1) //Only tamed Houndeyes who aren't already asleep should do this
 			{
+				if (debug_houndeye_always_sleep_at_hint.GetInt() > 0)
+				{
+					return SCHED_HOUND_SLEEP_MOVE; //DEBUG: AlWAYS sleep at a hint node
+				}
 				return SCHED_HOUND_SLEEP; //Just take a nap on the spot
 			}
 			if (m_suppressAttack &&!m_fAsleep && random->RandomInt(0, 30) < 1) //Only tamed Houndeyes who aren't already asleep should do this
@@ -967,11 +1037,19 @@ int CNPC_Houndeye::TranslateSchedule( int scheduleType )
 			{
 				if (random->RandomInt(0, 29) < 1)
 				{
+					if (debug_houndeye_always_sleep_at_hint.GetInt() > 0)
+					{
+						return SCHED_HOUND_SLEEP_MOVE; //DEBUG: AlWAYS sleep at a hint node
+					}
 					return SCHED_HOUND_BECOMEPLAYFUL; //Get excited! We want to play with the player!
 				}
 
 				if (random->RandomInt(0, 2) == 1)
 				{
+					if (debug_houndeye_always_sleep_at_hint.GetInt() > 0)
+					{
+						return SCHED_HOUND_SLEEP_MOVE; //DEBUG: AlWAYS sleep at a hint node
+					}
 					return SCHED_HOUNDWANDER; //Just wander about
 				}
 				
@@ -1090,6 +1168,7 @@ AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 	DECLARE_TASK ( TASK_HOUND_HOP_BACK )
 	DECLARE_TASK( TASK_HOUND_NOPLAY )
 	DECLARE_TASK( TASK_HOUND_BECOMEPLAYFUL)
+	DECLARE_TASK( TASK_HOUND_FIND_NAP_SPOT )
 
 	//=========================================================
 	// > SCHED_HOUND_AGITATED
@@ -1351,7 +1430,38 @@ AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 
 	"	Tasks"
 	"		TASK_STOP_MOVING				0"
-	"		TASK_WANDER						480384" // 4 feet to 32 feet
+	"		TASK_HOUND_FIND_NAP_SPOT		480384" // 4 feet to 32 feet
+	"		TASK_WALK_PATH					0"
+	"		TASK_WAIT_FOR_MOVEMENT			0"
+	"		TASK_STOP_MOVING			0"
+	"		TASK_SET_ACTIVITY			ACTIVITY:ACT_IDLE"
+	"		TASK_WAIT_RANDOM			5"
+	"		TASK_PLAY_SEQUENCE			ACTIVITY:ACT_CROUCH"
+	"		TASK_SET_ACTIVITY			ACTIVITY:ACT_CROUCHIDLE"
+	"		TASK_HOUND_FALL_ASLEEP		0"
+	"		TASK_WAIT_RANDOM			25"
+	"	    TASK_HOUND_CLOSE_EYE		0"
+	"	"
+	"	Interrupts"
+	"		COND_LIGHT_DAMAGE"
+	"		COND_HEAVY_DAMAGE"
+	"		COND_NEW_ENEMY"
+	"		COND_HEAR_COMBAT"
+	"		COND_HEAR_DANGER"
+	"		COND_HEAR_PLAYER"
+	"		COND_HEAR_WORLD"
+	)
+
+	//=========================================================
+	// > SCHED_HOUND_SLEEP_MOVE_RANDOM
+	//=========================================================
+	DEFINE_SCHEDULE
+	(
+	SCHED_HOUND_SLEEP_MOVE_RANDOM,
+
+	"	Tasks"
+	"		TASK_STOP_MOVING				0"
+	"		TASK_WANDER		480384" // 4 feet to 32 feet
 	"		TASK_WALK_PATH					0"
 	"		TASK_WAIT_FOR_MOVEMENT			0"
 	"		TASK_STOP_MOVING			0"

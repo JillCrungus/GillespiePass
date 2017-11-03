@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "6440"
-	"mapversion" "14"
+	"mapversion" "18"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -14,13 +14,13 @@ viewsettings
 	"bSnapToGrid" "1"
 	"bShowGrid" "1"
 	"bShowLogicalGrid" "0"
-	"nGridSpacing" "16"
+	"nGridSpacing" "4"
 	"bShow3DGrid" "0"
 }
 world
 {
 	"id" "1"
-	"mapversion" "14"
+	"mapversion" "18"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -1475,7 +1475,6 @@ entity
 {
 	"id" "123"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "2"
 	"origin" "128 128 16"
 	editor
@@ -1490,7 +1489,6 @@ entity
 {
 	"id" "125"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "3"
 	"origin" "128 -128 16"
 	editor
@@ -1505,7 +1503,6 @@ entity
 {
 	"id" "127"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "4"
 	"origin" "128 -384 16"
 	editor
@@ -1520,7 +1517,6 @@ entity
 {
 	"id" "129"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "5"
 	"origin" "384 384 16"
 	editor
@@ -1535,7 +1531,6 @@ entity
 {
 	"id" "131"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "6"
 	"origin" "384 128 16"
 	editor
@@ -1550,7 +1545,6 @@ entity
 {
 	"id" "133"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "7"
 	"origin" "384 -128 16"
 	editor
@@ -1565,7 +1559,6 @@ entity
 {
 	"id" "135"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "8"
 	"origin" "384 -384 16"
 	editor
@@ -1580,7 +1573,6 @@ entity
 {
 	"id" "137"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "9"
 	"origin" "640 384 16"
 	editor
@@ -1595,7 +1587,6 @@ entity
 {
 	"id" "139"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "10"
 	"origin" "640 128 16"
 	editor
@@ -1610,7 +1601,6 @@ entity
 {
 	"id" "141"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "11"
 	"origin" "640 -128 16"
 	editor
@@ -1625,7 +1615,6 @@ entity
 {
 	"id" "143"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "12"
 	"origin" "640 -384 16"
 	editor
@@ -1640,7 +1629,6 @@ entity
 {
 	"id" "145"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "13"
 	"origin" "896 384 16"
 	editor
@@ -1655,7 +1643,6 @@ entity
 {
 	"id" "147"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "14"
 	"origin" "896 128 16"
 	editor
@@ -1670,7 +1657,6 @@ entity
 {
 	"id" "149"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "15"
 	"origin" "896 -128 16"
 	editor
@@ -1685,7 +1671,6 @@ entity
 {
 	"id" "151"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "16"
 	"origin" "896 -384 16"
 	editor
@@ -1700,7 +1685,6 @@ entity
 {
 	"id" "153"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "17"
 	"origin" "-128 -128 16"
 	editor
@@ -1715,7 +1699,6 @@ entity
 {
 	"id" "155"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "18"
 	"origin" "-128 -384 16"
 	editor
@@ -1730,7 +1713,6 @@ entity
 {
 	"id" "157"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "19"
 	"origin" "-128 96 16"
 	editor
@@ -1745,7 +1727,6 @@ entity
 {
 	"id" "159"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "20"
 	"origin" "-128 0 16"
 	editor
@@ -1760,7 +1741,6 @@ entity
 {
 	"id" "163"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "21"
 	"origin" "-128 160 32"
 	editor
@@ -1775,7 +1755,6 @@ entity
 {
 	"id" "165"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "22"
 	"origin" "-128 224 64"
 	editor
@@ -1790,7 +1769,6 @@ entity
 {
 	"id" "167"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "23"
 	"origin" "-128 384 96"
 	editor
@@ -1805,7 +1783,6 @@ entity
 {
 	"id" "171"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "24"
 	"origin" "-64 464 96"
 	editor
@@ -1820,7 +1797,6 @@ entity
 {
 	"id" "173"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "25"
 	"origin" "-208 464 96"
 	editor
@@ -1835,7 +1811,6 @@ entity
 {
 	"id" "175"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "26"
 	"origin" "-208 304 96"
 	editor
@@ -1850,7 +1825,6 @@ entity
 {
 	"id" "177"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "27"
 	"origin" "-64 304 96"
 	editor
@@ -1865,7 +1839,6 @@ entity
 {
 	"id" "179"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "28"
 	"origin" "1216 304 96"
 	editor
@@ -1880,7 +1853,6 @@ entity
 {
 	"id" "181"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "29"
 	"origin" "1152 384 96"
 	editor
@@ -1895,7 +1867,6 @@ entity
 {
 	"id" "183"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "30"
 	"origin" "1216 464 96"
 	editor
@@ -1910,7 +1881,6 @@ entity
 {
 	"id" "185"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "31"
 	"origin" "1072 464 96"
 	editor
@@ -1925,7 +1895,6 @@ entity
 {
 	"id" "187"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "32"
 	"origin" "1072 304 96"
 	editor
@@ -1940,7 +1909,6 @@ entity
 {
 	"id" "189"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "33"
 	"origin" "1152 224 64"
 	editor
@@ -1955,7 +1923,6 @@ entity
 {
 	"id" "191"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "34"
 	"origin" "1152 160 32"
 	editor
@@ -1970,7 +1937,6 @@ entity
 {
 	"id" "193"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "35"
 	"origin" "1152 96 16"
 	editor
@@ -1985,7 +1951,6 @@ entity
 {
 	"id" "195"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "36"
 	"origin" "1152 0 16"
 	editor
@@ -2000,7 +1965,6 @@ entity
 {
 	"id" "197"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "37"
 	"origin" "1152 -128 16"
 	editor
@@ -2015,7 +1979,6 @@ entity
 {
 	"id" "199"
 	"classname" "info_node"
-	"angles" "0 0 0"
 	"nodeid" "38"
 	"origin" "1152 -384 16"
 	editor
@@ -2057,8 +2020,6 @@ entity
 	"disableshadows" "0"
 	"hintlimiting" "0"
 	"ignoreunseenenemies" "0"
-	"m_attackSuppressed" "1"
-	"m_attackSupressed" "1"
 	"model" "models/houndeye.mdl"
 	"physdamagescale" "1.0"
 	"renderamt" "255"
@@ -2089,8 +2050,6 @@ entity
 	"disableshadows" "0"
 	"hintlimiting" "0"
 	"ignoreunseenenemies" "0"
-	"m_attackSuppressed" "1"
-	"m_attackSupressed" "1"
 	"model" "models/houndeye.mdl"
 	"physdamagescale" "1.0"
 	"renderamt" "255"
@@ -2121,8 +2080,6 @@ entity
 	"disableshadows" "0"
 	"hintlimiting" "0"
 	"ignoreunseenenemies" "0"
-	"m_attackSuppressed" "1"
-	"m_attackSupressed" "1"
 	"model" "models/houndeye.mdl"
 	"physdamagescale" "1.0"
 	"renderamt" "255"
@@ -2153,8 +2110,6 @@ entity
 	"disableshadows" "0"
 	"hintlimiting" "0"
 	"ignoreunseenenemies" "0"
-	"m_attackSuppressed" "1"
-	"m_attackSupressed" "1"
 	"model" "models/houndeye.mdl"
 	"physdamagescale" "1.0"
 	"renderamt" "255"
@@ -2178,12 +2133,92 @@ entity
 }
 entity
 {
-	"id" "471"
-	"classname" "item_longjump"
-	"origin" "565.74 151.62 1"
+	"id" "526"
+	"classname" "info_node_hint"
+	"angles" "0 75 0"
+	"hinttype" "106"
+	"IgnoreFacing" "2"
+	"MaximumState" "3"
+	"MinimumState" "1"
+	"nodeFOV" "180"
+	"nodeid" "40"
+	"StartHintDisabled" "0"
+	"TargetNode" "-1"
+	"origin" "720 -380 5"
 	editor
 	{
-		"color" "220 30 220"
+		"color" "232 219 8"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "586"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"disableselfshadowing" "0"
+	"disableshadows" "0"
+	"disablevertexlighting" "0"
+	"fademaxdist" "0"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"ignorenormals" "0"
+	"maxdxlevel" "0"
+	"mindxlevel" "0"
+	"model" "models/props_junk/garbage256_composite002a.mdl"
+	"screenspacefade" "0"
+	"skin" "0"
+	"solid" "0"
+	"origin" "717.734 -384 4"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "622"
+	"classname" "info_node_hint"
+	"angles" "0 165 0"
+	"hinttype" "106"
+	"IgnoreFacing" "2"
+	"MaximumState" "3"
+	"MinimumState" "1"
+	"nodeFOV" "180"
+	"nodeid" "41"
+	"StartHintDisabled" "0"
+	"TargetNode" "-1"
+	"origin" "716 -292 5"
+	editor
+	{
+		"color" "232 219 8"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "626"
+	"classname" "info_node_hint"
+	"angles" "0 105 0"
+	"hinttype" "106"
+	"IgnoreFacing" "2"
+	"MaximumState" "3"
+	"MinimumState" "1"
+	"nodeFOV" "180"
+	"nodeid" "42"
+	"StartHintDisabled" "0"
+	"TargetNode" "-1"
+	"origin" "724 -460 5"
+	editor
+	{
+		"color" "232 219 8"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 		"logicalpos" "[0 0]"
