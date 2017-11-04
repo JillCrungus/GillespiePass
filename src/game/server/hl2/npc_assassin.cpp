@@ -15,6 +15,7 @@
 #include "ai_squad.h"
 #include "AI_SquadSlot.h"
 #include "ai_moveprobe.h"
+#include "ndebugoverlay.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -722,6 +723,12 @@ void CNPC_Assassin::StartTask( const Task_t *pTask )
 			}
 
 			pHint->GetPosition( this, &goalPos );
+
+			if (g_debug_assassin.GetInt() > 0)
+			{
+				NDebugOverlay::Box(goalPos, Vector(-5, -5, -5), Vector(5, 5, 5), 0, 255, 0, 255, 5.0f);
+			}
+			
 
 			AI_NavGoal_t goal( goalPos );
 			
