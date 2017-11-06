@@ -47,6 +47,7 @@
 #include "tier0/memdbgon.h"
 
 ConVar sk_combineguard_health( "sk_combineguard_health", "800" );
+ConVar g_cguard_patriarch("g_cguard_patriarch", "0");
 
 class CSprite;
 
@@ -130,6 +131,11 @@ private:
 	int	m_PitchControl;
 	int	m_MuzzleAttachment;
 
+	bool m_bDamaged;
+	int m_iDamageTimes;
+
+	bool m_bCloaked;
+
 	DEFINE_CUSTOM_AI;
 };
 
@@ -161,6 +167,7 @@ END_DATADESC()
 enum CombineGuardSchedules 
 {	
 	SCHED_CGUARD_RANGE_ATTACK1 = LAST_SHARED_SCHEDULE,
+	SCHED_CGUARD_STARTHEAL,
 
 };
 
@@ -168,11 +175,15 @@ enum CombineGuardTasks
 {	
 	TASK_CGUARD_RANGE_ATTACK1 = LAST_SHARED_TASK,
 	TASK_COMBINEGUARD_SET_BALANCE,
+	TASK_CGUARD_CLOAK,
+	TASK_CGUARD_UNCLOAK,
+	TASK_CGUARD_HEAL,
 };
 
 enum CombineGuardConditions
 {	
 	COND_COMBINEGUARD_CLOBBERED = LAST_SHARED_CONDITION,
+	COND_CGUARD_DAMAGED,
 };
 
 int	ACT_CGUARD_IDLE_TO_ANGRY;
@@ -207,6 +218,8 @@ void CNPC_CombineGuard::Precache( void )
 	PrecacheScriptSound( "NPC_CombineGuard.Fire" );
 	PrecacheScriptSound( "Cguard.Evil" );
 	PrecacheScriptSound( "NPC_CombineGuard.Charging" );
+	PrecacheScriptSound("NPC_CombineGuard.Announce");
+	PrecacheScriptSound("CGuard.EnemyLostShort");
 
 	BaseClass::Precache();
 }
@@ -347,11 +360,16 @@ int CNPC_CombineGuard::SelectSchedule ( void )
 				{
 								 // we can't see the enemy
 					if (!HasCondition(COND_ENEMY_OCCLUDED))
-					 {
+					{
+						
 						return SCHED_COMBAT_FACE;
 						}
 					 else
 						{
+						if (RandomInt(1, 4) >= 2 )
+						{
+							EmitSound("CGuard.EnemyLostShort");
+						}
 						return SCHED_CHASE_ENEMY;
 						}
 					}
@@ -377,7 +395,7 @@ int CNPC_CombineGuard::SelectSchedule ( void )
 		{
 			{
 
-				return SCHED_NONE; //We ain't got shit to do ¯\_(ツ)_/¯
+				return SCHED_IDLE_STAND; //We ain't got shit to do ¯\_(ツ)_/¯
 				//TODO: Put something here. What could he do when idle with no target?
 			}
 		}
@@ -516,6 +534,30 @@ void CNPC_CombineGuard::StartTask( const Task_t *pTask )
 		SetActivity( ACT_RANGE_ATTACK1 );
 		return;
 
+	case TASK_ANNOUNCE_ATTACK:
+	{
+		EmitSound("NPC_CombineGuard.Announce");
+		TaskComplete();
+		break;
+	}
+	return;
+
+	case TASK_CGUARD_CLOAK:
+	{
+		EmitSound("NPC_CombineGuard.Announce");
+		break;
+	}
+	case TASK_CGUARD_UNCLOAK:
+	{
+		EmitSound("NPC_CombineGuard.Announce");
+		break;
+	}
+	case TASK_CGUARD_HEAL:
+	{
+		EmitSound("NPC_CombineGuard.Announce");
+		break;
+	}
+
 	default:
 		BaseClass::StartTask( pTask );
 		break;
@@ -538,6 +580,65 @@ void CNPC_CombineGuard::RunTask( const Task_t *pTask )
 			}
 		}
 		return;
+
+	case TASK_CGUARD_CLOAK:
+	{
+		if (!m_bCloaked)
+		{
+			m_nRenderMode = kRenderTransTexture;
+			
+			int m_iTargetAlpha = 0;
+			if (GetRenderColor().a > m_iTargetAlpha)
+			{
+				SetRenderColorA(GetRenderColor().a - 5);
+				DevMsg("Cloak Amt: %i\n", GetRenderColor().a);
+			}
+			else
+			{
+				m_bCloaked = true;
+				TaskComplete();
+				break;
+			}
+		}
+	}
+	return;
+
+	case TASK_CGUARD_UNCLOAK:
+	{
+		if (m_bCloaked)
+		{
+			int m_iTargetAlpha = 255;
+			if (GetRenderColor().a < m_iTargetAlpha)
+			{
+				SetRenderColorA(GetRenderColor().a + 1);
+			}
+			else
+			{	
+				m_nRenderMode = kRenderNormal;
+				m_bCloaked = false;
+				m_iDamageTimes = 0;
+				m_bDamaged = false;
+				TaskComplete();
+				break;
+			}
+		}
+	}
+	return;
+
+	case TASK_CGUARD_HEAL:
+	{
+		int m_iTargetHealth = m_iMaxHealth;
+		if (m_iHealth < m_iTargetHealth)
+		{
+			SetHealth(m_iHealth++);
+		}
+		else
+		{
+			TaskComplete();
+			break;
+		}
+	}
+	return;
 	}
 
 	BaseClass::RunTask( pTask );
@@ -581,6 +682,22 @@ int CNPC_CombineGuard::OnTakeDamage_Alive( const CTakeDamageInfo &info )
 	{
 		newInfo.ScaleDamage( 5.0 );
 		DevMsg( "physics collision: 5X DAMAGE DONE TO CGUARD!\n" );
+		if (g_cguard_patriarch.GetInt() > 0) //For now this is locked behind a ConVar because it doesn't function properly.
+		{
+			m_iDamageTimes += 1;
+			if (m_iDamageTimes == 2)
+			{
+				m_bDamaged = true;
+			}
+			if (m_bDamaged)
+			{
+				SetSchedule(SCHED_CGUARD_STARTHEAL);
+			}
+		}
+	}
+	else
+	{
+		newInfo.ScaleDamage(0.0); //We can't be hurt with standard weaponry.
 	}
 
 	int nDamageTaken = BaseClass::OnTakeDamage_Alive( newInfo );
@@ -728,8 +845,12 @@ AI_BEGIN_CUSTOM_NPC( npc_combineguard, CNPC_CombineGuard )
 
 	DECLARE_TASK( TASK_CGUARD_RANGE_ATTACK1 )
 	DECLARE_TASK( TASK_COMBINEGUARD_SET_BALANCE )
+	DECLARE_TASK(TASK_CGUARD_CLOAK)
+	DECLARE_TASK(TASK_CGUARD_UNCLOAK)
+	DECLARE_TASK(TASK_CGUARD_HEAL)
 	
 	DECLARE_CONDITION( COND_COMBINEGUARD_CLOBBERED )
+	DECLARE_CONDITION( COND_CGUARD_DAMAGED )
 
 	DECLARE_ACTIVITY( ACT_CGUARD_IDLE_TO_ANGRY )
 	DECLARE_ACTIVITY( ACT_COMBINEGUARD_CLOBBERED )
@@ -751,6 +872,24 @@ AI_BEGIN_CUSTOM_NPC( npc_combineguard, CNPC_CombineGuard )
 		"		COND_NEW_ENEMY"
 		"		COND_ENEMY_DEAD"
 		"		COND_NO_PRIMARY_AMMO"
+		"		COND_CGUARD_DAMAGED"
+	)
+	DEFINE_SCHEDULE
+	(
+	SCHED_CGUARD_STARTHEAL,
+
+	"	Tasks"
+	"		TASK_STOP_MOVING			0"
+	"		TASK_CGUARD_CLOAK			0"
+	"		TASK_FIND_COVER_FROM_ENEMY		0"
+	"		TASK_RUN_PATH	0"
+	"		TASK_WAIT_FOR_MOVEMENT			0"
+	"		TASK_STOP_MOVING				0"
+	"		TASK_FACE_REASONABLE				0"
+	"		TASK_CGUARD_HEAL 0"
+	"		TASK_CGUARD_UNCLOAK		0"
+	"	"
+	"	Interrupts"
 	)
 
 AI_END_CUSTOM_NPC()

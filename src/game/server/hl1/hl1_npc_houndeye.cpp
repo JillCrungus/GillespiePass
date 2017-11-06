@@ -1415,6 +1415,7 @@ AI_BEGIN_CUSTOM_NPC( npc_houndeye, CNPC_Houndeye )
 	"		TASK_WALK_PATH					0"
 	"		TASK_WAIT_FOR_MOVEMENT			0"
 	"		TASK_STOP_MOVING				0"
+	"		TASK_FACE_REASONABLE			0" //Don't face a wall
 	"	Interrupts"
 	"	"
 	"		COND_LIGHT_DAMAGE"
