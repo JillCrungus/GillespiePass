@@ -52,3 +52,47 @@
 	"wave"			"weapons/irifle/irifle_fire2.wav"
 }
 
+"NPC_CombineGuard.Announce"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+
+	"rndwave"
+	{
+		"wave"	"npc/cguard/announce1.wav"
+		"wave"	"npc/cguard/announce2.wav"
+		"wave"	"npc/cguard/announce3.wav"
+
+	}
+}
+
+"Cguard.Evil"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+
+	"rndwave"
+	{
+		"wave"	"npc/cguard/player_dead1.wav"
+		"wave"	"npc/cguard/player_dead2.wav"
+		"wave"	"npc/cguard/player_dead3.wav"
+
+	}
+}
+
+"CGuard.EnemyLostShortl"
+{
+	"channel"		"CHAN_VOICE"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_GUNFIRE"
+
+	"rndwave"
+	{
+		"wave"	"npc/cguard/lost_short1.wav"
+		"wave"	"npc/cguard/lost_short2.wav"
+		"wave"	"npc/cguard/lost_short3.wav"
+
+	}
+}
