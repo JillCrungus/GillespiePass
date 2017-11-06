@@ -87,6 +87,23 @@ void CNPC_CombineS::Spawn( void )
 #endif
 }
 
+void CNPC_CombineShadow::Spawn(void)
+{
+	m_nRenderMode = kRenderTransTexture;
+	SetRenderColorA(0);
+
+	//if (GetWeapon(0))
+	//{
+	//	GetWeapon(0)->m_nRenderMode = kRenderTransTexture;
+	//	GetWeapon(0)->SetRenderColorA(0);
+	//}
+
+	BaseClass::Spawn();
+}
+
+LINK_ENTITY_TO_CLASS(npc_combine_shadow, CNPC_CombineShadow);
+
+
 //-----------------------------------------------------------------------------
 // Purpose:
 // Input  :
