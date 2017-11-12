@@ -37,7 +37,7 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
-#define INSIGNIA_MODEL "models/chefhat.mdl"
+#define INSIGNIA_MODEL "sprites/glow04_noz.vmt"
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -69,6 +69,9 @@ ConVar	npc_citizen_squad_marker( "npc_citizen_squad_marker", "0" );
 ConVar	npc_citizen_explosive_resist( "npc_citizen_explosive_resist", "0" );
 ConVar	npc_citizen_auto_player_squad( "npc_citizen_auto_player_squad", "1" );
 ConVar	npc_citizen_auto_player_squad_allow_use( "npc_citizen_auto_player_squad_allow_use", "0" );
+
+ConVar npc_citizen_insignia_height_offset("npc_citizen_insignia_height_offset", "80");
+ConVar g_debug_insignia("g_debug_insignia", "0");
 
 
 ConVar	npc_citizen_dont_precache_all( "npc_citizen_dont_precache_all", "0" );
@@ -335,6 +338,7 @@ BEGIN_DATADESC( CNPC_Citizen )
 	DEFINE_KEYFIELD(	m_bNotifyNavFailBlocked,	FIELD_BOOLEAN, "notifynavfailblocked" ),
 	DEFINE_KEYFIELD(	m_bNeverLeavePlayerSquad,	FIELD_BOOLEAN, "neverleaveplayersquad" ),
 	DEFINE_KEYFIELD(	m_iszDenyCommandConcept,	FIELD_STRING, "denycommandconcept" ),
+	DEFINE_FIELD(m_myInsignia, FIELD_EHANDLE),
 
 	DEFINE_OUTPUT(		m_OnJoinedPlayerSquad,	"OnJoinedPlayerSquad" ),
 	DEFINE_OUTPUT(		m_OnLeftPlayerSquad,	"OnLeftPlayerSquad" ),
@@ -1012,7 +1016,15 @@ void CNPC_Citizen::PrescheduleThink()
 	BaseClass::PrescheduleThink();
 
 	UpdatePlayerSquad();
+	UpdateInsignia();
 	UpdateFollowCommandPoint();
+
+
+	if (npc_citizen_insignia.GetBool() && g_debug_insignia.GetBool() && m_myInsignia)
+	{
+		NDebugOverlay::Box(m_myInsignia->GetAbsOrigin(), Vector(-2, -2, -2), Vector(2, 2, 2), 0, 255, 0, 255, 0.1f);
+		DevMsg("Current Insignia Z: %f", m_myInsignia->GetAbsOrigin().z);
+	}
 
 	if ( !npc_citizen_insignia.GetBool() && npc_citizen_squad_marker.GetBool() && IsInPlayerSquad() )
 	{
@@ -4190,13 +4202,62 @@ void CCitizenResponseSystem::ResponseThink()
 
 void CNPC_Citizen::AddInsignia()
 {
-	CBaseEntity *pMark = CreateEntityByName( "squadinsignia" );
-	pMark->SetOwnerEntity( this );
-	pMark->Spawn();
+	Vector markPos = GetAbsOrigin();
+	markPos.z = GetAbsOrigin().z + npc_citizen_insignia_height_offset.GetInt();
+	m_myInsignia = CSprite::SpriteCreate(INSIGNIA_MODEL, markPos, false);
+
+	m_myInsignia->SetParent(this, NULL);
+	m_myInsignia->SetTransparency(kRenderGlow, 255, 128, 0, 64, kRenderFxNoDissipation);
+	m_myInsignia->SetBrightness(255, 0.2f);
+	m_myInsignia->SetScale(0.55f, 0.2f);
+	m_myInsignia->SetColor(255, 255, 255); //Default: White
+}
+
+//Update our insignia...
+void CNPC_Citizen::UpdateInsignia()
+{
+	if (m_myInsignia)
+	{
+		if (GetAbsOrigin().z + npc_citizen_insignia_height_offset.GetInt() != m_myInsignia->GetAbsOrigin().z)
+		{
+			//The height offset changed! Update our insignia!
+			Vector newPos(GetAbsOrigin().x, GetAbsOrigin().y, GetAbsOrigin().z + npc_citizen_insignia_height_offset.GetInt());
+			m_myInsignia->SetAbsOrigin(newPos);
+		}
+
+		if (IsFollowingCommandPoint())
+		{
+			m_myInsignia->SetColor(230, 10, 10);
+		}
+		else
+		{
+			m_myInsignia->SetColor(10, 230, 10);
+		}
+	}
+
+	if (npc_citizen_insignia.GetBool() && !m_myInsignia && IsInPlayerSquad())
+	{
+		//Insignia is missing!
+		AddInsignia();
+	}
+
+	if (!npc_citizen_insignia.GetBool() && m_myInsignia)
+	{
+		//We have an insignia and we shouldn't!
+		RemoveInsignia();
+	}
+
+	if (!IsInPlayerSquad() && m_myInsignia)
+	{
+		//Non-squad members don't get an insignia. If we leave the squad we need to remove the insignia.
+		RemoveInsignia();
+	}
+	
 }
 
 void CNPC_Citizen::RemoveInsignia()
 {
+	/*
 	// This is crap right now.
 	CBaseEntity *FirstEnt();
 	CBaseEntity *pEntity = gEntList.FirstEnt();
@@ -4206,7 +4267,7 @@ void CNPC_Citizen::RemoveInsignia()
 		if( pEntity->GetOwnerEntity() == this )
 		{
 			// Is this my insignia?
-			CSquadInsignia *pInsignia = dynamic_cast<CSquadInsignia *>(pEntity);
+			CSprite *pInsignia = dynamic_cast<CSprite *>(pEntity);
 
 			if( pInsignia )
 			{
@@ -4216,6 +4277,17 @@ void CNPC_Citizen::RemoveInsignia()
 		}
 
 		pEntity = gEntList.NextEnt( pEntity );
+	}*/
+
+	if (m_myInsignia)
+	{
+		UTIL_Remove(m_myInsignia);
+		m_myInsignia = NULL; //If we don't do this, everything breaks.
+		return;
+	}
+	else
+	{
+		DevMsg("Warning: RemoveInsignia called but no insignia.\n");
 	}
 }
 
