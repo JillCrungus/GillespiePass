@@ -28,6 +28,11 @@
 				"font"		"WeaponIcons"
 				"character"	"+"
 		}
+		"item_longjump"	[$WIN32]
+		{
+				"font"		"WeaponIcons"
+				"character"	"*"
+		}
 		"crosshair"
 		{
 				"file"		"sprites/qi_center"

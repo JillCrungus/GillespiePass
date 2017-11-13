@@ -516,6 +516,7 @@ exit 1
     <ClInclude Include="idebugoverlaypanel.h" />
     <ClInclude Include="ifpspanel.h" />
     <ClInclude Include="..\..\game\shared\econ\ihasowner.h" />
+    <ClInclude Include="IGPOptionsPanel.h" />
     <ClInclude Include="ihudlcd.h" />
     <ClInclude Include="iinput.h" />
     <ClInclude Include="iloadingdisc.h" />
@@ -1285,6 +1286,7 @@ exit 1
     <ClCompile Include="vgui_debugoverlaypanel.cpp" />
     <ClCompile Include="vgui_fpspanel.cpp" />
     <ClCompile Include="vgui_game_viewport.cpp" />
+    <ClCompile Include="vgui_gp_options.cpp" />
     <ClCompile Include="vgui_grid.cpp" />
     <ClCompile Include="vgui_int.cpp" />
     <ClCompile Include="vgui_loadingdiscpanel.cpp" />
