@@ -1,0 +1,10 @@
+//Player
+
+"GPPlayer.Hotswap"
+{
+	"channel"	"CHAN_AUTO"
+	"volume"	"0.8"
+	"soundlevel"  "SNDLVL_60dB"
+
+	"wave"	"player/hotswap_temp.wav"
+}

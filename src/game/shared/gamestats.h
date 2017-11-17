@@ -270,8 +270,8 @@ public:
 #ifdef GAME_DLL
 	BasicGameStats_t m_BasicStats; //exposed in case you do a complete overhaul and still want to save it
 #endif
-	bool			m_bLogging : 1;
-	bool			m_bLoggingToFile : 1;
+	bool			m_bLogging = true;
+	bool			m_bLoggingToFile = true;
 };
 
 #ifdef GAME_DLL

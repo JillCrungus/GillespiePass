@@ -338,6 +338,7 @@ $Project "Server (Episodic)"
 				$File "hl1\hl1_npc_snark.h"
 			}
 
+			
 
 			$Folder	"unused"
 			{

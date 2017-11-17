@@ -29,6 +29,10 @@
 
 ConVar	pistol_use_new_accuracy( "pistol_use_new_accuracy", "1" );
 
+ConVar  pistol_hotswap("pistol_hotswap", "0", NULL, "Enable pistol hotswap test");
+ConVar  pistol_hotswap_range("pistol_hotswap_range", "1024", NULL, "Pistol hotswap range (forward * this value)");
+ConVar  pistol_hotswap_cooldown("pistol_hotswap_cooldown", "1.5f", NULL, "Cooldown for the pistol hotswap");
+
 //-----------------------------------------------------------------------------
 // CWeaponPistol
 //-----------------------------------------------------------------------------
@@ -173,6 +177,7 @@ CWeaponPistol::CWeaponPistol( void )
 void CWeaponPistol::Precache( void )
 {
 	BaseClass::Precache();
+
 }
 
 //-----------------------------------------------------------------------------
@@ -260,41 +265,81 @@ void CWeaponPistol::PrimaryAttack( void )
 
 void CWeaponPistol::SecondaryAttack(void)
 {
-	Vector forward;
-	trace_t	tr;
-
-	AngleVectors(GetAbsAngles(), &forward);
-
-	UTIL_TraceLine(GetAbsOrigin(), GetAbsOrigin() + forward * 128,
-		MASK_VISIBLE_AND_NPCS, this->GetOwner(), COLLISION_GROUP_NONE, &tr);
-
-	if (tr.DidHitNonWorldEntity())
+	if (pistol_hotswap.GetBool())
 	{
-		Msg("1");
-		if (tr.m_pEnt)
+
+		Vector forward;
+		trace_t	tr;
+
+
+
+		AngleVectors(GetAbsAngles(), &forward);
+
+
+		CBasePlayer *pPlayer = ToBasePlayer(GetOwner());
+		if (NULL != pPlayer)
 		{
-			Msg("2");
-			if (tr.m_pEnt->IsNPC())
+
+			UTIL_TraceLine(pPlayer->Weapon_ShootPosition(), pPlayer->Weapon_ShootPosition() + forward * pistol_hotswap_range.GetFloat(),
+				MASK_VISIBLE_AND_NPCS, pPlayer, COLLISION_GROUP_NPC, &tr);
+
+			//NDebugOverlay::DrawTickMarkedLine(pPlayer->Weapon_ShootPosition(), pPlayer->Weapon_ShootPosition() + forward * 128, 0.5f, 0.5f, 255, 0, 0, true, 5.0f);
+
+
+
+
+
+
+			SendWeaponAnim(ACT_VM_PRIMARYATTACK);
+			m_flNextSecondaryAttack = gpGlobals->curtime + pistol_hotswap_cooldown.GetFloat();
+			CBasePlayer *pOwner = ToBasePlayer(GetOwner());
+			if (pOwner)
 			{
-				Msg("3");
-				//if (tr.m_pEnt->GetClassname() == "npc_combine_s")
-				//{
-					CBaseEntity them = tr.m_pEnt;
-					Vector myPos = this->GetOwner()->GetAbsOrigin();
-					QAngle myAngles = this->GetOwner()->GetAbsAngles();
-
-					Vector theirPos = tr.m_pEnt->GetAbsOrigin();
-					QAngle theirAngles = tr.m_pEnt->GetAbsAngles();
-
-					this->GetOwner()->SetAbsAngles(theirAngles);
-					this->GetOwner()->SetAbsOrigin(theirPos);
-
-					them.SetAbsAngles(myAngles);
-					them.SetAbsOrigin(myPos);
-
-
-				//}
+				m_iSecondaryAttacks++;
+				gamestats->Event_WeaponFired(pOwner, false, GetClassname());
 			}
+
+			//Msg("Pistol secondary fire");
+
+			if (tr.DidHitNonWorldEntity())
+			{
+				Msg("1");
+				if (tr.m_pEnt)
+				{
+					Msg("2");
+					if (tr.m_pEnt->IsNPC())
+					{
+						Msg("3");
+						//if (tr.m_pEnt->GetClassname() == "npc_combine_s")
+						//{
+						CBaseEntity* them = tr.m_pEnt;
+						Vector myPos = this->GetOwner()->GetAbsOrigin();
+
+
+						QAngle myAngles(tr.m_pEnt->GetAbsAngles().x, tr.m_pEnt->GetAbsAngles().y, GetOwner()->GetAbsAngles().z);
+
+						Vector theirPos(tr.m_pEnt->GetAbsOrigin().x, tr.m_pEnt->GetAbsOrigin().y, tr.m_pEnt->GetAbsOrigin().z + 5.0);
+						QAngle theirAngles = tr.m_pEnt->GetAbsAngles();
+
+						this->GetOwner()->SetAbsAngles(theirAngles);
+						this->GetOwner()->SetAbsOrigin(theirPos);
+
+						them->SetAbsAngles(myAngles);
+						them->SetAbsOrigin(myPos);
+
+						CPASAttenuationFilter filter(pPlayer);
+
+						EmitSound(filter, entindex(), "GPPlayer.Hotswap");
+
+
+
+
+							//}
+					}
+				}
+			}
+		
+
 		}
 	}
 }
