@@ -285,6 +285,8 @@ public:
 	CSoundPatch *m_sndLeeches;
 	CSoundPatch *m_sndWaterSplashes;
 
+
+
 protected:
 	virtual void		PreThink( void );
 	virtual	void		PostThink( void );
@@ -306,6 +308,8 @@ private:
 	CNetworkVarEmbedded( CHL2PlayerLocalData, m_HL2Local );
 
 	float				m_flTimeAllSuitDevicesOff;
+
+	
 
 	bool				m_bSprintEnabled;		// Used to disable sprint temporarily
 	bool				m_bIsAutoSprinting;		// A proxy for holding down the sprint key.
@@ -350,6 +354,8 @@ private:
 	
 	float				m_flArmorReductionTime;
 	int					m_iArmorReductionFrom;
+
+	
 
 	float				m_flTimeUseSuspended;
 

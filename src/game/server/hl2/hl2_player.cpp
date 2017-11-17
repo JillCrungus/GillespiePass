@@ -61,6 +61,12 @@
 extern ConVar weapon_showproficiency;
 extern ConVar autoaim_max_dist;
 
+ConVar  hotswap("hotswap_enabled", "1", NULL, "Enable pistol hotswap test");
+ConVar  hotswap_range("hotswap_range", "1024", NULL, "Pistol hotswap range (forward * this value)");
+ConVar  hotswap_cooldown("hotswap_cooldown", "1.5f", NULL, "Cooldown for the pistol hotswap");
+
+float				m_flNextHotswap = 0.0f;
+
 // Do not touch with without seeing me, please! (sjb)
 // For consistency's sake, enemy gunfire is traced against a scaled down
 // version of the player's hull, not the hitboxes for the player's model
@@ -240,8 +246,87 @@ void CC_ToggleZoom( void )
 
 static ConCommand toggle_zoom("toggle_zoom", CC_ToggleZoom, "Toggles zoom display" );
 
+void CC_GP_Hotswap(void)
+{
+	if (hotswap.GetBool())
+	{
+		if (m_flNextHotswap < gpGlobals->curtime)
+		{
+			CBasePlayer* pPlayerThing = UTIL_GetCommandClient();
+
+
+			if (pPlayerThing)
+			{
+				CHL2_Player *pPlayer = dynamic_cast<CHL2_Player*>(pPlayerThing);
+
+				Vector forward;
+				trace_t	tr;
+
+
+
+				AngleVectors(pPlayer->GetAbsAngles(), &forward);
+
+				if (NULL != pPlayer)
+				{
+
+					UTIL_TraceLine(pPlayer->Weapon_ShootPosition(), pPlayer->Weapon_ShootPosition() + forward * hotswap_range.GetFloat(),
+						MASK_VISIBLE_AND_NPCS, pPlayer, COLLISION_GROUP_NPC, &tr);
+
+					//NDebugOverlay::DrawTickMarkedLine(pPlayer->Weapon_ShootPosition(), pPlayer->Weapon_ShootPosition() + forward * 128, 0.5f, 0.5f, 255, 0, 0, true, 5.0f);
+
+
+
+					//Msg("Pistol secondary fire");
+
+					if (tr.DidHitNonWorldEntity())
+					{
+
+						if (tr.m_pEnt)
+						{
+
+							if (tr.m_pEnt->IsNPC())
+							{
+
+								//if (tr.m_pEnt->GetClassname() == "npc_combine_s")
+								//{
+								CBaseEntity* them = tr.m_pEnt;
+
+								//Oh boy, had to redo ALL of this code because I found out the teleport function exists.
+
+								const Vector* myPos = new Vector(pPlayer->GetAbsOrigin());
+								const QAngle* myAngles = new QAngle(tr.m_pEnt->GetAbsAngles().x, tr.m_pEnt->GetAbsAngles().y, pPlayer->GetAbsAngles().z);
+
+								const Vector* theirPos = new Vector(tr.m_pEnt->GetAbsOrigin().x, tr.m_pEnt->GetAbsOrigin().y, tr.m_pEnt->GetAbsOrigin().z + 5.0);
+								const QAngle* theirAngles = new QAngle(tr.m_pEnt->GetAbsAngles());
+
+								//pPlayer->SetAbsAngles(theirAngles);
+								pPlayer->Teleport(theirPos, theirAngles, NULL);
+
+								them->Teleport(myPos, myAngles, NULL);
+
+								CPASAttenuationFilter filter(pPlayer);
+
+								pPlayer->EmitSound(filter, pPlayer->entindex(), "GPPlayer.Hotswap");
+
+								m_flNextHotswap = gpGlobals->curtime + 1.5f;
+
+
+								//}
+							}
+						}
+					}
+
+
+				}
+			}
+		}
+	}
+}
+
+static ConCommand gp_hotswap("gp_hotswap", CC_GP_Hotswap, "Hotswap.");
+
 // ConVar cl_forwardspeed( "cl_forwardspeed", "400", FCVAR_CHEAT ); // Links us to the client's version
-ConVar xc_crouch_range( "xc_crouch_range", "0.85", FCVAR_ARCHIVE, "Percentarge [1..0] of joystick range to allow ducking within" );	// Only 1/2 of the range is used
+ConVar xc_crouch_range( "xc_crouch_range", "0.85", FCVAR_ARCHIVE, "Percentage [1..0] of joystick range to allow ducking within" );	// Only 1/2 of the range is used
 ConVar xc_use_crouch_limiter( "xc_use_crouch_limiter", "0", FCVAR_ARCHIVE, "Use the crouch limiting logic on the controller" );
 
 //------------------------------------------------------------------------------

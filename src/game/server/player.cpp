@@ -6114,6 +6114,8 @@ void CC_CH_CreateAirboat( void )
 static ConCommand ch_createairboat( "ch_createairboat", CC_CH_CreateAirboat, "Spawn airboat in front of the player.", FCVAR_CHEAT );
 
 
+
+
 //=========================================================
 //=========================================================
 void CBasePlayer::CheatImpulseCommands( int iImpulse )
