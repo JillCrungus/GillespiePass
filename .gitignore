@@ -32,7 +32,6 @@ marpsrc/**/*.bsp
 #Source stuff
 *config.cfg
 *.ain
-*lst
 *.cache
 *.tmp
 *server_blacklist.txt
