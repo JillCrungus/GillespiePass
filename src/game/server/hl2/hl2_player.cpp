@@ -408,6 +408,8 @@ BEGIN_DATADESC( CHL2_Player )
 	DEFINE_FIELD( m_fIsSprinting, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_fIsWalking, FIELD_BOOLEAN ),
 
+
+
 	/*
 	// These are initialized every time the player calls Activate()
 	DEFINE_FIELD( m_bIsAutoSprinting, FIELD_BOOLEAN ),
@@ -2565,6 +2567,8 @@ void CHL2_Player::Event_KilledOther( CBaseEntity *pVictim, const CTakeDamageInfo
 void CHL2_Player::Event_Killed( const CTakeDamageInfo &info )
 {
 	BaseClass::Event_Killed( info );
+
+	m_flNextHotswap = 0.0f;
 
 	FirePlayerProxyOutput( "PlayerDied", variant_t(), this, this );
 	NotifyScriptsOfDeath();
