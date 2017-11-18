@@ -1,0 +1,119 @@
+versioninfo
+{
+	"editorversion" "400"
+	"editorbuild" "2627"
+	"mapversion" "9"
+	"prefab" "0"
+}
+viewsettings
+{
+	"bSnapToGrid" "1"
+	"bShowGrid" "1"
+	"nGridSpacing" "64"
+	"bShow3DGrid" "0"
+}
+world
+{
+	"id" "0"
+	"mapversion" "9"
+	"classname" "worldspawn"
+	"skyname" "sky_wasteland02"
+}
+entity
+{
+	"id" "137"
+	"classname" "logic_relay"
+	"targetname" "logic_fleeing_citizen_&i_start"
+	connections
+	{
+		"OnTrigger" "template_fleeing_citizen_&i_spawn,Spawn,,0,-1"
+	}
+	"origin" "0 0 143"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "139"
+	"classname" "aiscripted_schedule"
+	"schedule" "2"
+	"targetname" "script_fleeing_citizen_&i"
+	"m_iszEntity" "fleeing_citizen_&i"
+	"interruptability" "2"
+	"goalent" "target_fleeing_citizen_&i"
+	"origin" "0 0 111"
+	editor
+	{
+		"color" "255 0 255"
+	}
+}
+entity
+{
+	"id" "142"
+	"classname" "npc_template_maker"
+	"StartDisabled" "1"
+	"angles" "0 0 0"
+	"MaxNPCCount" "1"
+	"SpawnFrequency" "5"
+	"MaxLiveChildren" "5"
+	"Radius" "0"
+	"targetname" "template_fleeing_citizen_&i_spawn"
+	"TemplateName" "fleeing_citizen_&i"
+	connections
+	{
+		"OnSpawnNPC" "script_fleeing_citizen_&i,StartSchedule,,0,-1"
+	}
+	"origin" "0 64 8.00003"
+	editor
+	{
+		"color" "0 0 255"
+	}
+}
+entity
+{
+	"id" "144"
+	"classname" "npc_citizen"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "264320"
+	"physdamagescale" "1.0"
+	"ammosupply" "SMG1"
+	"ammoamount" "1"
+	"model" "models/humans/male_01.mdl"
+	"targetname" "fleeing_citizen_&i"
+	"origin" "0 0 0"
+	editor
+	{
+		"color" "0 200 200"
+	}
+}
+entity
+{
+	"id" "146"
+	"classname" "info_target"
+	"angles" "0 0 0"
+	"targetname" "target_fleeing_citizen_&i"
+	"origin" "64 64 8.00003"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+cameras
+{
+	"activecamera" "0"
+	camera
+	{
+		"position" "[116.02 -129.761 129.281]"
+		"look" "[109.365 6.28606 74.8113]"
+	}
+}
+cordon
+{
+	"mins" "(99999 99999 99999)"
+	"maxs" "(-99999 -99999 -99999)"
+	"active" "0"
+}

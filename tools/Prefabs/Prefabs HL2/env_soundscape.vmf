@@ -1,0 +1,102 @@
+versioninfo
+{
+	"editorversion" "400"
+	"editorbuild" "2686"
+	"mapversion" "7"
+	"formatversion" "100"
+	"prefab" "0"
+}
+viewsettings
+{
+	"bSnapToGrid" "1"
+	"bShowGrid" "1"
+	"nGridSpacing" "8"
+	"bShow3DGrid" "0"
+}
+world
+{
+	"id" "0"
+	"mapversion" "7"
+	"classname" "worldspawn"
+	"skyname" "sky_wasteland02"
+}
+entity
+{
+	"id" "1"
+	"classname" "env_soundscape"
+	"radius" "128"
+	"soundscape" "Nothing"
+	"position0" "soundscape&i_target0"
+	"position1" "soundscape&i_target1"
+	"position2" "soundscape&i_target2"
+	"position3" "soundscape&i_target3"
+	"targetname" "soundscape&i"
+	"origin" "0 0 8"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "4"
+	"classname" "info_target"
+	"angles" "0 0 0"
+	"targetname" "soundscape&i_target1"
+	"origin" "32 32 8"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "19"
+	"classname" "info_target"
+	"angles" "0 0 0"
+	"targetname" "soundscape&i_target2"
+	"origin" "-32 -32 8"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "25"
+	"classname" "info_target"
+	"angles" "0 0 0"
+	"targetname" "soundscape&i_target3"
+	"origin" "32 -32 8"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "33"
+	"classname" "info_target"
+	"angles" "0 0 0"
+	"targetname" "soundscape&i_target0"
+	"origin" "-32 32 8"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+cameras
+{
+	"activecamera" "-1"
+}
+cordon
+{
+	"mins" "(99999 99999 99999)"
+	"maxs" "(-99999 -99999 -99999)"
+	"active" "0"
+}

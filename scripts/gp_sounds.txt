@@ -8,3 +8,15 @@
 
 	"wave"	"player/hotswap_temp.wav"
 }
+
+
+
+//Level
+"GP.AirexGenerator"
+{
+	"channel"	"CHAN_AUTO"
+	"volume"	"0.8"
+	"soundlevel"  "SNDLVL_60dB"
+
+	"wave"	"ambient/machines/machine3.wav"
+}

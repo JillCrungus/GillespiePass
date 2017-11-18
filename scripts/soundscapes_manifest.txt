@@ -23,4 +23,8 @@ soundscapes_manifest
 	"file"		"scripts/soundscapes_outland.txt"	
 	"file"		"scripts/soundscapes_outland2.txt"
 
+
+	//gp
+	"file"		"scripts/soundscapes_gp.txt"
+
 }

@@ -1,0 +1,305 @@
+versioninfo
+{
+	"editorversion" "400"
+	"editorbuild" "2717"
+	"mapversion" "32"
+	"formatversion" "100"
+	"prefab" "0"
+}
+viewsettings
+{
+	"bSnapToGrid" "1"
+	"bShowGrid" "1"
+	"nGridSpacing" "4"
+	"bShow3DGrid" "0"
+}
+world
+{
+	"id" "24491"
+	"mapversion" "32"
+	"classname" "worldspawn"
+	"skyname" "sky_wasteland02"
+	"maxpropscreenwidth" "-1"
+}
+entity
+{
+	"id" "1"
+	"classname" "npc_metropolice"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "4391428"
+	"physdamagescale" "1.0"
+	"additionalequipment" "weapon_smg1"
+	"targetname" "metrocop_assault&i_metrocop1"
+	"squadname" "metrocop_assault&i_squad"
+	"waitingtorappel" "No"
+	"manhacks" "0"
+	"weapondrawn" "1"
+	"origin" "-32 -55 0"
+	editor
+	{
+		"color" "0 200 200"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "3"
+	"classname" "point_template"
+	"targetname" "metrocop_assault&i_maker"
+	"Template01" "metrocop_assault&i_metrocop1"
+	"Template02" "metrocop_assault&i_metrocop2"
+	"Template03" "metrocop_assault&i_metrocop3"
+	"spawnflags" "0"
+	"Template04" "metrocop_assault&i_metrocop4"
+	"origin" "-64 1 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "5"
+	"classname" "npc_metropolice"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "4391428"
+	"physdamagescale" "1.0"
+	"additionalequipment" "weapon_smg1"
+	"targetname" "metrocop_assault&i_metrocop3"
+	"squadname" "metrocop_assault&i_squad"
+	"waitingtorappel" "No"
+	"manhacks" "0"
+	"weapondrawn" "1"
+	"origin" "-32 21 0"
+	editor
+	{
+		"color" "0 200 200"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "7"
+	"classname" "assault_rallypoint"
+	"angles" "0 0 0"
+	"targetname" "metrocop_assault&i_rally3"
+	"assaultdelay" "0"
+	"priority" "1"
+	"assaultpoint" "metrocop_assault&i_assault3"
+	"origin" "44 17 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "10"
+	"classname" "npc_metropolice"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "4391428"
+	"physdamagescale" "1.0"
+	"additionalequipment" "weapon_smg1"
+	"targetname" "metrocop_assault&i_metrocop2"
+	"squadname" "metrocop_assault&i_squad"
+	"waitingtorappel" "No"
+	"manhacks" "0"
+	"weapondrawn" "1"
+	"origin" "-32 -19 0"
+	editor
+	{
+		"color" "0 200 200"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "12"
+	"classname" "ai_goal_assault"
+	"StartActive" "0"
+	"AssaultCue" "1"
+	"actor" "metrocop_assault&i_metrocop*"
+	"rallypoint" "metrocop_assault&i_rally*"
+	"targetname" "metrocop_assault&i_assault"
+	"origin" "4 -12 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "14"
+	"classname" "assault_rallypoint"
+	"angles" "0 0 0"
+	"targetname" "metrocop_assault&i_rally1"
+	"assaultdelay" "0"
+	"priority" "1"
+	"assaultpoint" "metrocop_assault&i_assault1"
+	"origin" "44 -47 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "17"
+	"classname" "assault_rallypoint"
+	"angles" "0 0 0"
+	"targetname" "metrocop_assault&i_rally2"
+	"assaultdelay" "0"
+	"priority" "1"
+	"assaultpoint" "metrocop_assault&i_assault2"
+	"origin" "44 -15 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "20"
+	"classname" "logic_relay"
+	"targetname" "metrocop_assault&i_relay"
+	"spawnflags" "0"
+	connections
+	{
+		"OnTrigger" "metrocop_assault&i_assault,BeginAssault,,0.11,-1"
+		"OnTrigger" "metrocop_assault&i_maker,ForceSpawn,,0,-1"
+		"OnTrigger" "metrocop_assault&i_assault,Activate,,0.1,-1"
+	}
+	"origin" "4 12 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "22"
+	"classname" "assault_assaultpoint"
+	"angles" "0 0 0"
+	"targetname" "metrocop_assault&i_assault2"
+	"assaulttimeout" "3.0"
+	"clearoncontact" "1"
+	"allowdiversion" "1"
+	"nevertimeout" "1"
+	"origin" "140 -15 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "25"
+	"classname" "assault_assaultpoint"
+	"angles" "0 0 0"
+	"targetname" "metrocop_assault&i_assault1"
+	"assaulttimeout" "3.0"
+	"clearoncontact" "1"
+	"allowdiversion" "1"
+	"nevertimeout" "1"
+	"origin" "140 -47 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "28"
+	"classname" "assault_assaultpoint"
+	"angles" "0 0 0"
+	"targetname" "metrocop_assault&i_assault3"
+	"assaulttimeout" "3.0"
+	"clearoncontact" "1"
+	"allowdiversion" "1"
+	"nevertimeout" "1"
+	"origin" "140 17 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "43"
+	"classname" "npc_metropolice"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "4391428"
+	"physdamagescale" "1.0"
+	"additionalequipment" "weapon_smg1"
+	"targetname" "metrocop_assault&i_metrocop4"
+	"squadname" "metrocop_assault&i_squad"
+	"waitingtorappel" "No"
+	"manhacks" "0"
+	"weapondrawn" "1"
+	"origin" "-32 57 0"
+	editor
+	{
+		"color" "0 200 200"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "129"
+	"classname" "assault_rallypoint"
+	"angles" "0 0 0"
+	"targetname" "metrocop_assault&i_rally4"
+	"assaultdelay" "0"
+	"priority" "1"
+	"assaultpoint" "metrocop_assault&i_assault4"
+	"origin" "44 49 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "132"
+	"classname" "assault_assaultpoint"
+	"angles" "0 0 0"
+	"targetname" "metrocop_assault&i_assault4"
+	"assaulttimeout" "3.0"
+	"clearoncontact" "1"
+	"allowdiversion" "1"
+	"nevertimeout" "1"
+	"origin" "140 49 16"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+	}
+}
+cameras
+{
+	"activecamera" "-1"
+}
+cordon
+{
+	"mins" "(99999 99999 99999)"
+	"maxs" "(-99999 -99999 -99999)"
+	"active" "0"
+}

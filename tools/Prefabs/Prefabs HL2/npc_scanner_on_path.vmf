@@ -1,0 +1,127 @@
+versioninfo
+{
+	"editorversion" "400"
+	"editorbuild" "2513"
+	"mapversion" "8"
+	"prefab" "0"
+}
+viewsettings
+{
+	"bSnapToGrid" "1"
+	"bShowGrid" "1"
+	"nGridSpacing" "8"
+	"bShow3DGrid" "0"
+}
+world
+{
+	"id" "0"
+	"mapversion" "8"
+	"classname" "worldspawn"
+	"skyname" "sky_wasteland02"
+}
+entity
+{
+	"id" "1"
+	"classname" "npc_cscanner"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "2176"
+	"physdamagescale" "1.0"
+	"spotlightlength" "500"
+	"spotlightwidth" "50"
+	"targetname" "pathscanner_&i_scanner"
+	"target" "pathscanner_&i_path_1"
+	"origin" "8 -2.32595 56"
+	editor
+	{
+		"color" "0 200 200"
+	}
+}
+entity
+{
+	"id" "19"
+	"classname" "path_corner"
+	"angles" "0 0 0"
+	"targetname" "pathscanner_&i_path_1"
+	"target" "pathscanner_&i_path_2"
+	"origin" "88 0 24"
+	editor
+	{
+		"color" "247 181 82"
+	}
+}
+entity
+{
+	"id" "39"
+	"classname" "path_corner"
+	"angles" "0 0 0"
+	"targetname" "pathscanner_&i_path_2"
+	"target" "pathscanner_&i_path_3"
+	"origin" "168 0 24"
+	editor
+	{
+		"color" "247 181 82"
+	}
+}
+entity
+{
+	"id" "48"
+	"classname" "path_corner"
+	"angles" "0 0 0"
+	"targetname" "pathscanner_&i_path_3"
+	"origin" "232 0 24"
+	editor
+	{
+		"color" "247 181 82"
+	}
+}
+entity
+{
+	"id" "68"
+	"classname" "npc_template_maker"
+	"StartDisabled" "1"
+	"angles" "0 0 0"
+	"MaxNPCCount" "1"
+	"SpawnFrequency" "0"
+	"MaxLiveChildren" "1"
+	"Radius" "0"
+	"targetname" "pathscanner_&i_maker"
+	"TemplateName" "pathscanner_&i_scanner"
+	"spawnflags" "48"
+	connections
+	{
+		"OnSpawnNPC" "pathscanner_&i_sched,StartSchedule,,0.1,-1"
+	}
+	"origin" "0 0 24"
+	editor
+	{
+		"color" "0 0 255"
+	}
+}
+entity
+{
+	"id" "100"
+	"classname" "aiscripted_schedule"
+	"schedule" "5"
+	"targetname" "pathscanner_&i_sched"
+	"m_iszEntity" "pathscanner_&i_scanner"
+	"interruptability" "2"
+	"goalent" "pathscanner_&i_path_1"
+	"spawnflags" "4"
+	"origin" "48 0 24"
+	editor
+	{
+		"color" "255 0 255"
+	}
+}
+cameras
+{
+	"activecamera" "-1"
+}
+cordon
+{
+	"mins" "(99999 99999 99999)"
+	"maxs" "(-99999 -99999 -99999)"
+	"active" "0"
+}

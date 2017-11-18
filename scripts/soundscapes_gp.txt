@@ -1,0 +1,35 @@
+"e3_bugbait.start"
+{
+	"dsp"	"18"
+
+	"playlooping"
+	{
+		"volume"	"0.4"
+		"wave"		"ambient/areas/air_exchange/underground.wav"
+		"pitch"		"100"
+		"attenuation"	"0"
+	}
+
+	"playlooping"
+	{
+		"volume"	"0.3"
+		"wave"		"ambient/drip_loop1.wav"
+		"pitch"		"115"
+		"attenuation"	"0"
+	}
+
+	"playrandom"
+	{
+		"time"		"3, 10"
+		"volume"	"0.3,0.5"
+		"pitch"		"95,105"
+
+		"rndwave"
+		{
+			"wave"	"ambient/areas/d2_depot/metal_rattle1.wav"
+			"wave"	"ambient/areas/d2_depot/metal_rattle2.wav"
+			"wave"	"ambient/areas/d2_depot/metal_rattle3.wav"
+		}
+		
+	}
+}

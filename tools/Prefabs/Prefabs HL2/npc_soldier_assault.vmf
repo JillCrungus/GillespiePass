@@ -1,0 +1,280 @@
+versioninfo
+{
+	"editorversion" "400"
+	"editorbuild" "2661"
+	"mapversion" "30"
+	"prefab" "0"
+}
+viewsettings
+{
+	"bSnapToGrid" "1"
+	"bShowGrid" "1"
+	"nGridSpacing" "16"
+	"bShow3DGrid" "0"
+}
+world
+{
+	"id" "24491"
+	"mapversion" "30"
+	"classname" "worldspawn"
+	"skyname" "sky_wasteland02"
+}
+entity
+{
+	"id" "1"
+	"classname" "npc_combine_s"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "516"
+	"physdamagescale" "1.0"
+	"additionalequipment" "weapon_ar2"
+	"NumGrenades" "5"
+	"targetname" "soldier_assault&i_soldier1"
+	"squadname" "soldier_assault&i_squad"
+	"origin" "-32 -47 0"
+	editor
+	{
+		"color" "0 200 200"
+	}
+}
+entity
+{
+	"id" "3"
+	"classname" "point_template"
+	"targetname" "soldier_assault&i_maker"
+	"Template01" "soldier_assault&i_soldier1"
+	"Template02" "soldier_assault&i_soldier2"
+	"Template03" "soldier_assault&i_soldier3"
+	"spawnflags" "0"
+	"Template04" "soldier_assault&i_soldier4"
+	"origin" "-64 1 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "5"
+	"classname" "npc_combine_s"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "516"
+	"physdamagescale" "1.0"
+	"additionalequipment" "weapon_ar2"
+	"NumGrenades" "5"
+	"targetname" "soldier_assault&i_soldier3"
+	"squadname" "soldier_assault&i_squad"
+	"origin" "-32 17 0"
+	editor
+	{
+		"color" "0 200 200"
+	}
+}
+entity
+{
+	"id" "7"
+	"classname" "assault_rallypoint"
+	"angles" "0 0 0"
+	"targetname" "soldier_assault&i_rally3"
+	"assaultdelay" "0"
+	"priority" "1"
+	"assaultpoint" "soldier_assault&i_assault3"
+	"origin" "44 17 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "10"
+	"classname" "npc_combine_s"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "516"
+	"physdamagescale" "1.0"
+	"additionalequipment" "weapon_ar2"
+	"NumGrenades" "5"
+	"targetname" "soldier_assault&i_soldier2"
+	"squadname" "soldier_assault&i_squad"
+	"origin" "-32 -15 0"
+	editor
+	{
+		"color" "0 200 200"
+	}
+}
+entity
+{
+	"id" "12"
+	"classname" "ai_goal_assault"
+	"StartActive" "0"
+	"AssaultCue" "1"
+	"actor" "soldier_assault&i_soldier*"
+	"rallypoint" "soldier_assault&i_rally*"
+	"targetname" "soldier_assault&i_assault"
+	"origin" "4 -12 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "14"
+	"classname" "assault_rallypoint"
+	"angles" "0 0 0"
+	"targetname" "soldier_assault&i_rally1"
+	"assaultdelay" "0"
+	"priority" "1"
+	"assaultpoint" "soldier_assault&i_assault1"
+	"origin" "44 -47 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "17"
+	"classname" "assault_rallypoint"
+	"angles" "0 0 0"
+	"targetname" "soldier_assault&i_rally2"
+	"assaultdelay" "0"
+	"priority" "1"
+	"assaultpoint" "soldier_assault&i_assault2"
+	"origin" "44 -15 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "20"
+	"classname" "logic_relay"
+	"targetname" "soldier_assault&i_relay"
+	"spawnflags" "0"
+	connections
+	{
+		"OnTrigger" "soldier_assault&i_assault,BeginAssault,,0.11,-1"
+		"OnTrigger" "soldier_assault&i_maker,ForceSpawn,,0,-1"
+		"OnTrigger" "soldier_assault&i_assault,Activate,,0.1,-1"
+	}
+	"origin" "4 12 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "22"
+	"classname" "assault_assaultpoint"
+	"angles" "0 0 0"
+	"targetname" "soldier_assault&i_assault2"
+	"assaulttimeout" "3.0"
+	"clearoncontact" "1"
+	"allowdiversion" "1"
+	"nevertimeout" "0"
+	"origin" "140 -15 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "25"
+	"classname" "assault_assaultpoint"
+	"angles" "0 0 0"
+	"targetname" "soldier_assault&i_assault1"
+	"assaulttimeout" "3.0"
+	"clearoncontact" "1"
+	"allowdiversion" "1"
+	"nevertimeout" "0"
+	"origin" "140 -47 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "28"
+	"classname" "assault_assaultpoint"
+	"angles" "0 0 0"
+	"targetname" "soldier_assault&i_assault3"
+	"assaulttimeout" "3.0"
+	"clearoncontact" "1"
+	"allowdiversion" "1"
+	"nevertimeout" "0"
+	"origin" "140 17 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "43"
+	"classname" "npc_combine_s"
+	"angles" "0 0 0"
+	"renderamt" "255"
+	"rendercolor" "255 255 255"
+	"spawnflags" "516"
+	"physdamagescale" "1.0"
+	"additionalequipment" "weapon_ar2"
+	"NumGrenades" "5"
+	"targetname" "soldier_assault&i_soldier4"
+	"squadname" "soldier_assault&i_squad"
+	"origin" "-32 49 0"
+	editor
+	{
+		"color" "0 200 200"
+	}
+}
+entity
+{
+	"id" "129"
+	"classname" "assault_rallypoint"
+	"angles" "0 0 0"
+	"targetname" "soldier_assault&i_rally4"
+	"assaultdelay" "0"
+	"priority" "1"
+	"assaultpoint" "soldier_assault&i_assault4"
+	"origin" "44 49 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+entity
+{
+	"id" "132"
+	"classname" "assault_assaultpoint"
+	"angles" "0 0 0"
+	"targetname" "soldier_assault&i_assault4"
+	"assaulttimeout" "3.0"
+	"clearoncontact" "1"
+	"allowdiversion" "1"
+	"nevertimeout" "0"
+	"origin" "140 49 16"
+	editor
+	{
+		"color" "220 30 220"
+	}
+}
+cameras
+{
+	"activecamera" "-1"
+}
+cordon
+{
+	"mins" "(99999 99999 99999)"
+	"maxs" "(-99999 -99999 -99999)"
+	"active" "0"
+}

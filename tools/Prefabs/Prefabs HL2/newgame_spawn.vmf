@@ -1,0 +1,718 @@
+versioninfo
+{
+	"editorversion" "400"
+	"editorbuild" "2976"
+	"mapversion" "3"
+	"formatversion" "100"
+	"prefab" "0"
+}
+visgroups
+{
+	visgroup
+	{
+		"name" "Auto"
+		"visgroupid" "1"
+		"color" "189 226 235"
+		visgroup
+		{
+			"name" "Entities"
+			"visgroupid" "2"
+			"color" "246 159 252"
+		}
+	}
+}
+viewsettings
+{
+	"bSnapToGrid" "1"
+	"bShowGrid" "1"
+	"nGridSpacing" "4"
+	"bShow3DGrid" "0"
+}
+world
+{
+	"id" "10167"
+	"mapversion" "3"
+	"classname" "worldspawn"
+	"skyname" "sky_wasteland02"
+	"maxpropscreenwidth" "-1"
+}
+entity
+{
+	"id" "1"
+	"classname" "logic_auto"
+	"spawnflags" "1"
+	connections
+	{
+		"OnNewGame" "global_newgame_template_base_items,ForceSpawn,,0,1"
+		"OnNewGame" "global_newgame_template_local_items,ForceSpawn,,0.2,1"
+		"OnNewGame" "global_newgame_template_ammo,ForceSpawn,,0.5,1"
+	}
+	"origin" "6.12515 28.4305 28"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "3"
+	"classname" "point_template"
+	"targetname" "global_newgame_template_local_items"
+	"Template01" "global_newgame_spawner_shotgun"
+	"Template02" "global_newgame_spawner_smg1"
+	"Template03" "global_newgame_spawner_ar2"
+	"spawnflags" "0"
+	"Template04" "global_newgame_spawner_rpg"
+	"Template06" "global_newgame_spawner_bugbait"
+	"Template07" "global_newgame_spawner_crossbow"
+	"Template05" "global_newgame_spawner_357"
+	"origin" "-12.6756 0.840584 25"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "5"
+	"classname" "item_suit"
+	"angles" "0 0 0"
+	"targetname" "global_newgame_spawner_suit"
+	"spawnflags" "1"
+	"origin" "4.22476 -1.70947 5"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "7"
+	"classname" "info_player_start"
+	"angles" "0 0 0"
+	"spawnflags" "1"
+	"origin" "-12.9754 -1.98949 0"
+	editor
+	{
+		"color" "0 255 0"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "9"
+	"classname" "weapon_ar2"
+	"spawnflags" "0"
+	"angles" "0 270 0"
+	"targetname" "global_newgame_spawner_ar2"
+	"origin" "-14.3983 -25.0903 13"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "11"
+	"classname" "weapon_shotgun"
+	"spawnflags" "0"
+	"angles" "0 270 0"
+	"targetname" "global_newgame_spawner_shotgun"
+	"origin" "-19.7977 -24.7624 13"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "13"
+	"classname" "weapon_smg1"
+	"spawnflags" "0"
+	"angles" "0 270 0"
+	"targetname" "global_newgame_spawner_smg1"
+	"origin" "-28.0984 -19.2866 13"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "15"
+	"classname" "point_template"
+	"targetname" "global_newgame_template_ammo"
+	"Template01" "global_newgame_spawner_ammo"
+	"spawnflags" "0"
+	"origin" "-12.575 0.260506 46"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "17"
+	"classname" "point_template"
+	"targetname" "global_newgame_template_base_items"
+	"Template01" "global_newgame_spawner_suit"
+	"Template02" "global_newgame_spawner_crowbar"
+	"Template03" "global_newgame_spawner_pistol"
+	"spawnflags" "0"
+	"Template04" "global_newgame_spawner_physcannon"
+	"origin" "-12.7752 0.840584 66"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "19"
+	"classname" "weapon_357"
+	"spawnflags" "0"
+	"angles" "0 270 0"
+	"targetname" "global_newgame_spawner_357"
+	"origin" "-6.69806 -17.9366 13"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "21"
+	"classname" "weapon_crossbow"
+	"spawnflags" "0"
+	"angles" "0 270 0"
+	"targetname" "global_newgame_spawner_crossbow"
+	"origin" "-16.8732 -24.7627 34.6973"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "23"
+	"classname" "weapon_bugbait"
+	"spawnflags" "0"
+	"angles" "0 270 0"
+	"targetname" "global_newgame_spawner_bugbait"
+	"origin" "-24.7752 -15.7095 41"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "25"
+	"classname" "weapon_rpg"
+	"spawnflags" "0"
+	"angles" "0 270 0"
+	"targetname" "global_newgame_spawner_rpg"
+	"origin" "-5.87318 -10.4617 34.6973"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "29"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.47543 8.84058 62"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "31"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.47543 8.84058 57"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "33"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.47543 8.84058 51"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "35"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.47543 8.84058 46"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "37"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.47543 8.84058 41"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "39"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.47543 8.84058 36"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "41"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.47543 8.84058 30.99"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "43"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.47543 8.94056 25"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "45"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.37485 -6.35949 25"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "47"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.27524 -6.55944 30.99"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "49"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.27524 -6.55944 36"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "51"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.27524 -6.55944 41"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "53"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.27524 -6.55944 46"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "55"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.27524 -6.55944 51"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "57"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.27524 -6.55944 57"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "59"
+	"classname" "item_dynamic_resupply"
+	"angles" "0 0 0"
+	"DesiredHealth" "1"
+	"DesiredArmor" ".5"
+	"DesiredAmmoPistol" "1"
+	"DesiredAmmoSMG1" "1"
+	"DesiredAmmoSMG1_Grenade" "1"
+	"DesiredAmmoAR2" "1"
+	"DesiredAmmoBuckshot" ".5"
+	"DesiredAmmoRPG_Round" "1"
+	"DesiredAmmoGrenade" ".5"
+	"spawnflags" "0"
+	"targetname" "global_newgame_spawner_ammo"
+	"DesiredAmmo357" ".5"
+	"DesiredAmmoCrossbow" ".5"
+	"origin" "-2.27524 -6.55944 62"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "61"
+	"classname" "weapon_pistol"
+	"angles" "0 0 0"
+	"targetname" "global_newgame_spawner_pistol"
+	"origin" "9.80194 -9.46236 12.29"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "63"
+	"classname" "weapon_crowbar"
+	"angles" "0 0 0"
+	"targetname" "global_newgame_spawner_crowbar"
+	"origin" "9.02457 10.9406 10.82"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+entity
+{
+	"id" "65"
+	"classname" "weapon_physcannon"
+	"angles" "0 0 0"
+	"targetname" "global_newgame_spawner_physcannon"
+	"origin" "8.52457 0.820564 9.28998"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupid" "2"
+		"visgroupshown" "1"
+	}
+}
+cameras
+{
+	"activecamera" "0"
+	camera
+	{
+		"position" "[42.5916 -78.729 62.9801]"
+		"look" "[-293.406 345.193 -108.613]"
+	}
+}
+cordon
+{
+	"mins" "(99999 99999 99999)"
+	"maxs" "(-99999 -99999 -99999)"
+	"active" "0"
+}
