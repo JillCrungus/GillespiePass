@@ -7,7 +7,6 @@
 #include "cbase.h"
 #include "vgui_int.h"
 #include "ienginevgui.h"
-#include "IGPOptionsPanel.h"
 #include "itextmessage.h"
 #include "vguicenterprint.h"
 #include "iloadingdisc.h"
@@ -196,7 +195,6 @@ bool VGui_Startup( CreateInterfaceFn appSystemFactory )
 //-----------------------------------------------------------------------------
 void VGui_CreateGlobalPanels( void )
 {
-	VPANEL gameParent = enginevgui->GetPanel(PANEL_CLIENTDLL);
 	VPANEL gameToolParent = enginevgui->GetPanel( PANEL_CLIENTDLL_TOOLS );
 	VPANEL toolParent = enginevgui->GetPanel( PANEL_TOOLS );
 #if defined( TRACK_BLOCKING_IO )
@@ -206,10 +204,7 @@ void VGui_CreateGlobalPanels( void )
 	internalCenterPrint->Create( gameToolParent );
 	loadingdisc->Create( gameToolParent );
 	messagechars->Create( gameToolParent );
-	mypanel->Create(gameParent);
 
-	VPANEL GameUiDll = enginevgui->GetPanel(PANEL_GAMEUIDLL);
-	mypanel->Create(GameUiDll);
 
 	// Debugging or related tool
 	fps->Create( toolParent );
@@ -244,7 +239,6 @@ void VGui_Shutdown()
 	fps->Destroy();
 
 	messagechars->Destroy();
-	mypanel->Destroy();
 	loadingdisc->Destroy();
 	internalCenterPrint->Destroy();
 

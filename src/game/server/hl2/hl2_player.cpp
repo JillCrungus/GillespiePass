@@ -46,6 +46,7 @@
 #include "gamestats.h"
 #include "filters.h"
 #include "tier0/icommandline.h"
+#include "../client/discord-rpc.h"
 
 #ifdef HL2_EPISODIC
 #include "npc_alyx_episodic.h"
@@ -324,6 +325,32 @@ void CC_GP_Hotswap(void)
 }
 
 static ConCommand gp_hotswap("gp_hotswap", CC_GP_Hotswap, "Hotswap.");
+
+/*
+void CC_DUpdate(void)
+{
+	CBasePlayer* pPlayer = UTIL_GetCommandClient();
+
+	if (pPlayer)
+	{
+		//CHL2_Player *pHL2Player = dynamic_cast<CHL2_Player*>(pPlayer);
+
+		char buffer[256];
+		DiscordRichPresence discordPresence;
+		memset(&discordPresence, 0, sizeof(discordPresence));
+		discordPresence.state = "Debugging Rich Presence";
+		Q_snprintf(buffer, "Map: %d", gpGlobals->mapname);
+		discordPresence.details = buffer;
+
+		discordPresence.largeImageKey = "dummy";
+
+		discordPresence.instance = 1;
+
+		Discord_UpdatePresence(&discordPresence);
+	}
+}
+
+static ConCommand discord_test("discord_test", CC_DUpdate, "aasdfsdagfij");*/
 
 // ConVar cl_forwardspeed( "cl_forwardspeed", "400", FCVAR_CHEAT ); // Links us to the client's version
 ConVar xc_crouch_range( "xc_crouch_range", "0.85", FCVAR_ARCHIVE, "Percentage [1..0] of joystick range to allow ducking within" );	// Only 1/2 of the range is used

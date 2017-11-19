@@ -124,6 +124,7 @@
 #include "sourcevr/isourcevirtualreality.h"
 #include "client_virtualreality.h"
 #include "mumble.h"
+#include "discord-rpc.h"
 
 // NVNT includes
 #include "hud_macros.h"
@@ -599,6 +600,7 @@ public:
 	virtual int						Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physicsFactory, CGlobalVarsBase *pGlobals );
 
 	virtual void					PostInit();
+	//virtual  void					HandleDReady();
 	virtual void					Shutdown( void );
 
 	virtual bool					ReplayInit( CreateInterfaceFn fnReplayFactory );
@@ -846,6 +848,36 @@ CHLClient::CHLClient()
 extern IGameSystem *ViewportClientSystem();
 
 
+void HandleDReady()
+{
+	Msg("Discord RPC: Ready.");
+}
+
+
+void handleDiscordError(int errcode, const char* message)
+{
+	Msg("\nDiscord: error (%d: %s)\n", errcode, message);
+}
+
+void handleDiscordJoin(const char* secret)
+{
+	Msg("\nDiscord: join (%s)\n", secret);
+}
+
+void handleDiscordDisconnected(int errcode, const char* message)
+{
+	Msg("\nDiscord: disconnected (%d: %s)\n", errcode, message);
+}
+
+void handleDiscordSpectate(const char* secret)
+{
+	Msg("\nDiscord: spectate (%s)\n", secret);
+}
+
+void handleDiscordJoinRequest(const DiscordJoinRequest* request)
+{
+	Discord_Respond(request->userId, DISCORD_REPLY_NO);
+}
 //-----------------------------------------------------------------------------
 ISourceVirtualReality *g_pSourceVR = NULL;
 
@@ -1085,7 +1117,20 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	HookHapticMessages(); // Always hook the messages
 #endif
 
+	//Discord
+	DiscordEventHandlers handlers;
+	memset(&handlers, 0, sizeof(handlers));
+	handlers.ready = HandleDReady;
+	handlers.errored = handleDiscordError;
+	handlers.disconnected = handleDiscordDisconnected;
+	handlers.joinRequest = handleDiscordJoinRequest;
+	Discord_Initialize("306462694977044483", &handlers, 1, NULL);
+
 	return true;
+
+	
+
+
 }
 
 bool CHLClient::ReplayInit( CreateInterfaceFn fnReplayFactory )
@@ -1123,6 +1168,8 @@ bool CHLClient::ReplayPostInit()
 #endif
 }
 
+
+
 //-----------------------------------------------------------------------------
 // Purpose: Called after client & server DLL are loaded and all systems initialized
 //-----------------------------------------------------------------------------
@@ -1152,13 +1199,18 @@ void CHLClient::PostInit()
 		}
 	}
 #endif
+
+	
 }
+
+
 
 //-----------------------------------------------------------------------------
 // Purpose: Called when the client .dll is being dismissed
 //-----------------------------------------------------------------------------
 void CHLClient::Shutdown( void )
 {
+	Discord_Shutdown();
     if (g_pAchievementsAndStatsInterface)
     {
         g_pAchievementsAndStatsInterface->ReleasePanel();
