@@ -16,7 +16,33 @@
 {
 	"channel"	"CHAN_AUTO"
 	"volume"	"0.8"
-	"soundlevel"  "SNDLVL_60dB"
+	"soundlevel"  "SNDLVL_90dB"
 
 	"wave"	"ambient/machines/machine3.wav"
+}
+
+"GP.AirexLighton"
+{
+	"channel"	"CHAN_AUTO"
+	"volume"	"0.8"
+	"soundlevel"  "SNDLVL_150dB"
+
+	"wave"	"ambient/lights_on.wav"
+}
+
+"GP.AirexPipes"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_120dB"
+	"pitch"			"PITCH_NORM"
+
+	"rndwave"
+	{
+		"wave"	"ambient/areas/air_exchange/pipe1.wav"
+		"wave"	"ambient/areas/air_exchange/pipe2.wav"
+		"wave"	"ambient/areas/air_exchange/pipe3.wav"
+		"wave"	"ambient/areas/air_exchange/pipe4.wav"
+		"wave"	"ambient/areas/air_exchange/pipe5.wav"
+	}
 }

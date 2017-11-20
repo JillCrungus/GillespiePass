@@ -12,8 +12,8 @@
 
 	"playlooping"
 	{
-		"volume"	"0.3"
-		"wave"		"ambient/drip_loop1.wav"
+		"volume"	"1"
+		"wave"		"ambient/areas/air_exchange/upsweep.wav"
 		"pitch"		"115"
 		"attenuation"	"0"
 	}
