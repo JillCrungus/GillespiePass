@@ -3,14 +3,12 @@
 WeaponData
 {
 	// Weapon data is loaded by both the Game and Client DLLs.
-	"printname"	"#GP_Pipe"
-	"viewmodel"				"models/weapons/v_pipe.mdl"
-	"playermodel"			"models/props_canal/mattpipe.mdl"
+	"printname"	"#HL2_Crowbar"
+	"viewmodel"				"models/weapons/v_crowbar.mdl"
+	"playermodel"			"models/weapons/w_crowbar.mdl"
 	"anim_prefix"			"crowbar"
 	"bucket"				"0"
 	"bucket_position"		"0"
-	"bucket_360"				"2"
-	"bucket_position_360"		"0"
 
 	"clip_size"				"-1"
 	"primary_ammo"			"None"
@@ -32,18 +30,26 @@ WeaponData
 	{
 		"weapon"
 		{
-				"font"		"WeaponIcons_GP"
+				"font"		"WeaponIcons"
 				"character"	"c"
 		}
 		"weapon_s"
 		{	
-				"font"		"WeaponIconsSelected_GP"
+				"font"		"WeaponIconsSelected"
 				"character"	"c"
 		}
 		"ammo"
 		{
-				"font"		"WeaponIcons_GP"
+				"font"		"WeaponIcons"
 				"character"	"c"
+		}
+		"ammo2"
+		{
+			"file"		"sprites/640hud7"
+			"x"			"48"
+			"y"			"72"
+			"width"		"24"
+			"height"	"24"
 		}
 		"crosshair"
 		{
