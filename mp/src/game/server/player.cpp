@@ -268,14 +268,6 @@ BEGIN_DATADESC( CBasePlayer )
 	DEFINE_FIELD( m_afButtonDisabled, FIELD_INTEGER ),
 	DEFINE_FIELD( m_afButtonForced,	FIELD_INTEGER ),
 
-
-	DEFINE_FIELD(m_bLongJump, FIELD_BOOLEAN),
-	DEFINE_FIELD( m_fLongJumpTime, FIELD_FLOAT ),
-	DEFINE_FIELD(m_fLongJumpTime2, FIELD_FLOAT),
-	DEFINE_FIELD(m_bCanLJ, FIELD_BOOLEAN),
-
-	DEFINE_FIELD(m_bShotgunSemi, FIELD_BOOLEAN),
-
 	DEFINE_FIELD( m_iFOV,		FIELD_INTEGER ),
 	DEFINE_FIELD( m_iFOVStart,	FIELD_INTEGER ),
 	DEFINE_FIELD( m_flFOVTime,	FIELD_TIME ),
@@ -386,8 +378,6 @@ BEGIN_DATADESC( CBasePlayer )
 	DEFINE_FIELD( m_iPlayerLocked, FIELD_INTEGER ),
 
 	DEFINE_AUTO_ARRAY( m_hViewModel, FIELD_EHANDLE ),
-
-	
 	
 	DEFINE_FIELD( m_flMaxspeed, FIELD_FLOAT ),
 	DEFINE_FIELD( m_flWaterJumpTime, FIELD_TIME ),
@@ -595,7 +585,9 @@ CBasePlayer::CBasePlayer( )
 	m_bForceOrigin = false;
 	m_hVehicle = NULL;
 	m_pCurrentCommand = NULL;
-	
+	m_iLockViewanglesTickNumber = 0;
+	m_qangLockViewangles.Init();
+
 	// Setup our default FOV
 	m_iDefaultFOV = g_pGameRules->DefaultFOV();
 
@@ -645,6 +637,8 @@ CBasePlayer::CBasePlayer( )
 
 	m_flLastUserCommandTime = 0.f;
 	m_flMovementTimeForUserCmdProcessingRemaining = 0.0f;
+
+	m_flLastObjectiveTime = -1.f;
 }
 
 CBasePlayer::~CBasePlayer( )
@@ -984,7 +978,7 @@ void CBasePlayer::DamageEffect(float flDamage, int fDamageType)
 	}
 	else if (fDamageType & DMG_DROWN)
 	{
-		//Red damage indicator
+		//Blue damage indicator
 		color32 blue = {0,0,128,128};
 		UTIL_ScreenFade( this, blue, 1.0f, 0.1f, FFADE_IN );
 	}
@@ -2333,6 +2327,7 @@ bool CBasePlayer::SetObserverMode(int mode )
 			break;
 
 		case OBS_MODE_CHASE :
+		case OBS_MODE_POI: // PASSTIME
 		case OBS_MODE_IN_EYE :	
 			// udpate FOV and viewmodels
 			SetObserverTarget( m_hObserverTarget );	
@@ -2428,8 +2423,7 @@ void CBasePlayer::CheckObserverSettings()
 	}
 
 	// check if our spectating target is still a valid one
-	
-	if (  m_iObserverMode == OBS_MODE_IN_EYE || m_iObserverMode == OBS_MODE_CHASE || m_iObserverMode == OBS_MODE_FIXED )
+	if (  m_iObserverMode == OBS_MODE_IN_EYE || m_iObserverMode == OBS_MODE_CHASE || m_iObserverMode == OBS_MODE_FIXED || m_iObserverMode == OBS_MODE_POI )
 	{
 		ValidateCurrentObserverTarget();
 				
@@ -2483,6 +2477,7 @@ void CBasePlayer::ValidateCurrentObserverTarget( void )
 		}
 		else
 		{
+#if !defined( TF_DLL )
 			// couldn't find new target, switch to temporary mode
 			if ( mp_forcecamera.GetInt() == OBS_ALLOW_ALL )
 			{
@@ -2490,10 +2485,11 @@ void CBasePlayer::ValidateCurrentObserverTarget( void )
 				ForceObserverMode( OBS_MODE_ROAMING );
 			}
 			else
+#endif
 			{
 				// fix player view right where it is
 				ForceObserverMode( OBS_MODE_FIXED );
-				m_hObserverTarget.Set( NULL ); // no traget to follow
+				m_hObserverTarget.Set( NULL ); // no target to follow
 			}
 		}
 	}
@@ -2639,7 +2635,10 @@ bool CBasePlayer::SetObserverTarget(CBaseEntity *target)
 		Vector	dir, end;
 		Vector	start = target->EyePosition();
 		
-		AngleVectors( target->EyeAngles(), &dir );
+		QAngle ang = target->EyeAngles();
+		ang.z = 0; // PASSTIME no view roll when spectating ball
+
+		AngleVectors( ang, &dir );
 		VectorNormalize( dir );
 		VectorMA( start, -64.0f, dir, end );
 
@@ -2649,7 +2648,7 @@ bool CBasePlayer::SetObserverTarget(CBaseEntity *target)
 		trace_t	tr;
 		UTIL_TraceRay( ray, MASK_PLAYERSOLID, target, COLLISION_GROUP_PLAYER_MOVEMENT, &tr );
 
-		JumptoPosition( tr.endpos, target->EyeAngles() );
+		JumptoPosition( tr.endpos, ang );
 	}
 	
 	return true;
@@ -3417,6 +3416,8 @@ void CBasePlayer::ForceSimulation()
 	m_nSimulationTick = -1;
 }
 
+ConVar sv_usercmd_custom_random_seed( "sv_usercmd_custom_random_seed", "1", FCVAR_CHEAT, "When enabled server will populate an additional random seed independent of the client" );
+
 //-----------------------------------------------------------------------------
 // Purpose: 
 // Input  : *buf - 
@@ -3441,6 +3442,16 @@ void CBasePlayer::ProcessUsercmds( CUserCmd *cmds, int numcmds, int totalcmds,
 		if ( !IsUserCmdDataValid( pCmd ) )
 		{
 			pCmd->MakeInert();
+		}
+
+		if ( sv_usercmd_custom_random_seed.GetBool() )
+		{
+			float fltTimeNow = float( Plat_FloatTime() * 1000.0 );
+			pCmd->server_random_seed = *reinterpret_cast<int*>( (char*)&fltTimeNow );
+		}
+		else
+		{
+			pCmd->server_random_seed = pCmd->random_seed;
 		}
 
 		ctx->cmds.AddToTail( *pCmd );
@@ -4094,7 +4105,7 @@ Protection
 		it will attempt to recharge itself to full capacity with the energy reserves from the battery.
 		It takes the armor N seconds to fully charge. 
 
-Notification (via the thi)
+Notification (via the HUD)
 
 x	Health
 x	Ammo  
@@ -4619,19 +4630,6 @@ void CBasePlayer::PostThink()
 	SimulatePlayerSimulatedEntities();
 #endif
 
-	if ((m_fLongJumpTime2 < gpGlobals->curtime) && (m_bCanLJ == false))
-	{
-		CPASAttenuationFilter filter(this);
-		filter.UsePredictionRules();
-		EmitSound(filter, entindex(), "HL2Player.LJR");
-		m_bCanLJ = true;
-	}
-
-	if ((m_fLongJumpTime2 > gpGlobals->curtime) && (gpGlobals->curtime < 3))
-	{
-		m_fLongJumpTime2 = 0;
-	}
-
 }
 
 // handles touching physics objects
@@ -4964,8 +4962,6 @@ void CBasePlayer::Spawn( void )
 	
 	m_flFieldOfView		= 0.766;// some NPCs use this to determine whether or not the player is looking at them.
 
-	m_bLongJump = false;
-
 	m_vecAdditionalPVSOrigin = vec3_origin;
 	m_vecCameraPVSOrigin = vec3_origin;
 
@@ -5091,8 +5087,6 @@ void CBasePlayer::Precache( void )
 	PrecacheScriptSound( "Player.DrownContinue" );
 	PrecacheScriptSound( "Player.Wade" );
 	PrecacheScriptSound( "Player.AmbientUnderWater" );
-
-	PrecacheScriptSound("GPPlayer.Hotswap");
 	enginesound->PrecacheSentenceGroup( "HEV" );
 
 	// These are always needed
@@ -6114,8 +6108,6 @@ void CC_CH_CreateAirboat( void )
 static ConCommand ch_createairboat( "ch_createairboat", CC_CH_CreateAirboat, "Spawn airboat in front of the player.", FCVAR_CHEAT );
 
 
-
-
 //=========================================================
 //=========================================================
 void CBasePlayer::CheatImpulseCommands( int iImpulse )
@@ -6177,7 +6169,6 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveAmmo( 5,	"grenade");
 		GiveAmmo( 32,	"357" );
 		GiveAmmo( 16,	"XBowBolt" );
-		GiveAmmo(30, "GaussEnergy_player");
 #ifdef HL2_EPISODIC
 		GiveAmmo( 5,	"Hopwire" );
 #endif		
@@ -6192,8 +6183,6 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveNamedItem( "weapon_rpg" );
 		GiveNamedItem( "weapon_357" );
 		GiveNamedItem( "weapon_crossbow" );
-		GiveNamedItem("item_longjump");
-		GiveNamedItem("weapon_gauss");
 #ifdef HL2_EPISODIC
 		// GiveNamedItem( "weapon_magnade" );
 #endif
@@ -7411,7 +7400,7 @@ void CBasePlayer::EquipWearable( CEconWearable *pItem )
 		pItem->Equip( this );
 	}
 
-#ifdef DEBUG
+#ifdef DBGFLAG_ASSERT
 	// Double check list integrity.
 	for ( int i = m_hMyWearables.Count()-1; i >= 0; --i )
 	{
@@ -7450,7 +7439,7 @@ void CBasePlayer::RemoveWearable( CEconWearable *pItem )
 		}
 	}
 
-#ifdef DEBUG
+#ifdef DBGFLAG_ASSERT
 	// Double check list integrity.
 	for ( int i = m_hMyWearables.Count()-1; i >= 0; --i )
 	{
@@ -7903,7 +7892,7 @@ void CMovementSpeedMod::InputSpeedMod(inputdata_t &data)
 			// Bring the weapon back
 			if  ( HasSpawnFlags( SF_SPEED_MOD_SUPPRESS_WEAPONS ) && pPlayer->GetActiveWeapon() == NULL )
 			{
-				pPlayer->SetActiveWeapon( pPlayer->Weapon_GetLast() );
+				pPlayer->SetActiveWeapon( pPlayer->GetLastWeapon() );
 				if ( pPlayer->GetActiveWeapon() )
 				{
 					pPlayer->GetActiveWeapon()->Deploy();
@@ -8979,8 +8968,27 @@ void CBasePlayer::HandleAnimEvent( animevent_t *pEvent )
 	BaseClass::HandleAnimEvent( pEvent );
 }
 
+
 //-----------------------------------------------------------------------------
-//  CPlayerInfo functions (simple passthroughts to get around the CBasePlayer multiple inheritence limitation)
+// Purpose: 
+//-----------------------------------------------------------------------------
+bool CBasePlayer::ShouldAnnounceAchievement( void )
+{
+	m_flAchievementTimes.AddToTail( gpGlobals->curtime );
+	if ( m_flAchievementTimes.Count() > 3 )
+	{
+		m_flAchievementTimes.Remove( 0 );
+		if ( m_flAchievementTimes.Tail() - m_flAchievementTimes.Head() <= 60.0 )
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+//-----------------------------------------------------------------------------
+//  CPlayerInfo functions (simple pass-through to get around the CBasePlayer multiple inheritance limitation)
 //-----------------------------------------------------------------------------
 const char *CPlayerInfo::GetName()
 { 

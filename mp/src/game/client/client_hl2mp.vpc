@@ -35,11 +35,6 @@ $Project "Client (HL2MP)"
 		$File	"$SRCDIR\game\shared\teamplay_round_timer.cpp"
 		$File	"$SRCDIR\game\shared\teamplay_round_timer.h"
 
-		$Folder "Discord RPC"
-		{
-			$File "discord-rpc.h"
-		}
-
 		$Folder	"HL2 DLL"
 		{
  			$File	"episodic\c_vort_charge_token.cpp"

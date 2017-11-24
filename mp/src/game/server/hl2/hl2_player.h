@@ -229,7 +229,6 @@ public:
 	int					FlashlightIsOn( void );
 	void				FlashlightTurnOn( void );
 	void				FlashlightTurnOff( void );
-//	void				SetAnimation(PLAYER_ANIM playerAnim);
 	bool				IsIlluminatedByFlashlight( CBaseEntity *pEntity, float *flReturnDot );
 	void				SetFlashlightPowerDrainScale( float flScale ) { m_flFlashlightPowerDrainScale = flScale; }
 
@@ -285,8 +284,6 @@ public:
 	CSoundPatch *m_sndLeeches;
 	CSoundPatch *m_sndWaterSplashes;
 
-
-
 protected:
 	virtual void		PreThink( void );
 	virtual	void		PostThink( void );
@@ -309,15 +306,13 @@ private:
 
 	float				m_flTimeAllSuitDevicesOff;
 
-	
-
 	bool				m_bSprintEnabled;		// Used to disable sprint temporarily
 	bool				m_bIsAutoSprinting;		// A proxy for holding down the sprint key.
 	float				m_fAutoSprintMinTime;	// Minimum time to maintain autosprint regardless of player speed. 
 
 	CNetworkVar( bool, m_fIsSprinting );
 	CNetworkVarForDerived( bool, m_fIsWalking );
-	void ResetAnimation(void);
+
 protected:	// Jeep: Portal_Player needs access to this variable to overload PlayerUse for picking up objects through portals
 	bool				m_bPlayUseDenySound;		// Signaled by PlayerUse, but can be unset by HL2 ladder code...
 
@@ -354,8 +349,6 @@ private:
 	
 	float				m_flArmorReductionTime;
 	int					m_iArmorReductionFrom;
-
-	
 
 	float				m_flTimeUseSuspended;
 

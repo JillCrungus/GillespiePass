@@ -19,5 +19,4 @@
 bool NPC_Rollermine_IsRollermine( CBaseEntity *pEntity );
 CBaseEntity *NPC_Rollermine_DropFromPoint( const Vector &originStart, CBaseEntity *pOwner, const char *pszTemplate );
 
-
 #endif // NPC_ROLLERMINE_H

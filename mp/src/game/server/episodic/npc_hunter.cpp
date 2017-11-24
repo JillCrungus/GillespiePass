@@ -1512,7 +1512,7 @@ private:
 	DEFINE_CUSTOM_AI;
 
 	DECLARE_DATADESC();
-	void AnnounceEnemyKill(CBaseEntity *pEnemy);
+
 	friend class CAI_HunterEscortBehavior;
 	friend class CHunterMaker;
 
@@ -2628,7 +2628,7 @@ NPC_STATE CNPC_Hunter::SelectIdealState()
 			else if ( HasCondition( COND_ENEMY_DEAD ) )
 			{
 				// dvs: TODO: announce enemy kills?
-				AnnounceEnemyKill(GetEnemy());
+				//AnnounceEnemyKill(GetEnemy());
 			}
 		}
 
@@ -2641,13 +2641,6 @@ NPC_STATE CNPC_Hunter::SelectIdealState()
 	return GetIdealState();
 }
 
-void CNPC_Hunter::AnnounceEnemyKill(CBaseEntity *pEnemy)
-{
-	if (!pEnemy)
-		return;
-
-	EmitSound("NPC_Hunter.Scan");
-}
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------

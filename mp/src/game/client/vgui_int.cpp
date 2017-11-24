@@ -205,7 +205,6 @@ void VGui_CreateGlobalPanels( void )
 	loadingdisc->Create( gameToolParent );
 	messagechars->Create( gameToolParent );
 
-
 	// Debugging or related tool
 	fps->Create( toolParent );
 #if defined( TRACK_BLOCKING_IO )

@@ -47,11 +47,9 @@
 #include "weapon_physcannon.h"
 #include "ammodef.h"
 #include "vehicle_base.h"
-#include "vehicle_jeep_episodic.h"
  
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
-
 
 extern ConVar sk_npc_head;
 
@@ -800,31 +798,6 @@ HeadcrabRelease_t CNPC_BaseZombie::ShouldReleaseHeadcrab( const CTakeDamageInfo 
 			return RELEASE_RAGDOLL_SLICED_OFF;
 		}
 	}
-
-	//This goes right before the scheduled release because we NEVER want to release for the crossbow because it's WAY more fun to shoot an enemy with the crossbow
-	//and have it go flying every time.
-	if (FClassnameIs(info.GetInflictor(), "weapon_gauss") || FClassnameIs(info.GetInflictor(), "crossbow_bolt")) 
-	{
-		return RELEASE_NO;
-	}
-
-	//We also never release if we're hit by a vehicle because it looks fucking stupid.
-	CPropJeepEpisodic *CInflictorVehicle = dynamic_cast<CPropJeepEpisodic *>(info.GetInflictor());
-	if (NULL != CInflictorVehicle)
-	{
-		return RELEASE_NO;
-	}
-
-	if ((m_iHealth < m_iMaxHealth * ZOMBIE_RELEASE_HEALTH_FACTOR) && (m_iShouldRelease <= 1) )
-	{
-		if ((FClassnameIs(this, "npc_zombie")) || FClassnameIs(this, "npc_zombie_torso")) //Only classic zombies and torsos can do this! The other models have no animations for doing this!
-		{
-			DevMsg("Scheduled Release\n");
-			m_iHealth = m_iMaxHealth; //This tries to stop us from dying before we even get a chance to play the animation
-			return RELEASE_SCHEDULED;
-		}
-	}
-
 
 	return RELEASE_NO;
 }
@@ -1728,14 +1701,10 @@ void CNPC_BaseZombie::Spawn( void )
 
 	m_bIsSlumped = false;
 
-	m_iShouldRelease = RandomInt(0, 4);
-
 	// Zombies get to cheat for 6 seconds (sjb)
 	GetEnemies()->SetFreeKnowledgeDuration( 6.0 );
 
 	m_ActBusyBehavior.SetUseRenderBounds(true);
-
-
 }
 
 

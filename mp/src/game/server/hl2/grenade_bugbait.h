@@ -12,9 +12,7 @@
 #endif
 
 #include "smoke_trail.h"
-#include "props.h"
 #include "basegrenade_shared.h"
-#include "hl1/hl1_npc_snark.h"
 
 //Radius of the bugbait's effect on other creatures
 extern ConVar bugbait_radius;
@@ -132,7 +130,6 @@ protected:
 	SporeTrail *m_pSporeTrail;
 };
 
-//extern CGrenadeBugBait *BugBaitGrenade_Create( const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner );
-extern CSnark *BugBaitGrenade_Create(const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner);
+extern CGrenadeBugBait *BugBaitGrenade_Create( const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner );
 
 #endif // GRENADE_BUGBAIT_H

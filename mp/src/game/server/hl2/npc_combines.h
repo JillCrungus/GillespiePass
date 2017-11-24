@@ -58,15 +58,4 @@ protected:
 
 };
 
-
-//=========================================================
-//	>> CNPC_CombineShadow
-//  >> Stealth troop only visible through their shadows
-//=========================================================
-class CNPC_CombineShadow : public CNPC_CombineS
-{
-	DECLARE_CLASS(CNPC_CombineShadow, CNPC_CombineS);
-	void Spawn( void );
-};
-
 #endif // NPC_COMBINES_H

@@ -6,8 +6,6 @@
 
 #include "cbase.h"
 #include "grenade_bugbait.h"
-#include "hl1/hl1_npc_snark.h"
-#include "props.h"
 #include "decals.h"
 #include "smoke_trail.h"
 #include "soundent.h"
@@ -129,7 +127,7 @@ void CGrenadeBugBait::Spawn( void )
 void CGrenadeBugBait::Precache( void )
 {
 	PrecacheModel( GRENADE_MODEL );
-	PrecacheModel("models/props_junk/garbage_metalcan001a.mdl");
+
 	PrecacheScriptSound( "GrenadeBugBait.Splat" );
 
 	BaseClass::Precache();
@@ -312,25 +310,15 @@ void CGrenadeBugBait::SetGracePeriod( float duration )
 //			*owner - 
 // Output : CBaseGrenade
 //-----------------------------------------------------------------------------
-//CGrenadeBugBait *BugBaitGrenade_Create( const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner )
-CSnark *BugBaitGrenade_Create(const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner)
+CGrenadeBugBait *BugBaitGrenade_Create( const Vector &position, const QAngle &angles, const Vector &velocity, const QAngle &angVelocity, CBaseEntity *owner )
 {
-	//CGrenadeBugBait *pGrenade = (CGrenadeBugBait *) CBaseEntity::Create( "npc_grenade_bugbait", position, angles, owner );
-	//CSnark *pGrenade = (CSnark * ) CSnark::Create("monster_snark", position, angles, owner);
-	//CSnark *pGrenade = (CSnark*)CBaseEntity::Create("monster_snark", position, angles, owner);	
-	CSnark *pGrenade = new CSnark;
-
+	CGrenadeBugBait *pGrenade = (CGrenadeBugBait *) CBaseEntity::Create( "npc_grenade_bugbait", position, angles, owner );
 	
 	if ( pGrenade != NULL )
 	{
-
-		pGrenade->SetAbsOrigin(position);
-		pGrenade->SetAbsAngles(angles);
-		pGrenade->SetOwnerEntity(owner);
-		pGrenade->Spawn();
 		pGrenade->SetLocalAngularVelocity( angVelocity );
 		pGrenade->SetAbsVelocity( velocity );
-		//pGrenade->SetThrower( ToBaseCombatCharacter( owner ) );
+		pGrenade->SetThrower( ToBaseCombatCharacter( owner ) );
 	}
 
 	return pGrenade;

@@ -29,10 +29,6 @@
 
 ConVar	pistol_use_new_accuracy( "pistol_use_new_accuracy", "1" );
 
-ConVar  pistol_hotswap("pistol_hotswap", "0", NULL, "Enable pistol hotswap test");
-ConVar  pistol_hotswap_range("pistol_hotswap_range", "1024", NULL, "Pistol hotswap range (forward * this value)");
-ConVar  pistol_hotswap_cooldown("pistol_hotswap_cooldown", "1.5f", NULL, "Cooldown for the pistol hotswap");
-
 //-----------------------------------------------------------------------------
 // CWeaponPistol
 //-----------------------------------------------------------------------------
@@ -53,7 +49,6 @@ public:
 	void	ItemPreFrame( void );
 	void	ItemBusyFrame( void );
 	void	PrimaryAttack( void );
-	void	SecondaryAttack(void);
 	void	AddViewKick( void );
 	void	DryFire( void );
 	void	Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCharacter *pOperator );
@@ -110,7 +105,7 @@ public:
 	}
 
 	DECLARE_ACTTABLE();
-	
+
 private:
 	float	m_flSoonestPrimaryAttack;
 	float	m_flLastAttackTime;
@@ -177,7 +172,6 @@ CWeaponPistol::CWeaponPistol( void )
 void CWeaponPistol::Precache( void )
 {
 	BaseClass::Precache();
-
 }
 
 //-----------------------------------------------------------------------------
@@ -261,15 +255,6 @@ void CWeaponPistol::PrimaryAttack( void )
 
 	m_iPrimaryAttacks++;
 	gamestats->Event_WeaponFired( pOwner, true, GetClassname() );
-}
-
-void CWeaponPistol::SecondaryAttack(void)
-{
-	if (pistol_hotswap.GetBool())
-	{
-
-		//Removed!
-	}
 }
 
 //-----------------------------------------------------------------------------

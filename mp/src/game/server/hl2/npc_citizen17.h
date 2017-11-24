@@ -9,12 +9,10 @@
 #define	NPC_CITIZEN_H
 
 #include "npc_playercompanion.h"
-#include "Sprite.h"
+
 #include "ai_behavior_functank.h"
 
 struct SquadCandidate_t;
-
-
 
 //-----------------------------------------------------------------------------
 //
@@ -85,8 +83,6 @@ public:
 	void			Activate();
 	virtual void	OnGivenWeapon( CBaseCombatWeapon *pNewWeapon );
 	void			FixupMattWeapon();
-
-	
 
 #ifdef HL2_EPISODIC
 	virtual float	GetJumpGravity() const		{ return 1.8f; }
@@ -197,7 +193,6 @@ public:
 	CAI_BaseNPC *	GetSquadCommandRepresentative();
 	void			SetSquad( CAI_Squad *pSquad );
 	void			AddInsignia();
-	void			UpdateInsignia();
 	void			RemoveInsignia();
 	bool			SpeakCommandResponse( AIConcept_t concept, const char *modifiers = NULL );
 	
@@ -308,8 +303,6 @@ private:
 	bool			m_bWasInPlayerSquad;
 	float			m_flTimeLastCloseToPlayer;
 	string_t		m_iszDenyCommandConcept;
-
-	CSprite*		m_myInsignia = NULL; //This citizen's insignia
 
 	CSimpleSimTimer	m_AutoSummonTimer;
 	Vector			m_vAutoSummonAnchor;

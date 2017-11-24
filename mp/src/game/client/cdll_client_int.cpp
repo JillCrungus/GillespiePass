@@ -124,7 +124,6 @@
 #include "sourcevr/isourcevirtualreality.h"
 #include "client_virtualreality.h"
 #include "mumble.h"
-#include "discord-rpc.h"
 
 // NVNT includes
 #include "hud_macros.h"
@@ -142,6 +141,7 @@
 
 #if defined( TF_CLIENT_DLL )
 #include "econ/tool_items/custom_texture_cache.h"
+
 #endif
 
 #ifdef WORKSHOP_IMPORT_ENABLED
@@ -569,7 +569,8 @@ void DisplayBoneSetupEnts()
 		if ( pEnt->m_Count >= 3 )
 		{
 			printInfo.color[0] = 1;
-			printInfo.color[1] = printInfo.color[2] = 0;
+			printInfo.color[1] = 0;
+			printInfo.color[2] = 0;
 		}
 		else if ( pEnt->m_Count == 2 )
 		{
@@ -579,7 +580,9 @@ void DisplayBoneSetupEnts()
 		}
 		else
 		{
-			printInfo.color[0] = printInfo.color[0] = printInfo.color[0] = 1;
+			printInfo.color[0] = 1;
+			printInfo.color[1] = 1;
+			printInfo.color[2] = 1;
 		}
 		engine->Con_NXPrintf( &printInfo, "%25s / %3d / %3d", pEnt->m_ModelName, pEnt->m_Count, pEnt->m_Index );
 		printInfo.index++;
@@ -600,7 +603,6 @@ public:
 	virtual int						Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physicsFactory, CGlobalVarsBase *pGlobals );
 
 	virtual void					PostInit();
-	//virtual  void					HandleDReady();
 	virtual void					Shutdown( void );
 
 	virtual bool					ReplayInit( CreateInterfaceFn fnReplayFactory );
@@ -848,36 +850,6 @@ CHLClient::CHLClient()
 extern IGameSystem *ViewportClientSystem();
 
 
-void HandleDReady()
-{
-	Msg("Discord RPC: Ready.");
-}
-
-
-void handleDiscordError(int errcode, const char* message)
-{
-	Msg("\nDiscord: error (%d: %s)\n", errcode, message);
-}
-
-void handleDiscordJoin(const char* secret)
-{
-	Msg("\nDiscord: join (%s)\n", secret);
-}
-
-void handleDiscordDisconnected(int errcode, const char* message)
-{
-	Msg("\nDiscord: disconnected (%d: %s)\n", errcode, message);
-}
-
-void handleDiscordSpectate(const char* secret)
-{
-	Msg("\nDiscord: spectate (%s)\n", secret);
-}
-
-void handleDiscordJoinRequest(const DiscordJoinRequest* request)
-{
-	Discord_Respond(request->userId, DISCORD_REPLY_NO);
-}
 //-----------------------------------------------------------------------------
 ISourceVirtualReality *g_pSourceVR = NULL;
 
@@ -1117,20 +1089,7 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	HookHapticMessages(); // Always hook the messages
 #endif
 
-	//Discord
-	DiscordEventHandlers handlers;
-	memset(&handlers, 0, sizeof(handlers));
-	handlers.ready = HandleDReady;
-	handlers.errored = handleDiscordError;
-	handlers.disconnected = handleDiscordDisconnected;
-	handlers.joinRequest = handleDiscordJoinRequest;
-	Discord_Initialize("306462694977044483", &handlers, 1, NULL);
-
 	return true;
-
-	
-
-
 }
 
 bool CHLClient::ReplayInit( CreateInterfaceFn fnReplayFactory )
@@ -1168,8 +1127,6 @@ bool CHLClient::ReplayPostInit()
 #endif
 }
 
-
-
 //-----------------------------------------------------------------------------
 // Purpose: Called after client & server DLL are loaded and all systems initialized
 //-----------------------------------------------------------------------------
@@ -1199,18 +1156,13 @@ void CHLClient::PostInit()
 		}
 	}
 #endif
-
-	
 }
-
-
 
 //-----------------------------------------------------------------------------
 // Purpose: Called when the client .dll is being dismissed
 //-----------------------------------------------------------------------------
 void CHLClient::Shutdown( void )
 {
-	Discord_Shutdown();
     if (g_pAchievementsAndStatsInterface)
     {
         g_pAchievementsAndStatsInterface->ReleasePanel();
@@ -2613,8 +2565,8 @@ void CHLClient::ClientAdjustStartSoundParams( StartSoundParams_t& params )
 		// Halloween voice futzery?
 		else
 		{
-			float flHeadScale = 1.f;
-			CALL_ATTRIB_HOOK_FLOAT_ON_OTHER( pEntity, flHeadScale, head_scale );
+			float flVoicePitchScale = 1.f;
+			CALL_ATTRIB_HOOK_FLOAT_ON_OTHER( pEntity, flVoicePitchScale, voice_pitch_scale );
 
 			int iHalloweenVoiceSpell = 0;
 			CALL_ATTRIB_HOOK_INT_ON_OTHER( pEntity, iHalloweenVoiceSpell, halloween_voice_modulation );
@@ -2622,17 +2574,9 @@ void CHLClient::ClientAdjustStartSoundParams( StartSoundParams_t& params )
 			{
 				params.pitch *= 0.8f;
 			}
-			else if( flHeadScale != 1.f )
+			else if( flVoicePitchScale != 1.f )
 			{
-				// Big head, deep voice
-				if( flHeadScale > 1.f )
-				{
-					params.pitch *= 0.8f;
-				}
-				else	// Small head, high voice
-				{
-					params.pitch *= 1.3f;
-				}
+				params.pitch *= flVoicePitchScale;
 			}
 		}
 	}

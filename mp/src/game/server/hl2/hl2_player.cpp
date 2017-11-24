@@ -46,7 +46,6 @@
 #include "gamestats.h"
 #include "filters.h"
 #include "tier0/icommandline.h"
-#include "../client/discord-rpc.h"
 
 #ifdef HL2_EPISODIC
 #include "npc_alyx_episodic.h"
@@ -61,12 +60,6 @@
 
 extern ConVar weapon_showproficiency;
 extern ConVar autoaim_max_dist;
-
-ConVar  hotswap("hotswap_enabled", "1", NULL, "Enable pistol hotswap test");
-ConVar  hotswap_range("hotswap_range", "1024", NULL, "Pistol hotswap range (forward * this value)");
-ConVar  hotswap_cooldown("hotswap_cooldown", "1.5f", NULL, "Cooldown for the pistol hotswap");
-
-float				m_flNextHotswap = 0.0f;
 
 // Do not touch with without seeing me, please! (sjb)
 // For consistency's sake, enemy gunfire is traced against a scaled down
@@ -247,113 +240,8 @@ void CC_ToggleZoom( void )
 
 static ConCommand toggle_zoom("toggle_zoom", CC_ToggleZoom, "Toggles zoom display" );
 
-void CC_GP_Hotswap(void)
-{
-	if (hotswap.GetBool())
-	{
-		if (m_flNextHotswap < gpGlobals->curtime)
-		{
-			CBasePlayer* pPlayerThing = UTIL_GetCommandClient();
-
-
-			if (pPlayerThing)
-			{
-				CHL2_Player *pPlayer = dynamic_cast<CHL2_Player*>(pPlayerThing);
-
-				Vector forward;
-				trace_t	tr;
-
-
-
-				AngleVectors(pPlayer->GetAbsAngles(), &forward);
-
-				if (NULL != pPlayer)
-				{
-
-					UTIL_TraceLine(pPlayer->Weapon_ShootPosition(), pPlayer->Weapon_ShootPosition() + forward * hotswap_range.GetFloat(),
-						MASK_VISIBLE_AND_NPCS, pPlayer, COLLISION_GROUP_NPC, &tr);
-
-					//NDebugOverlay::DrawTickMarkedLine(pPlayer->Weapon_ShootPosition(), pPlayer->Weapon_ShootPosition() + forward * 128, 0.5f, 0.5f, 255, 0, 0, true, 5.0f);
-
-
-
-					//Msg("Pistol secondary fire");
-
-					if (tr.DidHitNonWorldEntity())
-					{
-
-						if (tr.m_pEnt)
-						{
-
-							if (tr.m_pEnt->IsNPC())
-							{
-
-								//if (tr.m_pEnt->GetClassname() == "npc_combine_s")
-								//{
-								CBaseEntity* them = tr.m_pEnt;
-
-								//Oh boy, had to redo ALL of this code because I found out the teleport function exists.
-
-								const Vector* myPos = new Vector(pPlayer->GetAbsOrigin());
-								const QAngle* myAngles = new QAngle(tr.m_pEnt->GetAbsAngles().x, tr.m_pEnt->GetAbsAngles().y, pPlayer->GetAbsAngles().z);
-
-								const Vector* theirPos = new Vector(tr.m_pEnt->GetAbsOrigin().x, tr.m_pEnt->GetAbsOrigin().y, tr.m_pEnt->GetAbsOrigin().z + 5.0);
-								const QAngle* theirAngles = new QAngle(tr.m_pEnt->GetAbsAngles());
-
-								//pPlayer->SetAbsAngles(theirAngles);
-								pPlayer->Teleport(theirPos, theirAngles, NULL);
-
-								them->Teleport(myPos, myAngles, NULL);
-
-								CPASAttenuationFilter filter(pPlayer);
-
-								pPlayer->EmitSound(filter, pPlayer->entindex(), "GPPlayer.Hotswap");
-
-								m_flNextHotswap = gpGlobals->curtime + 1.5f;
-
-
-								//}
-							}
-						}
-					}
-
-
-				}
-			}
-		}
-	}
-}
-
-static ConCommand gp_hotswap("gp_hotswap", CC_GP_Hotswap, "Hotswap.");
-
-/*
-void CC_DUpdate(void)
-{
-	CBasePlayer* pPlayer = UTIL_GetCommandClient();
-
-	if (pPlayer)
-	{
-		//CHL2_Player *pHL2Player = dynamic_cast<CHL2_Player*>(pPlayer);
-
-		char buffer[256];
-		DiscordRichPresence discordPresence;
-		memset(&discordPresence, 0, sizeof(discordPresence));
-		discordPresence.state = "Debugging Rich Presence";
-		Q_snprintf(buffer, "Map: %d", gpGlobals->mapname);
-		discordPresence.details = buffer;
-
-		discordPresence.largeImageKey = "dummy";
-
-		discordPresence.instance = 1;
-
-		Discord_UpdatePresence(&discordPresence);
-	}
-}
-
-static ConCommand discord_test("discord_test", CC_DUpdate, "aasdfsdagfij");*/
-
 // ConVar cl_forwardspeed( "cl_forwardspeed", "400", FCVAR_CHEAT ); // Links us to the client's version
-ConVar xc_crouch_range( "xc_crouch_range", "0.85", FCVAR_ARCHIVE, "Percentage [1..0] of joystick range to allow ducking within" );	// Only 1/2 of the range is used
+ConVar xc_crouch_range( "xc_crouch_range", "0.85", FCVAR_ARCHIVE, "Percentarge [1..0] of joystick range to allow ducking within" );	// Only 1/2 of the range is used
 ConVar xc_use_crouch_limiter( "xc_use_crouch_limiter", "0", FCVAR_ARCHIVE, "Use the crouch limiting logic on the controller" );
 
 //------------------------------------------------------------------------------
@@ -434,8 +322,6 @@ BEGIN_DATADESC( CHL2_Player )
 	DEFINE_FIELD( m_flTimeAllSuitDevicesOff, FIELD_TIME ),
 	DEFINE_FIELD( m_fIsSprinting, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_fIsWalking, FIELD_BOOLEAN ),
-
-
 
 	/*
 	// These are initialized every time the player calls Activate()
@@ -1247,8 +1133,6 @@ void CHL2_Player::Spawn(void)
 	m_pPlayerAISquad = g_AI_SquadManager.FindCreateSquad(AllocPooledString(PLAYER_SQUADNAME));
 
 	InitSprinting();
-
-	ResetAnimation();
 
 	// Setup our flashlight values
 #ifdef HL2_EPISODIC
@@ -2181,7 +2065,6 @@ void CHL2_Player::FlashlightTurnOff( void )
 	FirePlayerProxyOutput( "OnFlashlightOff", flashlightoff, this, this );
 }
 
-
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 #define FLASHLIGHT_RANGE	Square(600)
@@ -2341,21 +2224,6 @@ void CHL2_Player::InputIgnoreFallDamage( inputdata_t &inputdata )
 	m_bIgnoreFallDamageResetAfterImpact = true;
 }
 
-void CHL2_Player::ResetAnimation(void)
-{
-	if (IsAlive())
-	{
-		SetSequence(-1);
-		SetActivity(ACT_INVALID);
-
-		if (!GetAbsVelocity().x && !GetAbsVelocity().y)
-			SetAnimation(PLAYER_IDLE);
-		else if ((GetAbsVelocity().x || GetAbsVelocity().y) && (GetFlags() & FL_ONGROUND))
-			SetAnimation(PLAYER_WALK);
-		else if (GetWaterLevel() > 1)
-			SetAnimation(PLAYER_WALK);
-	}
-}
 
 //-----------------------------------------------------------------------------
 // Purpose: Absolutely prevent the player from taking fall damage for [n] seconds. 
@@ -2594,8 +2462,6 @@ void CHL2_Player::Event_KilledOther( CBaseEntity *pVictim, const CTakeDamageInfo
 void CHL2_Player::Event_Killed( const CTakeDamageInfo &info )
 {
 	BaseClass::Event_Killed( info );
-
-	m_flNextHotswap = 0.0f;
 
 	FirePlayerProxyOutput( "PlayerDied", variant_t(), this, this );
 	NotifyScriptsOfDeath();
@@ -3460,8 +3326,6 @@ bool CHL2_Player::Weapon_Switch( CBaseCombatWeapon *pWeapon, int viewmodelindex 
 	{
 		StopZooming();
 	}
-
-	ResetAnimation();
 
 	return BaseClass::Weapon_Switch( pWeapon, viewmodelindex );
 }

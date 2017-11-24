@@ -24,7 +24,6 @@
 
 extern ConVar sk_auto_reload_time;
 extern ConVar sk_plr_num_shotgun_pellets;
-ConVar sv_legacy_shotgun("sk_legacy_shotgun", "0");
 
 class CWeaponShotgun : public CBaseHLCombatWeapon
 {
@@ -157,7 +156,6 @@ IMPLEMENT_ACTTABLE(CWeaponShotgun);
 void CWeaponShotgun::Precache( void )
 {
 	CBaseCombatWeapon::Precache();
-	PrecacheScriptSound("Weapon_Shotgun.SwitchMode");
 }
 
 //-----------------------------------------------------------------------------
@@ -453,34 +451,17 @@ void CWeaponShotgun::PrimaryAttack( void )
 	}
 
 	// MUST call sound before removing a round from the clip of a CMachineGun
-
-	if (pPlayer->m_bShotgunSemi)
-	{
-		WeaponSound(WPN_DOUBLE);
-	}
-	else
-	{
-		WeaponSound(SINGLE);
-	}
+	WeaponSound(SINGLE);
 
 	pPlayer->DoMuzzleFlash();
 
 	SendWeaponAnim( ACT_VM_PRIMARYATTACK );
 
-
-
 	// player "shoot" animation
 	pPlayer->SetAnimation( PLAYER_ATTACK1 );
 
 	// Don't fire again until fire animation has completed
-	if (!pPlayer->m_bShotgunSemi)
-	{
-		m_flNextPrimaryAttack = gpGlobals->curtime + SequenceDuration();
-	}
-	else
-	{
-		m_flNextPrimaryAttack = gpGlobals->curtime + 0.25f;
-	}
+	m_flNextPrimaryAttack = gpGlobals->curtime + SequenceDuration();
 	m_iClip1 -= 1;
 
 	Vector	vecSrc		= pPlayer->Weapon_ShootPosition( );
@@ -489,14 +470,7 @@ void CWeaponShotgun::PrimaryAttack( void )
 	pPlayer->SetMuzzleFlashTime( gpGlobals->curtime + 1.0 );
 	
 	// Fire the bullets, and force the first shot to be perfectly accuracy
-	if (!pPlayer->m_bShotgunSemi)
-	{
-		pPlayer->FireBullets(sk_plr_num_shotgun_pellets.GetInt(), vecSrc, vecAiming, GetBulletSpread(), MAX_TRACE_LENGTH, m_iPrimaryAmmoType, 0, -1, -1, 0, NULL, true, true);
-	}
-	else
-	{
-		pPlayer->FireBullets(sk_plr_num_shotgun_pellets.GetInt(), vecSrc, vecAiming, GetBulletSpread() * 1.3, MAX_TRACE_LENGTH, m_iSecondaryAmmoType, 0, -1, -1, 0, NULL, true, true);
-	}
+	pPlayer->FireBullets( sk_plr_num_shotgun_pellets.GetInt(), vecSrc, vecAiming, GetBulletSpread(), MAX_TRACE_LENGTH, m_iPrimaryAmmoType, 0, -1, -1, 0, NULL, true, true );
 	
 	pPlayer->ViewPunch( QAngle( random->RandomFloat( -2, -1 ), random->RandomFloat( -2, 2 ), 0 ) );
 
@@ -511,10 +485,7 @@ void CWeaponShotgun::PrimaryAttack( void )
 	if( m_iClip1 )
 	{
 		// pump so long as some rounds are left.
-		if (!pPlayer->m_bShotgunSemi)
-		{
-			m_bNeedPump = true;
-		}
+		m_bNeedPump = true;
 	}
 
 	m_iPrimaryAttacks++;
@@ -528,73 +499,54 @@ void CWeaponShotgun::PrimaryAttack( void )
 //-----------------------------------------------------------------------------
 void CWeaponShotgun::SecondaryAttack( void )
 {
-	if (sv_legacy_shotgun.GetInt() > 0)
+	// Only the player fires this way so we can cast
+	CBasePlayer *pPlayer = ToBasePlayer( GetOwner() );
+
+	if (!pPlayer)
 	{
-		// Only the player fires this way so we can cast
-		CBasePlayer *pPlayer = ToBasePlayer(GetOwner());
-
-		if (!pPlayer)
-		{
-			return;
-		}
-
-		pPlayer->m_nButtons &= ~IN_ATTACK2;
-		// MUST call sound before removing a round from the clip of a CMachineGun
-		WeaponSound(WPN_DOUBLE);
-
-		pPlayer->DoMuzzleFlash();
-
-		SendWeaponAnim(ACT_VM_SECONDARYATTACK);
-
-		// player "shoot" animation
-		pPlayer->SetAnimation(PLAYER_ATTACK1);
-
-		// Don't fire again until fire animation has completed
-		m_flNextPrimaryAttack = gpGlobals->curtime + SequenceDuration();
-		m_iClip1 -= 2;	// Shotgun uses same clip for primary and secondary attacks
-
-		Vector vecSrc = pPlayer->Weapon_ShootPosition();
-		Vector vecAiming = pPlayer->GetAutoaimVector(AUTOAIM_SCALE_DEFAULT);
-
-		// Fire the bullets
-		pPlayer->FireBullets(12, vecSrc, vecAiming, GetBulletSpread(), MAX_TRACE_LENGTH, m_iPrimaryAmmoType, 0, -1, -1, 0, NULL, false, false);
-		pPlayer->ViewPunch(QAngle(random->RandomFloat(-5, 5), 0, 0));
-
-		pPlayer->SetMuzzleFlashTime(gpGlobals->curtime + 1.0);
-
-		CSoundEnt::InsertSound(SOUND_COMBAT, GetAbsOrigin(), SOUNDENT_VOLUME_SHOTGUN, 0.2);
-
-		if (!m_iClip1 && pPlayer->GetAmmoCount(m_iPrimaryAmmoType) <= 0)
-		{
-			// HEV suit - indicate out of ammo condition
-			pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
-		}
-
-		if (m_iClip1)
-		{
-			// pump so long as some rounds are left.
-			m_bNeedPump = true;
-		}
-
-		m_iSecondaryAttacks++;
-		gamestats->Event_WeaponFired(pPlayer, false, GetClassname());
+		return;
 	}
-	else
+
+	pPlayer->m_nButtons &= ~IN_ATTACK2;
+	// MUST call sound before removing a round from the clip of a CMachineGun
+	WeaponSound(WPN_DOUBLE);
+
+	pPlayer->DoMuzzleFlash();
+
+	SendWeaponAnim( ACT_VM_SECONDARYATTACK );
+
+	// player "shoot" animation
+	pPlayer->SetAnimation( PLAYER_ATTACK1 );
+
+	// Don't fire again until fire animation has completed
+	m_flNextPrimaryAttack = gpGlobals->curtime + SequenceDuration();
+	m_iClip1 -= 2;	// Shotgun uses same clip for primary and secondary attacks
+
+	Vector vecSrc	 = pPlayer->Weapon_ShootPosition();
+	Vector vecAiming = pPlayer->GetAutoaimVector( AUTOAIM_SCALE_DEFAULT );	
+
+	// Fire the bullets
+	pPlayer->FireBullets( 12, vecSrc, vecAiming, GetBulletSpread(), MAX_TRACE_LENGTH, m_iPrimaryAmmoType, 0, -1, -1, 0, NULL, false, false );
+	pPlayer->ViewPunch( QAngle(random->RandomFloat( -5, 5 ),0,0) );
+
+	pPlayer->SetMuzzleFlashTime( gpGlobals->curtime + 1.0 );
+
+	CSoundEnt::InsertSound( SOUND_COMBAT, GetAbsOrigin(), SOUNDENT_VOLUME_SHOTGUN, 0.2 );
+
+	if (!m_iClip1 && pPlayer->GetAmmoCount(m_iPrimaryAmmoType) <= 0)
 	{
-		CBasePlayer *pPlayer = ToBasePlayer(GetOwner());
-		Msg("Shotgun mode switched\n");
-
-		if (pPlayer->m_bShotgunSemi)
-		{
-			pPlayer->m_bShotgunSemi = false;
-		}
-		else
-		{
-			pPlayer->m_bShotgunSemi = true;
-		}
-		EmitSound("Weapon_Shotgun.SwitchMode");
-		m_flNextPrimaryAttack = gpGlobals->curtime + 0.5f;
+		// HEV suit - indicate out of ammo condition
+		pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0); 
 	}
+
+	if( m_iClip1 )
+	{
+		// pump so long as some rounds are left.
+		m_bNeedPump = true;
+	}
+
+	m_iSecondaryAttacks++;
+	gamestats->Event_WeaponFired( pPlayer, false, GetClassname() );
 }
 	
 //-----------------------------------------------------------------------------

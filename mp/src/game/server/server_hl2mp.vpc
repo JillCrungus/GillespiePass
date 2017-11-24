@@ -226,61 +226,6 @@ $Project "Server (HL2MP)"
 			$File	"hl2\weapon_crowbar.h"
 			$File	"weapon_cubemap.cpp"
 
-			$Folder "Leak"
-			{
-				$Folder "Tau"
-				{
-					$File "Leak\weapon_gauss.cpp"
-					$File "Leak\weapon_gauss.h"
-				}
-				$Folder "Crab Synth"
-				{
-					$File "Leak\npc_crabsynth.cpp"
-					$File "Leak\npc_crabsynth.h"
-				}
-				$Folder "Mortar Synth"
-				{
-					$File "Leak\npc_mortarsynth.cpp"
-					$File "Leak\npc_mortarsynth.h"
-					$File "Leak\grenade_energy.cpp"
-					$File "Leak\grenade_energy.h"
-				}
-				$Folder "Cremator"
-				{
-					$File "Leak\Cremator\npc_cremator.cpp"
-					$File "Leak\Cremator\npc_cremator.h"
-				}
-				$Folder "CGuard"
-				{
-					$File "Leak\CGuard\npc_combineguard.cpp"
-				}
-				$Folder "Assassin"
-				{
-					$File "hl2\npc_assassin.cpp"
-					$File "hl2\npc_assassin.h"
-				}
-			}
-
-
-			$Folder "HL1"
-			{
-				$File "hl1\hl1_ai_basenpc.cpp"
-				$File "hl1\hl1_ai_basenpc.h"
-
-				$File "hl1\hl1_basegrenade.cpp"
-				$File "hl1\hl1_basegrenade.h"
-
-				$File "hl1\hl1_npc_bullsquid.cpp"
-				$File "hl1\hl1_npc_bullsquid.h"
-
-				$File "hl1\hl1_npc_houndeye.cpp"
-				$File "hl1\hl1_npc_houndeye.h"
-
-				$File "hl1\hl1_npc_snark.cpp"
-				$File "hl1\hl1_npc_snark.h"
-			}
-
-
 			$Folder	"unused"
 			{
 				$File	"hl2\grenade_beam.cpp"

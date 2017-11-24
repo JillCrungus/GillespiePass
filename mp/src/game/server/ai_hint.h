@@ -66,7 +66,6 @@ enum Hint_e
 	HINT_NOT_USED_TACTICAL_GUARD,
 	HINT_TACTICAL_ENEMY_DISADVANTAGED,	//Disadvantageous position for the enemy
 	HINT_NOT_USED_HEALTH_KIT,
-	HINT_HOUNDEYE_NAP,
 
 	HINT_NOT_USED_URBAN_STREETCORNER = 200,
 	HINT_NOT_USED_URBAN_STREETLAMP,
@@ -294,9 +293,6 @@ public:
 	void				FixupTargetNode();
 	void				NPCStartedUsing( CAI_BaseNPC *pNPC );
 	void				NPCStoppedUsing( CAI_BaseNPC *pNPC );
-
-	static CAI_Hint		*FindHint(CAI_BaseNPC *pNPC, const Vector &position, CHintCriteria *pHintCriteria);
-	static CAI_Hint		*FindHint(CAI_BaseNPC *pNPC, Hint_e nHintType, int nFlags, float flMaxDist, const Vector *pMaxDistFrom = NULL);
 
 	HintIgnoreFacing_t	GetIgnoreFacing() const			{ return m_NodeData.fIgnoreFacing; }
 
