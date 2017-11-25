@@ -37,7 +37,7 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
-#define INSIGNIA_MODEL "sprites/glow04_noz.vmt"
+#define INSIGNIA_MODEL "sprites/squad.vmt"
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -72,6 +72,7 @@ ConVar	npc_citizen_auto_player_squad_allow_use( "npc_citizen_auto_player_squad_a
 
 ConVar npc_citizen_insignia_height_offset("npc_citizen_insignia_height_offset", "80");
 ConVar g_debug_insignia("g_debug_insignia", "0");
+ConVar npc_citizen_insignia_scale("npc_citizen_insignia_scale", "0.04f");
 
 
 ConVar	npc_citizen_dont_precache_all( "npc_citizen_dont_precache_all", "0" );
@@ -4225,6 +4226,11 @@ void CNPC_Citizen::UpdateInsignia()
 			m_myInsignia->SetAbsOrigin(newPos);
 		}
 
+		if (m_myInsignia->GetScale() != npc_citizen_insignia_scale.GetFloat())
+		{
+			m_myInsignia->SetScale(npc_citizen_insignia_scale.GetFloat(), 0.2f);
+		}
+
 		if (IsFollowingCommandPoint())
 		{
 			m_myInsignia->SetColor(230, 10, 10);
@@ -4233,6 +4239,7 @@ void CNPC_Citizen::UpdateInsignia()
 		{
 			m_myInsignia->SetColor(10, 230, 10);
 		}
+
 	}
 
 	if (npc_citizen_insignia.GetBool() && !m_myInsignia && IsInPlayerSquad())
