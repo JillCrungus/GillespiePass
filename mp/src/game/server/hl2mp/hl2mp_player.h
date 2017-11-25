@@ -137,6 +137,8 @@ public:
 
 	virtual bool	CanHearAndReadChatFrom( CBasePlayer *pPlayer );
 
+
+	bool m_bLongJump = true;
 		
 private:
 
