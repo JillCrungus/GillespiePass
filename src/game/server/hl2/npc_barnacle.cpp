@@ -27,6 +27,7 @@
 #include "explode.h"
 #include "npc_BaseZombie.h"
 #include "modelentities.h"
+#include "gp_resources.h"
 
 #if HL2_EPISODIC
 #include "npc_antlion.h"
@@ -182,6 +183,9 @@ BEGIN_DATADESC( CNPC_Barnacle )
 	DEFINE_OUTPUT( m_OnGrab,     "OnGrab" ),
 	DEFINE_OUTPUT( m_OnRelease, "OnRelease" ),
 #endif
+
+	DEFINE_KEYFIELD(m_iResourcestoDrop, FIELD_INTEGER, "resourceamt"),
+	DEFINE_KEYFIELD(m_iResourcesValue, FIELD_INTEGER, "resourcesvalue"),
 
 	// Function pointers
 	DEFINE_THINKFUNC( BarnacleThink ),
@@ -2083,6 +2087,22 @@ void CNPC_Barnacle::Event_Killed( const CTakeDamageInfo &info )
 	}
 
 	EmitSound( "NPC_Barnacle.Die" );
+
+
+	// Drop a random number of gibs
+	for (int i = 0; i < m_iResourcestoDrop; i++)
+	{
+		CItemResource *pResource = dynamic_cast<CItemResource *>(CBaseEntity::Create("item_resource", GetAbsOrigin(), RandomAngle(0, 360), this));
+		if (NULL != pResource)
+		{
+			pResource->m_iResourceType = RESOURCE_TYPE_BIO;
+			pResource->m_iResourceValue = m_iResourcesValue;
+			pResource->SetAbsOrigin(GetAbsOrigin());
+			pResource->Spawn();
+		}
+		
+	}
+
 
 	SetActivity( ACT_DIESIMPLE );
 

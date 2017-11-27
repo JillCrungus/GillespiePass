@@ -31,10 +31,14 @@ public:
 	void Spawn();
 
 	void Precache();
+
+	//void PhysicsSimulate();
 	
 	bool MyTouch(CBasePlayer *pPlayer);
 
 	int m_iResourceType;
+
+	int m_iResourceValue = 1; //How many of the resource should we give?
 
 	DECLARE_DATADESC();
 };

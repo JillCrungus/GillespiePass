@@ -157,6 +157,8 @@ private:
 
 	CNetworkVar( float, m_flAltitude );
 	int				m_cGibs;				// barnacle loads up on gibs each time it kills something.
+	int				m_iResourcestoDrop = 5;	// How many resources should we drop?
+	int				m_iResourcesValue = 1; //Value of the resources we drop.
 	bool			m_bLiftingPrey;			// true when the prey's on the tongue and being lifted to the mouth
 	bool			m_bSwallowingPrey;		// if it's a human, true while the barnacle chews it and swallows it whole. 
 	float			m_flDigestFinish;		// time at which we've finished digesting something we chewed
