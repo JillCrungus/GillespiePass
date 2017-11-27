@@ -284,6 +284,15 @@ $Project "Server (Episodic)"
 			$File	"hl2\func_bulletshield.h"
 			$File	"episodic\npc_puppet.cpp"
 
+			$Folder "GP"
+			{
+				$Folder "Resource Gathering"
+				{
+					$File "gp_resources.h"
+					$File "gp_resources.cpp"
+				}
+			}
+
 			$Folder "Leak"
 			{
 				$Folder "Tau"

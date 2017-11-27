@@ -16,6 +16,12 @@
     <Filter Include="Source Files\HL2 DLL">
       <UniqueIdentifier>{3C43D38A-46AF-2183-A5E5-44383B1D2652}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\GP">
+      <UniqueIdentifier>{A5C78B79-651F-38E8-5F47-A30B1057BBF1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HL2 DLL\GP\Resource Gathering">
+      <UniqueIdentifier>{E5DCDFDD-9C63-AD04-D468-49BD111C3A2F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\HL2 DLL\HL1">
       <UniqueIdentifier>{3FA3BFD7-768D-CC7B-AEA4-6E0FF447BBD3}</UniqueIdentifier>
     </Filter>
@@ -1772,6 +1778,9 @@
     <ClInclude Include="hl2\weapon_stunstick.h">
       <Filter>Source Files\HL2 DLL</Filter>
     </ClInclude>
+    <ClInclude Include="gp_resources.h">
+      <Filter>Source Files\HL2 DLL\GP\Resource Gathering</Filter>
+    </ClInclude>
     <ClInclude Include="hl1\hl1_ai_basenpc.h">
       <Filter>Source Files\HL2 DLL\HL1</Filter>
     </ClInclude>
@@ -3375,6 +3384,9 @@
     </ClCompile>
     <ClCompile Include="hl2\weapon_stunstick.cpp">
       <Filter>Source Files\HL2 DLL</Filter>
+    </ClCompile>
+    <ClCompile Include="gp_resources.cpp">
+      <Filter>Source Files\HL2 DLL\GP\Resource Gathering</Filter>
     </ClCompile>
     <ClCompile Include="hl1\hl1_ai_basenpc.cpp">
       <Filter>Source Files\HL2 DLL\HL1</Filter>

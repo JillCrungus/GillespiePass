@@ -142,6 +142,25 @@ public:
 	// Apply a battery
 	bool ApplyBattery( float powerMultiplier = 1.0 );
 
+	
+	
+	//************************************
+	// Method:    GiveResource
+	// FullName:  CHL2_Player::GiveResource
+	// Access:    public 
+	// Returns:   bool
+	// Qualifier:
+	// Parameter: int resourceType
+	// Purpose: Gives a resource of the specified type to the player.
+	//************************************
+
+	bool GiveResource(int resourceType = 0, int resourceAmount = 1);
+	//void SetResource(int resourceType)
+
+	int m_iResourcesCombine = 0;
+	int m_iResourcesBio = 0;
+	int m_iResourcesMetal = 0;
+
 	// Commander Mode for controller NPCs
 	enum CommanderCommand_t
 	{

@@ -46,7 +46,7 @@
 #include "gamestats.h"
 #include "filters.h"
 #include "tier0/icommandline.h"
-#include "../client/discord-rpc.h"
+//#include "gp_resources.h"
 
 #ifdef HL2_EPISODIC
 #include "npc_alyx_episodic.h"
@@ -326,6 +326,26 @@ void CC_GP_Hotswap(void)
 
 static ConCommand gp_hotswap("gp_hotswap", CC_GP_Hotswap, "Hotswap.");
 
+
+void CC_Show_Resources(void)
+{
+	CBasePlayer* pPlayer = UTIL_GetCommandClient();
+
+	if (pPlayer)
+	{
+		CHL2_Player *pHL2Player = dynamic_cast<CHL2_Player*>(pPlayer);
+
+		if (pHL2Player)
+		{
+			Msg("Player Resources!\nCombine:%i\nBiological:%i\nMetal:%i\n", pHL2Player->m_iResourcesCombine, pHL2Player->m_iResourcesBio, pHL2Player->m_iResourcesMetal);
+		}
+	}
+}
+
+static ConCommand gp_resources("gp_resources", CC_Show_Resources, "Shows a printout of the player's current resources.");
+
+	
+
 /*
 void CC_DUpdate(void)
 {
@@ -496,6 +516,10 @@ BEGIN_DATADESC( CHL2_Player )
 	DEFINE_FIELD( m_hLocatorTargetEntity, FIELD_EHANDLE ),
 
 	DEFINE_FIELD( m_flTimeNextLadderHint, FIELD_TIME ),
+
+	DEFINE_FIELD( m_iResourcesCombine, FIELD_INTEGER ),
+	DEFINE_FIELD(m_iResourcesBio, FIELD_INTEGER),
+	DEFINE_FIELD(m_iResourcesMetal, FIELD_INTEGER),
 
 	//DEFINE_FIELD( m_hPlayerProxy, FIELD_EHANDLE ), //Shut up class check!
 
@@ -2094,7 +2118,7 @@ ConVar	sk_battery( "sk_battery","0" );
 
 bool CHL2_Player::ApplyBattery( float powerMultiplier )
 {
-	const float MAX_NORMAL_BATTERY = 100;
+	const float MAX_NORMAL_BATTERY = 100.0f;
 	if ((ArmorValue() < MAX_NORMAL_BATTERY) && IsSuitEquipped())
 	{
 		int pct;
@@ -2128,6 +2152,52 @@ bool CHL2_Player::ApplyBattery( float powerMultiplier )
 	}
 	return false;
 }
+
+bool CHL2_Player::GiveResource(int resourceType /* = 0 */, int resourceAmount)
+{
+	enum eResourceTypesP
+	{
+		RESOURCE_TYPE_GENERIC = 0,
+		RESOURCE_TYPE_COMBINE,
+		RESOURCE_TYPE_BIO,
+		RESOURCE_TYPE_METAL,
+	};
+
+	switch (resourceType)
+	{
+		case RESOURCE_TYPE_GENERIC:
+			Msg("WARNING!! Player picked up a generic resource. This shouldn't happen.\n");
+			return true;
+			break;
+
+		case RESOURCE_TYPE_COMBINE:
+			m_iResourcesCombine += resourceAmount;
+			break;
+			return true;
+			break;
+
+		case RESOURCE_TYPE_BIO:
+			m_iResourcesBio += resourceAmount;
+			break;
+			return true;
+			break;
+
+		case RESOURCE_TYPE_METAL:
+			m_iResourcesMetal += resourceAmount;
+			break;
+			return true;
+			break;
+
+		default:
+			Msg("ERROR!! Something went seriously wrong with a resource THAT THE PLAYER PICKED UP! WHAT THE FUCK?? TELL JILL.\n");
+			break;
+			return true;
+			break;
+	}
+	return false;
+}
+
+
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
