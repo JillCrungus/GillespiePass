@@ -10,20 +10,27 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+
 #define RESOURCE_MODEL_COMBINE "models/weapons/w_bugbait.mdl"
 #define RESOURCE_MODEL_BIO "models/weapons/w_bugbait.mdl"
 #define RESOURCE_MODEL_METAL "models/weapons/w_bugbait.mdl"
 #define RESOURCE_MODEL_GENERIC "models/weapons/w_bugbait.mdl"
 
 BEGIN_DATADESC(CItemResource)
-	DEFINE_KEYFIELD(	m_iResourceType, FIELD_INTEGER, "resourcetype"),
-	DEFINE_KEYFIELD(m_iResourceValue, FIELD_INTEGER, "resourcevalue")
+	DEFINE_KEYFIELD(m_iResourceType, FIELD_INTEGER, "resourcetype"),
+	DEFINE_KEYFIELD(m_iResourceValue, FIELD_INTEGER, "resourcevalue"),
+
+	DEFINE_THINKFUNC(ShowResourceName)
 END_DATADESC()
 
 
 void CItemResource::Spawn()
 {
 	Precache();
+	if (m_iResourceType == 1066)
+	{
+		m_iResourceType = RandomInt(1, 3);
+	}
 	switch (m_iResourceType)
 	{
 		case RESOURCE_TYPE_GENERIC:
@@ -49,6 +56,8 @@ void CItemResource::Spawn()
 			break;
 	}
 	BaseClass::Spawn();
+	SetThink(&CItemResource::ShowResourceName);
+	SetNextThink(gpGlobals->curtime + 0.1f);
 }
 
 void CItemResource::Precache()
@@ -60,29 +69,30 @@ void CItemResource::Precache()
 
 	PrecacheScriptSound("ItemBattery.Touch");
 }
-/*
-void CItemResource::PhysicsSimulate( )
+
+void CItemResource::ShowResourceName( )
 {
 	switch (m_iResourceType)
 	{
 	case RESOURCE_TYPE_GENERIC:
-		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Generic Resource", 0.1f);
-		break;
+		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Generic Resource", 0.15f);
+		SetRenderMode(kRenderWorldGlow);
+		SetRenderColor(255, 0, 0);
 	case RESOURCE_TYPE_COMBINE:
-		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Combine Resource", 0.1f);
+		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Combine Resource", 0.15f);
 		break;
 	case RESOURCE_TYPE_BIO:
-		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Biological Resource", 0.1f);
+		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Biological Resource", 0.15f);
 		break;
 	case RESOURCE_TYPE_METAL:
-		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Metal Resource", 0.1f);
+		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Metal Resource", 0.15f);
 		break;
 	default:
-		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Error!! Invalid Resource", 0.1f);
+		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, "Error!! Invalid Resource", 0.15f);
 		break;
 	}
-	BaseClass::PhysicsSimulate();
-}*/
+	SetNextThink(gpGlobals->curtime + 0.1f);
+}
 
 bool CItemResource::MyTouch(CBasePlayer *pPlayer)
 {
@@ -91,7 +101,7 @@ bool CItemResource::MyTouch(CBasePlayer *pPlayer)
 	user.MakeReliable();
 
 	UserMessageBegin(user, "ItemPickup");
-	WRITE_STRING(GetClassname());
+	WRITE_STRING(GetClassname() + m_iResourceType);
 	MessageEnd();
 
 	CPASAttenuationFilter filter(this, "ItemBattery.Touch");

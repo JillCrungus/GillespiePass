@@ -37,6 +37,8 @@
 #include "hud_vote.h"
 #include "ienginevgui.h"
 #include "sourcevr/isourcevirtualreality.h"
+#include "clienteffectprecachesystem.h"
+#include "glow_outline_effect.h"
 #if defined( _X360 )
 #include "xbox/xbox_console.h"
 #endif
@@ -68,7 +70,13 @@ extern ConVar replay_rendersetting_renderglow;
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+
 #define ACHIEVEMENT_ANNOUNCEMENT_MIN_TIME 10
+
+CLIENTEFFECT_REGISTER_BEGIN(PrecachePostProcessingEffectsGlow)
+CLIENTEFFECT_MATERIAL("dev/glow_color")
+CLIENTEFFECT_MATERIAL("dev/halo_add_to_screen")
+CLIENTEFFECT_REGISTER_END_CONDITIONAL(engine->GetDXSupportLevel() >= 90)
 
 class CHudWeaponSelection;
 class CHudChat;
@@ -768,6 +776,7 @@ bool ClientModeShared::DoPostScreenSpaceEffects( const CViewSetup *pSetup )
 			return false;
 	}
 #endif 
+	g_GlowObjectManager.RenderGlowEffects(pSetup, 0);
 	return true;
 }
 

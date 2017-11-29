@@ -373,6 +373,7 @@ protected:
 	static int				m_nDebugSteps;		// Number of entity outputs to fire before pausing again.
 
 	static bool				sm_bDisableTouchFuncs;	// Disables PhysicsTouch and PhysicsStartTouch function calls
+
 public:
 	static bool				sm_bAccurateTriggerBboxChecks;	// SOLID_BBOX entities do a fully accurate trigger vs bbox check when this is set
 

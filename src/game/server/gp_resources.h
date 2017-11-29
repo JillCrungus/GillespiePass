@@ -28,18 +28,23 @@ class CItemResource : public CItem
 public:
 	DECLARE_CLASS(CItemResource, CItem);
 
-	void Spawn();
+	virtual void Spawn();
 
-	void Precache();
+	virtual void Precache();
 
 	//void PhysicsSimulate();
 	
-	bool MyTouch(CBasePlayer *pPlayer);
+	virtual bool MyTouch(CBasePlayer *pPlayer);
 
 	int m_iResourceType;
 
 	int m_iResourceValue = 1; //How many of the resource should we give?
 
+	virtual void ShowResourceName(void);
+
 	DECLARE_DATADESC();
+
+protected:
+	CNetworkVar(bool, m_bGlowEnabled);
 };
 

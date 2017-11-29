@@ -847,7 +847,7 @@ CHLClient::CHLClient()
 
 extern IGameSystem *ViewportClientSystem();
 
-
+/*
 void HandleDReady()
 {
 	Msg("Discord RPC: Ready.");
@@ -877,7 +877,7 @@ void handleDiscordSpectate(const char* secret)
 void handleDiscordJoinRequest(const DiscordJoinRequest* request)
 {
 	Discord_Respond(request->userId, DISCORD_REPLY_NO);
-}
+}*/
 //-----------------------------------------------------------------------------
 ISourceVirtualReality *g_pSourceVR = NULL;
 
@@ -1116,7 +1116,7 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 #ifndef _X360
 	HookHapticMessages(); // Always hook the messages
 #endif
-
+	/*
 	//Discord
 	DiscordEventHandlers handlers;
 	memset(&handlers, 0, sizeof(handlers));
@@ -1124,7 +1124,7 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	handlers.errored = handleDiscordError;
 	handlers.disconnected = handleDiscordDisconnected;
 	handlers.joinRequest = handleDiscordJoinRequest;
-	Discord_Initialize("306462694977044483", &handlers, 1, NULL);
+	Discord_Initialize("306462694977044483", &handlers, 1, NULL);*/
 
 	return true;
 
@@ -1210,7 +1210,7 @@ void CHLClient::PostInit()
 //-----------------------------------------------------------------------------
 void CHLClient::Shutdown( void )
 {
-	Discord_Shutdown();
+	//Discord_Shutdown();
     if (g_pAchievementsAndStatsInterface)
     {
         g_pAchievementsAndStatsInterface->ReleasePanel();

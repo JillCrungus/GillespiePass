@@ -33,6 +33,21 @@
 				"font"		"WeaponIcons"
 				"character"	"*"
 		}
+		"item_resource1"	[$WIN32]
+		{
+				"font"		"GP"
+				"character"	"[,"
+		}
+		"item_resource2"	[$WIN32]
+		{
+				"font"		"GP"
+				"character"	"[."
+		}
+		"item_resource3"	[$WIN32]
+		{
+				"font"		"GP"
+				"character"	"['"
+		}
 		"crosshair"
 		{
 				"file"		"sprites/qi_center"

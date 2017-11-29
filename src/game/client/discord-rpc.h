@@ -1,6 +1,7 @@
 #pragma once
 #include <stdint.h>
 
+#if 0
 // clang-format off
 
 #if defined(DISCORD_DYNAMIC_LIB)
@@ -80,4 +81,5 @@ DISCORD_EXPORT void Discord_Respond(const char* userid, /* DISCORD_REPLY_ */ int
 
 #ifdef __cplusplus
 } /* extern "C" */
+#endif
 #endif
