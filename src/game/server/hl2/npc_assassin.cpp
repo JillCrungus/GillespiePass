@@ -22,6 +22,7 @@
 
 ConVar	sk_assassin_health( "sk_assassin_health","150");
 ConVar	g_debug_assassin( "g_debug_assassin", "0" );
+ConVar	g_assassin_blink_time("g_assassin_blink_time", "5");
 
 //=========================================================
 // Anim Events	
@@ -421,18 +422,24 @@ int CNPC_Assassin::SelectSchedule ( void )
 	switch	( m_NPCState )
 	{
 	case NPC_STATE_IDLE:
+		SetEyeState(ASSASSIN_EYE_DORMANT); //Dormant
+		break;
 	case NPC_STATE_ALERT:
 		{
+			
 			if ( HasCondition ( COND_HEAR_DANGER ) )
 				 return SCHED_TAKE_COVER_FROM_BEST_SOUND;
 				
 			if ( HasCondition ( COND_HEAR_COMBAT ) )
 				return SCHED_INVESTIGATE_SOUND;
+
+			
 		}
 		break;
 
 	case NPC_STATE_COMBAT:
 		{
+			SetEyeState(ASSASSIN_EYE_ACTIVE);
 			// dead enemy
 			if ( HasCondition( COND_ENEMY_DEAD ) )
 			{
@@ -475,7 +482,8 @@ int CNPC_Assassin::SelectSchedule ( void )
 				return SCHED_COMBAT_FACE;
 
 			// new enemy
-			if ( HasCondition( COND_NEW_ENEMY ) )
+			if (HasCondition(COND_NEW_ENEMY))
+				SetEyeState(ASSASSIN_EYE_SEE_TARGET);
 				return SCHED_TAKE_COVER_FROM_ENEMY;
 
 			// ALERT( at_console, "stand\n");
@@ -492,6 +500,7 @@ int CNPC_Assassin::SelectSchedule ( void )
 //-----------------------------------------------------------------------------
 void CNPC_Assassin::PrescheduleThink( void )
 {
+	
 	if ( GetActivity() == ACT_RUN || GetActivity() == ACT_WALK)
 	{
 		CPASAttenuationFilter filter( this );
@@ -503,6 +512,59 @@ void CNPC_Assassin::PrescheduleThink( void )
 			EmitSound( filter, entindex(), "NPC_Assassin.Footstep" );
 		}
 	}
+
+	switch (m_iCurrEyeState)
+	{
+		case 0:
+			m_sCurrEyeState = "See target";
+			break;
+		case 1:
+			m_sCurrEyeState = "Seeking target on";
+			break;
+		case 2:
+			m_sCurrEyeState = "Active";
+			break;
+		case 3:
+			m_sCurrEyeState = "Dormant";
+			break;
+		case 4:
+			m_sCurrEyeState ="Dead";
+			break;
+		case 5:
+			m_sCurrEyeState = "Seeking target off";
+			break;
+	}
+
+	if (m_iCurrEyeState == 1 || m_iCurrEyeState == 5)
+	{
+		m_iBlinkTimer++;
+		if ( m_iBlinkTimer >= g_assassin_blink_time.GetInt() )
+		{
+			m_bBlinkState = !m_bBlinkState;
+			m_iBlinkTimer = 0;
+		}
+	}
+
+	
+	if ( m_NPCState == NPC_STATE_ALERT)
+	{
+		if (m_bBlinkState)
+		{
+			SetEyeState(ASSASSIN_EYE_SEEKING_TARGET_ON); //We're alert, change our eye state to be seeking.
+		}
+		else
+		{
+			SetEyeState(ASSASSIN_EYE_SEEKING_TARGET_OFF);
+		}
+	}
+	
+	if ( g_debug_assassin.GetBool() )
+	{
+		CFmtStr blinkS("Blink Timer: %i\n", m_iBlinkTimer);
+		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 0, m_sCurrEyeState, 0.05f);
+		NDebugOverlay::EntityTextAtPosition(GetAbsOrigin(), 2, blinkS, 0.05f);
+	}
+	
 }
 
 //-----------------------------------------------------------------------------
@@ -878,6 +940,8 @@ void CNPC_Assassin::SetEyeState( eyeState_t state )
 	if ( ( m_pEyeSprite == NULL ) || ( m_pEyeTrail == NULL ) )
 		return;
 
+	m_iCurrEyeState = state;
+
 	//Set the state
 	switch( state )
 	{
@@ -893,24 +957,25 @@ void CNPC_Assassin::SetEyeState( eyeState_t state )
 
 		break;
 
-	case ASSASSIN_EYE_SEEKING_TARGET: //Ping-pongs
+	case ASSASSIN_EYE_SEEKING_TARGET_ON: //Ping-pongs
 		
-		//Toggle our state
-		m_bBlinkState = !m_bBlinkState;
+
 		m_pEyeSprite->SetColor( 255, 128, 0 );
 
-		if ( m_bBlinkState )
-		{
-			//Fade up and scale up
-			m_pEyeSprite->SetScale( 0.25f, 0.1f );
-			m_pEyeSprite->SetBrightness( 164, 0.1f );
-		}
-		else
-		{
-			//Fade down and scale down
-			m_pEyeSprite->SetScale( 0.2f, 0.1f );
-			m_pEyeSprite->SetBrightness( 64, 0.1f );
-		}
+		//Fade up and scale up
+		m_pEyeSprite->SetScale( 0.25f, 0.1f );
+		m_pEyeSprite->SetBrightness( 164, 0.1f );
+
+
+		break;
+
+	case ASSASSIN_EYE_SEEKING_TARGET_OFF: //Ping-pongs
+
+		m_pEyeSprite->SetColor(255, 128, 0);
+
+		//Fade down and scale down
+		m_pEyeSprite->SetScale(0.2f, 0.1f);
+		m_pEyeSprite->SetBrightness(64, 0.1f);
 
 		break;
 
@@ -935,7 +1000,7 @@ void CNPC_Assassin::SetEyeState( eyeState_t state )
 	case ASSASSIN_EYE_ACTIVE:
 		m_pEyeSprite->SetColor( 255, 0, 0 );
 		m_pEyeSprite->SetScale( 0.1f );
-		m_pEyeSprite->SetBrightness( 0 );
+		m_pEyeSprite->SetBrightness( 64 );
 		break;
 	}
 }

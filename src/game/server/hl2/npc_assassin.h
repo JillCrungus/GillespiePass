@@ -20,10 +20,11 @@
 enum eyeState_t
 {
 	ASSASSIN_EYE_SEE_TARGET = 0,		//Sees the target, bright and big
-	ASSASSIN_EYE_SEEKING_TARGET,	//Looking for a target, blinking (bright)
+	ASSASSIN_EYE_SEEKING_TARGET_ON,	//Looking for a target, blinking (bright)
 	ASSASSIN_EYE_ACTIVE,			//Actively looking
 	ASSASSIN_EYE_DORMANT,			//Not active
 	ASSASSIN_EYE_DEAD,				//Completely invisible
+	ASSASSIN_EYE_SEEKING_TARGET_OFF,	//Looking for a target, blinking (bright)
 };
 
 //=========================================================
@@ -72,13 +73,18 @@ private:
 
 	int			m_nNumFlips;
 	int			m_nLastFlipType;
+	int			m_iCurrEyeState;
+	int			m_iBlinkTimer = 0;
+	bool		m_bBlinkState = true;
 	float		m_flNextFlipTime;	//Next earliest time the assassin can flip again
 	float		m_flNextLungeTime;
 	float		m_flNextShotTime;
 
 	bool		m_bEvade;
 	bool		m_bAggressive;		// Sets certain state, including whether or not her eye is visible
-	bool		m_bBlinkState;
+	//bool		m_bBlinkState;
+
+	const char*		m_sCurrEyeState = "Invalid!";
 
 	CSprite				*m_pEyeSprite;
 	CSpriteTrail		*m_pEyeTrail;
