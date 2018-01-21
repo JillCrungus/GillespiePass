@@ -23,6 +23,7 @@
 ConVar	sk_assassin_health( "sk_assassin_health","150");
 ConVar	g_debug_assassin( "g_debug_assassin", "0" );
 ConVar	g_assassin_blink_time("g_assassin_blink_time", "5");
+ConVar	g_assassin_step_time("g_assassin_step_time", "5");
 
 //=========================================================
 // Anim Events	
@@ -505,11 +506,14 @@ void CNPC_Assassin::PrescheduleThink( void )
 	{
 		CPASAttenuationFilter filter( this );
 
-		static int iStep = 0;
-		iStep = ! iStep;
-		if (iStep)
+		
+
+		iStepTimer++;
+
+		if (iStepTimer >= g_assassin_step_time.GetInt())
 		{
 			EmitSound( filter, entindex(), "NPC_Assassin.Footstep" );
+			iStepTimer = 0;
 		}
 	}
 

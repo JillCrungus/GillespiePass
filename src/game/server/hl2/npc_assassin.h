@@ -80,6 +80,8 @@ private:
 	float		m_flNextLungeTime;
 	float		m_flNextShotTime;
 
+	int iStepTimer = 0;
+
 	bool		m_bEvade;
 	bool		m_bAggressive;		// Sets certain state, including whether or not her eye is visible
 	//bool		m_bBlinkState;
