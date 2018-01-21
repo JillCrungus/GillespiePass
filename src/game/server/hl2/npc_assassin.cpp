@@ -706,7 +706,8 @@ void CNPC_Assassin::StartTask( const Task_t *pTask )
 					if ( pSquadMember == NULL )
 						continue;
 
-					hint.AddExcludePosition( pSquadMember->GetAbsOrigin(), 128 );
+					hint.AddExcludePosition( pSquadMember->GetAbsOrigin(), 256 ); 
+					//DevMsg("Assassin: Added hint exclude position for squad member.");
 				}
 			}
 	
@@ -722,6 +723,7 @@ void CNPC_Assassin::StartTask( const Task_t *pTask )
 				break;
 			}
 
+			pHint->DisableForSeconds(5.0f); //Disable hint to prevent multiple assassins visiting this node.
 			pHint->GetPosition( this, &goalPos );
 
 			if (g_debug_assassin.GetInt() > 0)
