@@ -734,6 +734,7 @@ void CNPC_Assassin::StartTask( const Task_t *pTask )
 
 			AI_NavGoal_t goal( goalPos );
 			
+			
 			//Try to run directly there
 			if ( GetNavigator()->SetGoal( goal ) == false )
 			{
@@ -1004,7 +1005,14 @@ void CNPC_Assassin::Event_Killed( const CTakeDamageInfo &info )
 	BaseClass::Event_Killed( info );
 
 	// Turn off the eye
-	SetEyeState( ASSASSIN_EYE_DEAD );
+	//SetEyeState( ASSASSIN_EYE_DEAD );
+
+
+	//HACKHACK: Just remove these because setting their state is buggy right now. Fix later.
+	UTIL_Remove(m_pEyeSprite);
+	UTIL_Remove(m_pEyeTrail);
+	m_pEyeSprite = NULL;
+	m_pEyeTrail = NULL;
 	
 	// Turn off the pistols
 	SetBodygroup( 1, 0 );
