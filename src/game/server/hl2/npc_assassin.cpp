@@ -582,23 +582,27 @@ bool CNPC_Assassin::CanFlip( int flipType, Activity &activity, const Vector *avo
 	case FLIP_RIGHT:
 		GetVectors( NULL, &testDir, NULL );
 		act = NPC_TranslateActivity( (Activity) ACT_ASSASSIN_FLIP_RIGHT ); 
+		DevMsg("Testing right flip!\n");
 		break;
 
 	case FLIP_LEFT:
 		GetVectors( NULL, &testDir, NULL );
 		testDir.Negate();
 		act = NPC_TranslateActivity( (Activity) ACT_ASSASSIN_FLIP_LEFT );
+		DevMsg("Testing left flip!\n");
 		break;
 
 	case FLIP_FORWARD:
 		GetVectors( &testDir, NULL, NULL );
 		act = NPC_TranslateActivity( (Activity) ACT_ASSASSIN_FLIP_FORWARD );
+		DevMsg("Testing forward flip!\n");
 		break;
 	
 	case FLIP_BACKWARD:
 		GetVectors( &testDir, NULL, NULL );
 		testDir.Negate();
 		act = NPC_TranslateActivity( (Activity) ACT_ASSASSIN_FLIP_BACK );
+		DevMsg("Testing back flip!\n");
 		break;
 
 	default:
@@ -608,14 +612,21 @@ bool CNPC_Assassin::CanFlip( int flipType, Activity &activity, const Vector *avo
 		break;
 	}
 
+	
+
+	//FIXME: This code doesn't work. Always returns false. Always.
 	// Make sure we don't flip towards our avoidance position/
-	if ( avoidPosition != NULL )
+
+	if (avoidPosition != NULL)
 	{
 		Vector	avoidDir = (*avoidPosition) - GetAbsOrigin();
-		VectorNormalize( avoidDir );
+		VectorNormalize(avoidDir);
 
-		if ( DotProduct( avoidDir, testDir ) > 0.0f )
+		if (DotProduct(avoidDir, testDir) > 0.0f)
+		{
+			DevMsg("Tried to flip towards avoidance position! Flip failed.\n");
 			return false;
+		}
 	}
 
 	int seq = SelectWeightedSequence( act );
@@ -636,16 +647,18 @@ bool CNPC_Assassin::CanFlip( int flipType, Activity &activity, const Vector *avo
 			return false;
 	}
 
-	/*
-	UTIL_TraceHull( GetAbsOrigin(), endPos, NAI_Hull::Mins(m_eHull) + Vector( 0, 0, StepHeight() ), NAI_Hull::Maxs(m_eHull), MASK_NPCSOLID, this, COLLISION_GROUP_NONE, &tr );
+	
+	UTIL_TraceHull( GetAbsOrigin(), endPos, GetHullMins() + Vector( 0, 0, StepHeight() ), GetHullMaxs(), MASK_NPCSOLID, this, COLLISION_GROUP_NONE, &tr );
 
 	// See if we're hit an obstruction in that direction
 	if ( tr.fraction < 1.0f )
 	{
 		if ( g_debug_assassin.GetBool() )
 		{
-			NDebugOverlay::BoxDirection( GetAbsOrigin(), NAI_Hull::Mins(m_eHull) + Vector( 0, 0, StepHeight() ), NAI_Hull::Maxs(m_eHull) + Vector( testDist, 0, StepHeight() ), testDir, 255, 0, 0, true, 2.0f );
+			NDebugOverlay::BoxDirection(GetAbsOrigin(), GetHullMins() + Vector(0, 0, StepHeight()), GetHullMaxs() + Vector(testDist, 0, StepHeight()), testDir, 255, 0, 0, true, 2.0f);
 		}
+
+		DevMsg("Flip: Obstructed!\n");
 
 		return false;
 	}
@@ -659,14 +672,16 @@ bool CNPC_Assassin::CanFlip( int flipType, Activity &activity, const Vector *avo
 		endPos = GetAbsOrigin() + ( testDir * (stepLength*i) );
 		
 		// Also check for a cliff edge
-		UTIL_TraceHull( endPos, endPos - Vector( 0, 0, StepHeight() * 4.0f ), NAI_Hull::Mins(m_eHull) + Vector( 0, 0, StepHeight() ), NAI_Hull::Maxs(m_eHull), MASK_NPCSOLID, this, COLLISION_GROUP_NONE, &tr );
+		UTIL_TraceHull(endPos, endPos - Vector(0, 0, StepHeight() * 4.0f), GetHullMins() + Vector(0, 0, StepHeight()), GetHullMaxs(), MASK_NPCSOLID, this, COLLISION_GROUP_NONE, &tr);
 
 		if ( tr.fraction == 1.0f )
 		{
 			if ( g_debug_assassin.GetBool() )
 			{
-				NDebugOverlay::BoxDirection( endPos, NAI_Hull::Mins(m_eHull) + Vector( 0, 0, StepHeight() ), NAI_Hull::Maxs(m_eHull) + Vector( StepHeight() * 4.0f, 0, StepHeight() ), Vector(0,0,-1), 255, 0, 0, true, 2.0f );
+				NDebugOverlay::BoxDirection(endPos, GetHullMins() + Vector(0, 0, StepHeight()), GetHullMaxs() + Vector(StepHeight() * 4.0f, 0, StepHeight()), Vector(0, 0, -1), 255, 0, 0, true, 2.0f);
 			}
+
+			DevMsg("Flip: Cliff edge!\n");
 
 			return false;
 		}
@@ -674,9 +689,9 @@ bool CNPC_Assassin::CanFlip( int flipType, Activity &activity, const Vector *avo
 
 	if ( g_debug_assassin.GetBool() )
 	{
-		NDebugOverlay::BoxDirection( GetAbsOrigin(), NAI_Hull::Mins(m_eHull) + Vector( 0, 0, StepHeight() ), NAI_Hull::Maxs(m_eHull) + Vector( testDist, 0, StepHeight() ), testDir, 0, 255, 0, true, 2.0f );
+		NDebugOverlay::BoxDirection(GetAbsOrigin(), GetHullMins() + Vector(0, 0, StepHeight()), GetHullMaxs() + Vector(testDist, 0, StepHeight()), testDir, 0, 255, 0, true, 2.0f);
 	}
-	*/
+	
 	
 	AIMoveTrace_t moveTrace;
 	GetMoveProbe()->TestGroundMove( GetAbsOrigin(), endPos, MASK_NPCSOLID, AITGM_DEFAULT, &moveTrace );
@@ -738,6 +753,7 @@ void CNPC_Assassin::StartTask( const Task_t *pTask )
 				m_nLastFlipType = -1;
 				m_flNextFlipTime = gpGlobals->curtime + 2.0f;
 				TaskFail( "Unable to find flip evasion direction!\n" );
+				DevMsg("Unable to find flip evasion direction!\n");
 			}
 		}
 		break;
@@ -999,8 +1015,8 @@ void CNPC_Assassin::SetEyeState( eyeState_t state )
 
 	case ASSASSIN_EYE_ACTIVE:
 		m_pEyeSprite->SetColor( 255, 0, 0 );
-		m_pEyeSprite->SetScale( 0.1f );
-		m_pEyeSprite->SetBrightness( 64 );
+		m_pEyeSprite->SetScale( 0.2f, 0.3f );
+		m_pEyeSprite->SetBrightness( 255, 0.5f );
 		break;
 	}
 }
