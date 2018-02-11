@@ -218,14 +218,15 @@ void CWeaponGaussGun::Fire( void )
 	
 	CTakeDamageInfo dmgInfo( this, pOwner, sk_plr_dmg_gauss.GetFloat(), DMG_SHOCK );
 
-
+	
 	if ( pHit != NULL )
 	{
 		CalculateBulletDamageForce( &dmgInfo, m_iPrimaryAmmoType, aimDir, tr.endpos );
 
-		if (pHit->IsNPC() && pHit->GetMaxHealth() < 20)
+		if (pHit->IsNPC() && pHit->GetMaxHealth() < 20 && pHit->OnTakeDamage(dmgInfo))
 		{
 			pHit->MyCombatCharacterPointer()->BecomeRagdollBoogie(GetOwner(), tr.endpos, 5.0f, SF_RAGDOLL_BOOGIE_ELECTRICAL);
+			UTIL_Remove(pHit);
 		}
 		else if (FClassnameIs(pHit, "prop_ragdoll"))
 		{
@@ -235,8 +236,7 @@ void CWeaponGaussGun::Fire( void )
 				CRagdollBoogie::Create(pHit, 100, gpGlobals->curtime, 5.0f, 0);
 			}
 		}
-
-		pHit->DispatchTraceAttack( dmgInfo, aimDir, &tr );
+		
 	}
 	
 	if ( tr.DidHitWorld() )
@@ -270,6 +270,7 @@ void CWeaponGaussGun::Fire( void )
 				if (pHit->IsNPC() && pHit->GetMaxHealth() < 20)
 				{
 					pHit->MyCombatCharacterPointer()->BecomeRagdollBoogie(GetOwner(), tr.endpos, 5.0f, SF_RAGDOLL_BOOGIE_ELECTRICAL);
+					UTIL_Remove(pHit);
 				}
 				else if (FClassnameIs(pHit, "prop_ragdoll"))
 				{
@@ -390,9 +391,10 @@ void CWeaponGaussGun::ChargedFire( void )
 
 		CTakeDamageInfo dmgInfo( this, pOwner, flDamage, DMG_SHOCK );
 		CalculateBulletDamageForce( &dmgInfo, m_iPrimaryAmmoType, aimDir, tr.endpos );
-		if ((flDamage > pHit->GetHealth()) && (pHit->IsNPC()) && (pHit->MyNPCPointer()->CanBecomeRagdoll()))
+		if ((flDamage > pHit->GetHealth()) && (pHit->IsNPC()) && (pHit->MyNPCPointer()->CanBecomeRagdoll()) && (pHit->OnTakeDamage(dmgInfo)) )
 		{
 			pHit->MyCombatCharacterPointer()->BecomeRagdollBoogie(GetOwner(), tr.endpos, 5.0f, SF_RAGDOLL_BOOGIE_ELECTRICAL);
+			UTIL_Remove(pHit);
 		}
 		//Do direct damage to anything in our path
 		pHit->DispatchTraceAttack( dmgInfo, aimDir, &tr );
