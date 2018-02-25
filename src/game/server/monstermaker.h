@@ -134,6 +134,22 @@ public:
 
 	int NPCChance; //X in 100 chance to spawn the NPC
 
+	string_t m_iszNPCClassname;			// classname of the NPC(s) that will be created.
+};
+
+class CNPCMakerVarious : public CNPCMaker
+{
+	DECLARE_CLASS(CNPCMakerVarious, CNPCMaker);
+
+	virtual void MakeNPC(void);
+
+	DECLARE_DATADESC();
+
+	string_t m_iszNPCClassname[8];			// classname of the NPC(s) that will be created.
+	int		 m_iNPCChance[8];			// classname of the NPC(s) that will be created.
+
+
+
 };
 
 class CTemplateNPCMaker : public CBaseNPCMaker

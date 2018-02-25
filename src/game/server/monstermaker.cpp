@@ -109,6 +109,8 @@ BEGIN_DATADESC( CBaseNPCMaker )
 END_DATADESC()
 
 
+
+
 //-----------------------------------------------------------------------------
 // Purpose: Spawn
 //-----------------------------------------------------------------------------
@@ -382,6 +384,25 @@ BEGIN_DATADESC(CNPCMakerRNG)
 	DEFINE_KEYFIELD(NPCChance, FIELD_INTEGER, "NPCChance")
 END_DATADESC()
 
+LINK_ENTITY_TO_CLASS(npc_maker_random, CNPCMakerVarious);
+BEGIN_DATADESC(CNPCMakerVarious)
+	DEFINE_KEYFIELD(m_iszNPCClassname[0], FIELD_STRING, "NPC01"),
+	DEFINE_KEYFIELD(m_iszNPCClassname[1], FIELD_STRING, "NPC02"),
+	DEFINE_KEYFIELD(m_iszNPCClassname[2], FIELD_STRING, "NPC03"),
+	DEFINE_KEYFIELD(m_iszNPCClassname[3], FIELD_STRING, "NPC04"),
+	DEFINE_KEYFIELD(m_iszNPCClassname[4], FIELD_STRING, "NPC05"),
+	DEFINE_KEYFIELD(m_iszNPCClassname[5], FIELD_STRING, "NPC06"),
+	DEFINE_KEYFIELD(m_iszNPCClassname[6], FIELD_STRING, "NPC07"),
+	DEFINE_KEYFIELD(m_iszNPCClassname[7], FIELD_STRING, "NPC08"),
+	DEFINE_KEYFIELD(m_iNPCChance[0], FIELD_INTEGER, "NPC_Chance01"),
+	DEFINE_KEYFIELD(m_iNPCChance[1], FIELD_INTEGER, "NPC_Chance02"),
+	DEFINE_KEYFIELD(m_iNPCChance[2], FIELD_INTEGER, "NPC_Chance03"),
+	DEFINE_KEYFIELD(m_iNPCChance[3], FIELD_INTEGER, "NPC_Chance04"),
+	DEFINE_KEYFIELD(m_iNPCChance[4], FIELD_INTEGER, "NPC_Chance05"),
+	DEFINE_KEYFIELD(m_iNPCChance[5], FIELD_INTEGER, "NPC_Chance06"),
+	DEFINE_KEYFIELD(m_iNPCChance[6], FIELD_INTEGER, "NPC_Chance07"),
+	DEFINE_KEYFIELD(m_iNPCChance[7], FIELD_INTEGER, "NPC_Chance08"),
+END_DATADESC();
 
 //-----------------------------------------------------------------------------
 // Constructor
@@ -500,6 +521,115 @@ void CNPCMakerRNG::MakeNPC(void)
 	else
 	{
 		return;
+	}
+}
+
+void CNPCMakerVarious::MakeNPC(void)
+{
+	int cumulative = 0;
+	int totalSpawnChance = 0;
+	for ( int i = 0; i<8; i++)
+	{
+		//if (isdigit(m_iNPCChance[i]))
+		//{
+		totalSpawnChance += m_iNPCChance[i];
+		//}
+		//else
+		//{
+		//	totalSpawnChance =+ 0;
+		//}
+		
+	}
+
+	int spawnChance = RandomInt(1, totalSpawnChance);
+
+	for (int i = 0; i < 8; i++)
+	{
+		//if (isdigit(m_iNPCChance[i]))
+		//{
+			cumulative += m_iNPCChance[i];
+		//}
+		//else
+		//{
+		//	cumulative =+ 0;
+		//}
+
+		if ( spawnChance <=  cumulative)
+		{
+			//Mark this NPC as our spawn candidate
+			if ( m_iszNPCClassname[i] != NULL_STRING)
+			{
+				string_t spawnCandidate = m_iszNPCClassname[i];
+				if (!CanMakeNPC())
+					return;
+
+				CAI_BaseNPC	*pent = (CAI_BaseNPC*)CreateEntityByName(STRING(spawnCandidate));
+
+				if (!pent)
+				{
+					Warning("NULL Ent in NPCMaker!\n");
+					return;
+				}
+
+				// ------------------------------------------------
+				//  Intialize spawned NPC's relationships
+				// ------------------------------------------------
+				pent->SetRelationshipString(m_RelationshipString);
+
+				m_OnSpawnNPC.Set(pent, pent, this);
+
+				pent->SetAbsOrigin(GetAbsOrigin());
+
+				// Strip pitch and roll from the spawner's angles. Pass only yaw to the spawned NPC.
+				QAngle angles = GetAbsAngles();
+				angles.x = 0.0;
+				angles.z = 0.0;
+				pent->SetAbsAngles(angles);
+
+				pent->AddSpawnFlags(SF_NPC_FALL_TO_GROUND);
+
+				if (m_spawnflags & SF_NPCMAKER_FADE)
+				{
+					pent->AddSpawnFlags(SF_NPC_FADE_CORPSE);
+				}
+
+				pent->m_spawnEquipment = m_spawnEquipment;
+				pent->SetSquadName(m_SquadName);
+				pent->SetHintGroup(m_strHintGroup);
+
+				ChildPreSpawn(pent);
+
+				DispatchSpawn(pent);
+				pent->SetOwnerEntity(this);
+				DispatchActivate(pent);
+
+				if (m_ChildTargetName != NULL_STRING)
+				{
+					// if I have a netname (overloaded), give the child NPC that name as a targetname
+					pent->SetName(m_ChildTargetName);
+				}
+
+				ChildPostSpawn(pent);
+
+				m_nLiveChildren++;// count this NPC
+
+				if (!(m_spawnflags & SF_NPCMAKER_INF_CHILD))
+				{
+					m_nMaxNumNPCs--;
+
+					if (IsDepleted())
+					{
+						m_OnAllSpawned.FireOutput(this, this);
+
+						// Disable this forever.  Don't kill it because it still gets death notices
+						SetThink(NULL);
+						SetUse(NULL);
+					}
+				}
+				break;
+
+			}
+		}
 	}
 }
 

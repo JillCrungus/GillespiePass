@@ -187,6 +187,48 @@
 	]
 ]
 
+@PointClass base(Angles, BaseNPCMaker) iconsprite("editor/npc_maker_dynamic.vmt") = npc_maker_random : "Random NPC Maker"
+[
+	spawnflags(Flags) = 
+	[
+		16 : "Fade Corpse" : 0
+	]
+
+	//NPCType(npcclass) : "Class name of spawned NPC"
+	NPCTargetname(string) : "Childrens' Name"
+	NPCSquadname(string) : "Childrens' Squad Name"
+	NPCHintGroup(string) : "Childrens' Hint Group"
+	NPCChance(integer) : "NPC Chance" : 50 : "X in 100 chance to spawn this NPC when triggered"
+	
+	additionalequipment(choices) : "Weapons" : "0" =
+	[
+		"weapon_pistol" : "Pistol"
+		"weapon_ar2" : "AR2"
+		"weapon_shotgun" : "Shotgun"
+		"weapon_smg1" : "SMG1"
+		"weapon_stunstick" : "Stun Stick"
+		"weapon_annabelle"	:"Grigori's Shotgun"
+		"0" : "Nothing"
+	]
+
+	NPC01(npcclass) : "NPC 1"
+	NPC02(npcclass) : "NPC 2"
+	NPC03(npcclass) : "NPC 3"
+	NPC04(npcclass) : "NPC 4"
+	NPC05(npcclass) : "NPC 5"
+	NPC06(npcclass) : "NPC 6"
+	NPC07(npcclass) : "NPC 7"
+	NPC08(npcclass) : "NPC 8"
+	NPC_Chance01(integer) : "NPC_Chance 1"
+	NPC_Chance02(integer) : "NPC_Chance 2"
+	NPC_Chance03(integer) : "NPC_Chance 3"
+	NPC_Chance04(integer) : "NPC_Chance 4"
+	NPC_Chance05(integer) : "NPC_Chance 5"
+	NPC_Chance06(integer) : "NPC_Chance 6"
+	NPC_Chance07(integer) : "NPC_Chance 7"
+	NPC_Chance08(integer) : "NPC_Chance 8"
+]
+
 @PointClass base(Targetname) size(-8 -8 -8, 8 8 8) = point_template_dynamic : "Dynamic"
 [
 	spawnflags(flags) =
