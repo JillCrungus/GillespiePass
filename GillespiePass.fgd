@@ -117,6 +117,18 @@
 @PointClass base(Weapon) studio("models/weapons/w_irifle.mdl") = weapon_gauss : "Gauss Gun" []
 
 
+//Items
+@PointClass base(Item) studio("models/weapons/w_bugbait.mdl") = item_resource : "Resource"
+[
+	ResourceType(choices) : "Resource Type" : "0" = 
+	[
+		0 : "Generic"
+		1 : "Combine"
+		2 : "Biological"
+		3 : "Metal"
+	]
+]
+
 //////////////////////////////////////////////////////////////////
 
 
