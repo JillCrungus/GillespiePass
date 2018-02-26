@@ -321,3 +321,21 @@
 
 	}
 }
+
+
+//Airex AI
+"GP.AirexAI_Bootup"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"1.0"
+	"soundlevel"	"SNDLVL_NONE"
+	"wave"		"npc\airex_ai\airexai_bootup.wav"
+}
+
+"GP.AirexAI_BootupDefense"
+{
+	"channel"	"CHAN_VOICE"
+	"volume"	"1.0"
+	"soundlevel"	"SNDLVL_NONE"
+	"wave"		"npc\airex_ai\airexai_bootup_defense.wav"
+}

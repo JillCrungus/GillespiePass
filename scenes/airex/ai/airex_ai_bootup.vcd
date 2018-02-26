@@ -1,0 +1,43 @@
+// Choreo version 1
+actor "airex_ai"
+{
+  channel "Voice"
+  {
+    event speak "GP.AirexAI_Bootup"
+    {
+      time 0.000000 16.005215
+      param "GP.AirexAI_Bootup"
+      fixedlength
+      cctype "cc_master"
+      cctoken ""
+    }
+    event speak "GP.AirexAI_BootupDefense"
+    {
+      time 16.658335 32.663551
+      param "GP.AirexAI_BootupDefense"
+      fixedlength
+      cctype "cc_master"
+      cctoken ""
+    }
+  }
+  channel "MapEvent"
+  {
+    event firetrigger "SubsystemBootup"
+    {
+      time 14.583334 -1.000000
+      param "1"
+    }
+  }
+}
+
+scalesettings
+{
+  "GestureTool" "100"
+  "ExpressionTool" "100"
+  "SceneRampTool" "100"
+  "RampTool" "100"
+  "CChoreoView" "32"
+}
+fps 60
+snap off
+ignorePhonemes off
