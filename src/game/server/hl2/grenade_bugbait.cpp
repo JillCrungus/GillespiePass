@@ -318,7 +318,8 @@ CSnark *BugBaitGrenade_Create(const Vector &position, const QAngle &angles, cons
 	//CGrenadeBugBait *pGrenade = (CGrenadeBugBait *) CBaseEntity::Create( "npc_grenade_bugbait", position, angles, owner );
 	//CSnark *pGrenade = (CSnark * ) CSnark::Create("monster_snark", position, angles, owner);
 	//CSnark *pGrenade = (CSnark*)CBaseEntity::Create("monster_snark", position, angles, owner);	
-	CSnark *pGrenade = new CSnark;
+	//CSnark *pGrenade = new CSnark;
+	CSnark *pGrenade = dynamic_cast<CSnark *>(CBaseEntity::Create( "monster_snark", position, angles, owner));
 
 	
 	if ( pGrenade != NULL )
@@ -328,7 +329,7 @@ CSnark *BugBaitGrenade_Create(const Vector &position, const QAngle &angles, cons
 		pGrenade->SetAbsAngles(angles);
 		pGrenade->SetOwnerEntity(owner);
 		pGrenade->Spawn();
-		pGrenade->SetLocalAngularVelocity( angVelocity );
+		//pGrenade->SetLocalAngularVelocity( angVelocity );
 		pGrenade->SetAbsVelocity( velocity );
 		//pGrenade->SetThrower( ToBaseCombatCharacter( owner ) );
 	}

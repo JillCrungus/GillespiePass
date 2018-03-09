@@ -41,7 +41,7 @@ public:
 	virtual bool ShouldGib( const CTakeDamageInfo &info ) { return false; }
 	static float	m_flNextBounceSoundTime;
 
-	virtual bool IsValidEnemy( CBaseEntity *pEnemy );
+	//virtual bool IsValidEnemy( CBaseEntity *pEnemy );
 
 private:
 	Class_T	m_iMyClass;

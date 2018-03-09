@@ -95,7 +95,7 @@ void CSnark::Spawn( void )
 	m_flNextHunt			= gpGlobals->curtime + 1E6;
 	m_flNextBounceSoundTime	= gpGlobals->curtime;
 
-	AddFlag( FL_AIMTARGET | FL_NPC );
+	//AddFlag( FL_AIMTARGET | FL_NPC );
 	m_takedamage = DAMAGE_YES;
 
 	m_iHealth		= sk_snark_health.GetFloat();
@@ -118,7 +118,7 @@ void CSnark::Spawn( void )
 	SetSequence( WSQUEAK_RUN );
 	ResetSequenceInfo( );
 
-	m_iMyClass = CLASS_NONE;
+	//m_iMyClass = CLASS_NONE;
 
 	m_posPrev = Vector( 0, 0, 0 );
 }
@@ -126,6 +126,7 @@ void CSnark::Spawn( void )
 
 Class_T	CSnark::Classify( void )
 {
+	/*
 	if ( m_iMyClass != CLASS_NONE )
 		return m_iMyClass; // protect against recursion
 
@@ -137,13 +138,15 @@ Class_T	CSnark::Classify( void )
 			case CLASS_PLAYER:
 			case CLASS_HUMAN_PASSIVE:
 			case CLASS_HUMAN_MILITARY:
+			case CLASS_COMBINE:
+			case CLASS_COMBINE_HUNTER:
 				m_iMyClass = CLASS_NONE;
 				return CLASS_HEADCRAB; // barney's get mad, grunts get mad at it
 		}
 		m_iMyClass = CLASS_HEADCRAB;
-	}
+	}*/
 
-	return CLASS_HEADCRAB;
+	return CLASS_ZOMBIE;
 }
 
 
@@ -165,7 +168,7 @@ void CSnark::Event_Killed( const CTakeDamageInfo &inputInfo )
 
 	CSoundEnt::InsertSound( SOUND_COMBAT, GetAbsOrigin(), SNARK_EXPLOSION_VOLUME, 3.0 );
 
-	UTIL_BloodDrips( WorldSpaceCenter(), Vector( 0, 0, 0 ), BLOOD_COLOR_YELLOW, 80 );
+	//UTIL_BloodDrips( WorldSpaceCenter(), Vector( 0, 0, 0 ), BLOOD_COLOR_YELLOW, 80 );
 
 	if ( m_hOwner != NULL )
 	{
@@ -288,9 +291,9 @@ void CSnark::HuntThink( void )
 		if ( flAdj > 1.2 )
 			flAdj = 1.2;
 		
-		// ALERT( at_console, "think : enemy\n");
+		//Msg("think : enemy\n");
 
-		// ALERT( at_console, "%.0f %.2f %.2f %.2f\n", flVel, m_vecTarget.x, m_vecTarget.y, m_vecTarget.z );
+		//Msg("%.0f %.2f %.2f %.2f\n", flVel, m_vecTarget.x, m_vecTarget.y, m_vecTarget.z );
 
 		SetAbsVelocity( GetAbsVelocity() * flAdj + (m_vecTarget * 300) );
 	}
@@ -325,6 +328,7 @@ void CSnark::HuntThink( void )
 	angles.z = 0;
 	angles.x = 0;
 	SetAbsAngles( angles );
+	BaseClass::Think();
 }
 
 unsigned int CSnark::PhysicsSolidMaskForEntity( void ) const
@@ -520,8 +524,9 @@ void CSnark::SuperBounceTouch( CBaseEntity *pOther )
 }
 
 
+/*
 bool CSnark::IsValidEnemy( CBaseEntity *pEnemy )
 {
-	return CHL1BaseNPC::IsValidEnemy( pEnemy );
-}
+	return BaseClass::IsValidEnemy(pEnemy);
+}*/
 
