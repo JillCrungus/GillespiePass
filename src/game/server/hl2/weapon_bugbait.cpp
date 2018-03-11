@@ -140,9 +140,9 @@ void CWeaponBugBait::Precache( void )
 
 	PrecacheModel("models/props_junk/garbage_metalcan001a.mdl");
 
-	UTIL_PrecacheOther( "npc_grenade_bugbait" );
+	UTIL_PrecacheOther( "monster_snark" );
 
-	PrecacheScriptSound( "Weapon_Bugbait.Splat" );
+	//PrecacheScriptSound( "Weapon_Bugbait.Splat" );
 
 }
 
