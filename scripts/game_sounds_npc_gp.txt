@@ -6,9 +6,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"houndeye/he_idle1.wav"
-		"wave"		"houndeye/he_idle2.wav"
-		"wave"		"houndeye/he_idle3.wav"
+		"wave"		"npc/hl1/houndeye/he_idle1.wav"
+		"wave"		"npc/hl1/houndeye/he_idle2.wav"
+		"wave"		"npc/hl1/houndeye/he_idle3.wav"
 
 	}
 }
@@ -21,9 +21,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"houndeye/he_hunt1.wav"
-		"wave"		"houndeye/he_hunt2.wav"
-		"wave"		"houndeye/he_hunt3.wav"
+		"wave"		"npc/hl1/houndeye/he_hunt1.wav"
+		"wave"		"npc/hl1/houndeye/he_hunt2.wav"
+		"wave"		"npc/hl1/houndeye/he_hunt3.wav"
 
 	}
 }
@@ -37,9 +37,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"houndeye/he_alert1.wav"
-		"wave"		"houndeye/he_alert2.wav"
-		"wave"		"houndeye/he_alert3.wav"
+		"wave"		"npc/hl1/houndeye/he_alert1.wav"
+		"wave"		"npc/hl1/houndeye/he_alert2.wav"
+		"wave"		"npc/hl1/houndeye/he_alert3.wav"
 
 	}
 }
@@ -52,9 +52,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"houndeye/he_die1.wav"
-		"wave"		"houndeye/he_die2.wav"
-		"wave"		"houndeye/he_die3.wav"
+		"wave"		"npc/hl1/houndeye/he_die1.wav"
+		"wave"		"npc/hl1/houndeye/he_die2.wav"
+		"wave"		"npc/hl1/houndeye/he_die3.wav"
 
 	}
 }
@@ -67,9 +67,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"houndeye/he_pain3.wav"
-		"wave"		"houndeye/he_pain4.wav"
-		"wave"		"houndeye/he_pain5.wav"
+		"wave"		"npc/hl1/houndeye/he_pain3.wav"
+		"wave"		"npc/hl1/houndeye/he_pain4.wav"
+		"wave"		"npc/hl1/houndeye/he_pain5.wav"
 
 	}
 }
@@ -82,7 +82,7 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"houndeye/he_pain3.wav"
+		"wave"		"npc/hl1/houndeye/he_pain3.wav"
 	}
 }
 
@@ -94,7 +94,7 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"houndeye/he_pain1.wav"
+		"wave"		"npc/hl1/houndeye/he_pain1.wav"
 
 	}
 }
@@ -107,9 +107,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"houndeye/he_blast1.wav"
-		"wave"		"houndeye/he_blast2.wav"
-		"wave"		"houndeye/he_blast3.wav"
+		"wave"		"npc/hl1/houndeye/he_blast1.wav"
+		"wave"		"npc/hl1/houndeye/he_blast2.wav"
+		"wave"		"npc/hl1/houndeye/he_blast3.wav"
 
 	}
 }
@@ -122,8 +122,8 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"houndeye/he_attack1.wav"
-		"wave"		"houndeye/he_attack3.wav"
+		"wave"		"npc/hl1/houndeye/he_attack1.wav"
+		"wave"		"npc/hl1/houndeye/he_attack3.wav"
 
 	}
 }
@@ -137,7 +137,7 @@
 	"volume"	"1.0"
 	"soundlevel"	"SNDLVL_80dB"
 	"pitch"		"PITCH_NORM"
-	"wave"		"bullchicken/acid1.wav"
+	"wave"		"npc/hl1/bullchicken/acid1.wav"
 }
 
 "NPC_BigMomma.SpitHit1"
@@ -148,8 +148,8 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"bullchicken/spithit1.wav"
-		"wave"		"bullchicken/spithit2.wav"
+		"wave"		"npc/hl1/bullchicken/spithit1.wav"
+		"wave"		"npc/hl1/bullchicken/spithit2.wav"
 	}
 }
 
@@ -162,11 +162,11 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"bullchicken/idle1.wav"
-		"wave"		"bullchicken/idle2.wav"
-		"wave"		"bullchicken/idle3.wav"
-		"wave"		"bullchicken/idle4.wav"
-		"wave"		"bullchicken/idle5.wav"
+		"wave"		"npc/hl1/bullchicken/idle1.wav"
+		"wave"		"npc/hl1/bullchicken/idle2.wav"
+		"wave"		"npc/hl1/bullchicken/idle3.wav"
+		"wave"		"npc/hl1/bullchicken/idle4.wav"
+		"wave"		"npc/hl1/bullchicken/idle5.wav"
 	}
 }
 
@@ -178,10 +178,10 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"bullchicken/pain1.wav"
-		"wave"		"bullchicken/pain2.wav"
-		"wave"		"bullchicken/pain3.wav"
-		"wave"		"bullchicken/pain4.wav"
+		"wave"		"npc/hl1/bullchicken/pain1.wav"
+		"wave"		"npc/hl1/bullchicken/pain2.wav"
+		"wave"		"npc/hl1/bullchicken/pain3.wav"
+		"wave"		"npc/hl1/bullchicken/pain4.wav"
 	}
 }
 
@@ -193,9 +193,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"bullchicken/idle1.wav"
-		"wave"		"bullchicken/idle2.wav"
-		"wave"		"bullchicken/idle3.wav"
+		"wave"		"npc/hl1/bullchicken/idle1.wav"
+		"wave"		"npc/hl1/bullchicken/idle2.wav"
+		"wave"		"npc/hl1/bullchicken/idle3.wav"
 	}
 }
 
@@ -207,9 +207,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"bullchicken/die1.wav"
-		"wave"		"bullchicken/die2.wav"
-		"wave"		"bullchicken/die3.wav"
+		"wave"		"npc/hl1/bullchicken/die1.wav"
+		"wave"		"npc/hl1/bullchicken/die2.wav"
+		"wave"		"npc/hl1/bullchicken/die3.wav"
 	}
 }
 
@@ -221,9 +221,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"bullchicken/attack1.wav"
-		"wave"		"bullchicken/attack2.wav"
-		"wave"		"bullchicken/attack3.wav"
+		"wave"		"npc/hl1/bullchicken/attack1.wav"
+		"wave"		"npc/hl1/bullchicken/attack2.wav"
+		"wave"		"npc/hl1/bullchicken/attack3.wav"
 	}
 }
 
@@ -235,13 +235,13 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"bullchicken/bite1.wav"
-		"wave"		"bullchicken/bite2.wav"
-		"wave"		"bullchicken/bite3.wav"
-		"wave"		"bullchicken/chew1.wav"
-		"wave"		"bullchicken/chew2.wav"
-		"wave"		"bullchicken/chew3.wav"
-		"wave"		"bullchicken/chew4.wav"
+		"wave"		"npc/hl1/bullchicken/bite1.wav"
+		"wave"		"npc/hl1/bullchicken/bite2.wav"
+		"wave"		"npc/hl1/bullchicken/bite3.wav"
+		"wave"		"npc/hl1/bullchicken/chew1.wav"
+		"wave"		"npc/hl1/bullchicken/chew2.wav"
+		"wave"		"npc/hl1/bullchicken/chew3.wav"
+		"wave"		"npc/hl1/bullchicken/chew4.wav"
 	}
 }
 
@@ -253,9 +253,9 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"bullchicken/attackgrowl1.wav"
-		"wave"		"bullchicken/attackgrowl2.wav"
-		"wave"		"bullchicken/attackgrowl3.wav"
+		"wave"		"npc/hl1/bullchicken/attackgrowl1.wav"
+		"wave"		"npc/hl1/bullchicken/attackgrowl2.wav"
+		"wave"		"npc/hl1/bullchicken/attackgrowl3.wav"
 	}
 }
 
@@ -268,7 +268,7 @@
 	"pitch"		"PITCH_NORM"
 	"rndwave"
 	{
-		"wave"		"squeek/sqk_blast1.wav"
+		"wave"		"npc/hl1/squeek/sqk_blast1.wav"
 	}
 }
 
@@ -292,7 +292,7 @@
 	"pitch"		"100,63"
 	"rndwave"
 	{
-		"wave"		"squeek/sqk_die1.wav"
+		"wave"		"npc/hl1/squeek/sqk_die1.wav"
 	}
 }
 
@@ -303,7 +303,7 @@
 	"soundlevel"	"SNDLVL_NORM"
 	"rndwave"
 	{
-		"wave"		"squeek/sqk_deploy1.wav"
+		"wave"		"npc/hl1/squeek/sqk_deploy1.wav"
 	}
 }
 
@@ -314,9 +314,9 @@
 	"soundlevel"	"SNDLVL_NORM"
 	"rndwave"
 	{
-		"wave"		"squeek/sqk_hunt1.wav"
-		"wave"		"squeek/sqk_hunt2.wav"
-		"wave"		"squeek/sqk_hunt3.wav"
+		"wave"		"npc/hl1/squeek/sqk_hunt1.wav"
+		"wave"		"npc/hl1/squeek/sqk_hunt2.wav"
+		"wave"		"npc/hl1/squeek/sqk_hunt3.wav"
 	}
 }
 

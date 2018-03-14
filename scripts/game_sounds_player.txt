@@ -33,7 +33,7 @@
 	"volume"	"0.9"
 	"soundlevel"  "SNDLVL_60dB"
 
-	"wave"	"items/longjump_boost.wav"
+	"wave"	"items/longjump/longjump_boost.wav"
 }
 
 "HL2Player.LJR"
@@ -42,7 +42,7 @@
 	"volume"	"0.9"
 	"soundlevel"  "SNDLVL_60dB"
 
-	"wave"	"items/longjump_reset.wav"
+	"wave"	"items/longjump/longjump_reset.wav"
 }
 "HL2Player.LongJumpEquip"
 {
@@ -50,7 +50,7 @@
 	"volume"	"0.9"
 	"soundlevel"  "SNDLVL_60dB"
 
-	"wave"	"items/longjump_pickup.wav"
+	"wave"	"items/longjump/longjump_pickup.wav"
 }
 
 
