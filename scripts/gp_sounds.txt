@@ -46,3 +46,25 @@
 		"wave"	"ambient/areas/air_exchange/pipe5.wav"
 	}
 }
+
+
+//Game instructor
+"Instructor.LessonStart"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel" 		"SNDLVL_NORM"
+	"pitch"			"PITCH_NORM"
+	"volume"		"0.75"
+
+	"wave"			"#UI/BeepClear.wav"
+}
+
+"Instructor.ImportantLessonStart"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel" 		"SNDLVL_NORM"
+	"pitch"			"PITCH_NORM"
+	"volume"		"0.75"
+
+	"wave"			"#UI/beep22.wav"
+}

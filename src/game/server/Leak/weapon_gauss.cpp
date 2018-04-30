@@ -429,6 +429,12 @@ void CWeaponGaussGun::ChargedFire( void )
 
 	// Register a muzzleflash for the AI
 	pOwner->SetMuzzleFlashTime( gpGlobals->curtime + 0.5 );
+
+	IGameEvent *pEvent = gameeventmanager->CreateEvent("weapon_fired"); // For instructor notification
+	if (pEvent) {
+		pEvent->SetBool("secondary", true);
+		gameeventmanager->FireEvent(pEvent);
+	}
 }
 
 //-----------------------------------------------------------------------------

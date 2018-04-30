@@ -66,10 +66,19 @@
 			}
 		}
 
+		"close"
+		{
+			"player_longjumped"
+			{
+				"icon_target is"	"player local_player"
+			}
+		}
+
 		"success"
 		{
 			"player_longjumped"
 			{
+				"icon_target is"	"player local_player"
 			}
 		}
 	}
@@ -116,6 +125,48 @@
 		}
 	}
 
+	"Weapon Explain Gauss"
+	{
+		"priority"				"15"
+		"instance_type"			"1"			
+		"success_limit"			"1"			
+		"binding"				"+attack2"
+		"onscreen_icon"			"use_binding"
+		"caption"				"#gp_lesson_gauss"
+		
+		"open"
+		{			
+			"weapon_deploy"
+			{
+				"string1 set"			"string weapon"
+				"string1 is"			"string weapon_gauss"	
+				"icon_target set"		"player local_player"
+			}
+		}
+		"close"
+		{			
+			"weapon_fired" 
+			{
+				"integer1 set"		"bool secondary"
+				"integer1 is"			"bool 1"		
+			}
+			"weapon_deploy"
+			{
+				"string1 set"			"string weapon"
+				"string1 !is"			"string weapon_gauss"	
+			}
+		}
+		"success"
+		{				
+			"weapon_fired" 
+			{
+				"integer1 set"		"bool secondary"
+				"integer1 is"			"bool 1"		
+			}
+		}
+	}
+	
+
 
 	"Weapon Explain Snarks Thrown"
 	{
@@ -149,7 +200,7 @@
 	}
 
 
-	
+
 	
 	
 }
