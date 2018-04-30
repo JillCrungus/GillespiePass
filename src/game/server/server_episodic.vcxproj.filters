@@ -19,6 +19,9 @@
     <Filter Include="Source Files\HL2 DLL\GP">
       <UniqueIdentifier>{A5C78B79-651F-38E8-5F47-A30B1057BBF1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\GP\Instructor">
+      <UniqueIdentifier>{0232E242-8DE1-F051-E80A-125DFAC3D9BE}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\HL2 DLL\GP\Resource Gathering">
       <UniqueIdentifier>{E5DCDFDD-9C63-AD04-D468-49BD111C3A2F}</UniqueIdentifier>
     </Filter>
@@ -3384,6 +3387,9 @@
     </ClCompile>
     <ClCompile Include="hl2\weapon_stunstick.cpp">
       <Filter>Source Files\HL2 DLL</Filter>
+    </ClCompile>
+    <ClCompile Include="env_instructor_hint.cpp">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
     </ClCompile>
     <ClCompile Include="gp_resources.cpp">
       <Filter>Source Files\HL2 DLL\GP\Resource Gathering</Filter>

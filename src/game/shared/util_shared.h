@@ -600,5 +600,9 @@ bool				UTIL_IsHolidayActive( /*EHoliday*/ int eHoliday );
 // holidays overlapping, the list order will act as priority.
 const char		   *UTIL_GetActiveHolidayString();
 
+int UTIL_CountNumBitsSet(unsigned int nVar);
+int UTIL_CountNumBitsSet(uint64 nVar);
+
+
 
 #endif // UTIL_SHARED_H

@@ -23,6 +23,7 @@
 #include <KeyValues.h>
 #include "filesystem.h"
 #include "matsys_controls/matsyscontrols.h"
+#include "vgui/ILocalize.h"
 
 #ifdef SIXENSE
 #include "sixense/in_sixense.h"
@@ -44,6 +45,7 @@ vgui::IInputInternal *g_InputInternal = NULL;
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
+
 
 void GetVGUICursorPos( int& x, int& y )
 {
@@ -187,6 +189,15 @@ bool VGui_Startup( CreateInterfaceFn appSystemFactory )
 	{
 		return false;
 	}
+
+	//g_pVGuiLocalize->AddFile("resource/GillespiePass_%language%.txt", "MOD");
+	//g_pVGuiLocalize->AddFile("resource/GillespiePass_%language%.txt", "MOD");
+
+	g_pVGuiLocalize->AddFile("resource/GillespiePass_%language%.txt", "MOD");
+	g_pVGuiLocalize->AddFile("resource/lessons_%language%.txt", "MOD");
+	
+
+
 	return true;
 }
 

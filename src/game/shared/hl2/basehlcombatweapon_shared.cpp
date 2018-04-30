@@ -121,6 +121,17 @@ bool CBaseHLCombatWeapon::Deploy( void )
 	// We have to ask the player if the last time it checked, the weapon was lowered
 	if ( GetOwner() && GetOwner()->IsPlayer() )
 	{
+
+
+
+		IGameEvent *event = gameeventmanager->CreateEvent("weapon_deploy");
+		if (event)
+		{
+			event->SetString("weapon", GetClassname());
+			gameeventmanager->FireEvent(event);
+		}
+
+
 		CHL2_Player *pPlayer = assert_cast<CHL2_Player*>( GetOwner() );
 		if ( pPlayer->IsWeaponLowered() )
 		{

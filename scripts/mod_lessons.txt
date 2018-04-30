@@ -1,0 +1,155 @@
+//--------------------------------------------------------
+//
+// This file contains all the scripted lessons used by 
+// the game instructor.
+//
+//
+// PRIORITY LEVELS
+//
+// 50-100 Gamemode tips etc
+// 10-20 Weapon tips etc
+// 4-5 Pickup tips
+//
+// INSTANCE TYPES
+// 0 = multiple lessons of same type can be open at once
+// 1 = only one of each lesson type can be open at once
+// 2 = replace lesson of the same type and "replace_key" at a fixed amount "fixed_instances_max"
+// 3 = only one instance will display at a time (but all instances will be open)
+//
+//
+// FLAGS (use these to build an integer)
+//
+// 0		0x00000000 LOCATOR_ICON_FX_NONE
+// 1		0x00000001 LOCATOR_ICON_FX_PULSE_SLOW
+// 2		0x00000002 LOCATOR_ICON_FX_PULSE_FAST
+// 4		0x00000004 LOCATOR_ICON_FX_PULSE_URGENT
+// 8		0x00000008 LOCATOR_ICON_FX_ALPHA_SLOW
+// 16		0x00000010 LOCATOR_ICON_FX_ALPHA_FAST
+// 32		0x00000020 LOCATOR_ICON_FX_ALPHA_URGENT
+// 64 		0x00000040 LOCATOR_ICON_FX_SHAKE_NARROW
+// 128 		0x00000080 LOCATOR_ICON_FX_SHAKE_WIDE
+// 256		0x00000100 LOCATOR_ICON_FX_STATIC
+// 512		0x00000200 LOCATOR_ICON_FX_NO_OFFSCREEN
+// 1024		0x00000400 LOCATOR_ICON_FX_FORCE_CAPTION
+// 2048		0x00000800 LOCATOR_ICON_FX_FADE_OUT
+// 4096		0x00001000 LOCATOR_ICON_FX_FADE_IN
+//
+// 
+// CAPTION COLOR - supply a string in the format "rrr,ggg,bbb"  ex. "255,255,255" for white
+//
+//--------------------------------------------------------
+
+
+"instructor_lessons"
+{
+	"version number"
+	{
+		"priority"			"0"
+		"success_limit"		"1"	// increase this number to force a reset counts for everyone
+	}
+	
+	"item explain longjump"
+	{
+		"priority"				"11"
+		"instance_type"			"2"			
+		"display_limit"			"2"			
+		"onscreen_icon"			"icon_bulb"
+		"caption"				"#gp_lesson_longjump"
+		"timeout"				"10.00"		
+		"open"
+		{			
+			"pickup_pickedup"
+			{
+				"string1 set"			"string class"
+				"string1 is"			"string item_longjump"	
+				"icon_target set"			"player local_player"
+			}
+		}
+
+		"success"
+		{
+			"player_longjumped"
+			{
+			}
+		}
+	}
+
+
+	"Weapon Explain Snarks"
+	{
+		"priority"				"15"
+		"instance_type"			"1"			
+		"success_limit"			"1"			
+		"binding"				"+attack"
+		"onscreen_icon"			"use_binding"
+		"caption"				"#gp_lesson_snarks"
+		
+		"open"
+		{			
+			"weapon_deploy"
+			{
+				"string1 set"			"string weapon"
+				"string1 is"			"string weapon_bugbait"	
+				"icon_target set"		"player local_player"
+			}
+		}
+		"close"
+		{			
+			"weapon_fired" 
+			{
+				"integer1 set"		"bool secondary"
+				"integer1 is"			"bool 0"		
+			}
+			"weapon_deploy"
+			{
+				"string1 set"			"string weapon"
+				"string1 !is"			"string weapon_bugbait"	
+			}
+		}
+		"success"
+		{				
+			"weapon_fired" 
+			{
+				"integer1 set"		"bool secondary"
+				"integer1 is"			"bool 0"		
+			}
+		}
+	}
+
+
+	"Weapon Explain Snarks Thrown"
+	{
+		"priority"				"5"
+		"instance_type"			"2"		
+		"display_limit"			"1"		
+		"success_limit"			"1"			
+		"onscreen_icon"			"icon_blank"
+		"offscreen_icon"		"icon_blank"
+		"caption"				"#gp_lesson_snarkthrown"	
+		"prereq"				"Weapon Explain Snarks"
+		"timeout"				"10.00"	
+		//"range"					"convar jb_sv_pickup_tiprange"
+		
+		"open"
+		{			
+			"snark_thrown"
+			{
+				"icon_target set"	"entity snark"
+			}
+		}
+
+		"success"
+		{
+			"weapon_deploy"
+			{
+				"string1 set"			"string weapon"
+				"string1 !is"			"string weapon_bugbait"	
+			}
+		}
+	}
+
+
+	
+	
+	
+}

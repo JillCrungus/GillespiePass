@@ -121,6 +121,8 @@ void CSnark::Spawn( void )
 	//m_iMyClass = CLASS_NONE;
 
 	m_posPrev = Vector( 0, 0, 0 );
+
+	
 }
 
 

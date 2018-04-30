@@ -37,9 +37,13 @@ public:
 
 	virtual void	Init();
 	virtual bool	ShouldDrawCrosshair( void );
+
+	virtual vgui::Panel *GetPanelFromViewport(const char *pchNamePath);
 };
 
 extern IClientMode *GetClientModeNormal();
 extern vgui::HScheme g_hVGuiCombineScheme;
+
+
 
 #endif // CLIENTMODE_HLNORMAL_H

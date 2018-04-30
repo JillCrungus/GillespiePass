@@ -95,5 +95,117 @@ bool ClientModeHLNormal::ShouldDrawCrosshair( void )
 	return ( g_bRollingCredits == false );
 }
 
+vgui::Panel *ClientModeHLNormal::GetPanelFromViewport(const char *pchNamePath)
+{
+	char szTagetName[256];
+	Q_strncpy(szTagetName, pchNamePath, sizeof(szTagetName));
+
+	char *pchName = szTagetName;
+
+	char *pchEndToken = strchr(pchName, ';');
+	if (pchEndToken)
+	{
+		*pchEndToken = '\0';
+	}
+
+	char *pchNextName = strchr(pchName, '/');
+	if (pchNextName)
+	{
+		*pchNextName = '\0';
+		pchNextName++;
+	}
+
+	// Comma means we want to count to a specific instance by name
+	int nInstance = 0;
+
+	char *pchInstancePos = strchr(pchName, ',');
+	if (pchInstancePos)
+	{
+		*pchInstancePos = '\0';
+		pchInstancePos++;
+
+		nInstance = atoi(pchInstancePos);
+	}
+
+	// Find the child
+	int nCurrentInstance = 0;
+	vgui::Panel *pPanel = NULL;
+
+	for (int i = 0; i < GetViewport()->GetChildCount(); i++)
+	{
+		Panel *pChild = GetViewport()->GetChild(i);
+		if (!pChild)
+			continue;
+
+		if (stricmp(pChild->GetName(), pchName) == 0)
+		{
+			nCurrentInstance++;
+
+			if (nCurrentInstance > nInstance)
+			{
+				pPanel = pChild;
+				break;
+			}
+		}
+	}
+
+	pchName = pchNextName;
+
+	while (pPanel)
+	{
+		if (!pchName || pchName[0] == '\0')
+		{
+			break;
+		}
+
+		pchNextName = strchr(pchName, '/');
+		if (pchNextName)
+		{
+			*pchNextName = '\0';
+			pchNextName++;
+		}
+
+		// Comma means we want to count to a specific instance by name
+		nInstance = 0;
+
+		pchInstancePos = strchr(pchName, ',');
+		if (pchInstancePos)
+		{
+			*pchInstancePos = '\0';
+			pchInstancePos++;
+
+			nInstance = atoi(pchInstancePos);
+		}
+
+		// Find the child
+		nCurrentInstance = 0;
+		vgui::Panel *pNextPanel = NULL;
+
+		for (int i = 0; i < pPanel->GetChildCount(); i++)
+		{
+			Panel *pChild = pPanel->GetChild(i);
+			if (!pChild)
+				continue;
+
+			if (stricmp(pChild->GetName(), pchName) == 0)
+			{
+				nCurrentInstance++;
+
+				if (nCurrentInstance > nInstance)
+				{
+					pNextPanel = pChild;
+					break;
+				}
+			}
+		}
+
+		pPanel = pNextPanel;
+		pchName = pchNextName;
+	}
+
+	return pPanel;
+}
+
+
 
 

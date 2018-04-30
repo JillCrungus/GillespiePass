@@ -25,6 +25,7 @@
 #include "filesystem.h"
 #include <vgui_controls/AnimationController.h>
 #include <vgui/ISurface.h>
+#include "vgui/ILocalize.h"
 #include "hud_lcd.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -460,6 +461,10 @@ void CHud::Init( void )
 	// check to see if we have sprites for this res; if not, step down
 	LoadHudTextures( textureList, "scripts/hud_textures", NULL );
 	LoadHudTextures( textureList, "scripts/mod_textures", NULL );
+
+	LoadHudTextures(textureList, "scripts/instructor_textures", NULL);
+	LoadHudTextures(textureList, "scripts/instructor_modtextures", NULL);
+
 
 	int c = textureList.Count();
 	for ( int index = 0; index < c; index++ )

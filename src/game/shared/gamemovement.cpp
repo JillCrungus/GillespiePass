@@ -2499,6 +2499,12 @@ bool CGameMovement::CheckJumpButton( void )
 					player->m_bCanLJ = false;
 					player->m_playedCooldown = false;
 
+					IGameEvent * event = gameeventmanager->CreateEvent("player_longjumped");
+					if (event)
+					{
+						gameeventmanager->FireEvent(event);
+					}
+
 
 				}
 			}

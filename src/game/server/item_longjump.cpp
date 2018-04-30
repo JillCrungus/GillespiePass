@@ -50,6 +50,12 @@ public:
 			WRITE_STRING(GetClassname());
 		MessageEnd();
 
+		IGameEvent * event = gameeventmanager->CreateEvent("pickup_pickedup");
+		if (event)
+		{
+			event->SetString("class", "item_longjump");
+			gameeventmanager->FireEvent(event);
+		}
 
 		pPlayer->m_bLongJump = TRUE;// player now has longjump module
 		pPlayer->SetSuitUpdate("!HEV_A1", false, SUIT_NEXT_IN_1MIN);

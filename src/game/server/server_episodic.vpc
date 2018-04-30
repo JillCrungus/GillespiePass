@@ -291,6 +291,11 @@ $Project "Server (Episodic)"
 					$File "gp_resources.h"
 					$File "gp_resources.cpp"
 				}
+
+				$Folder "Instructor"
+				{
+					$File "env_instructor_hint.cpp"
+				}
 			}
 
 			$Folder "Leak"

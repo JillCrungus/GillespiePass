@@ -33,6 +33,24 @@ $Project "Client (Episodic)"
 
 		$Folder	"HL2 DLL"
 		{
+			$Folder "GP"
+			{
+				// Instructor
+				$Folder	"Instructor"
+				{
+					$File	"c_baselesson.cpp"
+					$File	"c_baselesson.h"
+					$File	"c_gameinstructor.cpp"
+					$File	"c_gameinstructor.h"
+					$File	"hud_locator_target.cpp"
+					$File	"hud_locator_target.h"
+					$File	"vgui_bindpanel.cpp"
+					$File	"vgui_bindpanel.h"
+					$File	"gp_instructor.cpp"
+					$File	"gp_instructor_helpers.h"
+				}
+
+			}
 			$File	"$SRCDIR\game\shared\hl2\basehlcombatweapon_shared.cpp"
 			$File	"$SRCDIR\game\shared\episodic\achievements_ep1.cpp"
 			$File	"$SRCDIR\game\shared\episodic\achievements_ep2.cpp"

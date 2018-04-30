@@ -34,6 +34,12 @@
     <Filter Include="Source Files\HL2 DLL">
       <UniqueIdentifier>{3C43D38A-46AF-2183-A5E5-44383B1D2652}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\GP">
+      <UniqueIdentifier>{A5C78B79-651F-38E8-5F47-A30B1057BBF1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HL2 DLL\GP\Instructor">
+      <UniqueIdentifier>{0232E242-8DE1-F051-E80A-125DFAC3D9BE}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Precompiled Header">
       <UniqueIdentifier>{A7D26A13-21F4-C6B5-5922-8A4FB05AF07D}</UniqueIdentifier>
     </Filter>
@@ -1880,6 +1886,21 @@
     <ClInclude Include="..\..\game\shared\episodic\npc_advisor_shared.h">
       <Filter>Source Files\HL2 DLL</Filter>
     </ClInclude>
+    <ClInclude Include="c_baselesson.h">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClInclude>
+    <ClInclude Include="c_gameinstructor.h">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClInclude>
+    <ClInclude Include="gp_instructor_helpers.h">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClInclude>
+    <ClInclude Include="hud_locator_target.h">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClInclude>
+    <ClInclude Include="vgui_bindpanel.h">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClInclude>
     <ClInclude Include="sixense\in_sixense.h">
       <Filter>Source Files\Sixense</Filter>
     </ClInclude>
@@ -3207,6 +3228,21 @@
     </ClCompile>
     <ClCompile Include="hl2\vgui_rootpanel_hl2.cpp">
       <Filter>Source Files\HL2 DLL</Filter>
+    </ClCompile>
+    <ClCompile Include="c_baselesson.cpp">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClCompile>
+    <ClCompile Include="c_gameinstructor.cpp">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClCompile>
+    <ClCompile Include="gp_instructor.cpp">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClCompile>
+    <ClCompile Include="hud_locator_target.cpp">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClCompile>
+    <ClCompile Include="vgui_bindpanel.cpp">
+      <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files\Precompiled Header</Filter>

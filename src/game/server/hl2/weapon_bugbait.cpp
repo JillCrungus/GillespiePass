@@ -234,6 +234,15 @@ void CWeaponBugBait::PrimaryAttack( void )
 
 	m_iPrimaryAttacks++;
 	gamestats->Event_WeaponFired( pPlayer, true, GetClassname() );
+	
+
+	IGameEvent *pEvent = gameeventmanager->CreateEvent("weapon_fired"); // For instructor notification
+	if (pEvent) {
+		pEvent->SetBool("secondary", false);
+		gameeventmanager->FireEvent(pEvent);
+	}
+
+
 }
 
 //-----------------------------------------------------------------------------
@@ -289,6 +298,13 @@ void CWeaponBugBait::ThrowGrenade( CBasePlayer *pPlayer )
 		trace_t	tr;
 		UTIL_TraceLine( pPlayer->EyePosition(), pPlayer->EyePosition() + ( vForward * 128 ), MASK_SHOT, this, COLLISION_GROUP_NONE, &tr );
 		
+		IGameEvent *event = gameeventmanager->CreateEvent("snark_thrown");
+		if (event)
+		{
+			event->SetInt("snark", pGrenade->entindex());
+			gameeventmanager->FireEvent(event);
+		}
+
 		if ( tr.fraction == 1.0 )
 		{
 			//pGrenade->SetGracePeriod( 0.1f );
