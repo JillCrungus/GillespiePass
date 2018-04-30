@@ -317,7 +317,7 @@
 	]
 ]
 
-@PointClass base(Targetname) = env_instructor_hint : "An entity that allows for creation and control of instructor lessons by map logic"
+@PointClass base(Targetname) iconsprite("editor/env_instructor_hint.vmt") = env_instructor_hint : "An entity that allows for creation and control of instructor lessons by map logic"
 [
 	hint_replace_key(string) : "Replace Key" : : "Unique name so that messages with the same key will replace each other."
 	hint_target(target_destination) : "Target Entity" : : "The entity to show this hint on top of. The entity used must exist on the client, info_target_instructor_hint can be parented to server only entities for this purpose."
