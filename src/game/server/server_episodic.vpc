@@ -296,6 +296,12 @@ $Project "Server (Episodic)"
 				{
 					$File "env_instructor_hint.cpp"
 				}
+
+				$Folder "Jukebox"
+				{
+					$File "gp\gp_jukebox.cpp"
+					$File "gp\gp_jukebox.h"
+				}
 			}
 
 			$Folder "Leak"

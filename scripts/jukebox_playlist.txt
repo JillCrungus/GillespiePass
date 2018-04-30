@@ -1,0 +1,11 @@
+"jukebox_playlist.txt"
+{
+	"action_placeholder"
+	{
+		"TrackName" "Run!"
+		"HexName"	"mus_placeholder_action1"
+		"Album"		"Canabalt OST"
+		"Artist"	"Danny Baranowksy"
+		"Genre"		"Electronic"
+	}
+}

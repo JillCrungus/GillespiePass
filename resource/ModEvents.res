@@ -91,5 +91,18 @@
 	{
 		"hint_name"	"string"
 	}
+
+
+	//Jukebox
+	"jukebox_play_random"
+	{
+		"fadeintime"	"float"
+		"defaulttrack"	"string"
+	}
+
+	"jukebox_stop"
+	{
+		"fadeouttime"	"float"
+	}
 	
 }

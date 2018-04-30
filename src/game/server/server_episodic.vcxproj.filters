@@ -22,6 +22,9 @@
     <Filter Include="Source Files\HL2 DLL\GP\Instructor">
       <UniqueIdentifier>{0232E242-8DE1-F051-E80A-125DFAC3D9BE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HL2 DLL\GP\Jukebox">
+      <UniqueIdentifier>{24DCC551-FF33-A0A2-B732-E821E4907037}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\HL2 DLL\GP\Resource Gathering">
       <UniqueIdentifier>{E5DCDFDD-9C63-AD04-D468-49BD111C3A2F}</UniqueIdentifier>
     </Filter>
@@ -1781,6 +1784,9 @@
     <ClInclude Include="hl2\weapon_stunstick.h">
       <Filter>Source Files\HL2 DLL</Filter>
     </ClInclude>
+    <ClInclude Include="gp\gp_jukebox.h">
+      <Filter>Source Files\HL2 DLL\GP\Jukebox</Filter>
+    </ClInclude>
     <ClInclude Include="gp_resources.h">
       <Filter>Source Files\HL2 DLL\GP\Resource Gathering</Filter>
     </ClInclude>
@@ -3390,6 +3396,9 @@
     </ClCompile>
     <ClCompile Include="env_instructor_hint.cpp">
       <Filter>Source Files\HL2 DLL\GP\Instructor</Filter>
+    </ClCompile>
+    <ClCompile Include="gp\gp_jukebox.cpp">
+      <Filter>Source Files\HL2 DLL\GP\Jukebox</Filter>
     </ClCompile>
     <ClCompile Include="gp_resources.cpp">
       <Filter>Source Files\HL2 DLL\GP\Resource Gathering</Filter>

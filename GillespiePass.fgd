@@ -432,3 +432,14 @@
 	input ShowHint(string) : "Start showing the hint. If an entity name is passed as a parameter, the hint is shown only to that entity."	
 	input EndHint(void) : "Stop showing the hint if it hasn't already timed out."
 ]
+
+@PointClass base(Targetname) iconsprite("editor/env_soundscape.vmt") = gp_jukebox: 
+	"An entity used to control music events." 
+[
+	FadeInTime(float): "Fade In Time": "1.0" : "The amount of time it takes for the music to fade in to 100% volume (in seconds.)"
+	FadeOutTime(float): "Fade Out Time": "1.0" : "The amount of time it takes for the music to fade out to 0 volume (in seconds.)"
+	DefaultMusic(sound) : "Default Music" : "" : "Default music to play if no custom combat music has been imported."
+	// Inputs
+	input StartMusic(void) : "Start a random music track from the user's playlist."
+	input StopMusic(void) : "Stop the currently playing music."
+]

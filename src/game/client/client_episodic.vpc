@@ -50,6 +50,13 @@ $Project "Client (Episodic)"
 					$File	"gp_instructor_helpers.h"
 				}
 
+				//Jukebox
+				$Folder "Jukebox"
+				{
+					$File "gp\c_gp_jukebox.cpp"
+					$File "gp\c_gp_jukebox.h"
+				}
+
 			}
 			$File	"$SRCDIR\game\shared\hl2\basehlcombatweapon_shared.cpp"
 			$File	"$SRCDIR\game\shared\episodic\achievements_ep1.cpp"
